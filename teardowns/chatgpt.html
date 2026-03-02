@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Day 01 — ChatGPT | Komal Unpackss</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #C9A96E;
+      --gold-light: #E8D5B0;
+      --teal: #2A7B7B;
+      --teal-dark: #1a5252;
+      --dark: #0F1419;
+      --dark-2: #1A2129;
+      --text: #E8E0D5;
+      --text-muted: #9A9080;
+      --white: #FAF8F5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 20, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-back:hover { color: var(--gold); }
+
+    /* HERO */
+    .teardown-hero {
+      padding: 8rem 4rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .breadcrumb {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.5rem;
+    }
+
+    .breadcrumb span { color: var(--text-muted); margin: 0 0.5rem; }
+
+    .teardown-day {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .teardown-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .teardown-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 2rem;
+    }
+
+    .teardown-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .meta-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .meta-value {
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    /* CONTENT */
+    .teardown-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 4rem 6rem;
+    }
+
+    .section {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+
+    .section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .section p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .section p strong {
+      color: var(--gold-light);
+      font-weight: 500;
+    }
+
+    .section p em {
+      color: var(--text);
+      font-style: italic;
+    }
+
+    /* JTBD LIST */
+    .jtbd-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .jtbd-list li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(201, 169, 110, 0.08);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      line-height: 1.6;
+    }
+
+    .jtbd-list li::before {
+      content: '✦';
+      color: var(--teal);
+      font-size: 0.6rem;
+      margin-top: 0.3rem;
+      flex-shrink: 0;
+    }
+
+    /* VERDICT CARDS */
+    .verdict-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .verdict-card {
+      padding: 1.5rem;
+      border: 1px solid rgba(201, 169, 110, 0.1);
+    }
+
+    .verdict-card.positive { border-color: rgba(42, 123, 123, 0.3); }
+    .verdict-card.negative { border-color: rgba(201, 169, 110, 0.2); }
+
+    .verdict-icon {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .verdict-card h3 {
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .verdict-card p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 0 !important;
+    }
+
+    /* DIFFERENT SECTION */
+    .different-box {
+      background: var(--dark-2);
+      border-left: 3px solid var(--teal);
+      padding: 2rem 2.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .different-box p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .different-box p:last-child { margin-bottom: 0 !important; }
+
+    /* RATING */
+    .rating-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+    }
+
+    .rating-table tr {
+      border-bottom: 1px solid rgba(201, 169, 110, 0.08);
+    }
+
+    .rating-table td {
+      padding: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    .rating-table td:first-child {
+      color: var(--text-muted);
+      width: 50%;
+    }
+
+    .rating-table td:last-child {
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    /* TAKEAWAY */
+    .takeaway-box {
+      background: linear-gradient(135deg, var(--teal-dark), var(--dark-2));
+      border: 1px solid rgba(201, 169, 110, 0.15);
+      padding: 2.5rem;
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    .takeaway-box p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--gold-light);
+      line-height: 1.6;
+      margin-bottom: 0 !important;
+    }
+
+    /* NEXT */
+    .next-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(201, 169, 110, 0.1);
+      margin-top: 4rem;
+    }
+
+    .next-section a {
+      text-decoration: none;
+      color: var(--gold);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+    }
+
+    .next-section a:hover { opacity: 0.7; }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(201, 169, 110, 0.2), transparent);
+      margin: 3rem 0;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1.5rem 2rem; }
+      .teardown-hero { padding: 7rem 2rem 3rem; }
+      .teardown-content { padding: 0 2rem 4rem; }
+      .verdict-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">Komal Sikka</a>
+    <a href="/#how-i-ai" class="nav-back">← Back to How I AI</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="teardown-hero">
+    <p class="breadcrumb">How I AI <span>·</span> Teardown</p>
+    <p class="teardown-day">✦ Day 01</p>
+    <h1 class="teardown-title">ChatGPT</h1>
+    <p class="teardown-subtitle">The One That Became Everything</p>
+    <div class="teardown-meta">
+      <div class="meta-item">
+        <span class="meta-label">Category</span>
+        <span class="meta-value">AI Assistant — General Purpose</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">By</span>
+        <span class="meta-value">Komal Sikka</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Date</span>
+        <span class="meta-value">March 2, 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Published at</span>
+        <span class="meta-value">komalunpacks.com</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="teardown-content">
+
+    <!-- WHAT IS IT -->
+    <div class="section">
+      <p class="section-label">✦ Overview</p>
+      <h2>What is it?</h2>
+      <p>ChatGPT is OpenAI's flagship conversational AI — the tool that introduced most of the world to the idea that AI could actually <em>talk</em> to you. I've been using it every single day for over a year. Multiple times a day. And in that time, it has quietly become one of the most used tools in my life.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- JTBD -->
+    <div class="section">
+      <p class="section-label">✦ Jobs To Be Done</p>
+      <h2>What job does it do?</h2>
+      <p>ChatGPT doesn't do one job. It does <strong>all of them.</strong> In my world it has been:</p>
+      <ul class="jtbd-list">
+        <li>A professional assistant: PRDs, technical clarifications, assignments</li>
+        <li>A learning partner: <em>"Rate my understanding critically and give me honest feedback"</em></li>
+        <li>A life strategy tool: goal setting, priority mapping, thinking through decisions</li>
+        <li>A wellness companion: workout planning, habit building</li>
+        <li>A conversation partner: for confusion, clarity, and everything in between</li>
+      </ul>
+      <p style="margin-top: 1.5rem;">That is not a feature list. That is a <strong>life tool.</strong></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- WHAT WORKED / DIDN'T -->
+    <div class="section">
+      <p class="section-label">✦ Honest Assessment</p>
+      <h2>What worked. What didn't.</h2>
+      <div class="verdict-grid">
+        <div class="verdict-card positive">
+          <div class="verdict-icon">✅</div>
+          <h3>What Impressed Me</h3>
+          <p>The personalisation is unmatched. The longer you use it, the more it moulds itself to you - your tone, your thinking style, your personality. It doesn't just answer questions. It learns how <em>you</em> like to be answered. That is rare. And that is powerful.</p>
+        </div>
+        <div class="verdict-card negative">
+          <div class="verdict-icon">❌</div>
+          <h3>What Disappointed Me</h3>
+          <p>It's too agreeable. Even when you're confidently wrong, it validates. For a tool people are making real decisions with, low discernment is a meaningful gap. The best thinking partners don't just reflect your ideas back at you. They challenge them.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- PRODUCT INSIGHT -->
+    <div class="section">
+      <p class="section-label">✦ PM Lens</p>
+      <h2>Product Insight</h2>
+      <p>ChatGPT's real product genius wasn't the technology - it was the <strong>interface decision to make AI conversational.</strong> That one choice democratised AI for the world.</p>
+      <p>But its next frontier isn't breadth. It's <strong>wisdom.</strong> The ability to know when to agree, when to push back, and when to say <em>"I think you need to sit with this a little longer."</em></p>
+      <p>Smart is table stakes now. <strong>Discerning is the next frontier.</strong></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ENTERPRISE USE CASE -->
+    <div class="section">
+      <p class="section-label">✦ Enterprise Angle</p>
+      <h2>Enterprise Use Case</h2>
+      <p>In banking and financial services, ChatGPT's range makes it a strong candidate for:</p>
+      <ul class="jtbd-list">
+        <li>Agent assist in contact centres: real-time guidance during live customer interactions</li>
+        <li>Knowledge management: surfacing policy and product information instantly</li>
+        <li>Training and onboarding: personalised learning companions for new joiners</li>
+      </ul>
+      <p style="margin-top: 1.5rem;">The limitation? <strong>Compliance and data privacy.</strong> Enterprise adoption will hinge on truly air-gapped, auditable deployments. Until then - powerful, but carefully governed in regulated industries.</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- HOW I'D DO IT DIFFERENTLY -->
+    <div class="section">
+      <p class="section-label">✦ PM's Take</p>
+      <h2>How I'd Do It Differently</h2>
+      <div class="different-box">
+        <p>If I were the PM for ChatGPT, my north star wouldn't be <em>more knowledge.</em> It would be <strong>better judgement.</strong></p>
+        <p>I'd build a <strong>Discernment Layer</strong> - a system that detects when a user is emotionally charged, overconfident, or moving too fast toward a decision. In those moments, instead of validating, ChatGPT would slow down. Wear the devil's hat. Ask a question. Offer a counter-perspective.</p>
+        <p>Not to be difficult. But because the most valuable thinking partner you can have isn't the one who always agrees with you - it's the one who reveals the blindspots and helps you arrive at the <em>right</em> answer, not just a <em>comfortable</em> one.</p>
+        <p>I'd also invest deeply in <strong>memory architecture</strong> - not just preferences, but patterns. Understanding not just <em>what</em> you ask but <em>how</em> you think, <em>where</em> you get stuck, and <em>what</em> you need before you even know you need it.</p>
+        <p>Smart is no longer enough. The next ChatGPT needs to be <em>wise.</em></p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- RATING -->
+    <div class="section">
+      <p class="section-label">✦ Scorecard</p>
+      <h2>Komal's Honest Rating</h2>
+      <table class="rating-table">
+        <tr><td>Ease of Use</td><td>⭐⭐⭐⭐⭐</td></tr>
+        <tr><td>Depth of Thinking</td><td>⭐⭐⭐⭐</td></tr>
+        <tr><td>Personalisation</td><td>⭐⭐⭐⭐⭐</td></tr>
+        <tr><td>Discernment</td><td>⭐⭐</td></tr>
+        <tr><td>Enterprise Readiness</td><td>⭐⭐⭐</td></tr>
+      </table>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- TAKEAWAY -->
+    <div class="section">
+      <p class="section-label">✦ Bottom Line</p>
+      <h2>One Line Takeaway</h2>
+      <div class="takeaway-box">
+        <p>The one that started it all - breadth and personalisation are its superpowers, discernment is its blindspot.</p>
+      </div>
+    </div>
+
+    <!-- NEXT -->
+    <div class="next-section">
+      <a href="/">← Back to Portfolio</a>
+      <a href="#">Day 02 — Claude →</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
