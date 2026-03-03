@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Day 01 — ChatGPT | Komal Unpacks</title>
+  <title>Teardown | Komal Unpacks</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -168,10 +168,8 @@
       margin-bottom: 1rem;
     }
 
-    .section p strong { color: var(--plum-deep); font-weight: 500; }
-    .section p em { color: var(--text); font-style: italic; }
+    .section p:last-child { margin-bottom: 0; }
 
-    /* STAKEHOLDER GRID */
     .stakeholder-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -214,7 +212,6 @@
 
     .stakeholder-card ul li:last-child { border-bottom: none; }
 
-    /* QUESTIONS */
     .questions-list {
       list-style: none;
       margin-top: 1rem;
@@ -241,7 +238,6 @@
       top: 1rem;
     }
 
-    /* RECOMMENDATION */
     .recommendation-box {
       background: var(--plum-pale);
       border-left: 3px solid var(--plum);
@@ -256,9 +252,8 @@
       margin-bottom: 1rem;
     }
 
-    .recommendation-box p:last-child { margin-bottom: 0 !important; }
+    .recommendation-box p:last-child { margin-bottom: 0; }
 
-    /* METRICS */
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -302,7 +297,6 @@
 
     .metric-card ul li:last-child { border-bottom: none; }
 
-    /* ROLLOUT */
     .rollout-list { list-style: none; margin-top: 1.5rem; }
 
     .rollout-item {
@@ -335,17 +329,15 @@
       font-size: 0.875rem;
       color: var(--text-muted);
       line-height: 1.7;
-      margin-bottom: 0 !important;
+      margin-bottom: 0;
     }
 
-    /* RATING */
     .rating-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
     .rating-table tr { border-bottom: 1px solid var(--border); }
     .rating-table td { padding: 1rem 0; font-size: 0.9rem; }
     .rating-table td:first-child { color: var(--text-muted); width: 50%; }
     .rating-table td:last-child { color: var(--sunshine); letter-spacing: 0.1em; }
 
-    /* TAKEAWAY */
     .takeaway-box {
       background: var(--plum-pale);
       border: 1px solid var(--border);
@@ -361,10 +353,8 @@
       font-style: italic;
       color: var(--plum-deep);
       line-height: 1.6;
-      margin-bottom: 0 !important;
     }
 
-    /* NEXT/PREV */
     .next-section {
       display: flex;
       justify-content: space-between;
@@ -391,6 +381,13 @@
       margin: 3rem 0;
     }
 
+    .loading {
+      padding: 6rem 4rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -412,223 +409,169 @@
     <a href="/#how-i-ai" class="nav-back">← Back to How I AI</a>
   </nav>
 
-  <div class="teardown-hero">
-    <p class="breadcrumb">How I AI <span>·</span> Teardown</p>
-    <p class="teardown-day">✦ Day 01</p>
-    <h1 class="teardown-title">ChatGPT</h1>
-    <p class="teardown-subtitle">The One That Became Everything</p>
-    <div class="teardown-meta">
-      <div class="meta-item">
-        <span class="meta-label">Category</span>
-        <span class="meta-value">AI Assistant — General Purpose</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">By</span>
-        <span class="meta-value">Komal Sikka</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Date</span>
-        <span class="meta-value">March 2, 2026</span>
-      </div>
-      <div class="meta-item">
-        <span class="meta-label">Published at</span>
-        <span class="meta-value">komalunpacks.com</span>
-      </div>
-    </div>
+  <div id="page-content">
+    <div class="loading">Loading teardown...</div>
   </div>
 
-  <div class="teardown-content">
+  <script>
+    // Detect which JSON to load based on filename
+    const page = location.pathname.split('/').pop().replace('.html', '');
+    const jsonFile = `/teardowns/${page}.json`;
 
-    <div class="section">
-      <p class="section-label">01 — Purpose</p>
-      <h2>What is ChatGPT for?</h2>
-      <p>ChatGPT is OpenAI's flagship conversational AI — designed to make AI accessible to everyone through natural conversation. It serves two distinct masters simultaneously.</p>
-      <p><strong>For Users:</strong> A versatile thinking partner that helps people write, learn, strategise, create, and solve problems — across every domain of life and work. No technical knowledge required.</p>
-      <p><strong>For OpenAI:</strong> The primary consumer product driving adoption, revenue, and data at scale. ChatGPT is both the front door to OpenAI's ecosystem and the proof of concept that conversational AI can be mainstream.</p>
-    </div>
+    fetch(jsonFile)
+      .then(res => res.json())
+      .then(d => {
+        // Update page title
+        document.title = `Day ${d.day} — ${d.tool} | Komal Unpacks`;
 
-    <div class="divider"></div>
-
-    <div class="section">
-      <p class="section-label">02 — Problems</p>
-      <h2>What problems exist today?</h2>
-      <p>Understanding the gaps across each stakeholder reveals where the product is falling short — and where the real opportunity lies.</p>
-      <div class="stakeholder-grid">
-        <div class="stakeholder-card">
-          <h3>End Users</h3>
-          <ul>
-            <li>No persistent memory — context resets every session</li>
-            <li>Over-validation — agrees even when users are wrong</li>
-            <li>Inconsistent depth — sometimes profound, sometimes surface-level</li>
-            <li>No emotional intelligence signals — doesn't detect when a user needs to slow down</li>
-            <li>Trust without verification — users can't easily fact-check outputs</li>
-          </ul>
-        </div>
-        <div class="stakeholder-card">
-          <h3>Enterprise Users</h3>
-          <ul>
-            <li>Data privacy concerns — inputs may train future models</li>
-            <li>No audit trail — hard to govern in regulated industries</li>
-            <li>Hallucinations at scale — high-stakes errors in financial or legal contexts</li>
-            <li>No role-based access — same experience regardless of function</li>
-          </ul>
-        </div>
-        <div class="stakeholder-card">
-          <h3>OpenAI</h3>
-          <ul>
-            <li>Commoditisation risk — Claude, Gemini narrowing the gap</li>
-            <li>Retention at depth — users adopt but don't always deepen usage</li>
-            <li>Monetisation ceiling — hard to upsell beyond Plus</li>
-            <li>Trust deficit in enterprise — compliance teams remain skeptical</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="section">
-      <p class="section-label">03 — Questions to Ask</p>
-      <h2>What should a PM be asking?</h2>
-      <p>Before designing any solution, these are the questions I'd want answered:</p>
-      <ol class="questions-list">
-        <li>What does a user's session look like when they churn — what was the last interaction before they stopped returning?</li>
-        <li>Where does ChatGPT lose to competitors — is it on depth, tone, accuracy, or something else entirely?</li>
-        <li>What percentage of users are using ChatGPT for high-stakes decisions — financial, medical, relationship, career?</li>
-        <li>How often does ChatGPT validate an incorrect user assumption — and does the user ever realise it?</li>
-        <li>What would "memory done right" look like — what should ChatGPT remember, and for how long?</li>
-        <li>What is the highest value enterprise use case that compliance teams would actually approve today?</li>
-        <li>How do we measure trust — not just engagement?</li>
-        <li>What does it mean for ChatGPT to be wise rather than just smart?</li>
-      </ol>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="section">
-      <p class="section-label">04 — My Recommendation</p>
-      <h2>How I'd Do It Differently</h2>
-      <div class="recommendation-box">
-        <p>If I were the PM for ChatGPT, my north star wouldn't be <em>more knowledge.</em> It would be <strong>better judgement.</strong></p>
-        <p>I'd build a <strong>Discernment Layer</strong> — an intelligent system that detects when a user is emotionally charged, overconfident, or moving too fast toward a consequential decision. In those moments, instead of validating, ChatGPT would pause. Ask a clarifying question. Offer a counter-perspective. Surface the assumption it thinks the user is making.</p>
-        <p>Not to be contrarian. But because the most valuable thinking partner isn't the one who always agrees — it's the one who helps you arrive at the <em>right</em> answer, not just a <em>comfortable</em> one.</p>
-        <p>Alongside this, I'd invest in a <strong>Deep Memory Architecture</strong> — one that goes beyond preferences to understand patterns. Not just <em>what</em> you ask, but <em>how</em> you think, <em>where</em> you consistently get stuck, and <em>what</em> you need before you even know you need it.</p>
-        <p><strong>Smart is table stakes. The next ChatGPT needs to be wise.</strong></p>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="section">
-      <p class="section-label">05 — Metrics</p>
-      <h2>How would I measure success?</h2>
-      <p>If I shipped the Discernment Layer and Deep Memory Architecture, here's how I'd know it's working:</p>
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <h3>User Impact</h3>
-          <ul>
-            <li>Decision reversal rate — how often users change course after a discernment prompt</li>
-            <li>Session depth score — are conversations going deeper over time?</li>
-            <li>Memory utilisation rate — are users engaging with recalled context?</li>
-            <li>Trust NPS — do users trust ChatGPT more over time?</li>
-          </ul>
-        </div>
-        <div class="metric-card">
-          <h3>Product Health</h3>
-          <ul>
-            <li>Discernment prompt acceptance rate — are users engaging or dismissing?</li>
-            <li>Retention at 30/60/90 days — does personalisation reduce churn?</li>
-            <li>Hallucination rate reduction — measurable improvement in output accuracy</li>
-            <li>Upgrade conversion rate — does deeper value drive Plus subscriptions?</li>
-          </ul>
-        </div>
-        <div class="metric-card">
-          <h3>Enterprise Impact</h3>
-          <ul>
-            <li>Enterprise pilot conversion rate — pilots converting to full deployment</li>
-            <li>Compliance approval rate — % of use cases cleared by legal/risk</li>
-            <li>Agent assist resolution lift — improvement in first contact resolution</li>
-            <li>Time-to-onboard reduction — faster ramp for enterprise users</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="section">
-      <p class="section-label">06 — Roll-out Plan</p>
-      <h2>How would I phase this?</h2>
-      <div class="rollout-list">
-        <div class="rollout-item">
-          <div class="rollout-phase">01</div>
-          <div class="rollout-content">
-            <h3>Research & Signal Detection — Weeks 1–4</h3>
-            <p>Analyse session data to identify patterns where users make high-stakes decisions. Build the taxonomy of "discernment moments." Define what emotionally charged or overconfident inputs look like at scale. Set baseline metrics.</p>
+        // Build stakeholder cards
+        const stakeholderCards = d.sections.problems.stakeholders.map(s => `
+          <div class="stakeholder-card">
+            <h3>${s.name}</h3>
+            <ul>${s.points.map(p => `<li>${p}</li>`).join('')}</ul>
           </div>
-        </div>
-        <div class="rollout-item">
-          <div class="rollout-phase">02</div>
-          <div class="rollout-content">
-            <h3>Discernment Layer MVP — Weeks 5–10</h3>
-            <p>Ship a limited version to a cohort of Plus users. Test 3 trigger types: overconfidence signals, emotional charge signals, high-stakes topic detection. Measure acceptance rate and session outcome quality.</p>
+        `).join('');
+
+        // Build questions list
+        const questionItems = d.sections.questions.items.map(q => `<li>${q}</li>`).join('');
+
+        // Build recommendation paragraphs
+        const recParas = d.sections.recommendation.paragraphs.map(p => `<p>${p}</p>`).join('');
+
+        // Build metrics cards
+        const metricCards = d.sections.metrics.categories.map(c => `
+          <div class="metric-card">
+            <h3>${c.name}</h3>
+            <ul>${c.points.map(p => `<li>${p}</li>`).join('')}</ul>
           </div>
-        </div>
-        <div class="rollout-item">
-          <div class="rollout-phase">03</div>
-          <div class="rollout-content">
-            <h3>Memory Architecture Beta — Weeks 8–14</h3>
-            <p>Launch Deep Memory to opt-in users. Give users visibility and control over what ChatGPT remembers. Measure memory utilisation, retention improvement, and trust NPS lift.</p>
+        `).join('');
+
+        // Build rollout phases
+        const rolloutItems = d.sections.rollout.phases.map(p => `
+          <div class="rollout-item">
+            <div class="rollout-phase">${p.number}</div>
+            <div class="rollout-content">
+              <h3>${p.title}</h3>
+              <p>${p.description}</p>
+            </div>
           </div>
-        </div>
-        <div class="rollout-item">
-          <div class="rollout-phase">04</div>
-          <div class="rollout-content">
-            <h3>Enterprise Pilot — Weeks 12–20</h3>
-            <p>Package Discernment + Memory + audit trail into an Enterprise offering. Run pilots with 3–5 financial services or healthcare clients. Measure compliance approval rate and agent assist performance lift.</p>
+        `).join('');
+
+        // Build rating rows
+        const ratingRows = d.sections.rating.scores.map(r => `
+          <tr><td>${r.label}</td><td>${r.score}</td></tr>
+        `).join('');
+
+        // Build purpose paragraphs
+        const purposeParas = d.sections.purpose.paragraphs.map(p => `<p>${p}</p>`).join('');
+
+        // Render full page
+        document.getElementById('page-content').innerHTML = `
+          <div class="teardown-hero">
+            <p class="breadcrumb">How I AI <span>·</span> Teardown</p>
+            <p class="teardown-day">✦ Day ${d.day}</p>
+            <h1 class="teardown-title">${d.tool}</h1>
+            <p class="teardown-subtitle">${d.subtitle}</p>
+            <div class="teardown-meta">
+              <div class="meta-item">
+                <span class="meta-label">Category</span>
+                <span class="meta-value">${d.category}</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">By</span>
+                <span class="meta-value">${d.author}</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Date</span>
+                <span class="meta-value">${d.date}</span>
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Published at</span>
+                <span class="meta-value">${d.published}</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="rollout-item">
-          <div class="rollout-phase">05</div>
-          <div class="rollout-content">
-            <h3>Full Rollout + Iteration — Week 20+</h3>
-            <p>Scale based on pilot learnings. Measure all defined metrics. Identify next frontier — what does wise look like at the next level?</p>
+
+          <div class="teardown-content">
+
+            <div class="section">
+              <p class="section-label">01 — Purpose</p>
+              <h2>${d.sections.purpose.heading}</h2>
+              ${purposeParas}
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <p class="section-label">02 — Problems</p>
+              <h2>${d.sections.problems.heading}</h2>
+              <p>${d.sections.problems.intro}</p>
+              <div class="stakeholder-grid">${stakeholderCards}</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <p class="section-label">03 — Questions to Ask</p>
+              <h2>${d.sections.questions.heading}</h2>
+              <p>${d.sections.questions.intro}</p>
+              <ol class="questions-list">${questionItems}</ol>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <p class="section-label">04 — My Recommendation</p>
+              <h2>${d.sections.recommendation.heading}</h2>
+              <div class="recommendation-box">${recParas}</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <p class="section-label">05 — Metrics</p>
+              <h2>${d.sections.metrics.heading}</h2>
+              <p>${d.sections.metrics.intro}</p>
+              <div class="metrics-grid">${metricCards}</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <p class="section-label">06 — Roll-out Plan</p>
+              <h2>${d.sections.rollout.heading}</h2>
+              <div class="rollout-list">${rolloutItems}</div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <p class="section-label">07 — Scorecard</p>
+              <h2>${d.sections.rating.heading}</h2>
+              <table class="rating-table">${ratingRows}</table>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="section">
+              <p class="section-label">08 — Bottom Line</p>
+              <h2>${d.sections.takeaway.heading}</h2>
+              <div class="takeaway-box"><p>${d.sections.takeaway.text}</p></div>
+            </div>
+
+            <div class="next-section">
+              <a href="/">← Back to Portfolio</a>
+              ${d.next ? `<a href="${d.next.link}">${d.next.label} →</a>` : ''}
+            </div>
+
           </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="section">
-      <p class="section-label">07 — Scorecard</p>
-      <h2>Komal's Honest Rating</h2>
-      <table class="rating-table">
-        <tr><td>Ease of Use</td><td>⭐⭐⭐⭐⭐</td></tr>
-        <tr><td>Depth of Thinking</td><td>⭐⭐⭐⭐</td></tr>
-        <tr><td>Personalisation</td><td>⭐⭐⭐⭐⭐</td></tr>
-        <tr><td>Discernment</td><td>⭐⭐</td></tr>
-        <tr><td>Enterprise Readiness</td><td>⭐⭐⭐</td></tr>
-        <tr><td>Overall</td><td>⭐⭐⭐⭐</td></tr>
-      </table>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="section">
-      <p class="section-label">08 — Bottom Line</p>
-      <h2>One Line Takeaway</h2>
-      <div class="takeaway-box">
-        <p>The one that started it all — breadth and personalisation are its superpowers, discernment is its blindspot, and wisdom is its next frontier.</p>
-      </div>
-    </div>
-
-    <div class="next-section">
-      <a href="/">← Back to Portfolio</a>
-      <a href="#">Day 02 — Claude →</a>
-    </div>
-
-  </div>
+        `;
+      })
+      .catch(() => {
+        document.getElementById('page-content').innerHTML =
+          '<div class="loading">Teardown not found. Please check back soon.</div>';
+      });
+  </script>
 
 </body>
 </html>
