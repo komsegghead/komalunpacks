@@ -2,10 +2,9 @@
   "day": "01",
   "tool": "ChatGPT",
   "subtitle": "The One That Became Everything",
-  "category": "AI Assistant — General Purpose",
-  "date": "March 2, 2026",
+  "category": "AI Assistant | General Purpose",
+  "date": "March 3, 2026",
   "author": "Komal Sikka",
-  "published": "komalunpacks.com",
   "next": {
     "label": "Day 02 — Claude",
     "link": "/teardowns/claude.html"
@@ -14,41 +13,40 @@
     "purpose": {
       "heading": "What is ChatGPT for?",
       "paragraphs": [
-        "ChatGPT is OpenAI's flagship conversational AI — designed to make AI accessible to everyone through natural conversation. It serves two distinct masters simultaneously.",
-        "<strong>For Users:</strong> A versatile thinking partner that helps people write, learn, strategise, create, and solve problems — across every domain of life and work. No technical knowledge required.",
+        "ChatGPT is OpenAI's flagship conversational AI, designed to make AI accessible to everyone through natural conversation. It serves two distinct masters simultaneously.",
+        "<strong>For Users:</strong> A versatile thinking partner that helps people write, learn, strategise, create, and solve problems - across every domain of life and work. No technical knowledge required.",
         "<strong>For OpenAI:</strong> The primary consumer product driving adoption, revenue, and data at scale. ChatGPT is both the front door to OpenAI's ecosystem and the proof of concept that conversational AI can be mainstream."
       ]
     },
     "problems": {
       "heading": "What problems exist today?",
-      "intro": "Understanding the gaps across each stakeholder reveals where the product is falling short — and where the real opportunity lies.",
+      "intro": "Understanding the gaps across each stakeholder reveals where the product is falling short - and where the real opportunity lies.",
       "stakeholders": [
         {
           "name": "End Users",
           "points": [
-            "No persistent memory — context resets every session",
-            "Over-validation — agrees even when users are wrong",
-            "Inconsistent depth — sometimes profound, sometimes surface-level",
-            "No emotional intelligence signals — doesn't detect when a user needs to slow down",
-            "Trust without verification — users can't easily fact-check outputs"
+            "Memory is surface level: It remembers facts that you shre, but stops short of building a true model of how you think, decide, and where you consistently need a nudge.",
+            "Over-validation: agrees even when users are wrong",
+            "No emotional intelligence signals: doesn't detect when a user needs to slow down",
+            "Trust without verification: users can't easily fact-check outputs"
           ]
         },
         {
           "name": "Enterprise Users",
           "points": [
-            "Data privacy concerns — inputs may train future models",
-            "No audit trail — hard to govern in regulated industries",
-            "Hallucinations at scale — high-stakes errors in financial or legal contexts",
-            "No role-based access — same experience regardless of function"
+            "Data privacy concerns: inputs may train future models",
+            "No audit trail or response tracing: hard to govern in regulated industries",
+            "Hallucinations at scale: high-stakes errors in financial or legal contexts",
+            "No role-based access: same experience regardless of function"
           ]
         },
         {
           "name": "OpenAI",
           "points": [
-            "Commoditisation risk — Claude, Gemini narrowing the gap",
-            "Retention at depth — users adopt but don't always deepen usage",
-            "Monetisation ceiling — hard to upsell beyond Plus",
-            "Trust deficit in enterprise — compliance teams remain skeptical"
+            "Commoditisation risk: Claude, Gemini narrowing the gap",
+            "Retention at depth: users adopt but don't always deepen usage",
+            "Monetisation ceiling: hard to upsell beyond Plus",
+            "Trust deficit in enterprise: compliance teams remain skeptical"
           ]
         }
       ]
@@ -57,13 +55,13 @@
       "heading": "What should a PM be asking?",
       "intro": "Before designing any solution, these are the questions I'd want answered:",
       "items": [
-        "What does a user's session look like when they churn — what was the last interaction before they stopped returning?",
-        "Where does ChatGPT lose to competitors — is it on depth, tone, accuracy, or something else entirely?",
-        "What percentage of users are using ChatGPT for high-stakes decisions — financial, medical, relationship, career?",
-        "How often does ChatGPT validate an incorrect user assumption — and does the user ever realise it?",
-        "What would 'memory done right' look like — what should ChatGPT remember, and for how long?",
+        "What does a user's session look like when they churn: What was the last interaction before they stopped returning?",
+        "Where does ChatGPT lose to competitors: Is it on depth, tone, accuracy, or something else entirely?",
+        "What percentage of users are using ChatGPT for high-stakes decisions: Financial, medical, relationship, career?",
+        "How often does ChatGPT validate an incorrect user assumption: And does the user ever realise it?",
+        "What would 'memory done right' look like: Beyond storing facts, how does ChatGPT build a behavioural model of the user over time?",
         "What is the highest value enterprise use case that compliance teams would actually approve today?",
-        "How do we measure trust — not just engagement?",
+        "How do we measure trust, not just engagement?",
         "What does it mean for ChatGPT to be wise rather than just smart?"
       ]
     },
@@ -71,9 +69,9 @@
       "heading": "How I'd Do It Differently",
       "paragraphs": [
         "If I were the PM for ChatGPT, my north star wouldn't be <em>more knowledge.</em> It would be <strong>better judgement.</strong>",
-        "I'd build a <strong>Discernment Layer</strong> — an intelligent system that detects when a user is emotionally charged, overconfident, or moving too fast toward a consequential decision. In those moments, instead of validating, ChatGPT would pause. Ask a clarifying question. Offer a counter-perspective. Surface the assumption it thinks the user is making.",
-        "Not to be contrarian. But because the most valuable thinking partner isn't the one who always agrees — it's the one who helps you arrive at the <em>right</em> answer, not just a <em>comfortable</em> one.",
-        "Alongside this, I'd invest in a <strong>Deep Memory Architecture</strong> — one that goes beyond preferences to understand patterns. Not just <em>what</em> you ask, but <em>how</em> you think, <em>where</em> you consistently get stuck, and <em>what</em> you need before you even know you need it.",
+        "I'd build a <strong>Discernment Layer</strong>, an intelligent system that detects when a user is emotionally charged, overconfident, or moving too fast toward a consequential decision. In those moments, instead of validating, ChatGPT would pause. Ask a clarifying question. Offer a counter-perspective. Surface the assumption it thinks the user is making.",
+        "Not to be contrarian. But because the most valuable thinking partner isn't the one who always agrees. It's the one who helps you arrive at the <em>right</em> answer by wearing a devil's hat and covering all the blindspots, not just a <em>comfortable</em> one.",
+        "Alongside this, I'd invest in a <strong>Deep Memory Architecture</strong>. One that goes beyond storing facts to building a true behavioural model. Not just what you tell it, but patterns it observes - how you decide, where you consistently hesitate, and what you need before you even know you need it.",
         "<strong>Smart is table stakes. The next ChatGPT needs to be wise.</strong>"
       ]
     },
@@ -84,28 +82,28 @@
         {
           "name": "User Impact",
           "points": [
-            "Decision reversal rate — how often users change course after a discernment prompt",
-            "Session depth score — are conversations going deeper over time?",
-            "Memory utilisation rate — are users engaging with recalled context?",
-            "Trust NPS — do users trust ChatGPT more over time?"
+            "Decision reversal rate: How often users change course after a discernment prompt",
+            "Session depth score: Are conversations going deeper over time?",
+            "Memory utilisation rate: Are users engaging with recalled context?",
+            "Trust NPS: Do users trust ChatGPT more over time?"
           ]
         },
         {
           "name": "Product Health",
           "points": [
-            "Discernment prompt acceptance rate — are users engaging or dismissing?",
-            "Retention at 30/60/90 days — does personalisation reduce churn?",
-            "Hallucination rate reduction — measurable improvement in output accuracy",
-            "Upgrade conversion rate — does deeper value drive Plus subscriptions?"
+            "Discernment prompt acceptance rate: Are users engaging or dismissing?",
+            "Retention at 30/60/90 days: Does personalisation reduce churn?",
+            "Hallucination rate reduction: Measurable improvement in output accuracy",
+            "Upgrade conversion rate: Does deeper value drive Plus subscriptions?"
           ]
         },
         {
           "name": "Enterprise Impact",
           "points": [
-            "Enterprise pilot conversion rate — pilots converting to full deployment",
-            "Compliance approval rate — % of use cases cleared by legal/risk",
-            "Agent assist resolution lift — improvement in first contact resolution",
-            "Time-to-onboard reduction — faster ramp for enterprise users"
+            "Enterprise pilot conversion rate: Pilots converting to full deployment",
+            "Compliance approval rate: % of use cases cleared by legal/risk",
+            "Agent assist resolution lift: Improvement in first contact resolution",
+            "Time-to-onboard reduction: Faster ramp for enterprise users"
           ]
         }
       ]
@@ -115,33 +113,33 @@
       "phases": [
         {
           "number": "01",
-          "title": "Research & Signal Detection — Weeks 1–4",
+          "title": "Research & Signal Detection - Weeks 1–4",
           "description": "Analyse session data to identify patterns where users make high-stakes decisions. Build the taxonomy of 'discernment moments.' Define what emotionally charged or overconfident inputs look like at scale. Set baseline metrics."
         },
         {
           "number": "02",
-          "title": "Discernment Layer MVP — Weeks 5–10",
+          "title": "Discernment Layer MVP - Weeks 5–10",
           "description": "Ship a limited version to a cohort of Plus users. Test 3 trigger types: overconfidence signals, emotional charge signals, high-stakes topic detection. Measure acceptance rate and session outcome quality."
         },
         {
           "number": "03",
-          "title": "Memory Architecture Beta — Weeks 8–14",
+          "title": "Memory Architecture Beta - Weeks 8–14",
           "description": "Launch Deep Memory to opt-in users. Give users visibility and control over what ChatGPT remembers. Measure memory utilisation, retention improvement, and trust NPS lift."
         },
         {
           "number": "04",
-          "title": "Enterprise Pilot — Weeks 12–20",
+          "title": "Enterprise Pilot - Weeks 12–20",
           "description": "Package Discernment + Memory + audit trail into an Enterprise offering. Run pilots with 3–5 financial services or healthcare clients. Measure compliance approval rate and agent assist performance lift."
         },
         {
           "number": "05",
-          "title": "Full Rollout + Iteration — Week 20+",
-          "description": "Scale based on pilot learnings. Measure all defined metrics. Identify next frontier — what does wise look like at the next level?"
+          "title": "Full Rollout + Iteration - Week 20+",
+          "description": "Scale based on pilot learnings. Measure all defined metrics. Identify next frontier - what does wise look like at the next level?"
         }
       ]
     },
     "rating": {
-      "heading": "Komal's Honest Rating",
+      "heading": "PM's Honest Rating",
       "scores": [
         { "label": "Ease of Use", "score": "⭐⭐⭐⭐⭐" },
         { "label": "Depth of Thinking", "score": "⭐⭐⭐⭐" },
@@ -153,7 +151,7 @@
     },
     "takeaway": {
       "heading": "One Line Takeaway",
-      "text": "The one that started it all — breadth and personalisation are its superpowers, discernment is its blindspot, and wisdom is its next frontier."
+      "text": "The one that started it all - breadth and personalisation are its superpowers, discernment is its blindspot, and wisdom is its next frontier."
     }
   }
 }
