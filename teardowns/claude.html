@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 02 — Claude by Anthropic | Komal Unpacks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --white:       #FDFAF6;
+      --plum:        #6B2D5E;
+      --plum-light:  #8B3D7E;
+      --plum-pale:   #F5EDF3;
+      --burgundy:    #7D2235;
+      --sunshine:    #FDF6D8;
+      --sunshine-border: #F5E9A0;
+      --ink:         #1C1C1E;
+      --ink-soft:    #3D3535;
+      --muted:       #8A7F7F;
+      --border:      #E8DFD8;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+    }
+
+    /* ── RESET ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253, 250, 246, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 600;
+      color: var(--plum); text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-back {
+      font-size: 13px; color: var(--muted);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--plum); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--plum);
+      color: white;
+      padding: 72px 40px 56px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 360px; height: 360px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -80px; left: 20%;
+      width: 240px; height: 240px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 50%;
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow span {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 4px 12px; border-radius: 20px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 300; line-height: 1.1;
+      margin-bottom: 8px; letter-spacing: -0.01em;
+    }
+    .hero h1 em { font-style: italic; font-weight: 400; }
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 300; font-style: italic;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 32px;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      font-size: 12px; color: rgba(255,255,255,0.55);
+      letter-spacing: 0.5px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── LAYOUT ── */
+    .page-body { max-width: 760px; margin: 0 auto; padding: 0 40px 80px; }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: var(--burgundy);
+      margin-bottom: 20px; margin-top: 56px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── INTRO ── */
+    .intro-text {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.2vw, 22px);
+      font-weight: 400; line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 20px;
+    }
+    .intro-note {
+      font-size: 14px; color: var(--muted);
+      font-style: italic;
+      padding: 16px 20px;
+      background: var(--sunshine);
+      border-left: 3px solid var(--sunshine-border);
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* ── PERSONAS ── */
+    .personas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .persona-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 20px 18px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .persona-card:hover {
+      box-shadow: 0 4px 20px rgba(107,45,94,0.1);
+      transform: translateY(-2px);
+    }
+    .persona-icon { font-size: 28px; margin-bottom: 10px; }
+    .persona-title {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 600;
+      color: var(--plum); margin-bottom: 8px;
+    }
+    .persona-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.65; }
+
+    /* ── JTBD ── */
+    .jtbd-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .jtbd-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 15px; color: var(--ink-soft);
+    }
+    .jtbd-list li::before {
+      content: '→';
+      color: var(--plum); font-weight: 600;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── WHAT WORKS ── */
+    .works-item {
+      border-left: 3px solid var(--plum);
+      padding: 0 0 0 20px;
+      margin-bottom: 32px;
+    }
+    .works-item:last-child { margin-bottom: 0; }
+    .works-title {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 600;
+      color: var(--ink); margin-bottom: 12px;
+    }
+    .works-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .works-points li {
+      font-size: 14px; color: var(--ink-soft); line-height: 1.7;
+      padding-left: 16px; position: relative;
+    }
+    .works-points li::before {
+      content: '·'; position: absolute; left: 4px;
+      color: var(--plum); font-size: 18px; line-height: 1.4;
+    }
+    .works-points li:last-child {
+      font-style: italic; color: var(--plum);
+      font-family: var(--font-display); font-size: 15px;
+      margin-top: 4px;
+    }
+
+    /* ── WHAT DOESN'T WORK ── */
+    .pain-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--burgundy);
+      border-radius: 0 0 10px 10px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
+    }
+    .pain-title {
+      font-family: var(--font-display);
+      font-size: 19px; font-weight: 600;
+      color: var(--burgundy); margin-bottom: 10px;
+    }
+    .pain-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
+
+    /* ── OPPORTUNITIES ── */
+    .opp-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      background: var(--sunshine);
+      border: 1px solid var(--sunshine-border);
+      border-radius: 10px;
+      padding: 20px 22px;
+      margin-bottom: 14px;
+    }
+    .opp-num {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 300; font-style: italic;
+      color: var(--plum); opacity: 0.5;
+      flex-shrink: 0; line-height: 1;
+      margin-top: 2px;
+    }
+    .opp-title {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 600;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .opp-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
+
+    /* ── PM TAKE ── */
+    .pm-take {
+      background: var(--plum);
+      color: white;
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin-top: 56px;
+    }
+    .pm-take-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 16px;
+    }
+    .pm-take-text {
+      font-family: var(--font-display);
+      font-size: clamp(17px, 2vw, 20px);
+      font-weight: 400; line-height: 1.75;
+      color: rgba(255,255,255,0.92);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 32px 40px;
+      border-top: 1px solid var(--border);
+      font-size: 13px; color: var(--muted);
+    }
+    footer a { color: var(--plum); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── LOADING STATE ── */
+    .loading {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 60vh; gap: 16px; color: var(--muted);
+    }
+    .loading-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--plum); opacity: 0.4;
+      display: inline-block; margin: 0 3px;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulse { 0%,80%,100%{opacity:0.2;transform:scale(0.8)} 40%{opacity:1;transform:scale(1)} }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 48px 20px 40px; }
+      .page-body { padding: 0 20px 60px; }
+      .personas-grid { grid-template-columns: 1fr; }
+      .pm-take { padding: 24px 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Komal Unpacks</a>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Teardowns
+    </a>
+  </nav>
+
+  <!-- HERO (populated by JS) -->
+  <div id="hero-container"></div>
+
+  <!-- MAIN CONTENT (populated by JS) -->
+  <main class="page-body" id="main-content">
+    <div class="loading">
+      <div>
+        <span class="loading-dot"></span>
+        <span class="loading-dot"></span>
+        <span class="loading-dot"></span>
+      </div>
+      <p style="font-size:14px;">Loading teardown...</p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Part of the <strong>How I AI</strong> series · <a href="index.html">View all teardowns</a></p>
+    <p style="margin-top:6px;">Crafted with ❤️ in India</p>
+  </footer>
+
+  <script>
+    async function loadTeardown() {
+      try {
+        const res = await fetch('claude.json');
+        if (!res.ok) throw new Error('Failed to load');
+        const d = await res.json();
+        renderHero(d);
+        renderMain(d);
+      } catch (e) {
+        document.getElementById('main-content').innerHTML =
+          `<p style="color:var(--burgundy);padding:40px 0;">Could not load teardown data. Make sure claude.json is in the same directory.</p>`;
+      }
+    }
+
+    function renderHero(d) {
+      const m = d.meta;
+      document.title = `Day ${String(m.day).padStart(2,'0')} — ${m.title} | Komal Unpacks`;
+      document.getElementById('hero-container').innerHTML = `
+        <div class="hero">
+          <div class="hero-inner">
+            <div class="hero-eyebrow">
+              <span>Day ${String(m.day).padStart(2,'0')}</span>
+              ${m.category}
+            </div>
+            <h1>${m.title}<br><em>${m.subtitle}</em></h1>
+            <p class="hero-subtitle">${m.tagline}</p>
+            <div class="hero-meta">
+              <span>📅 ${formatDate(m.published_date)}</span>
+              <span>⏱ ${m.read_time}</span>
+              <span>🔍 PM Lens Teardown</span>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderMain(d) {
+      let html = '';
+
+      // INTRO
+      html += `
+        <p class="section-label">The Product</p>
+        <p class="intro-text">${d.intro.summary}</p>
+        <p class="intro-note">${d.intro.note}</p>`;
+
+      // PERSONAS
+      html += `<p class="section-label">User Personas — Who Claude Is For</p>
+        <div class="personas-grid">`;
+      d.personas.forEach(p => {
+        html += `
+          <div class="persona-card">
+            <div class="persona-icon">${p.icon}</div>
+            <div class="persona-title">${p.title}</div>
+            <div class="persona-desc">${p.description}</div>
+          </div>`;
+      });
+      html += `</div>`;
+
+      // JTBD
+      html += `<p class="section-label">Jobs to Be Done</p>
+        <ul class="jtbd-list">`;
+      d.jtbd.forEach(j => { html += `<li>${j}</li>`; });
+      html += `</ul>`;
+
+      // WHAT WORKS
+      html += `<p class="section-label">What Works Well</p>`;
+      d.what_works.forEach(w => {
+        html += `<div class="works-item">
+          <div class="works-title">${w.title}</div>
+          <ul class="works-points">`;
+        w.points.forEach(p => { html += `<li>${p}</li>`; });
+        html += `</ul></div>`;
+      });
+
+      // WHAT DOESN'T WORK
+      html += `<p class="section-label">What Doesn't Work Well</p>`;
+      d.what_doesnt_work.forEach(w => {
+        html += `<div class="pain-item">
+          <div class="pain-title">${w.title}</div>
+          <div class="pain-desc">${w.description}</div>
+        </div>`;
+      });
+
+      // OPPORTUNITIES
+      html += `<p class="section-label">What I'd Do Differently</p>`;
+      d.opportunities.forEach(o => {
+        html += `<div class="opp-item">
+          <div class="opp-num">${o.number}</div>
+          <div>
+            <div class="opp-title">${o.title}</div>
+            <div class="opp-desc">${o.description}</div>
+          </div>
+        </div>`;
+      });
+
+      // PM TAKE
+      html += `<div class="pm-take">
+        <div class="pm-take-label">Komal's PM Take</div>
+        <div class="pm-take-text">${d.pm_take}</div>
+      </div>`;
+
+      document.getElementById('main-content').innerHTML = html;
+    }
+
+    function formatDate(str) {
+      return new Date(str).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    loadTeardown();
+  </script>
+</body>
+</html>
