@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Day 02 — Claude by Anthropic | Komal Unpacks</title>
+  <title>Day 01 — ChatGPT | Komal Unpacks</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -27,7 +27,6 @@
       --font-body:    'DM Sans', system-ui, sans-serif;
     }
 
-    /* ── RESET ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -134,13 +133,13 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* ── INTRO ── */
+    /* ── INTRO / PURPOSE ── */
     .intro-text {
       font-family: var(--font-display);
       font-size: clamp(18px, 2.2vw, 22px);
       font-weight: 400; line-height: 1.7;
       color: var(--ink-soft);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .intro-note {
       font-size: 14px; color: var(--muted);
@@ -209,13 +208,12 @@
       content: '·'; position: absolute; left: 4px;
       color: var(--plum); font-size: 18px; line-height: 1.4;
     }
-    .works-points li:last-child {
+    .works-points li.italic-point {
       font-style: italic; color: var(--plum);
       font-family: var(--font-display); font-size: 15px;
-      margin-top: 4px;
     }
 
-    /* ── WHAT DOESN'T WORK ── */
+    /* ── PAIN POINTS ── */
     .pain-item {
       background: white;
       border: 1px solid var(--border);
@@ -230,6 +228,65 @@
       color: var(--burgundy); margin-bottom: 10px;
     }
     .pain-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
+
+    /* ── STAKEHOLDER GRID (ChatGPT problems) ── */
+    .stakeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .stakeholder-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--burgundy);
+      border-radius: 0 0 10px 10px;
+      padding: 20px;
+    }
+    .stakeholder-card h3 {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 600;
+      color: var(--burgundy); margin-bottom: 12px;
+    }
+    .stakeholder-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .stakeholder-card ul li {
+      font-size: 13px; color: var(--ink-soft); line-height: 1.65;
+      padding-left: 14px; position: relative;
+    }
+    .stakeholder-card ul li::before {
+      content: '·'; position: absolute; left: 2px;
+      color: var(--burgundy); font-size: 18px; line-height: 1.3;
+    }
+
+    /* ── QUESTIONS LIST ── */
+    .questions-list {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 12px;
+      counter-reset: q-counter;
+    }
+    .questions-list li {
+      counter-increment: q-counter;
+      display: flex; gap: 14px;
+      font-size: 14px; color: var(--ink-soft); line-height: 1.7;
+    }
+    .questions-list li::before {
+      content: counter(q-counter, decimal-leading-zero);
+      font-family: var(--font-display);
+      font-size: 16px; color: var(--plum); opacity: 0.5;
+      flex-shrink: 0; min-width: 24px; margin-top: 1px;
+    }
+
+    /* ── RECOMMENDATION BOX ── */
+    .recommendation-box {
+      background: var(--plum-pale);
+      border-left: 3px solid var(--plum);
+      border-radius: 0 10px 10px 0;
+      padding: 24px 28px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .recommendation-box p {
+      font-size: 15px; color: var(--ink-soft); line-height: 1.8;
+    }
 
     /* ── OPPORTUNITIES ── */
     .opp-item {
@@ -254,7 +311,70 @@
     }
     .opp-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
 
-    /* ── PM TAKE ── */
+    /* ── METRICS GRID ── */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px; margin-top: 16px;
+    }
+    .metric-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .metric-card h3 {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 600;
+      color: var(--plum); margin-bottom: 12px;
+    }
+    .metric-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .metric-card ul li {
+      font-size: 13px; color: var(--ink-soft); line-height: 1.65;
+      padding-left: 14px; position: relative;
+    }
+    .metric-card ul li::before {
+      content: '·'; position: absolute; left: 2px;
+      color: var(--plum); font-size: 18px; line-height: 1.3;
+    }
+
+    /* ── ROLLOUT ── */
+    .rollout-list { display: flex; flex-direction: column; gap: 14px; }
+    .rollout-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      background: var(--sunshine);
+      border: 1px solid var(--sunshine-border);
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+    .rollout-phase {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 300; font-style: italic;
+      color: var(--plum); opacity: 0.5;
+      flex-shrink: 0; line-height: 1; margin-top: 2px;
+    }
+    .rollout-content h3 {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 600;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .rollout-content p { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
+
+    /* ── SCORECARD ── */
+    .rating-table {
+      width: 100%; border-collapse: collapse;
+      margin-top: 4px;
+    }
+    .rating-table tr { border-bottom: 1px solid var(--border); }
+    .rating-table tr:last-child { border-bottom: none; }
+    .rating-table td {
+      padding: 12px 4px;
+      font-size: 14px; color: var(--ink-soft);
+    }
+    .rating-table td:first-child { font-weight: 500; }
+    .rating-table td:last-child { text-align: right; letter-spacing: 2px; }
+
+    /* ── PM TAKE / TAKEAWAY ── */
     .pm-take {
       background: var(--plum);
       color: white;
@@ -275,6 +395,20 @@
       color: rgba(255,255,255,0.92);
     }
 
+    /* ── NAV BETWEEN TEARDOWNS ── */
+    .teardown-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 48px; padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .teardown-nav a {
+      font-size: 14px; color: var(--plum);
+      text-decoration: none; font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+      transition: opacity 0.2s;
+    }
+    .teardown-nav a:hover { opacity: 0.7; }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -285,7 +419,7 @@
     footer a { color: var(--plum); text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
-    /* ── LOADING STATE ── */
+    /* ── LOADING ── */
     .loading {
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
@@ -306,26 +440,23 @@
       nav { padding: 0 20px; }
       .hero { padding: 48px 20px 40px; }
       .page-body { padding: 0 20px 60px; }
-      .personas-grid { grid-template-columns: 1fr; }
+      .personas-grid, .stakeholder-grid, .metrics-grid { grid-template-columns: 1fr; }
       .pm-take { padding: 24px 22px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav>
-    <a href="index.html" class="nav-logo">Komal Unpacks</a>
-    <a href="index.html" class="nav-back">
+    <a href="/index.html" class="nav-logo">Komal Unpacks</a>
+    <a href="/index.html" class="nav-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
       All Teardowns
     </a>
   </nav>
 
-  <!-- HERO (populated by JS) -->
   <div id="hero-container"></div>
 
-  <!-- MAIN CONTENT (populated by JS) -->
   <main class="page-body" id="main-content">
     <div class="loading">
       <div>
@@ -337,41 +468,57 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer>
-    <p>Part of the <strong>How I AI</strong> series · <a href="index.html">View all teardowns</a></p>
+    <p>Part of the <strong>How I AI</strong> series · <a href="/index.html">View all teardowns</a></p>
     <p style="margin-top:6px;">Crafted with ❤️ in India</p>
   </footer>
 
   <script>
     async function loadTeardown() {
       try {
-        const res = await fetch('claude.json');
-        if (!res.ok) throw new Error('Failed to load');
+        const page = location.pathname.split('/').pop().replace('.html', '');
+        const res = await fetch(`${page}.json`);
+        if (!res.ok) throw new Error('Not found');
         const d = await res.json();
         renderHero(d);
         renderMain(d);
       } catch (e) {
         document.getElementById('main-content').innerHTML =
-          `<p style="color:var(--burgundy);padding:40px 0;">Could not load teardown data. Make sure claude.json is in the same directory.</p>`;
+          `<p style="color:var(--burgundy);padding:40px 0;">Could not load teardown data.</p>`;
       }
     }
 
+    function formatDate(str) {
+      if (!str) return '';
+      // Handle "March 3, 2026" style already formatted
+      if (isNaN(Date.parse(str))) return str;
+      return new Date(str).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
     function renderHero(d) {
-      const m = d.meta;
-      document.title = `Day ${String(m.day).padStart(2,'0')} — ${m.title} | Komal Unpacks`;
+      // Support both JSON schemas
+      const day     = d.day || d.meta?.day;
+      const title   = d.tool || d.meta?.title;
+      const subtitle = d.subtitle || d.meta?.subtitle;
+      const tagline  = d.meta?.tagline || '';
+      const category = d.category || d.meta?.category;
+      const date     = d.date || d.meta?.published_date;
+      const readTime = d.meta?.read_time || '';
+
+      document.title = `Day ${String(day).padStart(2,'0')} — ${title} | Komal Unpacks`;
+
       document.getElementById('hero-container').innerHTML = `
         <div class="hero">
           <div class="hero-inner">
             <div class="hero-eyebrow">
-              <span>Day ${String(m.day).padStart(2,'0')}</span>
-              ${m.category}
+              <span>Day ${String(day).padStart(2,'0')}</span>
+              ${category}
             </div>
-            <h1>${m.title}<br><em>${m.subtitle}</em></h1>
-            <p class="hero-subtitle">${m.tagline}</p>
+            <h1>${title}<br><em>${subtitle}</em></h1>
+            ${tagline ? `<p class="hero-subtitle">${tagline}</p>` : ''}
             <div class="hero-meta">
-              <span>📅 ${formatDate(m.published_date)}</span>
-              <span>⏱ ${m.read_time}</span>
+              <span>📅 ${formatDate(date)}</span>
+              ${readTime ? `<span>⏱ ${readTime}</span>` : ''}
               <span>🔍 PM Lens Teardown</span>
             </div>
           </div>
@@ -379,24 +526,47 @@
     }
 
     function renderMain(d) {
+      // Detect schema type
+      const isClaude = !!d.personas;
       let html = '';
 
-      // INTRO
-      html += `
-        <p class="section-label">The Product</p>
+      if (isClaude) {
+        html += renderClaudeContent(d);
+      } else {
+        html += renderChatGPTContent(d);
+      }
+
+      // Next teardown nav
+      const next = d.next || d.meta?.next;
+      const prev = d.prev || d.meta?.prev;
+      if (next || prev) {
+        html += `<div class="teardown-nav">`;
+        html += prev ? `<a href="${prev.link}">← ${prev.label}</a>` : `<span></span>`;
+        html += next ? `<a href="${next.link}">${next.label} →</a>` : `<span></span>`;
+        html += `</div>`;
+      }
+
+      document.getElementById('main-content').innerHTML = html;
+    }
+
+    /* ── CLAUDE SCHEMA RENDERER ── */
+    function renderClaudeContent(d) {
+      let html = '';
+
+      // Intro
+      html += `<p class="section-label">The Product</p>
         <p class="intro-text">${d.intro.summary}</p>
         <p class="intro-note">${d.intro.note}</p>`;
 
-      // PERSONAS
-      html += `<p class="section-label">User Personas — Who Claude Is For</p>
+      // Personas
+      html += `<p class="section-label">User Personas — Who It's For</p>
         <div class="personas-grid">`;
       d.personas.forEach(p => {
-        html += `
-          <div class="persona-card">
-            <div class="persona-icon">${p.icon}</div>
-            <div class="persona-title">${p.title}</div>
-            <div class="persona-desc">${p.description}</div>
-          </div>`;
+        html += `<div class="persona-card">
+          <div class="persona-icon">${p.icon}</div>
+          <div class="persona-title">${p.title}</div>
+          <div class="persona-desc">${p.description}</div>
+        </div>`;
       });
       html += `</div>`;
 
@@ -406,17 +576,20 @@
       d.jtbd.forEach(j => { html += `<li>${j}</li>`; });
       html += `</ul>`;
 
-      // WHAT WORKS
+      // What works
       html += `<p class="section-label">What Works Well</p>`;
-      d.what_works.forEach(w => {
+      d.what_works.forEach((w, i) => {
         html += `<div class="works-item">
           <div class="works-title">${w.title}</div>
           <ul class="works-points">`;
-        w.points.forEach(p => { html += `<li>${p}</li>`; });
+        w.points.forEach((p, pi) => {
+          const isLast = pi === w.points.length - 1;
+          html += `<li class="${isLast && w.points.length > 1 ? 'italic-point' : ''}">${p}</li>`;
+        });
         html += `</ul></div>`;
       });
 
-      // WHAT DOESN'T WORK
+      // What doesn't work
       html += `<p class="section-label">What Doesn't Work Well</p>`;
       d.what_doesnt_work.forEach(w => {
         html += `<div class="pain-item">
@@ -425,7 +598,7 @@
         </div>`;
       });
 
-      // OPPORTUNITIES
+      // Opportunities
       html += `<p class="section-label">What I'd Do Differently</p>`;
       d.opportunities.forEach(o => {
         html += `<div class="opp-item">
@@ -437,17 +610,92 @@
         </div>`;
       });
 
-      // PM TAKE
+      // PM Take
       html += `<div class="pm-take">
         <div class="pm-take-label">Komal's PM Take</div>
         <div class="pm-take-text">${d.pm_take}</div>
       </div>`;
 
-      document.getElementById('main-content').innerHTML = html;
+      return html;
     }
 
-    function formatDate(str) {
-      return new Date(str).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    /* ── CHATGPT SCHEMA RENDERER ── */
+    function renderChatGPTContent(d) {
+      const s = d.sections;
+      let html = '';
+
+      // Purpose
+      html += `<p class="section-label">01 — The Product</p>`;
+      s.purpose.paragraphs.forEach(p => {
+        html += `<p class="intro-text" style="font-size:clamp(16px,2vw,19px);margin-bottom:12px;">${p}</p>`;
+      });
+
+      // Problems
+      html += `<p class="section-label">02 — Problems</p>
+        <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px;">${s.problems.intro}</p>
+        <div class="stakeholder-grid">`;
+      s.problems.stakeholders.forEach(st => {
+        html += `<div class="stakeholder-card">
+          <h3>${st.name}</h3>
+          <ul>${st.points.map(p => `<li>${p}</li>`).join('')}</ul>
+        </div>`;
+      });
+      html += `</div>`;
+
+      // Questions
+      html += `<p class="section-label">03 — Questions to Ask</p>
+        <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px;">${s.questions.intro}</p>
+        <ol class="questions-list">`;
+      s.questions.items.forEach(q => { html += `<li>${q}</li>`; });
+      html += `</ol>`;
+
+      // Recommendation
+      html += `<p class="section-label">04 — What I'd Do Differently</p>
+        <div class="recommendation-box">`;
+      s.recommendation.paragraphs.forEach(p => { html += `<p>${p}</p>`; });
+      html += `</div>`;
+
+      // Metrics
+      html += `<p class="section-label">05 — Metrics</p>
+        <p style="font-size:15px;color:var(--ink-soft);margin-bottom:4px;">${s.metrics.intro}</p>
+        <div class="metrics-grid">`;
+      s.metrics.categories.forEach(c => {
+        html += `<div class="metric-card">
+          <h3>${c.name}</h3>
+          <ul>${c.points.map(p => `<li>${p}</li>`).join('')}</ul>
+        </div>`;
+      });
+      html += `</div>`;
+
+      // Rollout
+      html += `<p class="section-label">06 — Roll-out Plan</p>
+        <div class="rollout-list">`;
+      s.rollout.phases.forEach(p => {
+        html += `<div class="rollout-item">
+          <div class="rollout-phase">${p.number}</div>
+          <div class="rollout-content">
+            <h3>${p.title}</h3>
+            <p>${p.description}</p>
+          </div>
+        </div>`;
+      });
+      html += `</div>`;
+
+      // Scorecard
+      html += `<p class="section-label">07 — Scorecard</p>
+        <table class="rating-table">`;
+      s.rating.scores.forEach(r => {
+        html += `<tr><td>${r.label}</td><td>${r.score}</td></tr>`;
+      });
+      html += `</table>`;
+
+      // Bottom line as PM Take
+      html += `<div class="pm-take">
+        <div class="pm-take-label">Komal's PM Take</div>
+        <div class="pm-take-text">${s.takeaway.text}</div>
+      </div>`;
+
+      return html;
     }
 
     loadTeardown();

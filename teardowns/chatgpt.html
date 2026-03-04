@@ -2,572 +2,703 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Teardown | Komal Unpacks</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 01 — ChatGPT | Komal Unpacks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+    /* ── TOKENS ── */
     :root {
-      --white: #FFFDF8;
-      --sunshine: #E8B84A;
-      --sunshine-light: #F5D680;
-      --sunshine-pale: #FEF6DC;
-      --plum: #6B3D7A;
-      --plum-light: #9B6DAA;
-      --plum-pale: #F0E8F5;
-      --plum-deep: #3D1F50;
-      --burgundy: #8B2252;
-      --burgundy-light: #B85080;
-      --text: #2A1A35;
-      --text-muted: #7A6080;
-      --border: rgba(107, 61, 122, 0.12);
+      --white:       #FDFAF6;
+      --plum:        #6B2D5E;
+      --plum-light:  #8B3D7E;
+      --plum-pale:   #F5EDF3;
+      --burgundy:    #7D2235;
+      --sunshine:    #FDF6D8;
+      --sunshine-border: #F5E9A0;
+      --ink:         #1C1C1E;
+      --ink-soft:    #3D3535;
+      --muted:       #8A7F7F;
+      --border:      #E8DFD8;
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
     }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'DM Sans', sans-serif;
+      font-family: var(--font-body);
       background: var(--white);
-      color: var(--text);
-      min-height: 100vh;
-      overflow-x: hidden;
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
     }
 
+    /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.25rem 4rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(255, 253, 248, 0.93);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253, 250, 246, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: var(--plum-deep);
-      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 600;
+      color: var(--plum); text-decoration: none;
+      letter-spacing: 0.02em;
     }
-
     .nav-back {
-      color: var(--text-muted);
+      font-size: 13px; color: var(--muted);
       text-decoration: none;
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.3s;
+      display: flex; align-items: center; gap: 6px;
+      transition: color 0.2s;
     }
-
     .nav-back:hover { color: var(--plum); }
+    .nav-back svg { width: 14px; height: 14px; }
 
-    .teardown-hero {
-      padding: 8rem 4rem 4rem;
-      max-width: 900px;
-      margin: 0 auto;
-      animation: fadeUp 0.8s ease forwards;
+    /* ── HERO ── */
+    .hero {
+      background: var(--plum);
+      color: white;
+      padding: 72px 40px 56px;
+      position: relative; overflow: hidden;
     }
+    .hero::before {
+      content: '';
+      position: absolute; top: -60px; right: -60px;
+      width: 360px; height: 360px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -80px; left: 20%;
+      width: 240px; height: 240px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 50%;
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow span {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      padding: 4px 12px; border-radius: 20px;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 64px);
+      font-weight: 300; line-height: 1.1;
+      margin-bottom: 8px; letter-spacing: -0.01em;
+    }
+    .hero h1 em { font-style: italic; font-weight: 400; }
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 300; font-style: italic;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 32px;
+    }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 20px;
+      font-size: 12px; color: rgba(255,255,255,0.55);
+      letter-spacing: 0.5px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 6px; }
 
-    .breadcrumb {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+    /* ── LAYOUT ── */
+    .page-body { max-width: 760px; margin: 0 auto; padding: 0 40px 80px; }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
       color: var(--burgundy);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .breadcrumb::before { content: ''; width: 1.2rem; height: 1px; background: var(--burgundy-light); }
-    .breadcrumb span { color: var(--text-muted); }
-
-    .teardown-day {
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--burgundy);
-      margin-bottom: 1rem;
-    }
-
-    .teardown-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 6vw, 5rem);
-      font-weight: 300;
-      color: var(--text);
-      line-height: 1.05;
-      margin-bottom: 1rem;
-    }
-
-    .teardown-subtitle {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-style: italic;
-      color: var(--plum-light);
-      margin-bottom: 2rem;
-    }
-
-    .teardown-meta {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-      padding-bottom: 3rem;
+      margin-bottom: 20px; margin-top: 56px;
+      padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
     }
 
-    .meta-item { display: flex; flex-direction: column; gap: 0.3rem; }
-
-    .meta-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--text-muted);
+    /* ── INTRO / PURPOSE ── */
+    .intro-text {
+      font-family: var(--font-display);
+      font-size: clamp(18px, 2.2vw, 22px);
+      font-weight: 400; line-height: 1.7;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+    .intro-note {
+      font-size: 14px; color: var(--muted);
+      font-style: italic;
+      padding: 16px 20px;
+      background: var(--sunshine);
+      border-left: 3px solid var(--sunshine-border);
+      border-radius: 0 6px 6px 0;
     }
 
-    .meta-value { font-size: 0.875rem; color: var(--text); }
+    /* ── PERSONAS ── */
+    .personas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .persona-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 20px 18px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .persona-card:hover {
+      box-shadow: 0 4px 20px rgba(107,45,94,0.1);
+      transform: translateY(-2px);
+    }
+    .persona-icon { font-size: 28px; margin-bottom: 10px; }
+    .persona-title {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 600;
+      color: var(--plum); margin-bottom: 8px;
+    }
+    .persona-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.65; }
 
-    .teardown-content {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 4rem 6rem;
+    /* ── JTBD ── */
+    .jtbd-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .jtbd-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 15px; color: var(--ink-soft);
+    }
+    .jtbd-list li::before {
+      content: '→';
+      color: var(--plum); font-weight: 600;
+      flex-shrink: 0; margin-top: 1px;
     }
 
-    .section { margin-bottom: 3.5rem; }
-
-    .section-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--burgundy);
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
+    /* ── WHAT WORKS ── */
+    .works-item {
+      border-left: 3px solid var(--plum);
+      padding: 0 0 0 20px;
+      margin-bottom: 32px;
+    }
+    .works-item:last-child { margin-bottom: 0; }
+    .works-title {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 600;
+      color: var(--ink); margin-bottom: 12px;
+    }
+    .works-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .works-points li {
+      font-size: 14px; color: var(--ink-soft); line-height: 1.7;
+      padding-left: 16px; position: relative;
+    }
+    .works-points li::before {
+      content: '·'; position: absolute; left: 4px;
+      color: var(--plum); font-size: 18px; line-height: 1.4;
+    }
+    .works-points li.italic-point {
+      font-style: italic; color: var(--plum);
+      font-family: var(--font-display); font-size: 15px;
     }
 
-    .section-label::before { content: ''; width: 1.2rem; height: 1px; background: var(--burgundy-light); }
-
-    .section h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 1.5rem;
+    /* ── PAIN POINTS ── */
+    .pain-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--burgundy);
+      border-radius: 0 0 10px 10px;
+      padding: 20px 22px;
+      margin-bottom: 16px;
     }
-
-    .section p {
-      font-size: 0.95rem;
-      line-height: 1.9;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
+    .pain-title {
+      font-family: var(--font-display);
+      font-size: 19px; font-weight: 600;
+      color: var(--burgundy); margin-bottom: 10px;
     }
+    .pain-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
 
-    .section p:last-child { margin-bottom: 0; }
-
+    /* ── STAKEHOLDER GRID (ChatGPT problems) ── */
     .stakeholder-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
     }
-
     .stakeholder-card {
-      background: var(--sunshine-pale);
-      border: 1px solid rgba(232, 184, 74, 0.3);
-      padding: 1.5rem;
+      background: white;
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--burgundy);
+      border-radius: 0 0 10px 10px;
+      padding: 20px;
     }
-
     .stakeholder-card h3 {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--burgundy);
-      margin-bottom: 1rem;
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 600;
+      color: var(--burgundy); margin-bottom: 12px;
     }
-
-    .stakeholder-card ul { list-style: none; }
-
+    .stakeholder-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .stakeholder-card ul li {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      padding: 0.4rem 0 0.4rem 1rem;
-      border-bottom: 1px solid rgba(232, 184, 74, 0.2);
-      position: relative;
+      font-size: 13px; color: var(--ink-soft); line-height: 1.65;
+      padding-left: 14px; position: relative;
     }
-
     .stakeholder-card ul li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: var(--plum-light);
-      font-size: 0.7rem;
+      content: '·'; position: absolute; left: 2px;
+      color: var(--burgundy); font-size: 18px; line-height: 1.3;
     }
 
-    .stakeholder-card ul li:last-child { border-bottom: none; }
-
+    /* ── QUESTIONS LIST ── */
     .questions-list {
       list-style: none;
-      margin-top: 1rem;
-      counter-reset: questions;
+      display: flex; flex-direction: column; gap: 12px;
+      counter-reset: q-counter;
     }
-
     .questions-list li {
-      counter-increment: questions;
-      padding: 1rem 0 1rem 3rem;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      position: relative;
+      counter-increment: q-counter;
+      display: flex; gap: 14px;
+      font-size: 14px; color: var(--ink-soft); line-height: 1.7;
     }
-
     .questions-list li::before {
-      content: counter(questions, decimal-leading-zero);
-      position: absolute;
-      left: 0;
-      color: var(--plum-light);
-      font-size: 0.8rem;
-      font-weight: 500;
-      top: 1rem;
+      content: counter(q-counter, decimal-leading-zero);
+      font-family: var(--font-display);
+      font-size: 16px; color: var(--plum); opacity: 0.5;
+      flex-shrink: 0; min-width: 24px; margin-top: 1px;
     }
 
+    /* ── RECOMMENDATION BOX ── */
     .recommendation-box {
       background: var(--plum-pale);
       border-left: 3px solid var(--plum);
-      padding: 2rem 2.5rem;
-      margin-top: 1.5rem;
+      border-radius: 0 10px 10px 0;
+      padding: 24px 28px;
+      display: flex; flex-direction: column; gap: 14px;
     }
-
     .recommendation-box p {
-      font-size: 0.95rem;
-      line-height: 1.9;
-      color: var(--text-muted);
-      margin-bottom: 1rem;
+      font-size: 15px; color: var(--ink-soft); line-height: 1.8;
     }
 
-    .recommendation-box p:last-child { margin-bottom: 0; }
+    /* ── OPPORTUNITIES ── */
+    .opp-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      background: var(--sunshine);
+      border: 1px solid var(--sunshine-border);
+      border-radius: 10px;
+      padding: 20px 22px;
+      margin-bottom: 14px;
+    }
+    .opp-num {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 300; font-style: italic;
+      color: var(--plum); opacity: 0.5;
+      flex-shrink: 0; line-height: 1;
+      margin-top: 2px;
+    }
+    .opp-title {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 600;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .opp-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
 
+    /* ── METRICS GRID ── */
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px; margin-top: 16px;
     }
-
     .metric-card {
-      background: var(--sunshine-pale);
-      border: 1px solid rgba(232, 184, 74, 0.3);
-      padding: 1.5rem;
-    }
-
-    .metric-card h3 {
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--burgundy);
-      margin-bottom: 1rem;
-    }
-
-    .metric-card ul { list-style: none; }
-
-    .metric-card ul li {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      padding: 0.4rem 0 0.4rem 1rem;
-      border-bottom: 1px solid rgba(232, 184, 74, 0.2);
-      position: relative;
-    }
-
-    .metric-card ul li::before {
-      content: '✦';
-      position: absolute;
-      left: 0;
-      color: var(--plum-light);
-      font-size: 0.55rem;
-      top: 0.65rem;
-    }
-
-    .metric-card ul li:last-child { border-bottom: none; }
-
-    .rollout-list { list-style: none; margin-top: 1.5rem; }
-
-    .rollout-item {
-      display: grid;
-      grid-template-columns: 3rem 1fr;
-      gap: 1.5rem;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .rollout-item:last-child { border-bottom: none; }
-
-    .rollout-phase {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 300;
-      color: var(--plum-light);
-      line-height: 1;
-    }
-
-    .rollout-content h3 {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--plum-deep);
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.04em;
-    }
-
-    .rollout-content p {
-      font-size: 0.875rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 0;
-    }
-
-    .rating-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
-    .rating-table tr { border-bottom: 1px solid var(--border); }
-    .rating-table td { padding: 1rem 0; font-size: 0.9rem; }
-    .rating-table td:first-child { color: var(--text-muted); width: 50%; }
-    .rating-table td:last-child { color: var(--sunshine); letter-spacing: 0.1em; }
-
-    .takeaway-box {
-      background: var(--plum-pale);
+      background: white;
       border: 1px solid var(--border);
-      border-left: 4px solid var(--plum);
-      padding: 2.5rem;
-      margin-top: 1.5rem;
-      text-align: center;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .metric-card h3 {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 600;
+      color: var(--plum); margin-bottom: 12px;
+    }
+    .metric-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .metric-card ul li {
+      font-size: 13px; color: var(--ink-soft); line-height: 1.65;
+      padding-left: 14px; position: relative;
+    }
+    .metric-card ul li::before {
+      content: '·'; position: absolute; left: 2px;
+      color: var(--plum); font-size: 18px; line-height: 1.3;
     }
 
-    .takeaway-box p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.45rem;
-      font-style: italic;
-      color: var(--plum-deep);
-      line-height: 1.6;
+    /* ── ROLLOUT ── */
+    .rollout-list { display: flex; flex-direction: column; gap: 14px; }
+    .rollout-item {
+      display: flex; gap: 20px; align-items: flex-start;
+      background: var(--sunshine);
+      border: 1px solid var(--sunshine-border);
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+    .rollout-phase {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 300; font-style: italic;
+      color: var(--plum); opacity: 0.5;
+      flex-shrink: 0; line-height: 1; margin-top: 2px;
+    }
+    .rollout-content h3 {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 600;
+      color: var(--ink); margin-bottom: 8px;
+    }
+    .rollout-content p { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
+
+    /* ── SCORECARD ── */
+    .rating-table {
+      width: 100%; border-collapse: collapse;
+      margin-top: 4px;
+    }
+    .rating-table tr { border-bottom: 1px solid var(--border); }
+    .rating-table tr:last-child { border-bottom: none; }
+    .rating-table td {
+      padding: 12px 4px;
+      font-size: 14px; color: var(--ink-soft);
+    }
+    .rating-table td:first-child { font-weight: 500; }
+    .rating-table td:last-child { text-align: right; letter-spacing: 2px; }
+
+    /* ── PM TAKE / TAKEAWAY ── */
+    .pm-take {
+      background: var(--plum);
+      color: white;
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin-top: 56px;
+    }
+    .pm-take-label {
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 16px;
+    }
+    .pm-take-text {
+      font-family: var(--font-display);
+      font-size: clamp(17px, 2vw, 20px);
+      font-weight: 400; line-height: 1.75;
+      color: rgba(255,255,255,0.92);
     }
 
-    .next-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 2rem 0;
+    /* ── NAV BETWEEN TEARDOWNS ── */
+    .teardown-nav {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 48px; padding-top: 28px;
       border-top: 1px solid var(--border);
-      margin-top: 4rem;
     }
-
-    .next-section a {
-      text-decoration: none;
-      color: var(--plum);
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: opacity 0.3s;
+    .teardown-nav a {
+      font-size: 14px; color: var(--plum);
+      text-decoration: none; font-weight: 500;
+      display: flex; align-items: center; gap: 6px;
+      transition: opacity 0.2s;
     }
+    .teardown-nav a:hover { opacity: 0.7; }
 
-    .next-section a:hover { opacity: 0.65; }
-
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 3rem 0;
-    }
-
-    .loading {
-      padding: 6rem 4rem;
+    /* ── FOOTER ── */
+    footer {
       text-align: center;
-      color: var(--text-muted);
-      font-style: italic;
+      padding: 32px 40px;
+      border-top: 1px solid var(--border);
+      font-size: 13px; color: var(--muted);
     }
+    footer a { color: var(--plum); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* ── LOADING ── */
+    .loading {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      min-height: 60vh; gap: 16px; color: var(--muted);
     }
+    .loading-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--plum); opacity: 0.4;
+      display: inline-block; margin: 0 3px;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulse { 0%,80%,100%{opacity:0.2;transform:scale(0.8)} 40%{opacity:1;transform:scale(1)} }
 
-    @media (max-width: 768px) {
-      nav { padding: 1.25rem 2rem; }
-      .teardown-hero { padding: 7rem 2rem 3rem; }
-      .teardown-content { padding: 0 2rem 4rem; }
-      .stakeholder-grid, .metrics-grid { grid-template-columns: 1fr; }
-      .rollout-item { grid-template-columns: 2.5rem 1fr; }
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 48px 20px 40px; }
+      .page-body { padding: 0 20px 60px; }
+      .personas-grid, .stakeholder-grid, .metrics-grid { grid-template-columns: 1fr; }
+      .pm-take { padding: 24px 22px; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a href="/" class="nav-logo">Komal Sikka</a>
-    <a href="/#how-i-ai" class="nav-back">← Back to How I AI</a>
+    <a href="/index.html" class="nav-logo">Komal Unpacks</a>
+    <a href="/index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Teardowns
+    </a>
   </nav>
 
-  <div id="page-content">
-    <div class="loading">Loading teardown...</div>
-  </div>
+  <div id="hero-container"></div>
+
+  <main class="page-body" id="main-content">
+    <div class="loading">
+      <div>
+        <span class="loading-dot"></span>
+        <span class="loading-dot"></span>
+        <span class="loading-dot"></span>
+      </div>
+      <p style="font-size:14px;">Loading teardown...</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>Part of the <strong>How I AI</strong> series · <a href="/index.html">View all teardowns</a></p>
+    <p style="margin-top:6px;">Crafted with ❤️ in India</p>
+  </footer>
 
   <script>
-    // Detect which JSON to load based on filename
-    const page = location.pathname.split('/').pop().replace('.html', '');
-    const jsonFile = `/teardowns/${page}.json`;
+    async function loadTeardown() {
+      try {
+        const page = location.pathname.split('/').pop().replace('.html', '');
+        const res = await fetch(`${page}.json`);
+        if (!res.ok) throw new Error('Not found');
+        const d = await res.json();
+        renderHero(d);
+        renderMain(d);
+      } catch (e) {
+        document.getElementById('main-content').innerHTML =
+          `<p style="color:var(--burgundy);padding:40px 0;">Could not load teardown data.</p>`;
+      }
+    }
 
-    fetch(jsonFile)
-      .then(res => res.json())
-      .then(d => {
-        // Update page title
-        document.title = `Day ${d.day} — ${d.tool} | Komal Unpacks`;
+    function formatDate(str) {
+      if (!str) return '';
+      // Handle "March 3, 2026" style already formatted
+      if (isNaN(Date.parse(str))) return str;
+      return new Date(str).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
 
-        // Build stakeholder cards
-        const stakeholderCards = d.sections.problems.stakeholders.map(s => `
-          <div class="stakeholder-card">
-            <h3>${s.name}</h3>
-            <ul>${s.points.map(p => `<li>${p}</li>`).join('')}</ul>
-          </div>
-        `).join('');
+    function renderHero(d) {
+      // Support both JSON schemas
+      const day     = d.day || d.meta?.day;
+      const title   = d.tool || d.meta?.title;
+      const subtitle = d.subtitle || d.meta?.subtitle;
+      const tagline  = d.meta?.tagline || '';
+      const category = d.category || d.meta?.category;
+      const date     = d.date || d.meta?.published_date;
+      const readTime = d.meta?.read_time || '';
 
-        // Build questions list
-        const questionItems = d.sections.questions.items.map(q => `<li>${q}</li>`).join('');
+      document.title = `Day ${String(day).padStart(2,'0')} — ${title} | Komal Unpacks`;
 
-        // Build recommendation paragraphs
-        const recParas = d.sections.recommendation.paragraphs.map(p => `<p>${p}</p>`).join('');
-
-        // Build metrics cards
-        const metricCards = d.sections.metrics.categories.map(c => `
-          <div class="metric-card">
-            <h3>${c.name}</h3>
-            <ul>${c.points.map(p => `<li>${p}</li>`).join('')}</ul>
-          </div>
-        `).join('');
-
-        // Build rollout phases
-        const rolloutItems = d.sections.rollout.phases.map(p => `
-          <div class="rollout-item">
-            <div class="rollout-phase">${p.number}</div>
-            <div class="rollout-content">
-              <h3>${p.title}</h3>
-              <p>${p.description}</p>
+      document.getElementById('hero-container').innerHTML = `
+        <div class="hero">
+          <div class="hero-inner">
+            <div class="hero-eyebrow">
+              <span>Day ${String(day).padStart(2,'0')}</span>
+              ${category}
+            </div>
+            <h1>${title}<br><em>${subtitle}</em></h1>
+            ${tagline ? `<p class="hero-subtitle">${tagline}</p>` : ''}
+            <div class="hero-meta">
+              <span>📅 ${formatDate(date)}</span>
+              ${readTime ? `<span>⏱ ${readTime}</span>` : ''}
+              <span>🔍 PM Lens Teardown</span>
             </div>
           </div>
-        `).join('');
+        </div>`;
+    }
 
-        // Build rating rows
-        const ratingRows = d.sections.rating.scores.map(r => `
-          <tr><td>${r.label}</td><td>${r.score}</td></tr>
-        `).join('');
+    function renderMain(d) {
+      // Detect schema type
+      const isClaude = !!d.personas;
+      let html = '';
 
-        // Build purpose paragraphs
-        const purposeParas = d.sections.purpose.paragraphs.map(p => `<p>${p}</p>`).join('');
+      if (isClaude) {
+        html += renderClaudeContent(d);
+      } else {
+        html += renderChatGPTContent(d);
+      }
 
-        // Render full page
-        document.getElementById('page-content').innerHTML = `
-          <div class="teardown-hero">
-            <p class="breadcrumb">How I AI <span>·</span> Teardown</p>
-            <p class="teardown-day">✦ Day ${d.day}</p>
-            <h1 class="teardown-title">${d.tool}</h1>
-            <p class="teardown-subtitle">${d.subtitle}</p>
-            <div class="teardown-meta">
-              <div class="meta-item">
-                <span class="meta-label">Category</span>
-                <span class="meta-value">${d.category}</span>
-              </div>
-              <div class="meta-item">
-                <span class="meta-label">By</span>
-                <span class="meta-value">${d.author}</span>
-              </div>
-              <div class="meta-item">
-                <span class="meta-label">Date</span>
-                <span class="meta-value">${d.date}</span>
-              </div>
-            </div>
-          </div>
+      // Next teardown nav
+      const next = d.next || d.meta?.next;
+      const prev = d.prev || d.meta?.prev;
+      if (next || prev) {
+        html += `<div class="teardown-nav">`;
+        html += prev ? `<a href="${prev.link}">← ${prev.label}</a>` : `<span></span>`;
+        html += next ? `<a href="${next.link}">${next.label} →</a>` : `<span></span>`;
+        html += `</div>`;
+      }
 
-          <div class="teardown-content">
+      document.getElementById('main-content').innerHTML = html;
+    }
 
-            <div class="section">
-              <p class="section-label">01 — Purpose</p>
-              <h2>${d.sections.purpose.heading}</h2>
-              ${purposeParas}
-            </div>
+    /* ── CLAUDE SCHEMA RENDERER ── */
+    function renderClaudeContent(d) {
+      let html = '';
 
-            <div class="divider"></div>
+      // Intro
+      html += `<p class="section-label">The Product</p>
+        <p class="intro-text">${d.intro.summary}</p>
+        <p class="intro-note">${d.intro.note}</p>`;
 
-            <div class="section">
-              <p class="section-label">02 — Problems</p>
-              <h2>${d.sections.problems.heading}</h2>
-              <p>${d.sections.problems.intro}</p>
-              <div class="stakeholder-grid">${stakeholderCards}</div>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="section">
-              <p class="section-label">03 — Questions to Ask</p>
-              <h2>${d.sections.questions.heading}</h2>
-              <p>${d.sections.questions.intro}</p>
-              <ol class="questions-list">${questionItems}</ol>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="section">
-              <p class="section-label">04 — My Recommendation</p>
-              <h2>${d.sections.recommendation.heading}</h2>
-              <div class="recommendation-box">${recParas}</div>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="section">
-              <p class="section-label">05 — Metrics</p>
-              <h2>${d.sections.metrics.heading}</h2>
-              <p>${d.sections.metrics.intro}</p>
-              <div class="metrics-grid">${metricCards}</div>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="section">
-              <p class="section-label">06 — Roll-out Plan</p>
-              <h2>${d.sections.rollout.heading}</h2>
-              <div class="rollout-list">${rolloutItems}</div>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="section">
-              <p class="section-label">07 — Scorecard</p>
-              <h2>${d.sections.rating.heading}</h2>
-              <table class="rating-table">${ratingRows}</table>
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="section">
-              <p class="section-label">08 — Bottom Line</p>
-              <h2>${d.sections.takeaway.heading}</h2>
-              <div class="takeaway-box"><p>${d.sections.takeaway.text}</p></div>
-            </div>
-
-            <div class="next-section">
-              <a href="/">← Back to Portfolio</a>
-              ${d.next ? `<a href="${d.next.link}">${d.next.label} →</a>` : ''}
-            </div>
-
-          </div>
-        `;
-      })
-      .catch(() => {
-        document.getElementById('page-content').innerHTML =
-          '<div class="loading">Teardown not found. Please check back soon.</div>';
+      // Personas
+      html += `<p class="section-label">User Personas — Who It's For</p>
+        <div class="personas-grid">`;
+      d.personas.forEach(p => {
+        html += `<div class="persona-card">
+          <div class="persona-icon">${p.icon}</div>
+          <div class="persona-title">${p.title}</div>
+          <div class="persona-desc">${p.description}</div>
+        </div>`;
       });
-  </script>
+      html += `</div>`;
 
+      // JTBD
+      html += `<p class="section-label">Jobs to Be Done</p>
+        <ul class="jtbd-list">`;
+      d.jtbd.forEach(j => { html += `<li>${j}</li>`; });
+      html += `</ul>`;
+
+      // What works
+      html += `<p class="section-label">What Works Well</p>`;
+      d.what_works.forEach((w, i) => {
+        html += `<div class="works-item">
+          <div class="works-title">${w.title}</div>
+          <ul class="works-points">`;
+        w.points.forEach((p, pi) => {
+          const isLast = pi === w.points.length - 1;
+          html += `<li class="${isLast && w.points.length > 1 ? 'italic-point' : ''}">${p}</li>`;
+        });
+        html += `</ul></div>`;
+      });
+
+      // What doesn't work
+      html += `<p class="section-label">What Doesn't Work Well</p>`;
+      d.what_doesnt_work.forEach(w => {
+        html += `<div class="pain-item">
+          <div class="pain-title">${w.title}</div>
+          <div class="pain-desc">${w.description}</div>
+        </div>`;
+      });
+
+      // Opportunities
+      html += `<p class="section-label">What I'd Do Differently</p>`;
+      d.opportunities.forEach(o => {
+        html += `<div class="opp-item">
+          <div class="opp-num">${o.number}</div>
+          <div>
+            <div class="opp-title">${o.title}</div>
+            <div class="opp-desc">${o.description}</div>
+          </div>
+        </div>`;
+      });
+
+      // PM Take
+      html += `<div class="pm-take">
+        <div class="pm-take-label">Komal's PM Take</div>
+        <div class="pm-take-text">${d.pm_take}</div>
+      </div>`;
+
+      return html;
+    }
+
+    /* ── CHATGPT SCHEMA RENDERER ── */
+    function renderChatGPTContent(d) {
+      const s = d.sections;
+      let html = '';
+
+      // Purpose
+      html += `<p class="section-label">01 — The Product</p>`;
+      s.purpose.paragraphs.forEach(p => {
+        html += `<p class="intro-text" style="font-size:clamp(16px,2vw,19px);margin-bottom:12px;">${p}</p>`;
+      });
+
+      // Problems
+      html += `<p class="section-label">02 — Problems</p>
+        <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px;">${s.problems.intro}</p>
+        <div class="stakeholder-grid">`;
+      s.problems.stakeholders.forEach(st => {
+        html += `<div class="stakeholder-card">
+          <h3>${st.name}</h3>
+          <ul>${st.points.map(p => `<li>${p}</li>`).join('')}</ul>
+        </div>`;
+      });
+      html += `</div>`;
+
+      // Questions
+      html += `<p class="section-label">03 — Questions to Ask</p>
+        <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px;">${s.questions.intro}</p>
+        <ol class="questions-list">`;
+      s.questions.items.forEach(q => { html += `<li>${q}</li>`; });
+      html += `</ol>`;
+
+      // Recommendation
+      html += `<p class="section-label">04 — What I'd Do Differently</p>
+        <div class="recommendation-box">`;
+      s.recommendation.paragraphs.forEach(p => { html += `<p>${p}</p>`; });
+      html += `</div>`;
+
+      // Metrics
+      html += `<p class="section-label">05 — Metrics</p>
+        <p style="font-size:15px;color:var(--ink-soft);margin-bottom:4px;">${s.metrics.intro}</p>
+        <div class="metrics-grid">`;
+      s.metrics.categories.forEach(c => {
+        html += `<div class="metric-card">
+          <h3>${c.name}</h3>
+          <ul>${c.points.map(p => `<li>${p}</li>`).join('')}</ul>
+        </div>`;
+      });
+      html += `</div>`;
+
+      // Rollout
+      html += `<p class="section-label">06 — Roll-out Plan</p>
+        <div class="rollout-list">`;
+      s.rollout.phases.forEach(p => {
+        html += `<div class="rollout-item">
+          <div class="rollout-phase">${p.number}</div>
+          <div class="rollout-content">
+            <h3>${p.title}</h3>
+            <p>${p.description}</p>
+          </div>
+        </div>`;
+      });
+      html += `</div>`;
+
+      // Scorecard
+      html += `<p class="section-label">07 — Scorecard</p>
+        <table class="rating-table">`;
+      s.rating.scores.forEach(r => {
+        html += `<tr><td>${r.label}</td><td>${r.score}</td></tr>`;
+      });
+      html += `</table>`;
+
+      // Bottom line as PM Take
+      html += `<div class="pm-take">
+        <div class="pm-take-label">Komal's PM Take</div>
+        <div class="pm-take-text">${s.takeaway.text}</div>
+      </div>`;
+
+      return html;
+    }
+
+    loadTeardown();
+  </script>
 </body>
 </html>

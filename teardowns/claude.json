@@ -4,15 +4,15 @@
     "slug": "claude",
     "title": "Claude by Anthropic",
     "subtitle": "The Honest AI",
-    "tagline": "A thinking partner that pushes back - and means it.",
-    "category": "AI Assistant - General Purpose",
+    "tagline": "A thinking partner that pushes back — and means it.",
+    "category": "AI Assistant — General Purpose",
     "published_date": "2026-03-04",
     "read_time": "6 min read",
     "status": "published",
     "hero_color": "#6B2D5E"
   },
   "intro": {
-    "summary": "Claude is an AI assistant by Anthropic, positioning itself largely as a thinking partner for problem solvers - without any ads. This is in direct contrast to OpenAI's recent announcement on introducing ads within ChatGPT, putting two direct competitors on completely opposing ends of the monetization spectrum. The main jobs that it announces it can do well are around refining and building on user's ideas, expanding on the logic, and simplifying complexity while providing expert-level collaboration.",
+    "summary": "Claude is an AI assistant by Anthropic, positioning itself largely as a thinking partner for problem solvers — without any ads. This is in direct contrast to OpenAI's recent announcement on introducing ads within ChatGPT, putting two direct competitors on completely opposing ends of the monetization spectrum. The main jobs that it announces it can do well are around refining and building on user's ideas, expanding on the logic, and simplifying complexity while providing expert-level collaboration.",
     "note": "It supports 3 different models for different types of users, but we will not get into the model details in this teardown. We will instead derive the user segments that Claude is targeting from our understanding of the models."
   },
   "personas": [
@@ -125,5 +125,7 @@
       "description": "I would go huge on the brand positioning of 'Honest AI'. Claude's loyal user base stays because of a trust-based relationship. It pushes back, it doesn't flatter, it says when it doesn't know. This is a genuine differentiator that doesn't show up enough in Claude's marketing or UX. Make this value visible."
     }
   ],
+  "prev": { "label": "Day 01 — ChatGPT", "link": "/teardowns/chatgpt.html" },
+  "next": { "label": "Day 03 — Google Gemini", "link": "/teardowns/gemini.html" },
   "pm_take": "Claude is a product that users love intensely and then rage-quit over economics. The model quality is genuinely differentiated — the Constitutional AI approach has created something that feels more like a thinking partner than a tool. But Anthropic has a trust paradox: the very thing that makes Claude great (principled honesty) is also creating its biggest UX friction (over-cautious refusals). The rate limits problem is solvable and Anthropic knows it. The real opportunity is brand — 'Honest AI' is a positioning that no competitor can credibly claim right now. Anthropic should be shouting it."
 }
