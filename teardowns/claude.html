@@ -4,21 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Day 01 — ChatGPT | Komal Unpacks</title>
-  <!-- Open Graph / LinkedIn preview -->
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://komalunpacks.com/teardowns/claude.html" />
-  <meta property="og:title" content="Day 02 — Claude by Anthropic | Komal Unpacks" />
-  <meta property="og:description" content="A full PM teardown of Claude. Writing quality, Constitutional AI, rate limits, pricing gaps, and what Anthropic should do next." />
-  <meta property="og:site_name" content="Komal Unpacks" />
-  <meta name="description" content="A full PM teardown of Claude. Writing quality, Constitutional AI, rate limits, pricing gaps, and what Anthropic should do next." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <!-- Open Graph / LinkedIn preview -->
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://komalunpacks.com/teardowns/claude.html" />
-  <meta property="og:title" content="Day 02 — Claude by Anthropic | Komal Unpacks" />
-  <meta property="og:description" content="A full PM teardown of Claude. Writing quality, Constitutional AI, rate limits, pricing gaps, and what Anthropic should do next." />
-  <meta property="og:site_name" content="Komal Unpacks" />
-  <meta name="description" content="A full PM teardown of Claude. Writing quality, Constitutional AI, rate limits, pricing gaps, and what Anthropic should do next." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
@@ -256,6 +242,10 @@
       border-top: 3px solid var(--burgundy);
       border-radius: 0 0 10px 10px;
       padding: 20px;
+    }
+    .stakeholder-icon {
+      font-size: 28px;
+      margin-bottom: 8px;
     }
     .stakeholder-card h3 {
       font-family: var(--font-display);
@@ -559,7 +549,7 @@
       const tagline  = d.meta?.tagline || '';
       const category = d.category || d.meta?.category;
       const date     = d.date || d.meta?.published_date;
-      const readTime = d.meta?.read_time || '';
+      const readTime = d.read_time || d.meta?.read_time || '';
 
       document.title = `Day ${String(day).padStart(2,'0')} — ${title} | Komal Unpacks`;
 
@@ -610,12 +600,12 @@
       let html = '';
 
       // Intro
-      html += `<p class="section-label">The Product</p>
+      html += `<p class="section-label">01 — The Product</p>
         <p class="intro-text">${d.intro.summary}</p>
         <p class="intro-note">${d.intro.note}</p>`;
 
       // Personas
-      html += `<p class="section-label">User Personas — Who It's For</p>
+      html += `<p class="section-label">02 — User Personas — Who It's For</p>
         <div class="personas-grid">`;
       d.personas.forEach(p => {
         html += `<div class="persona-card">
@@ -627,13 +617,13 @@
       html += `</div>`;
 
       // JTBD
-      html += `<p class="section-label">Jobs to Be Done</p>
+      html += `<p class="section-label">03 — Jobs to Be Done</p>
         <ul class="jtbd-list">`;
       d.jtbd.forEach(j => { html += `<li>${j}</li>`; });
       html += `</ul>`;
 
       // What works
-      html += `<p class="section-label">What Works Well</p>`;
+      html += `<p class="section-label">04 — What Works Well</p>`;
       d.what_works.forEach((w, i) => {
         html += `<div class="works-item">
           <div class="works-title">${w.title}</div>
@@ -646,7 +636,7 @@
       });
 
       // What doesn't work
-      html += `<p class="section-label">What Doesn't Work Well</p>`;
+      html += `<p class="section-label">05 — What Doesn't Work Well</p>`;
       d.what_doesnt_work.forEach(w => {
         html += `<div class="pain-item">
           <div class="pain-title">${w.title}</div>
@@ -655,7 +645,7 @@
       });
 
       // Opportunities
-      html += `<p class="section-label">What I'd Do Differently</p>`;
+      html += `<p class="section-label">06 — What I'd Do Differently</p>`;
       d.opportunities.forEach(o => {
         html += `<div class="opp-item">
           <div class="opp-num">${o.number}</div>
@@ -669,7 +659,7 @@
 
       // Metrics
       if (d.metrics && d.metrics.length) {
-        html += `<p class="section-label">Product Metrics</p>`;
+        html += `<p class="section-label">07 — Product Metrics</p>`;
         d.metrics.forEach(cat => {
           html += `<div class="metrics-category">
             <div class="metrics-category-title">${cat.category}</div>`;
@@ -685,7 +675,7 @@
 
       // PM Take
       html += `<div class="pm-take">
-        <div class="pm-take-label">Komal's PM Take</div>
+        <div class="pm-take-label">PM's Takeaway</div>
         <div class="pm-take-text">${d.pm_take}</div>
       </div>`;
 
@@ -696,19 +686,59 @@
     function renderChatGPTContent(d) {
       const s = d.sections;
       let html = '';
+      let n = 1;
+      const sn = () => String(n++).padStart(2,'0');
 
       // Purpose
-      html += `<p class="section-label">01 — The Product</p>`;
+      html += `<p class="section-label">${sn()} — The Product</p>`;
       s.purpose.paragraphs.forEach(p => {
         html += `<p class="intro-text" style="font-size:clamp(16px,2vw,19px);margin-bottom:12px;">${p}</p>`;
       });
 
-      // Problems
-      html += `<p class="section-label">02 — Problems</p>
+      // Personas
+      if (s.personas) {
+        html += `<p class="section-label">${sn()} — User Personas</p>
+          <div class="personas-grid">`;
+        s.personas.forEach(p => {
+          html += `<div class="persona-card">
+            <div class="persona-icon">${p.icon}</div>
+            <div class="persona-title">${p.title}</div>
+            <div class="persona-desc">${p.description}</div>
+          </div>`;
+        });
+        html += `</div>`;
+      }
+
+      // JTBD
+      if (s.jtbd) {
+        html += `<p class="section-label">${sn()} — Jobs to Be Done</p>
+          <ul class="jtbd-list">`;
+        s.jtbd.forEach(j => { html += `<li>${j}</li>`; });
+        html += `</ul>`;
+      }
+
+      // What Works
+      if (s.what_works) {
+        html += `<p class="section-label">${sn()} — What Works Well</p>`;
+        s.what_works.forEach(w => {
+          html += `<div class="works-item">
+            <div class="works-title">${w.title}</div>
+            <ul class="works-points">`;
+          w.points.forEach((p, pi) => {
+            const isLast = pi === w.points.length - 1;
+            html += `<li class="${isLast && w.points.length > 1 ? 'italic-point' : ''}">${p}</li>`;
+          });
+          html += `</ul></div>`;
+        });
+      }
+
+      // Problems — with icons on stakeholder cards
+      html += `<p class="section-label">${sn()} — Problems</p>
         <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px;">${s.problems.intro}</p>
         <div class="stakeholder-grid">`;
       s.problems.stakeholders.forEach(st => {
         html += `<div class="stakeholder-card">
+          <div class="stakeholder-icon">${st.icon || ''}</div>
           <h3>${st.name}</h3>
           <ul>${st.points.map(p => `<li>${p}</li>`).join('')}</ul>
         </div>`;
@@ -716,55 +746,52 @@
       html += `</div>`;
 
       // Questions
-      html += `<p class="section-label">03 — Questions to Ask</p>
+      html += `<p class="section-label">${sn()} — Questions to Ask</p>
         <p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px;">${s.questions.intro}</p>
         <ol class="questions-list">`;
       s.questions.items.forEach(q => { html += `<li>${q}</li>`; });
       html += `</ol>`;
 
-      // Recommendation
-      html += `<p class="section-label">04 — What I'd Do Differently</p>
-        <div class="recommendation-box">`;
-      s.recommendation.paragraphs.forEach(p => { html += `<p>${p}</p>`; });
-      html += `</div>`;
+      // Recommendation — as opportunity boxes
+      html += `<p class="section-label">${sn()} — What I'd Do Differently</p>`;
+      if (s.recommendation.opportunities) {
+        s.recommendation.opportunities.forEach(o => {
+          html += `<div class="opp-item">
+            <div class="opp-num">${o.number}</div>
+            <div>
+              <div class="opp-title">${o.title}</div>
+              <div class="opp-desc">${o.description}</div>
+            </div>
+          </div>`;
+        });
+      }
 
-      // Metrics
-      html += `<p class="section-label">05 — Metrics</p>
-        <p style="font-size:15px;color:var(--ink-soft);margin-bottom:4px;">${s.metrics.intro}</p>
-        <div class="metrics-grid">`;
-      s.metrics.categories.forEach(c => {
-        html += `<div class="metric-card">
-          <h3>${c.name}</h3>
-          <ul>${c.points.map(p => `<li>${p}</li>`).join('')}</ul>
-        </div>`;
+      // Metrics — as category + metric rows (matching Claude format)
+      html += `<p class="section-label">${sn()} — Product Metrics</p>
+        <p style="font-size:15px;color:var(--ink-soft);margin-bottom:16px;">${s.metrics.intro}</p>`;
+      s.metrics.categories.forEach(cat => {
+        html += `<div class="metrics-category">
+          <div class="metrics-category-title">${cat.name}</div>`;
+        cat.items.forEach(item => {
+          html += `<div class="metric-row">
+            <div class="metric-name">${item.name}</div>
+            <div class="metric-desc">${item.description}</div>
+          </div>`;
+        });
+        html += `</div>`;
       });
-      html += `</div>`;
-
-      // Rollout
-      html += `<p class="section-label">06 — Roll-out Plan</p>
-        <div class="rollout-list">`;
-      s.rollout.phases.forEach(p => {
-        html += `<div class="rollout-item">
-          <div class="rollout-phase">${p.number}</div>
-          <div class="rollout-content">
-            <h3>${p.title}</h3>
-            <p>${p.description}</p>
-          </div>
-        </div>`;
-      });
-      html += `</div>`;
 
       // Scorecard
-      html += `<p class="section-label">07 — Scorecard</p>
+      html += `<p class="section-label">${sn()} — Scorecard</p>
         <table class="rating-table">`;
       s.rating.scores.forEach(r => {
         html += `<tr><td>${r.label}</td><td>${r.score}</td></tr>`;
       });
       html += `</table>`;
 
-      // Bottom line as PM Take
+      // PM Takeaway
       html += `<div class="pm-take">
-        <div class="pm-take-label">Komal's PM Take</div>
+        <div class="pm-take-label">PM's Takeaway</div>
         <div class="pm-take-text">${s.takeaway.text}</div>
       </div>`;
 
