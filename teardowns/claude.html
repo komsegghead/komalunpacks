@@ -409,6 +409,48 @@
     }
     .teardown-nav a:hover { opacity: 0.7; }
 
+
+    /* ── METRICS (Claude schema) ── */
+    .metrics-category { margin-bottom: 32px; }
+    .metrics-category:last-child { margin-bottom: 0; }
+    .metrics-category-title {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 600;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--plum); opacity: 0.7;
+      margin-bottom: 14px;
+    }
+    .metric-row {
+      display: flex; gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      background: white;
+      transition: box-shadow 0.2s;
+    }
+    .metric-row:hover { box-shadow: 0 3px 16px rgba(107,45,94,0.09); }
+    .metric-name {
+      font-family: var(--font-display);
+      font-size: 16px; font-weight: 600;
+      color: var(--plum);
+      background: var(--plum-pale);
+      padding: 16px 20px;
+      min-width: 220px; max-width: 220px;
+      display: flex; align-items: center;
+      border-right: 1px solid var(--border);
+      line-height: 1.4;
+    }
+    .metric-desc {
+      font-size: 13.5px; color: var(--ink-soft);
+      line-height: 1.75; padding: 16px 20px;
+      display: flex; align-items: center;
+    }
+    @media (max-width: 600px) {
+      .metric-row { flex-direction: column; }
+      .metric-name { min-width: unset; max-width: unset; border-right: none; border-bottom: 1px solid var(--border); }
+    }
+
     /* ── FOOTER ── */
     footer {
       text-align: center;
@@ -609,6 +651,23 @@
           </div>
         </div>`;
       });
+
+
+      // Metrics
+      if (d.metrics && d.metrics.length) {
+        html += `<p class="section-label">Product Metrics</p>`;
+        d.metrics.forEach(cat => {
+          html += `<div class="metrics-category">
+            <div class="metrics-category-title">${cat.category}</div>`;
+          cat.items.forEach(item => {
+            html += `<div class="metric-row">
+              <div class="metric-name">${item.name}</div>
+              <div class="metric-desc">${item.description}</div>
+            </div>`;
+          });
+          html += `</div>`;
+        });
+      }
 
       // PM Take
       html += `<div class="pm-take">
