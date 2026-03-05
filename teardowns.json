@@ -18,10 +18,10 @@
   {
     "day": "03",
     "tool": "Google Gemini",
-    "category": "AI Assistant - General Purpose",
-    "takeaway": "Coming soon...",
-    "link": "",
-    "status": "coming-soon"
+    "category": "AI Assistant - Multimodal",
+    "takeaway": "Distribution is not destiny. Google's biggest problem isn't acquisition - it's that users don't stay.",
+    "link": "/teardowns/gemini.html",
+    "status": "live"
   },
   {
     "day": "04",

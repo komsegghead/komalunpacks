@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "day": 3,
+    "slug": "gemini",
+    "title": "Google Gemini",
+    "subtitle": "The Ecosystem Play",
+    "tagline": "Distribution is the moat. But distribution alone doesn't keep users.",
+    "category": "AI Assistant, Multimodal",
+    "published_date": "2026-03-05",
+    "read_time": "7 min read",
+    "status": "published",
+    "hero_color": "#1A73E8"
+  },
+  "intro": {
+    "summary": "Gemini is a multimodal AI assistant by Google DeepMind. Rebranded from Google Bard in early 2024, it eventually replaced Google Assistant across the Android ecosystem. It can process text, images, audio, video, and code simultaneously. But unlike ChatGPT or Claude - which compete primarily as standalone AI products - Gemini's primary power lies in ecosystem integration. It lives inside Gmail, Google Docs, Sheets, Drive, Search, Android, Chrome, and YouTube. Google's bet is not on building the most loved AI assistant. It is on making AI impossible to avoid.",
+    "note": "Gemini runs across three tiers: a generous free tier (Gemini 2.5 Flash), Gemini Advanced via Google One AI Premium (~$20/month), and an enterprise API tier through Google Cloud and Vertex AI. Several of the strengths and complaints in this teardown behave very differently depending on which tier the user is on."
+  },
+  "personas": [
+    {
+      "icon": "🎓",
+      "title": "Students",
+      "description": "Google extended its education infrastructure - Chromebooks and Google Classroom - into the AI era through Gemini for Education. With Gemini positioned as free for students, Google is making a long-term pipeline bet: the students who build habits with Gemini today are the Workspace professionals of the next decade."
+    },
+    {
+      "icon": "📱",
+      "title": "Android Users",
+      "description": "With 3 billion Android devices globally, Google shipped Gemini as the default assistant. This is not a product decision - it is a distribution strategy. Most of these users did not choose Gemini. They simply found it on their phone one day, replacing something that used to work."
+    },
+    {
+      "icon": "👩‍💻",
+      "title": "Developers",
+      "description": "The most strategically important segment. These are users who build products on top of models - not those who chat with them directly. With Gemini API, AI Studio, Firebase integration, and Google Cloud, Google has been extraordinarily explicit about targeting this segment with aggressive pricing designed to win before OpenAI or Anthropic entrench."
+    },
+    {
+      "icon": "💼",
+      "title": "Google Workspace Professionals",
+      "description": "Knowledge workers at mid-to-large organisations who are already deep within the Google Workspace ecosystem - Docs, Sheets, Gmail, Drive, Meet - on a daily basis. For this segment, Gemini doesn't require adoption. It requires discovery. The AI is already inside the tools they use."
+    }
+  ],
+  "jtbd": [
+    "Research and information gathering: fact-finding, competitive analysis, real-time search with live citations",
+    "Creative projects: brainstorming, writing, marketing copy",
+    "Work and education support: summarising documents, drafting reports, tutoring",
+    "Programming and code: code generation, debugging, large codebase review"
+  ],
+  "what_works": [
+    {
+      "title": "Ecosystem Integration",
+      "points": [
+        "For users already inside Google Workspace or Android, Gemini feels like a natural extension rather than a new tool to adopt.",
+        "This removes the onboarding friction from the acquisition journey entirely - users don't download Gemini, they discover it inside tools they already use daily.",
+        "Geotab, with 2,300 employees, averaged 40 Gemini queries per person per day, with 89% adoption - a number that only happens when AI is embedded inside existing workflows, not bolted on top.",
+        "No competitor can replicate this distribution advantage. It is Gemini's most defensible moat."
+      ]
+    },
+    {
+      "title": "Real-Time Search & Live Information",
+      "points": [
+        "Gemini is natively integrated with Google Search, grounding its answers in live information rather than static training data alone.",
+        "This gives it a decisive advantage over other LLMs for real-time fact-checking, current events, and research tasks requiring up-to-date citations.",
+        "Users note that Gemini fetches live news with source links while ChatGPT relies on a training cutoff - a meaningful difference for journalists, analysts, and researchers.",
+        "AI Overviews now power 1.5 billion monthly Google Search interactions, normalising Gemini's capabilities at a scale no standalone AI product can match."
+      ]
+    },
+    {
+      "title": "Massive Context Window (1M Tokens - Free)",
+      "points": [
+        "Gemini comes with a 1-million token context window, even on the free tier - a genuinely unprecedented decision that is as much a market strategy as a capability.",
+        "This allows power users to process entire codebases, stacks of research papers, long legal contracts, and even full book manuscripts in a single session without losing earlier context.",
+        "Developers have used it to review 150,000-line codebases and identify anti-patterns missed in code review. Academics have processed 30 papers simultaneously to map research gaps.",
+        "The context window advantage compounds on top of ecosystem integration - Gemini can reference entire Drive documents, email threads, and spreadsheets natively in a single session."
+      ]
+    },
+    {
+      "title": "Multimodal Capabilities",
+      "points": [
+        "Gemini was built multimodal from the ground up - text, images, audio, video, and code processed natively in a single context, not as separate tools.",
+        "Users in creative, research, and content fields highlight the ability to upload YouTube videos and receive full transcripts, chapter timestamps, key points, and social media clips in a single prompt.",
+        "Nano Banana, Google's new image generation model, generated 200 million images and brought in 10 million new users in its first week - a signal of how powerful multimodal can be when it works.",
+        "Visual reasoning on charts, diagrams, and UI screenshots is described as fast and reliable - particularly valued by developers and researchers analysing visual data."
+      ]
+    }
+  ],
+  "what_doesnt_work": [
+    {
+      "title": "Hallucinations Despite Search Integration",
+      "description": "This is the most surprising complaint given Gemini's Google Search integration - which is effectively Google's implementation of RAG. The gap between spec and implementation is significant. Gemini does not always invoke search. When it can generate an answer from trained material, it takes the path of least resistance and does so - even on basic mathematical calculations and factual queries where the training data may be wrong or stale. The grounding only works when Gemini decides to use it. Users who expect every answer to be search-grounded experience this as a trust violation, not a limitation. The model's consistent confident tone across both grounded and ungrounded answers makes it impossible for users to calibrate when to trust the output."
+    },
+    {
+      "title": "The Google Assistant Displacement",
+      "description": "This is Gemini's most unique and damaging problem - one no other AI competitor faces. When Gemini replaced Google Assistant across Android, basic well-established commands stopped working: timers, alarms, smart home controls, hands-free calls. The root cause is architectural - Gemini treats every input as a prompt for its language model, including utility commands that don't require reasoning at all. Users who relied on Google Assistant for daily, hands-free, zero-tolerance-for-failure tasks found themselves with a more sophisticated AI that couldn't do the simple things their old assistant did effortlessly. This created a cohort of users who arrived in Gemini already hostile - not because Gemini is bad at AI, but because it broke something that worked."
+    },
+    {
+      "title": "Weak Image Generation (Improving)",
+      "description": "Gemini's built-in image generation underperformed significantly - with outputs suffering from inaccurate spatial reasoning, distorted objects, and overall inconsistency. It is worth noting that Nano Banana represented a step-change improvement, generating 200 million images in its first week and drawing 10 million new users. The problem is being addressed and the trajectory is clearly upward. However, the rollout is not yet universal - paid subscribers access it first, and users who churned during the weak image generation era may not know things have improved."
+    },
+    {
+      "title": "Perceived Political and Content Bias",
+      "description": "A segment of users describe Gemini as overcautious, bordering on political correctness - refusing or heavily caveating queries that other AI tools handle directly. Some of this is attributable to Google being a publicly listed company with significant stakeholder sensitivity. Some of it is a training and calibration problem, not a policy stance. What's worth noting is that the frustration rarely comes from the refusal itself - it comes from refusals that feel arbitrary and unexplained, or caveats that feel condescending. This is not a PM lever to move significantly, and compliance-related guardrails (health, medical, legal) should not be removed. The PM opportunity is limited to improving the quality, clarity, and tone of explanations when Gemini declines or caveats."
+    }
+  ],
+  "opportunities": [
+    {
+      "number": "01",
+      "title": "Introduce an Orchestration and Routing Layer",
+      "description": "Build a fast intent classification layer that sits in front of Gemini's language model. Its only job: determine whether an incoming command is a utility command (timers, alarms, calls, navigation, smart home, media playback) or a reasoning command. Utility commands should be routed directly to the native device infrastructure originally built for Google Assistant - bypassing the LLM entirely. Only reasoning commands escalate to Gemini. This is not a model problem. Google already has the infrastructure. The Google Assistant intent engine still exists. The fix is an application architecture decision - restore the routing layer that was quietly removed when Gemini became the primary interface. For displaced Google Assistant users, this is the difference between a product that works and one that doesn't."
+    },
+    {
+      "number": "02",
+      "title": "Design an Explicit Migration Experience",
+      "description": "The migration from Google Assistant to Gemini cannot be undone. Churn has already happened. The goal now is to stop the bleeding among users who are still present but reluctant. A deliberate re-onboarding experience - not a generic feature tour - that specifically acknowledges what changed, what Gemini does better, and how to do the things users used to do. A validated commands list. A setup wizard for smart home reconnection surfaced at the right moment in the journey. Explicit instructions: 'If you used to do X this way, here's how you do it now.' The goal is to convert reluctant users into informed users. Done well, this is the highest-leverage retention move available to Gemini's PM team right now."
+    },
+    {
+      "number": "03",
+      "title": "Set and Enforce Reliability SLAs for Utility Commands",
+      "description": "With Gemini as the primary interface, utility command failure rates have increased relative to Google Assistant's baseline. For reasoning tasks, users tolerate failure - they understand complexity. For utility commands - setting a timer while driving, making a hands-free call - the tolerance is zero. A single failure reclassifies the product as unreliable in the user's mental model. A 99.9% reliability SLA for all device-native utility commands should be a non-negotiable product quality bar. Instrumenting this category separately, tracking it as a primary metric, and treating any degradation as a P0 incident is a product prioritisation decision entirely within PM scope."
+    }
+  ],
+  "metrics": [
+    {
+      "category": "Core Health - Displaced Cohort Only",
+      "items": [
+        {
+          "name": "Utility Command Success Rate",
+          "description": "The primary leading indicator. What percentage of utility commands (timers, alarms, calls, smart home) succeed on the first attempt? Tracked specifically for the displaced cohort - users who had established utility command habits before migration. This is the metric that tells you whether the orchestration layer is working."
+        },
+        {
+          "name": "Utility Command Repeat Usage Rate",
+          "description": "The trust signal between success and retention. Of users who had a successful utility command, how many come back to use it again within 7 days? A single success doesn't rebuild trust. Repeat usage within the same command category is the earliest signal that the product is being re-integrated into daily habit. If success rate goes up but repeat usage doesn't follow, the product is working but users don't know it - a perception and awareness problem, not a technical one."
+        }
+      ]
+    },
+    {
+      "category": "Retention - Displaced Cohort Only",
+      "items": [
+        {
+          "name": "Churn Rate",
+          "description": "Tracked specifically for the displaced cohort, not the overall user base. If success rate and repeat usage are both improving but churn doesn't move, something else is driving the exit - possibly hallucinations, possibly a competitor offering something Gemini isn't. The cohort segmentation is critical: aggregate churn data will be masked by Nano Banana-driven new user growth and will not surface the Assistant migration problem."
+        },
+        {
+          "name": "DAU / WAU",
+          "description": "The dormancy check. Reducing churn is not enough if retained users become inactive. DAU/WAU movement tells us whether users are genuinely re-engaging or just not formally churning. Also tracked for the displaced cohort specifically. If churn stabilises but DAU/WAU stays flat, the bleeding has stopped but the patient isn't recovering - a different problem requiring a re-engagement strategy."
+        }
+      ]
+    },
+    {
+      "category": "Cohort Definition Note",
+      "items": [
+        {
+          "name": "Who is the Displaced Cohort?",
+          "description": "Not all Android users - that would make the segment too broad to be analytically useful. The displaced cohort is users who had established utility command habits before the Gemini migration: daily voice command frequency, multiple distinct command categories used (timers, smart home, calls), and smart home devices connected at time of migration. Google has the historical Assistant usage logs to identify this group. If those logs are unavailable due to data retention policies, the cohort can be approximated from current behaviour: users who attempt utility commands and fail repeatedly in the first 30 days post-migration are the displaced cohort revealing themselves through frustration."
+        }
+      ]
+    }
+  ],
+  "prev": {
+    "label": "Day 02: Claude",
+    "link": "/teardowns/claude.html"
+  },
+  "next": {
+    "label": "Day 04: Coming Soon",
+    "link": "#"
+  },
+  "pm_take": "Gemini is a product that proves distribution is not destiny. Google has the most powerful distribution engine in the history of software - 3 billion Android devices, 3 billion Gmail users, the world's most used search engine. And yet, Gemini's retention is half of ChatGPT's. The problem is not acquisition. It never was. Google's core mistake was treating Gemini as a replacement rather than an addition. Replacing Google Assistant didn't convert loyal users - it created a hostile cohort that arrived already disappointed. The fix is not more AI capability. It is restoring the basic reliability that users lost when Assistant disappeared. Gemini's PM opportunity is narrower than it looks - but it is also more tractable than it looks. One orchestration layer. One honest migration experience. One reliability SLA. That's the difference between a product that users tolerate because it's on their phone and one they actually reach for."
+}
