@@ -102,13 +102,13 @@
   "opportunities": [
     {
       "number": "01",
-      "title": "Introduce an Orchestration and Routing Layer",
-      "description": "Build a fast intent classification layer that sits in front of Gemini's language model. Its only job: determine whether an incoming command is a utility command (timers, alarms, calls, navigation, smart home, media playback) or a reasoning command. Utility commands should be routed directly to the native device infrastructure originally built for Google Assistant - bypassing the LLM entirely. Only reasoning commands escalate to Gemini. This is not a model problem. Google already has the infrastructure. The Google Assistant intent engine still exists. The fix is an application architecture decision - restore the routing layer that was quietly removed when Gemini became the primary interface. For displaced Google Assistant users, this is the difference between a product that works and one that doesn't."
+      "title": "Fix for Trust: Mandatory Citations and Grounding Transparency",
+      "description": "Hallucination cannot be fully solved at the PM layer - it is an industry-wide architectural problem. But its damage to retention can be managed. Two moves: first, make citations mandatory on every factual response, not optional or search-triggered. Second, introduce a grounding transparency indicator - a simple visual tag on every response that tells the user whether the answer was sourced from live search or generated from training data. Users do not need to trust the model blindly if they can see where the answer came from and decide for themselves. This is what Perplexity gets right. Every claim is pinned to a source, inline, before the user even asks. Gemini has the search infrastructure to do this. It is a product decision to make it visible and consistent."
     },
     {
       "number": "02",
-      "title": "Design an Explicit Migration Experience",
-      "description": "The migration from Google Assistant to Gemini cannot be undone. Churn has already happened. The goal now is to stop the bleeding among users who are still present but reluctant. A deliberate re-onboarding experience - not a generic feature tour - that specifically acknowledges what changed, what Gemini does better, and how to do the things users used to do. A validated commands list. A setup wizard for smart home reconnection surfaced at the right moment in the journey. Explicit instructions: 'If you used to do X this way, here's how you do it now.' The goal is to convert reluctant users into informed users. Done well, this is the highest-leverage retention move available to Gemini's PM team right now."
+      "title": "Introduce an Intent Orchestration and Routing Layer",
+      "description": "Build a fast intent classification layer that sits in front of Gemini's language model. Its only job: determine whether an incoming command is a utility command (timers, alarms, calls, navigation, smart home, media playback) or a reasoning command. Utility commands should be routed directly to the native device infrastructure originally built for Google Assistant - bypassing the LLM entirely. Only reasoning commands escalate to Gemini. This is not a model problem. Google already has the infrastructure. The Google Assistant intent engine still exists. The fix is an application architecture decision - restore the routing layer that was quietly removed when Gemini became the primary interface. For displaced Google Assistant users, this is the difference between a product that works and one that doesn't."
     },
     {
       "number": "03",
@@ -120,6 +120,10 @@
     {
       "category": "Core Health - Displaced Cohort Only",
       "items": [
+        {
+          "name": "Source Link Click Rate",
+          "description": "Of responses that display a citation, what percentage of users click through to the source? This is the trust signal for the grounding transparency fix. High click rate means users are engaging with citations and verifying answers - the intended behaviour. Low click rate after launch means the feature exists but users are not noticing or trusting it enough to act on it."
+        },
         {
           "name": "Utility Command Success Rate",
           "description": "The primary leading indicator. What percentage of utility commands (timers, alarms, calls, smart home) succeed on the first attempt? Tracked specifically for the displaced cohort - users who had established utility command habits before migration. This is the metric that tells you whether the orchestration layer is working."
@@ -161,5 +165,5 @@
     "label": "Day 04: Coming Soon",
     "link": "#"
   },
-  "pm_take": "Gemini is a product that proves distribution is not destiny. Google has the most powerful distribution engine in the history of software - 3 billion Android devices, 3 billion Gmail users, the world's most used search engine. And yet, Gemini's retention is half of ChatGPT's. The problem is not acquisition. It never was. Google's core mistake was treating Gemini as a replacement rather than an addition. Replacing Google Assistant didn't convert loyal users - it created a hostile cohort that arrived already disappointed. The fix is not more AI capability. It is restoring the basic reliability that users lost when Assistant disappeared. Gemini's PM opportunity is narrower than it looks - but it is also more tractable than it looks. One orchestration layer. One honest migration experience. One reliability SLA. That's the difference between a product that users tolerate because it's on their phone and one they actually reach for."
+  "pm_take": "Gemini is a product that proves distribution is not destiny. Google has the most powerful distribution engine in the history of software - 3 billion Android devices, 3 billion Gmail users, the world's most used search engine. And yet, Gemini's retention is half of ChatGPT's. The problem is not acquisition. It never was. Gemini has two trust problems - and both are self-inflicted. The first is hallucination. Not unique to Gemini, but more damaging here because users expect a Google product to get facts right. The fix is not solving hallucination - that is an industry-wide architectural problem. The fix is making the uncertainty visible. Mandatory citations. A grounding transparency indicator. Let users see whether an answer was sourced or generated, and let them decide whether to trust it. The second is the Google Assistant displacement. Replacing Assistant didn't convert loyal users - it created a hostile cohort that arrived already disappointed. A sophisticated reasoning model was never the right tool for setting a timer. Restore the routing layer. Set the SLA. The infrastructure already exists. Gemini's PM opportunity is more tractable than it looks. Fix the trust signals on hallucination. Fix the reliability on utility commands. The distribution advantage is already there - it just needs users who want to stay."
 }
