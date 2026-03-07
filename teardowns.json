@@ -27,7 +27,7 @@
     "day": "04",
     "tool": "Perplexity AI",
     "category": "AI Research Assistant",
-    "takeaway": "The answer engine that solved Google's link overload -- and created a new problem",
+    "takeaway": "The answer engine that solved Google's link overload -- and created a new problem.",
     "link": "/teardowns/perplexity.html",
     "status": "live"
   },
@@ -35,6 +35,86 @@
     "day": "05",
     "tool": "Pi (Inflection)",
     "category": "AI Assistant - Conversational",
+    "takeaway": "Coming soon...",
+    "link": "",
+    "status": "coming-soon"
+  },
+  {
+    "day": "06",
+    "tool": "Pinecone",
+    "category": "AI Infrastructure - Vector Database",
+    "takeaway": "Coming soon...",
+    "link": "",
+    "status": "coming-soon"
+  },
+  {
+    "day": "07",
+    "tool": "LangChain",
+    "category": "AI Infrastructure - Orchestration",
+    "takeaway": "Coming soon...",
+    "link": "",
+    "status": "coming-soon"
+  },
+  {
+    "day": "08",
+    "tool": "Anthropic API",
+    "category": "AI Infrastructure - Model API",
+    "takeaway": "Coming soon...",
+    "link": "",
+    "status": "coming-soon"
+  },
+  {
+    "day": "09",
+    "tool": "Meta Llama",
+    "category": "AI Infrastructure - Open Models",
+    "takeaway": "Coming soon...",
+    "link": "",
+    "status": "coming-soon"
+  },
+  {
+    "day": "10",
+    "tool": "Weights & Biases",
+    "category": "AI Infrastructure - Model Evaluation",
+    "takeaway": "Coming soon...",
+    "link": "",
+    "status": "coming-soon"
+  },
+  {
+    "day": "11",
+    "tool": "Observe.AI",
+    "category": "Enterprise AI - Contact Center Intelligence",
+    "takeaway": "Coming soon...",
+    "link": "",
+    "status": "coming-soon"
+  },
+  {
+    "day": "12",
+    "tool": "Cresta",
+    "category": "Enterprise AI - Agent Coaching",
+    "takeaway": "Coming soon...",
+    "link": "",
+    "status": "coming-soon"
+  },
+  {
+    "day": "13",
+    "tool": "Uniphore",
+    "category": "Enterprise AI - Conversational AI",
+    "takeaway": "Coming soon...",
+    "link": "",
+    "status": "coming-soon"
+  },
+  {
+    "day": "14",
+    "tool": "Forethought AI",
+    "category": "Enterprise AI - Support Triage",
+    "takeaway": "Coming soon...",
+    "link": "",
+    "status": "coming-soon"
+  },
+  {
+    "day": "15",
+    "tool": "Ada",
+    "category": "Enterprise AI - Customer Support Automation",
     "takeaway": "Coming soon...",
     "link": "",
     "status": "coming-soon"
