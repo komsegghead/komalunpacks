@@ -78,9 +78,9 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem
 .contact-link { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--plum); font-size: 0.875rem; letter-spacing: 0.05em; transition: all 0.3s; padding: 0.875rem 1.5rem; border: 1px solid var(--border); background: var(--white); }
 .contact-link:hover { border-color: var(--plum-light); background: var(--plum-pale); }
 .contact-note { margin-top: 2.5rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
-footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--sunshine-pale); }
-footer p { font-size: 0.8rem; color: var(--text-muted); }
-footer a { color: var(--plum); text-decoration: none; }
+footer { border-top: 1px solid rgba(255,253,248,0.15); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--plum-deep); }
+footer p { font-size: 0.8rem; color: rgba(255,253,248,0.6); }
+footer a { color: var(--plum-light); text-decoration: none; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 900px) {
@@ -90,6 +90,7 @@ footer a { color: var(--plum); text-decoration: none; }
   .hero::before { display: none; }
   .hero-card { padding-right: 0; text-align: center; }
   .hero-eyebrow { justify-content: center; }
+  .hero-cta { justify-content: center; }
   .hero-image { display: none; }
   .about { padding: 4rem 2rem; }
   .teardowns { padding: 4rem 2rem; }
@@ -140,8 +141,7 @@ footer a { color: var(--plum); text-decoration: none; }
     <h2 class="section-title">About This Portfolio</h2>
     <div class="about-body">
       <p>This is where I think out loud.</p>
-      <p>PM teardowns of AI tools. Case studies from the field. A decade of pattern recognition across banking, digital, and enterprise technology.</p>
-      <p>No fluff. Just the work.</p>
+      <p>Product Deconstructions and Teardowns. Case Studies. Refining my craft.</p>
     </div>
   </div>
 </section>
@@ -200,7 +200,7 @@ fetch('teardowns.json')
         '<h3 class="card-tool">' + item.tool + '</h3>' +
         '<p class="card-category">' + item.category + '</p>' +
         '<p class="card-takeaway">' + item.takeaway + '</p>' +
-        (isLive ? '<p class="card-arrow">Read Teardown →</p>' : '');
+        (isLive ? '<p class="card-arrow">Read Teardown \u2192</p>' : '');
       grid.appendChild(card);
     });
   })
