@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Amazon ARIS: Building Trust Into Product Discovery - Komal Sikka</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --white: #FFFDF8; --sunshine-pale: #FEF6DC; --plum: #6B3D7A; --plum-light: #9B6DAA;
+  --plum-pale: #F0E8F5; --plum-deep: #3D1F50; --burgundy: #8B2252; --burgundy-light: #B85080;
+  --text: #2A1A35; --text-muted: #7A6080; --border: rgba(107,61,122,0.12);
+}
+html { scroll-behavior: smooth; }
+body { font-family: "DM Sans", sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(255,253,248,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: "Cormorant Garamond", serif; font-size: 1.25rem; font-weight: 400; color: var(--plum-deep); text-decoration: none; }
+.nav-back { font-size: 0.78rem; color: var(--plum); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem; transition: color 0.3s; }
+.nav-back:hover { color: var(--plum-deep); }
+
+/* HERO */
+.cs-hero { padding: 9rem 4rem 5rem; background: var(--white); border-bottom: 1px solid var(--border); }
+.cs-hero-inner { max-width: 900px; margin: 0 auto; }
+.cs-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.cs-eyebrow::before { content: ""; width: 1.5rem; height: 1px; background: var(--burgundy-light); }
+.cs-title { font-family: "Cormorant Garamond", serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--text); line-height: 1.15; margin-bottom: 1.5rem; }
+.cs-title span { color: var(--plum); font-style: italic; }
+.cs-subtitle { font-size: 1rem; color: var(--text-muted); line-height: 1.75; max-width: 680px; margin-bottom: 2.5rem; }
+.cs-meta { display: flex; flex-wrap: wrap; gap: 2rem; }
+.cs-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+.cs-meta-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--burgundy); }
+.cs-meta-value { font-size: 0.875rem; color: var(--text); font-weight: 500; }
+
+/* JOURNEY NAV */
+.journey-nav { background: var(--sunshine-pale); border-bottom: 1px solid var(--border); position: sticky; top: 60px; z-index: 90; padding: 0 4rem; overflow-x: auto; }
+.journey-nav-inner { display: flex; max-width: 1200px; margin: 0 auto; white-space: nowrap; }
+.journey-step { padding: 1rem 1.25rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; border-bottom: 2px solid transparent; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+.journey-step:hover { color: var(--plum); border-bottom-color: var(--plum-light); }
+.journey-step.active { color: var(--plum); border-bottom-color: var(--plum); font-weight: 500; }
+.journey-step-num { font-family: "Cormorant Garamond", serif; font-size: 0.95rem; font-style: italic; color: var(--plum-light); }
+
+/* SECTIONS */
+.cs-section { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+.cs-section:nth-child(odd) { background: var(--white); }
+.cs-section:nth-child(even) { background: var(--sunshine-pale); }
+.cs-section-inner { max-width: 900px; margin: 0 auto; }
+.section-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::before { content: ""; width: 1.5rem; height: 1px; background: var(--burgundy-light); }
+.section-title { font-family: "Cormorant Garamond", serif; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 300; color: var(--text); margin-bottom: 2rem; line-height: 1.2; }
+.section-title span { color: var(--plum); font-style: italic; }
+
+p { font-size: 0.9rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1.25rem; }
+h4 { font-family: "Cormorant Garamond", serif; font-size: 1.2rem; font-weight: 400; color: var(--text); margin: 2rem 0 0.75rem; }
+ul { list-style: none; margin-bottom: 1.5rem; }
+ul li { font-size: 0.875rem; line-height: 1.8; color: var(--text-muted); padding-left: 1.25rem; position: relative; margin-bottom: 0.4rem; }
+ul li::before { content: "-"; position: absolute; left: 0; color: var(--plum-light); font-size: 0.75rem; }
+
+/* CALLOUT */
+.callout { background: var(--plum-pale); border-left: 3px solid var(--plum); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.callout p { margin: 0; color: var(--plum-deep); font-size: 0.875rem; font-style: italic; }
+
+/* VOICE BOX */
+.voice-box { background: var(--sunshine-pale); border: 1px solid var(--border); padding: 1.5rem 1.75rem; margin: 1rem 0; }
+.voice-box p { margin: 0; font-style: italic; color: var(--text); font-size: 0.875rem; line-height: 1.75; padding-left: 0.5rem; border-left: 2px solid var(--plum-light); }
+.voice-source { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem; display: block; }
+
+/* INSIGHT BOX */
+.insight-box { background: var(--white); border: 1px solid var(--border); padding: 1.5rem; margin: 2rem 0; }
+.insight-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.5rem; }
+.insight-text { font-family: "Cormorant Garamond", serif; font-size: 1.1rem; color: var(--text); line-height: 1.6; }
+
+/* STAT GRID */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border); margin: 2rem 0; border: 1px solid var(--border); }
+.stat-cell { background: var(--white); padding: 1.25rem 1.5rem; }
+.stat-num { font-family: "Cormorant Garamond", serif; font-size: 2rem; font-weight: 300; color: var(--plum); line-height: 1; margin-bottom: 0.4rem; }
+.stat-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+
+/* TWO COL */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+.col-card { background: var(--white); border: 1px solid var(--border); padding: 1.5rem; }
+.col-card-title { font-family: "Cormorant Garamond", serif; font-size: 1.1rem; color: var(--plum-deep); margin-bottom: 0.75rem; }
+
+/* PERSONA CARDS */
+.persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+.persona-card { background: var(--white); border: 1px solid var(--border); padding: 1.75rem; border-top: 3px solid var(--plum); }
+.persona-name { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; font-weight: 300; color: var(--text); margin-bottom: 0.2rem; }
+.persona-role { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 1rem; }
+.persona-attr { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem; line-height: 1.5; }
+.persona-attr strong { color: var(--text); }
+.persona-quote { margin-top: 1rem; padding: 0.875rem 1rem; background: var(--plum-pale); font-style: italic; font-size: 0.8rem; color: var(--plum-deep); line-height: 1.6; }
+
+/* FEATURE DEEP DIVE */
+.feature-block { background: var(--white); border: 1px solid var(--border); margin: 2rem 0; overflow: hidden; }
+.feature-block-header { background: var(--plum-pale); padding: 1.5rem 2rem; display: flex; align-items: flex-start; gap: 1.25rem; }
+.feature-block-num { font-family: "Cormorant Garamond", serif; font-size: 3rem; font-weight: 300; color: var(--plum-light); line-height: 1; flex-shrink: 0; }
+.feature-block-title { font-family: "Cormorant Garamond", serif; font-size: 1.4rem; color: var(--plum-deep); margin-bottom: 0.25rem; }
+.feature-block-subtitle { font-size: 0.8rem; color: var(--text-muted); }
+.feature-block-body { padding: 1.75rem 2rem; }
+.layer-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--burgundy); margin: 1.5rem 0 0.5rem; }
+
+/* RICE TABLE */
+.rice-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.8rem; }
+.rice-table th { background: var(--plum-pale); color: var(--plum-deep); padding: 0.7rem 1rem; text-align: left; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; border-bottom: 2px solid var(--border); }
+.rice-table td { padding: 0.75rem 1rem; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+.rice-table tr:hover td { background: var(--sunshine-pale); }
+.rice-winner { color: var(--plum) !important; font-weight: 500; }
+.rice-score { font-family: "Cormorant Garamond", serif; font-size: 1.1rem; color: var(--plum); font-weight: 300; }
+
+/* METRICS TABLE */
+.metrics-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.8rem; }
+.metrics-table th { background: var(--plum-pale); color: var(--plum-deep); padding: 0.7rem 1rem; text-align: left; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; border-bottom: 2px solid var(--border); }
+.metrics-table td { padding: 0.75rem 1rem; color: var(--text-muted); border-bottom: 1px solid var(--border); vertical-align: top; }
+.metrics-table tr:hover td { background: var(--sunshine-pale); }
+.badge { display: inline-block; padding: 0.2rem 0.6rem; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.badge-key { background: var(--plum); color: var(--white); }
+.badge-secondary { background: var(--plum-pale); color: var(--plum); }
+.badge-guardrail { background: #FEE2E2; color: #B91C1C; }
+
+/* ROLLOUT PHASES */
+.phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+.phase-card { background: var(--white); border: 1px solid var(--border); padding: 1.5rem; }
+.phase-num { font-family: "Cormorant Garamond", serif; font-size: 2.5rem; font-weight: 300; color: var(--plum-light); line-height: 1; margin-bottom: 0.5rem; }
+.phase-title { font-family: "Cormorant Garamond", serif; font-size: 1.15rem; color: var(--text); margin-bottom: 0.75rem; }
+
+/* RISK TABLE */
+.risk-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.79rem; }
+.risk-table th { background: var(--plum-pale); color: var(--plum-deep); padding: 0.7rem 0.875rem; text-align: left; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; border-bottom: 2px solid var(--border); font-weight: 500; }
+.risk-table td { padding: 0.75rem 0.875rem; color: var(--text-muted); border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.6; }
+.risk-table tr:hover td { background: var(--sunshine-pale); }
+.risk-high { color: #B91C1C; font-weight: 500; }
+.risk-med { color: #92400E; font-weight: 500; }
+
+/* SWOT */
+.swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); margin: 2rem 0; border: 1px solid var(--border); }
+.swot-cell { background: var(--white); padding: 1.5rem; }
+.swot-cell:nth-child(1) { border-top: 3px solid var(--plum); }
+.swot-cell:nth-child(2) { border-top: 3px solid var(--burgundy); }
+.swot-cell:nth-child(3) { border-top: 3px solid #16A34A; }
+.swot-cell:nth-child(4) { border-top: 3px solid #B45309; }
+.swot-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 500; }
+.swot-cell:nth-child(1) .swot-label { color: var(--plum); }
+.swot-cell:nth-child(2) .swot-label { color: var(--burgundy); }
+.swot-cell:nth-child(3) .swot-label { color: #16A34A; }
+.swot-cell:nth-child(4) .swot-label { color: #B45309; }
+
+footer { border-top: 1px solid rgba(255,253,248,0.15); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--plum-deep); }
+footer p { font-size: 0.8rem; color: rgba(255,253,248,0.6); }
+footer a { color: var(--plum-light); text-decoration: none; }
+
+@media (max-width: 900px) {
+  nav { padding: 1.25rem 2rem; }
+  .cs-hero { padding: 7rem 2rem 4rem; }
+  .journey-nav { padding: 0 2rem; }
+  .cs-section { padding: 4rem 2rem; }
+  .two-col, .persona-grid, .swot-grid, .phase-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">My Product Lab</a>
+  <a href="/#case-studies" class="nav-back">&#8592; Case Studies</a>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-hero-inner">
+    <p class="cs-eyebrow">Case Study &middot; E-Commerce &middot; Product Discovery &amp; Trust</p>
+    <h1 class="cs-title">Amazon ARIS: <span>Building Trust Into Every Purchase Decision</span></h1>
+    <p class="cs-subtitle">A 3-phase product exercise for Amazon - from identifying the review trust crisis to designing a full Review Integrity System (ARIS) with a PRD, wireframes, RICE prioritisation, and rollout plan.</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Product</span>
+        <span class="cs-meta-value">Amazon (Feature Addition)</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Domain</span>
+        <span class="cs-meta-value">E-Commerce &middot; Trust &amp; Discovery</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Target Segment</span>
+        <span class="cs-meta-value">Convenience Shoppers</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Business Goal</span>
+        <span class="cs-meta-value">+12-15% conversion in high-anxiety categories</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Deliverables</span>
+        <span class="cs-meta-value">Discovery &middot; Research &middot; PRD &middot; Wireframes</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Institution</span>
+        <span class="cs-meta-value">Great Lakes Institute of Management</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNEY NAV -->
+<nav class="journey-nav">
+  <div class="journey-nav-inner">
+    <a href="#discovery" class="journey-step"><span class="journey-step-num">01</span> Discovery</a>
+    <a href="#research" class="journey-step"><span class="journey-step-num">02</span> Research</a>
+    <a href="#personas" class="journey-step"><span class="journey-step-num">03</span> Personas</a>
+    <a href="#problem" class="journey-step"><span class="journey-step-num">04</span> Problem</a>
+    <a href="#solutions" class="journey-step"><span class="journey-step-num">05</span> Solutions</a>
+    <a href="#prd" class="journey-step"><span class="journey-step-num">06</span> PRD</a>
+    <a href="#metrics" class="journey-step"><span class="journey-step-num">07</span> Metrics</a>
+    <a href="#rollout" class="journey-step"><span class="journey-step-num">08</span> Rollout</a>
+  </div>
+</nav>
+
+<!-- 01 DISCOVERY -->
+<section class="cs-section" id="discovery">
+  <div class="cs-section-inner">
+    <p class="section-label">Phase 1 &middot; Step 01</p>
+    <h2 class="section-title">Discovery: <span>What is actually broken on Amazon?</span></h2>
+
+    <p>The starting point was a product I use often and have both appreciation for and small frustrations with. Amazon. Below is the friction map across its 4 core flows.</p>
+
+    <h4>Flow 1: Search &rarr; Product Discovery &rarr; Product Page</h4>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">What works well</div>
+        <ul>
+          <li>Search is forgiving - works even with typos or vague queries</li>
+          <li>Strong variety: multiple sellers, options, brands</li>
+          <li>Filters and sorting available upfront</li>
+          <li>Buy Now CTA placement is clear</li>
+          <li>Detailed specs and a genuinely useful Q&A section</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Where it hurts</div>
+        <ul>
+          <li>Too many similar-looking products; quality is impossible to validate online</li>
+          <li>Sponsored results blend with organic - makes ranking feel untrustworthy</li>
+          <li>Reviews are unreliable, fake-looking, or repetitive</li>
+          <li>Product images sometimes don't match what actually arrives</li>
+          <li>Too many badges (Amazon's Choice, Best Seller) with no clear earning criteria</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>Flow 2: Cart &rarr; Checkout &rarr; Payments</h4>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">What works well</div>
+        <ul>
+          <li>All items visible together for easy cross-checking</li>
+          <li>Wide payment options: cards, UPI, wallets, EMI</li>
+          <li>Expected delivery date sets clear expectations</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Where it hurts</div>
+        <ul>
+          <li>Seller location not shown - matters for perishables like plants</li>
+          <li>Too many upsells (warranty, services) feel distracting</li>
+          <li>Address selection UI is clunky with multiple saved addresses</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>Flows 3 &amp; 4: Delivery &rarr; Returns</h4>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">Delivery pain</div>
+        <ul>
+          <li>"Arriving today" sometimes flips to "Delayed" at the last minute</li>
+          <li>No transparency on why a delivery date changed</li>
+          <li>Delivery person contact sometimes unavailable or non-functional</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Returns pain</div>
+        <ul>
+          <li>Some items show "Not eligible for return" only after delivery</li>
+          <li>Replacement options inconsistent by seller</li>
+          <li>Quality check at pickup is random - sometimes strict, sometimes lenient</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>3 Problem Hypotheses Identified</h4>
+    <div class="insight-box">
+      <div class="insight-label">P1 (chosen) &mdash; High confidence</div>
+      <div class="insight-text">Convenience shoppers struggle to trust the authenticity and quality of products during discovery because reviews feel inconsistent and sometimes fake - leading to hesitation and delayed purchases.</div>
+    </div>
+    <p style="font-size:0.8rem; color:var(--text-muted);">P2: Price-sensitive shoppers can't identify real deals due to sponsored items and inflated discounts. P3: Heavy repeat buyers face quality inconsistency when different sellers fulfil the same listing.</p>
+  </div>
+</section>
+
+<!-- 02 RESEARCH -->
+<section class="cs-section" id="research">
+  <div class="cs-section-inner">
+    <p class="section-label">Phase 2 &middot; Step 02</p>
+    <h2 class="section-title">Research: <span>What users actually said</span></h2>
+
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-num">5</div>
+        <div class="stat-desc">User interviews, 20-25 mins each</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">17</div>
+        <div class="stat-desc">Survey responses (Google form)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">2.4/5</div>
+        <div class="stat-desc">Average trust in Amazon reviews (survey)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">82%</div>
+        <div class="stat-desc">Always or often compare multiple listings before buying</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">59%</div>
+        <div class="stat-desc">Received a product that felt very different from what reviews suggested</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">10-20 min</div>
+        <div class="stat-desc">Time spent comparing for a typical purchase (most common range)</div>
+      </div>
+    </div>
+
+    <h4>Interview Finding A: Review trust has collapsed - and it is emotional</h4>
+    <p>3 out of 5 interviewees said some version of "I don't fully trust Amazon reviews." What surprised me was the emotion behind it - not just frustration, but feeling cheated.</p>
+    <div class="voice-box"><p>I wasted almost 25 minutes comparing identical mobile holders. Every listing had 4+ stars and the reviews looked copy-pasted or copied from ChatGPT.</p></div>
+    <div class="voice-box"><p>The product pictures looked amazing. The real thing that arrived looked cheap. I honestly felt cheated.</p></div>
+    <div class="voice-box"><p>For my kid's lunchbox, I was genuinely stressed. I don't want to rely on random reviews when it's for my child.</p></div>
+
+    <h4>Interview Finding B: The discovery workflow is a multi-tab ordeal</h4>
+    <p>Most users described the same pattern: search, open 5-10 tabs of similar listings, scroll ratings, skim reviews, zoom user photos, then cross-check on YouTube.</p>
+    <div class="callout">
+      <p>"By the time I reach a decision, I am just mentally done. I click and hope for the best."</p>
+    </div>
+
+    <h4>Interview Finding C: Pain spikes in specific categories</h4>
+    <ul>
+      <li>Fashion and footwear: fit uncertainty + misleading photos</li>
+      <li>Kids' products: safety and health anxiety</li>
+      <li>Kitchenware / home items: durability hard to assess online</li>
+      <li>"Cheap but important" electronics: chargers, hubs, cables</li>
+    </ul>
+
+    <h4>Biggest frustrations from the survey (multi-select)</h4>
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-num">13/17</div>
+        <div class="stat-desc">Fake or suspicious reviews</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">11/17</div>
+        <div class="stat-desc">Sponsored items mixing with organic results</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">9/17</div>
+        <div class="stat-desc">Identical products from different sellers with wildly different quality</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-label">Key Research Reframe</div>
+      <div class="insight-text">The core problem is not just fake reviews. Users can't quickly get to a confident decision. Decision fatigue is the real problem - fake reviews are the amplifier. The emotional state is: Doubt + Cognitive Overload + Fear of Regret.</div>
+    </div>
+
+    <h4>SWOT: What the research revealed about Amazon</h4>
+    <div class="swot-grid">
+      <div class="swot-cell">
+        <div class="swot-label">Strengths</div>
+        <ul>
+          <li>Logistics and operations are trusted deeply - delivery, refunds, returns work</li>
+          <li>Search is forgiving and habit-forming</li>
+          <li>Prime + "Buy Again" creates strong habit loops</li>
+          <li>Default starting point for most categories</li>
+        </ul>
+      </div>
+      <div class="swot-cell">
+        <div class="swot-label">Weaknesses</div>
+        <ul>
+          <li>Low perceived authenticity of reviews (repetitive, ChatGPT-like, mismatched photos)</li>
+          <li>Cluttered discovery on mobile</li>
+          <li>Sponsored results erode trust in Amazon as a neutral platform</li>
+          <li>Lack of seller transparency causes quality inconsistency in repeat orders</li>
+        </ul>
+      </div>
+      <div class="swot-cell">
+        <div class="swot-label">Opportunities</div>
+        <ul>
+          <li>Build a trust layer on top of reviews</li>
+          <li>Structured comparison across top 3-5 options</li>
+          <li>Better signalling when two listings are essentially the same product</li>
+          <li>Category-specific trust features for high-anxiety segments</li>
+        </ul>
+      </div>
+      <div class="swot-cell">
+        <div class="swot-label">Threats</div>
+        <ul>
+          <li>Niche D2C brands with fewer but more curated products winning on trust</li>
+          <li>Users going to YouTube to make decisions - Amazon risks becoming just the fulfilment layer</li>
+          <li>Amazon's own badges (Amazon's Choice) are losing credibility</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PERSONAS -->
+<section class="cs-section" id="personas">
+  <div class="cs-section-inner">
+    <p class="section-label">Phase 2 &middot; Step 03</p>
+    <h2 class="section-title">Personas: <span>Two shoppers, one broken experience</span></h2>
+
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-name">Riya</div>
+        <div class="persona-role">The Speedy Convenience Shopper &middot; Primary</div>
+        <div class="persona-attr"><strong>Age:</strong> 34 &middot; Working professional, metro city</div>
+        <div class="persona-attr"><strong>Usage:</strong> Prime member, 6-8 orders/month, mainly on mobile</div>
+        <div class="persona-attr"><strong>Behaviour:</strong> Shops in small windows (late night, between meetings). Skims ratings and photos. Defaults to known brands when decision fatigue hits.</div>
+        <div class="persona-attr"><strong>Pain:</strong> Everything looks the same. Reviews sound too polished. Doesn't want 20 mins on a Rs 600 purchase.</div>
+        <div class="persona-quote">"I trust Amazon to deliver. I just want one screen that tells me, in simple words, if this product is genuinely good enough for me to stop thinking and click Buy."</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-name">Arjun</div>
+        <div class="persona-role">The Value-Obsessed Deal Hunter &middot; Secondary</div>
+        <div class="persona-attr"><strong>Age:</strong> 19 &middot; Student, Tier-2 city</div>
+        <div class="persona-attr"><strong>Usage:</strong> 2-3 orders/month, mostly during sales, very price-sensitive</div>
+        <div class="persona-attr"><strong>Behaviour:</strong> Sorts by lowest price/discount. Opens 8-10 tabs. Validates expensive purchases on YouTube. Will abandon cart if something feels off.</div>
+        <div class="persona-attr"><strong>Pain:</strong> Can't tell real deals from drama. Sponsored products make him doubt the whole ranking. Cheap products with 5-star reviews feel suspicious.</div>
+        <div class="persona-quote">"I don't mind doing the research, but at least be honest with me about reviews and discounts. Don't make me feel like I'm being played."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 PROBLEM -->
+<section class="cs-section" id="problem">
+  <div class="cs-section-inner">
+    <p class="section-label">Phase 2 &middot; Step 04</p>
+    <h2 class="section-title">P0 Problem: <span>Decision fatigue lives at the intersection of trust, noise, and mental effort</span></h2>
+
+    <div class="callout">
+      <p>Users are struggling to confidently evaluate product quality during discovery because the current review experience feels noisy, repetitive, and hard to trust. This leads to longer decision times, mental fatigue, and drop-offs before purchase - especially in high-anxiety categories like fashion, kids' products, and home/kitchen.</p>
+    </div>
+
+    <h4>PIF Scoring (Population x Intensity x Frequency)</h4>
+    <table class="rice-table">
+      <thead>
+        <tr>
+          <th>Problem</th>
+          <th>Population</th>
+          <th>Intensity</th>
+          <th>Frequency</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rice-winner">P1: Low trust in reviews during discovery</td>
+          <td>5 - cuts across almost all shoppers</td>
+          <td>5 - directly hits confidence and mental effort</td>
+          <td>5 - shows up in most medium+ consideration purchases</td>
+          <td><span class="rice-score">15</span></td>
+        </tr>
+        <tr>
+          <td>P2: Confusing deals and sponsored results</td>
+          <td>4 - strongest for price-sensitive users</td>
+          <td>4 - leads to regret and mistrust</td>
+          <td>4 - spikes around sales, not every purchase</td>
+          <td><span class="rice-score">12</span></td>
+        </tr>
+        <tr>
+          <td>P3: Inconsistent repeat orders</td>
+          <td>3 - mostly repeat buyers in certain categories</td>
+          <td>3 - annoying but usually fixable via returns</td>
+          <td>3 - occasionally, not every reorder</td>
+          <td><span class="rice-score">9</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Goal Statement</h4>
+    <div class="insight-box">
+      <div class="insight-label">Final Goal</div>
+      <div class="insight-text">Improve the discovery-to-purchase conversion rate by ~12-15% for convenience shoppers in selected high-anxiety categories (fashion, kids, home/kitchen) over the next 6 months by increasing perceived trust and clarity in the review and comparison experience.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 SOLUTIONS -->
+<section class="cs-section" id="solutions">
+  <div class="cs-section-inner">
+    <p class="section-label">Phase 3 &middot; Step 05</p>
+    <h2 class="section-title">Ideation &amp; Prioritisation: <span>11 ideas, 3 winners</span></h2>
+
+    <p>11 solutions were brainstormed across four categories, then scored using RICE to identify the top 3 for the MVP.</p>
+
+    <h4>RICE Prioritisation</h4>
+    <table class="rice-table">
+      <thead>
+        <tr>
+          <th>Solution</th>
+          <th>Reach</th>
+          <th>Impact</th>
+          <th>Confidence</th>
+          <th>Effort</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rice-winner">Review Integrity Check + Pattern Detection</td>
+          <td>3</td><td>3</td><td>3</td><td>3</td>
+          <td><span class="rice-score">9</span></td>
+        </tr>
+        <tr>
+          <td class="rice-winner">Confidence Meter (Trust Score)</td>
+          <td>3</td><td>3</td><td>2</td><td>2</td>
+          <td><span class="rice-score">9</span></td>
+        </tr>
+        <tr>
+          <td class="rice-winner">Customizable Quick Compare</td>
+          <td>3</td><td>3</td><td>3</td><td>3</td>
+          <td><span class="rice-score">9</span></td>
+        </tr>
+        <tr>
+          <td>Long-term Use Review Badge</td>
+          <td>2</td><td>2</td><td>2</td><td>1</td>
+          <td><span class="rice-score">8</span></td>
+        </tr>
+        <tr>
+          <td>Theme Keyword Clusters</td>
+          <td>3</td><td>2</td><td>2</td><td>2</td>
+          <td><span class="rice-score">6</span></td>
+        </tr>
+        <tr>
+          <td>"Why different" listing highlight</td>
+          <td>2</td><td>2</td><td>2</td><td>2</td>
+          <td><span class="rice-score">4</span></td>
+        </tr>
+        <tr>
+          <td>Category Trust Signals</td>
+          <td>2</td><td>2</td><td>1</td><td>2</td>
+          <td><span class="rice-score">4</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:0.8rem; color:var(--text-muted); margin-top:-0.5rem;">Ideas not scored but kept as moonshots: Social proof layer, Cross-platform sentiment summary (YouTube/Instagram), AR try-out expansion, Audio reviews.</p>
+  </div>
+</section>
+
+<!-- 06 PRD -->
+<section class="cs-section" id="prd">
+  <div class="cs-section-inner">
+    <p class="section-label">Phase 3 &middot; Step 06</p>
+    <h2 class="section-title">PRD: <span>ARIS - Amazon Review Integrity System</span></h2>
+
+    <p>The three winning solutions are unified under a single system: ARIS. Together they address review noise, trust signalling, and comparison fatigue.</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">Current User Flow</div>
+        <p style="font-size:0.8rem; margin:0; color:var(--text-muted);">Search &rarr; Product Page &rarr; Read dozens of reviews &rarr; Open 5-10 tabs &rarr; Cross-check on YouTube &rarr; Maybe buy</p>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Target User Flow with ARIS</div>
+        <p style="font-size:0.8rem; margin:0; color:var(--text-muted);">Search &rarr; Product Page &rarr; Confidence Meter &rarr; Review Quality Snapshot &rarr; Quick Compare &rarr; Buy with confidence</p>
+      </div>
+    </div>
+
+    <!-- FEATURE 1 -->
+    <div class="feature-block">
+      <div class="feature-block-header">
+        <div class="feature-block-num">01</div>
+        <div>
+          <div class="feature-block-title">Reviews Quality Snapshot (AI Honest Summary)</div>
+          <div class="feature-block-subtitle">ARIS ensures shoppers read only the most credible review signals - in under 30 seconds</div>
+        </div>
+      </div>
+      <div class="feature-block-body">
+        <div class="layer-label">Layer 1 - Clean Input: Verified Purchase Integrity</div>
+        <ul>
+          <li>Strict purchase verification before review submission</li>
+          <li>Cross-checks reviewer account age, purchase patterns, and behaviour signals</li>
+          <li>Prevents bulk review injections via velocity and IP pattern detection</li>
+        </ul>
+        <div class="layer-label">Layer 2 - AI Pattern Detection and Review Flagging</div>
+        <ul>
+          <li>AI identifies suspicious patterns: repetitive phrases, shallow content, AI-like wording</li>
+          <li>Identical phrases across multiple reviews from different accounts</li>
+          <li>Suspicious volume spikes around listing creation or price drops</li>
+          <li>Flagged reviews are marked "Potential fake review - Learn more" and downranked</li>
+          <li>Users can challenge a flagged review via a high-friction path (requires evidence)</li>
+        </ul>
+        <div class="layer-label">Layer 3 - Refined Output: AI Honest Summary Box</div>
+        <ul>
+          <li>Transparent AI-generated summary appears above the review list</li>
+          <li>Format: "Most buyers liked X. 12% reported Y issue."</li>
+          <li>Checkmarks for positive signals, warning triangles for recurring issues</li>
+          <li>Shows credibility basis: "4.3 based on 2,341 verified purchases"</li>
+          <li>Shows fake review count: "23 potential fake reviews detected out of 2,341"</li>
+          <li>Expandable "View breakdown" for transparency</li>
+          <li>Feedback button: "Was this summary helpful?"</li>
+        </ul>
+        <div class="insight-box" style="margin-top:1.5rem;">
+          <div class="insight-label">Impact</div>
+          <div class="insight-text">Users reach a confident decision in under 30 seconds, eliminating the need to scroll through hundreds of reviews.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURE 2 -->
+    <div class="feature-block">
+      <div class="feature-block-header">
+        <div class="feature-block-num">02</div>
+        <div>
+          <div class="feature-block-title">Confidence Meter (Trust Score)</div>
+          <div class="feature-block-subtitle">A single blended trust indicator near the product price - acts as an emotional green or red signal</div>
+        </div>
+      </div>
+      <div class="feature-block-body">
+        <h4 style="margin-top:0;">Inputs to the Trust Score</h4>
+        <ul>
+          <li>Review credibility score (from ARIS pattern detection)</li>
+          <li>Verified purchase density (% of reviews with verified purchase badge)</li>
+          <li>Return rate for this product and seller</li>
+          <li>Long-term use review ratio (15-30 day post-purchase reviews)</li>
+          <li>Seller history and track record</li>
+        </ul>
+        <p>Displayed as a percentage bar below the product price. Example: "Overall Trust Confidence: 82%". A simple label accompanies it: "Trusted Seller" or "New Seller".</p>
+        <div class="insight-box">
+          <div class="insight-label">Impact</div>
+          <div class="insight-text">Enables faster decisions. Users like Riya can stop thinking and click Buy when the number is high. Users like Arjun can quickly filter out suspicious listings.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURE 3 -->
+    <div class="feature-block">
+      <div class="feature-block-header">
+        <div class="feature-block-num">03</div>
+        <div>
+          <div class="feature-block-title">Customizable Quick Compare</div>
+          <div class="feature-block-subtitle">Eliminates the multi-tab ordeal - compare top 3 similar products side by side, then customise</div>
+        </div>
+      </div>
+      <div class="feature-block-body">
+        <h4 style="margin-top:0;">Auto-Generated Product Selection</h4>
+        <p>QC auto-selects the top 3 most similar listings using: image similarity, product attributes matching, title/model matching, price range proximity, and category signals.</p>
+        <p>Users can then: remove any column, add a product manually, or add from the Related Products / Customers Also Viewed sections via the Quick Compare icon on each card.</p>
+
+        <h4>QC Table Structure</h4>
+        <table class="metrics-table">
+          <thead>
+            <tr><th>Row</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Product Image</td><td>With 'x' remove button per column</td></tr>
+            <tr><td>Product Name</td><td>Full name as per listing</td></tr>
+            <tr><td>Seller</td><td>Seller name, clickable link to seller page</td></tr>
+            <tr><td>Price</td><td>With any discounts</td></tr>
+            <tr><td>Rating</td><td>Stars + number of ratings</td></tr>
+            <tr><td>Confidence Meter</td><td>Trust score bar + label</td></tr>
+            <tr><td>Return Rate</td><td>Recent return rate for this product</td></tr>
+            <tr><td>Key Differences</td><td>Side-by-side seller/product comparison and differences</td></tr>
+            <tr><td>Warning Badge</td><td>e.g. "Higher number of potential fake reviews detected"</td></tr>
+            <tr><td>Shipping Details</td><td>Expected delivery date</td></tr>
+            <tr><td>Actions</td><td>Add to Cart + Buy Now buttons</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:0.8rem; color:var(--text-muted);">Horizontal scroll appears if more than 3 items are compared.</p>
+        <div class="insight-box">
+          <div class="insight-label">Why QC Matters</div>
+          <div class="insight-text">Reduces cognitive load (no multi-tab juggling), improves trust (fake review warnings surface in context), and improves conversion (user reaches a decision without leaving the product page).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 METRICS -->
+<section class="cs-section" id="metrics">
+  <div class="cs-section-inner">
+    <p class="section-label">Phase 3 &middot; Step 07</p>
+    <h2 class="section-title">Success Metrics: <span>How we know ARIS is working</span></h2>
+
+    <table class="metrics-table">
+      <thead>
+        <tr><th>Type</th><th>Metric</th><th>Definition</th><th>Why it matters</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-key">Key</span></td>
+          <td>Product Page Conversion Rate</td>
+          <td>% of users who buy after viewing product page</td>
+          <td>Direct measure of reduced decision fatigue</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-secondary">Secondary</span></td>
+          <td>Time to Purchase</td>
+          <td>Average time between first view and purchase</td>
+          <td>Should decrease with summary and trust signals</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-secondary">Secondary</span></td>
+          <td>Review Scroll Depth</td>
+          <td>How deep users scroll into reviews</td>
+          <td>Should reduce significantly with AI summary</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-secondary">Secondary</span></td>
+          <td>Compare Tab Open Count</td>
+          <td>Number of similar product tabs opened</td>
+          <td>Less confusion = fewer tabs needed</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-guardrail">Guardrail</span></td>
+          <td>Return Rate</td>
+          <td>% of returns post purchase</td>
+          <td>Ensures trust improvements are not misleading users</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-guardrail">Guardrail</span></td>
+          <td>Customer Complaints</td>
+          <td>Category-specific issue tickets</td>
+          <td>Monitors user sentiment after changes</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>Risk &amp; Mitigation</h4>
+    <table class="risk-table">
+      <thead>
+        <tr><th>Assumption</th><th>Failure Mode</th><th>Impact</th><th>Likelihood</th><th>Mitigation</th><th>Rollback</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>AI correctly identifies low-credibility reviews</td>
+          <td>High-credibility reviews flagged OR fake reviews missed</td>
+          <td class="risk-high">High</td>
+          <td>Medium</td>
+          <td>Conservative scoring; manual review of edge cases; supervised fine-tuning; user challenge option (high-friction)</td>
+          <td>Temporarily relax pattern detection; reprocess flagged reviews</td>
+        </tr>
+        <tr>
+          <td>AI Quick Summary is perceived as neutral and helpful</td>
+          <td>Summary feels biased, oversimplified, or incorrect - users lose trust</td>
+          <td>Medium</td>
+          <td class="risk-med">Low-Medium</td>
+          <td>Transparency disclaimer; "Was this summary helpful?" feedback</td>
+          <td>Pause AI summary; fallback to review highlights</td>
+        </tr>
+        <tr>
+          <td>AI selects truly comparable products for Quick Compare</td>
+          <td>Quick Compare shows mismatched or irrelevant items</td>
+          <td class="risk-high">High</td>
+          <td>Medium</td>
+          <td>Multi-signal similarity (image + attributes + title matching); internal validation set</td>
+          <td>Lower AI similarity threshold; fallback to Amazon's existing matching logic</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 08 ROLLOUT -->
+<section class="cs-section" id="rollout">
+  <div class="cs-section-inner">
+    <p class="section-label">Phase 3 &middot; Step 08</p>
+    <h2 class="section-title">Rollout: <span>Pilot, Scale, Global</span></h2>
+
+    <div class="phase-grid">
+      <div class="phase-card">
+        <div class="phase-num">01</div>
+        <div class="phase-title">Pilot</div>
+        <ul>
+          <li>Select 2-3 high-anxiety categories: fashion, kids, home/kitchen</li>
+          <li>A/B test with 10-20% of traffic in these categories</li>
+          <li>Monitor all key and guardrail metrics closely</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">02</div>
+        <div class="phase-title">Scale</div>
+        <ul>
+          <li>Expand to all high-anxiety categories based on Pilot results</li>
+          <li>Introduce seller-facing dashboard showing their Trust Score</li>
+        </ul>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">03</div>
+        <div class="phase-title">Global</div>
+        <ul>
+          <li>Roll out across all Amazon marketplaces</li>
+          <li>Localise review language models for regional markets</li>
+          <li>Introduce ARIS as a trust brand signal in marketing</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-label">PM Reflection</div>
+      <div class="insight-text">The most important insight from this exercise: the review problem on Amazon is not a data problem - Amazon has more data than anyone. It is a signal-to-noise problem. Users are not looking for more reviews. They are looking for a way to stop reading and start trusting.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&#169; 2026 Komal Sikka &middot; <a href="https://komalunpacks.com">komalunpacks.com</a></p>
+  <p>Made with &#10084;&#65039; in India</p>
+</footer>
+
+<script>
+var steps = document.querySelectorAll(".journey-step");
+var sections = document.querySelectorAll(".cs-section");
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var id = entry.target.getAttribute("id");
+      steps.forEach(function(s) { s.classList.remove("active"); });
+      var active = document.querySelector(".journey-step[href='#" + id + "']");
+      if (active) active.classList.add("active");
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(function(s) { observer.observe(s); });
+</script>
+
+</body>
+</html>
