@@ -15,22 +15,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     :root {
-      --plum:     #6B3F6E;
-      --plum-light: #f3ecf4;
-      --burgundy: #8B2A3A;
-      --sunshine: #FFF8DC;
-      --warm-white: #FAF8F5;
-      --light-gray: #F0EDE8;
-      --mid-gray:   #CCCCCC;
-      --dark-text:  #1A1A1A;
-      --body-text:  #333333;
-      --muted-text: #777777;
-      --green:  #2E7D4F;
+      --plum:        #6B3F6E;
+      --plum-light:  #f3ecf4;
+      --burgundy:    #8B2A3A;
+      --sunshine:    #FFF8DC;
+      --warm-white:  #FAF8F5;
+      --light-gray:  #F0EDE8;
+      --mid-gray:    #CCCCCC;
+      --dark-text:   #1A1A1A;
+      --body-text:   #333333;
+      --muted-text:  #777777;
+      --green:       #2E7D4F;
       --green-light: #E8F5EE;
-      --red:    #8B2A2A;
-      --red-light:  #FAEAEA;
-      --orange: #B05C00;
-      --orange-light: #FFF3E0;
+      --red:         #8B2A2A;
+      --red-light:   #FAEAEA;
+      --orange:      #B05C00;
+      --orange-light:#FFF3E0;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -40,7 +40,7 @@
       line-height: 1.7;
     }
 
-    /* ── NAV ── */
+    /* NAV */
     nav {
       background: var(--warm-white);
       border-bottom: 1px solid var(--light-gray);
@@ -70,7 +70,7 @@
     }
     .nav-back:hover { color: var(--plum); }
 
-    /* ── HERO ── */
+    /* HERO */
     .hero {
       background: #1B3A5C;
       color: white;
@@ -135,14 +135,14 @@
     }
     .hero-meta span { display: flex; align-items: center; gap: 6px; }
 
-    /* ── LAYOUT ── */
+    /* LAYOUT */
     .page-body {
       max-width: 860px;
       margin: 0 auto;
       padding: 48px 32px 80px;
     }
 
-    /* ── SECTIONS ── */
+    /* SECTIONS */
     .section { margin-bottom: 56px; }
     .section-header {
       display: flex;
@@ -174,7 +174,7 @@
       margin-bottom: 24px;
     }
 
-    /* ── OVERVIEW ── */
+    /* OVERVIEW */
     .overview-text {
       font-size: 1rem;
       line-height: 1.85;
@@ -185,7 +185,7 @@
       border-radius: 0 6px 6px 0;
     }
 
-    /* ── PERSONAS ── */
+    /* PERSONAS */
     .persona-label {
       font-size: 0.7rem;
       font-weight: 700;
@@ -198,7 +198,7 @@
     .persona-label:first-child { margin-top: 0; }
     .persona-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
       gap: 12px;
       margin-bottom: 8px;
     }
@@ -226,7 +226,7 @@
       line-height: 1.5;
     }
 
-    /* ── JTBD ── */
+    /* JTBD */
     .jtbd-list {
       list-style: none;
       display: flex;
@@ -242,42 +242,7 @@
       color: var(--body-text);
     }
 
-    /* ── PROBLEMS ── */
-    .stakeholder-block { margin-bottom: 24px; }
-    .stakeholder-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: var(--dark-text);
-      margin-bottom: 10px;
-    }
-    .stakeholder-title i {
-      color: var(--plum);
-      font-size: 1rem;
-    }
-    .problem-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      padding-left: 26px;
-    }
-    .problem-list li {
-      font-size: 0.9rem;
-      color: var(--body-text);
-      position: relative;
-      padding-left: 16px;
-    }
-    .problem-list li::before {
-      content: '-';
-      position: absolute;
-      left: 0;
-      color: var(--burgundy);
-    }
-
-    /* ── WHAT WORKS / DOESN'T ── */
+    /* FEATURE CARDS */
     .feature-card {
       background: white;
       border: 1px solid var(--light-gray);
@@ -285,8 +250,9 @@
       padding: 20px 22px;
       margin-bottom: 12px;
     }
-    .feature-card.works { border-top: 3px solid var(--green); }
-    .feature-card.doesnt { border-top: 3px solid var(--red); }
+    .feature-card.works     { border-top: 3px solid var(--green); }
+    .feature-card.critical  { border-top: 3px solid var(--red); }
+    .feature-card.significant { border-top: 3px solid var(--orange); }
     .feature-label {
       font-size: 0.68rem;
       font-weight: 700;
@@ -294,10 +260,9 @@
       text-transform: uppercase;
       margin-bottom: 6px;
     }
-    .feature-label.works-label { color: var(--green); }
-    .feature-label.doesnt-label { color: var(--red); }
-    .feature-label.critical { color: var(--red); }
-    .feature-label.significant { color: var(--orange); }
+    .works-label     { color: var(--green); }
+    .critical-label  { color: var(--red); }
+    .significant-label { color: var(--orange); }
     .feature-card h4 {
       font-size: 1rem;
       font-weight: 600;
@@ -310,7 +275,7 @@
       line-height: 1.7;
     }
 
-    /* ── RECOMMENDATION ── */
+    /* RECOMMENDATION */
     .rec-summary {
       background: var(--plum-light);
       border-left: 3px solid var(--plum);
@@ -352,7 +317,7 @@
       line-height: 1.7;
     }
 
-    /* ── METRICS ── */
+    /* METRICS */
     .metrics-group { margin-bottom: 24px; }
     .metrics-group-title {
       display: flex;
@@ -365,7 +330,6 @@
       letter-spacing: 0.08em;
       margin-bottom: 10px;
     }
-    .metrics-group-title i { font-size: 0.9rem; }
     .metric-items {
       list-style: none;
       display: flex;
@@ -390,39 +354,12 @@
       margin-top: 1px;
     }
 
-    /* ── ROLLOUT ── */
-    .rollout-phase {
-      margin-bottom: 20px;
-    }
-    .phase-title {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--plum);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 10px;
-    }
-    .phase-items {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .phase-items li {
-      background: white;
-      border-left: 3px solid var(--mid-gray);
-      padding: 10px 14px;
-      border-radius: 0 6px 6px 0;
-      font-size: 0.88rem;
-      color: var(--body-text);
-    }
-
-    /* ── RATING ── */
+    /* RATING */
     .rating-block {
       background: white;
       border: 1px solid var(--light-gray);
       border-radius: 10px;
-      padding: 28px 28px;
+      padding: 28px;
       display: flex;
       gap: 28px;
       align-items: flex-start;
@@ -454,7 +391,7 @@
       line-height: 1.75;
     }
 
-    /* ── PM TAKE ── */
+    /* PM TAKE */
     .pm-take-block {
       background: var(--dark-text);
       color: white;
@@ -475,7 +412,7 @@
       color: rgba(255,255,255,0.88);
     }
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer {
       background: var(--dark-text);
       color: rgba(255,255,255,0.4);
@@ -483,10 +420,7 @@
       padding: 24px 32px;
       font-size: 0.78rem;
     }
-    footer a {
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-    }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
     footer a:hover { color: white; }
 
     @media (max-width: 600px) {
@@ -504,17 +438,15 @@
   <a href="../index.html" class="nav-back"><i class="fa fa-arrow-left"></i> All Teardowns</a>
 </nav>
 
-<div id="hero-section">
-  <div class="hero" id="hero">
-    <div class="hero-inner">
-      <div class="hero-eyebrow" id="hero-eyebrow">Loading...</div>
-      <h1 id="hero-title">Loading...</h1>
-      <p class="hero-tagline" id="hero-tagline"></p>
-      <div class="hero-meta">
-        <span><i class="fa fa-calendar-alt"></i> <span id="hero-date"></span></span>
-        <span><i class="fa fa-tag"></i> <span id="hero-category"></span></span>
-        <span><i class="fa fa-external-link-alt"></i> <a id="hero-link" href="#" target="_blank" style="color:rgba(255,255,255,0.55)"></a></span>
-      </div>
+<div class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow" id="hero-eyebrow">Loading...</div>
+    <h1 id="hero-title">Loading...</h1>
+    <p class="hero-tagline" id="hero-tagline"></p>
+    <div class="hero-meta">
+      <span><i class="fa fa-calendar-alt"></i> <span id="hero-date"></span></span>
+      <span><i class="fa fa-tag"></i> <span id="hero-category"></span></span>
+      <span><i class="fa fa-external-link-alt"></i> <a id="hero-link" href="#" target="_blank" style="color:rgba(255,255,255,0.55)"></a></span>
     </div>
   </div>
 </div>
@@ -522,7 +454,7 @@
 <div class="page-body">
 
   <!-- 1. OVERVIEW -->
-  <div class="section" id="section-overview">
+  <div class="section">
     <div class="section-header">
       <div class="section-number">1</div>
       <h2 class="section-title">Overview</h2>
@@ -532,7 +464,7 @@
   </div>
 
   <!-- 2. USER PERSONAS -->
-  <div class="section" id="section-personas">
+  <div class="section">
     <div class="section-header">
       <div class="section-number">2</div>
       <h2 class="section-title">User Personas</h2>
@@ -545,7 +477,7 @@
   </div>
 
   <!-- 3. JTBD -->
-  <div class="section" id="section-jtbd">
+  <div class="section">
     <div class="section-header">
       <div class="section-number">3</div>
       <h2 class="section-title">Jobs to Be Done</h2>
@@ -554,71 +486,51 @@
     <ul class="jtbd-list" id="jtbd-list"></ul>
   </div>
 
-  <!-- 4. PROBLEMS -->
-  <div class="section" id="section-problems">
+  <!-- 4. WHAT WORKS -->
+  <div class="section">
     <div class="section-header">
       <div class="section-number">4</div>
-      <h2 class="section-title">Problems by Stakeholder</h2>
-    </div>
-    <hr class="section-divider"/>
-    <div id="problems-container"></div>
-  </div>
-
-  <!-- 5. WHAT WORKS -->
-  <div class="section" id="section-works">
-    <div class="section-header">
-      <div class="section-number">5</div>
       <h2 class="section-title">What Works Well</h2>
     </div>
     <hr class="section-divider"/>
     <div id="what-works-container"></div>
   </div>
 
-  <!-- 6. WHAT DOESN'T WORK -->
-  <div class="section" id="section-doesnt">
+  <!-- 5. WHAT DOESN'T WORK -->
+  <div class="section">
     <div class="section-header">
-      <div class="section-number">6</div>
+      <div class="section-number">5</div>
       <h2 class="section-title">What Doesn't Work</h2>
     </div>
     <hr class="section-divider"/>
     <div id="what-doesnt-container"></div>
   </div>
 
-  <!-- 7. RECOMMENDATION -->
-  <div class="section" id="section-rec">
+  <!-- 6. WHAT I'D DO DIFFERENTLY -->
+  <div class="section">
     <div class="section-header">
-      <div class="section-number">7</div>
-      <h2 class="section-title">Recommendation</h2>
+      <div class="section-number">6</div>
+      <h2 class="section-title">What I'd Do Differently</h2>
     </div>
     <hr class="section-divider"/>
     <div class="rec-summary" id="rec-summary"></div>
     <div id="opportunities-container"></div>
   </div>
 
-  <!-- 8. METRICS -->
-  <div class="section" id="section-metrics">
+  <!-- 7. METRICS -->
+  <div class="section">
     <div class="section-header">
-      <div class="section-number">8</div>
+      <div class="section-number">7</div>
       <h2 class="section-title">Metrics</h2>
     </div>
     <hr class="section-divider"/>
     <div id="metrics-container"></div>
   </div>
 
-  <!-- 9. ROLLOUT -->
-  <div class="section" id="section-rollout">
+  <!-- 8. RATING -->
+  <div class="section">
     <div class="section-header">
-      <div class="section-number">9</div>
-      <h2 class="section-title">Rollout Plan</h2>
-    </div>
-    <hr class="section-divider"/>
-    <div id="rollout-container"></div>
-  </div>
-
-  <!-- 10. RATING -->
-  <div class="section" id="section-rating">
-    <div class="section-header">
-      <div class="section-number">10</div>
+      <div class="section-number">8</div>
       <h2 class="section-title">Komal's Rating</h2>
     </div>
     <hr class="section-divider"/>
@@ -632,10 +544,10 @@
     </div>
   </div>
 
-  <!-- 11. PM TAKE -->
-  <div class="section" id="section-pm-take">
+  <!-- 9. PM TAKE -->
+  <div class="section">
     <div class="section-header">
-      <div class="section-number">11</div>
+      <div class="section-number">9</div>
       <h2 class="section-title">PM's Takeaway</h2>
     </div>
     <hr class="section-divider"/>
@@ -645,7 +557,7 @@
     </div>
   </div>
 
-</div><!-- /page-body -->
+</div>
 
 <footer>
   <p>Komal Unpacks &nbsp;|&nbsp; <a href="../index.html">komalunpacks.com</a> &nbsp;|&nbsp; Crafted with ❤️ in India</p>
@@ -659,12 +571,9 @@
     'briefcase':      'fa-briefcase',
     'pen-nib':        'fa-pen-nib',
     'code':           'fa-code',
-    'search':         'fa-search',
-    'users':          'fa-users',
-    'user-graduate':  'fa-user-graduate',
-    'user-tie':       'fa-user-tie',
     'chart-line':     'fa-chart-line',
     'shield-check':   'fa-shield-alt',
+    'users':          'fa-users'
   };
 
   function icon(name) {
@@ -679,20 +588,20 @@
     document.title = `Day ${data.day} - ${data.tool_name} | Komal Unpacks`;
     document.querySelector('meta[property="og:title"]').content = `Day ${data.day} - ${data.tool_name} | Komal Unpacks`;
     document.querySelector('meta[property="og:description"]').content = data.tool_tagline;
-    document.getElementById('hero-eyebrow').textContent = `Day ${data.day} of 43 - How I AI Series`;
-    document.getElementById('hero-title').textContent   = data.tool_name;
-    document.getElementById('hero-tagline').textContent = data.tool_tagline;
-    document.getElementById('hero-date').textContent    = data.teardown_date;
+    document.getElementById('hero-eyebrow').textContent  = `Day ${data.day} of 43 - How I AI Series`;
+    document.getElementById('hero-title').textContent    = data.tool_name;
+    document.getElementById('hero-tagline').textContent  = data.tool_tagline;
+    document.getElementById('hero-date').textContent     = data.teardown_date;
     document.getElementById('hero-category').textContent = data.category;
     const heroLink = document.getElementById('hero-link');
-    heroLink.href = data.tool_url;
+    heroLink.href        = data.tool_url;
     heroLink.textContent = data.tool_url.replace('https://', '');
 
     // Overview
     document.getElementById('overview-text').textContent = data.overview;
 
     // Personas
-    const renderPersonas = (list, containerId) => {
+    function renderPersonas(list, containerId) {
       const container = document.getElementById(containerId);
       list.forEach(p => {
         const card = document.createElement('div');
@@ -703,8 +612,8 @@
           <p>${p.description}</p>`;
         container.appendChild(card);
       });
-    };
-    renderPersonas(data.personas.primary, 'primary-personas');
+    }
+    renderPersonas(data.personas.primary,   'primary-personas');
     renderPersonas(data.personas.secondary, 'secondary-personas');
 
     // JTBD
@@ -715,26 +624,13 @@
       jtbdList.appendChild(li);
     });
 
-    // Problems
-    const problemsContainer = document.getElementById('problems-container');
-    data.problems.by_stakeholder.forEach(block => {
-      const div = document.createElement('div');
-      div.className = 'stakeholder-block';
-      div.innerHTML = `
-        <div class="stakeholder-title">${icon(block.icon)} ${block.stakeholder}</div>
-        <ul class="problem-list">
-          ${block.problems.map(p => `<li>${p}</li>`).join('')}
-        </ul>`;
-      problemsContainer.appendChild(div);
-    });
-
     // What Works
     const worksContainer = document.getElementById('what-works-container');
     data.what_works.forEach(item => {
       const card = document.createElement('div');
       card.className = 'feature-card works';
       card.innerHTML = `
-        <div class="feature-label works-label">✦ Top Loved Feature</div>
+        <div class="feature-label works-label">What Works</div>
         <h4>${item.title}</h4>
         <p>${item.description}</p>`;
       worksContainer.appendChild(card);
@@ -743,20 +639,20 @@
     // What Doesn't Work
     const doesntContainer = document.getElementById('what-doesnt-container');
     data.what_doesnt_work.forEach(item => {
+      const isCritical = item.severity === 'critical';
       const card = document.createElement('div');
-      card.className = 'feature-card doesnt';
-      const severityLabel = item.severity === 'critical'
-        ? '<div class="feature-label critical">✖ Critical Pain</div>'
-        : '<div class="feature-label significant">✖ Significant Pain</div>';
+      card.className = `feature-card ${item.severity}`;
       card.innerHTML = `
-        ${severityLabel}
+        <div class="feature-label ${item.severity}-label">${isCritical ? 'Critical Pain' : 'Significant Pain'}</div>
         <h4>${item.title}</h4>
         <p>${item.description}</p>`;
       doesntContainer.appendChild(card);
     });
 
-    // Recommendation
+    // Recommendation summary
     document.getElementById('rec-summary').textContent = data.recommendation.summary;
+
+    // Opportunities
     const oppContainer = document.getElementById('opportunities-container');
     data.recommendation.opportunities.forEach(opp => {
       const card = document.createElement('div');
@@ -783,22 +679,9 @@
       metricsContainer.appendChild(div);
     });
 
-    // Rollout
-    const rolloutContainer = document.getElementById('rollout-container');
-    data.rollout.phases.forEach(phase => {
-      const div = document.createElement('div');
-      div.className = 'rollout-phase';
-      div.innerHTML = `
-        <div class="phase-title">${phase.phase}</div>
-        <ul class="phase-items">
-          ${phase.items.map(i => `<li>${i}</li>`).join('')}
-        </ul>`;
-      rolloutContainer.appendChild(div);
-    });
-
     // Rating
-    document.getElementById('rating-score').textContent   = data.komals_rating.score;
-    document.getElementById('rating-out-of').textContent  = `/ ${data.komals_rating.out_of}`;
+    document.getElementById('rating-score').textContent    = data.komals_rating.score;
+    document.getElementById('rating-out-of').textContent   = `/ ${data.komals_rating.out_of}`;
     document.getElementById('rating-reasoning').textContent = data.komals_rating.reasoning;
 
     // PM Take
