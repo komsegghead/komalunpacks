@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Easy Udhaar: Interest-Free Micro Credit for Kirana Stores - Komal Sikka</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --white: #FFFDF8;
+  --sunshine-pale: #FEF6DC;
+  --plum: #6B3D7A;
+  --plum-light: #9B6DAA;
+  --plum-pale: #F0E8F5;
+  --plum-deep: #3D1F50;
+  --burgundy: #8B2252;
+  --burgundy-light: #B85080;
+  --text: #2A1A35;
+  --text-muted: #7A6080;
+  --border: rgba(107,61,122,0.12);
+}
+html { scroll-behavior: smooth; }
+body { font-family: "DM Sans", sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(255,253,248,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.nav-logo { font-family: "Cormorant Garamond", serif; font-size: 1.25rem; font-weight: 400; color: var(--plum-deep); text-decoration: none; }
+.nav-back { font-size: 0.78rem; color: var(--plum); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem; transition: color 0.3s; }
+.nav-back:hover { color: var(--plum-deep); }
+
+/* HERO */
+.cs-hero { padding: 9rem 4rem 5rem; background: var(--white); border-bottom: 1px solid var(--border); }
+.cs-hero-inner { max-width: 900px; margin: 0 auto; }
+.cs-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.cs-eyebrow::before { content: ""; width: 1.5rem; height: 1px; background: var(--burgundy-light); }
+.cs-title { font-family: "Cormorant Garamond", serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--text); line-height: 1.15; margin-bottom: 1.5rem; }
+.cs-title span { color: var(--plum); font-style: italic; }
+.cs-subtitle { font-size: 1rem; color: var(--text-muted); line-height: 1.75; max-width: 680px; margin-bottom: 2.5rem; }
+.cs-meta { display: flex; flex-wrap: wrap; gap: 2rem; }
+.cs-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+.cs-meta-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--burgundy); }
+.cs-meta-value { font-size: 0.875rem; color: var(--text); font-weight: 500; }
+
+/* JOURNEY NAV */
+.journey-nav { background: var(--sunshine-pale); border-bottom: 1px solid var(--border); position: sticky; top: 60px; z-index: 90; padding: 0 4rem; overflow-x: auto; }
+.journey-nav-inner { display: flex; max-width: 1200px; margin: 0 auto; white-space: nowrap; }
+.journey-step { padding: 1rem 1.5rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; border-bottom: 2px solid transparent; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+.journey-step:hover { color: var(--plum); border-bottom-color: var(--plum-light); }
+.journey-step.active { color: var(--plum); border-bottom-color: var(--plum); font-weight: 500; }
+.journey-step-num { font-family: "Cormorant Garamond", serif; font-size: 0.95rem; font-style: italic; color: var(--plum-light); }
+
+/* SECTIONS */
+.cs-section { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+.cs-section:nth-child(odd) { background: var(--white); }
+.cs-section:nth-child(even) { background: var(--sunshine-pale); }
+.cs-section-inner { max-width: 900px; margin: 0 auto; }
+.section-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::before { content: ""; width: 1.5rem; height: 1px; background: var(--burgundy-light); }
+.section-title { font-family: "Cormorant Garamond", serif; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 300; color: var(--text); margin-bottom: 2rem; line-height: 1.2; }
+.section-title span { color: var(--plum); font-style: italic; }
+
+/* TEXT */
+p { font-size: 0.9rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1.25rem; }
+h4 { font-family: "Cormorant Garamond", serif; font-size: 1.2rem; font-weight: 400; color: var(--text); margin: 2rem 0 0.75rem; }
+ul { list-style: none; margin-bottom: 1.5rem; }
+ul li { font-size: 0.875rem; line-height: 1.8; color: var(--text-muted); padding-left: 1.25rem; position: relative; margin-bottom: 0.4rem; }
+ul li::before { content: " - "; position: absolute; left: 0; color: var(--plum-light); font-size: 0.75rem; }
+
+/* CALLOUT */
+.callout { background: var(--plum-pale); border-left: 3px solid var(--plum); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.callout p { margin: 0; color: var(--plum-deep); font-size: 0.875rem; font-style: italic; }
+
+/* VOICE BOX - user quote */
+.voice-box { background: var(--sunshine-pale); border: 1px solid var(--border); padding: 1.5rem 1.75rem; margin: 1rem 0; position: relative; }
+.voice-box::before { content: "C"; font-family: "Cormorant Garamond", serif; font-size: 4rem; color: var(--plum-light); opacity: 0.3; position: absolute; top: -0.5rem; left: 1rem; line-height: 1; }
+.voice-box p { margin: 0; font-style: italic; color: var(--text); padding-left: 1rem; font-size: 0.875rem; line-height: 1.75; }
+
+/* INSIGHT BOX */
+.insight-box { background: var(--white); border: 1px solid var(--border); padding: 1.5rem; margin: 2rem 0; }
+.insight-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.5rem; }
+.insight-text { font-family: "Cormorant Garamond", serif; font-size: 1.1rem; color: var(--text); line-height: 1.6; }
+
+/* STAT GRID */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border); margin: 2rem 0; border: 1px solid var(--border); }
+.stat-cell { background: var(--white); padding: 1.25rem 1.5rem; }
+.stat-num { font-family: "Cormorant Garamond", serif; font-size: 2rem; font-weight: 300; color: var(--plum); line-height: 1; margin-bottom: 0.4rem; }
+.stat-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+
+/* TWO COL */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+.col-card { background: var(--white); border: 1px solid var(--border); padding: 1.5rem; }
+.col-card-title { font-family: "Cormorant Garamond", serif; font-size: 1.1rem; color: var(--plum-deep); margin-bottom: 0.75rem; }
+
+/* PERSONA CARDS */
+.persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+.persona-card { background: var(--white); border: 1px solid var(--border); padding: 1.75rem; border-top: 3px solid var(--plum); }
+.persona-name { font-family: "Cormorant Garamond", serif; font-size: 1.5rem; font-weight: 300; color: var(--text); margin-bottom: 0.25rem; }
+.persona-role { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 1rem; }
+.persona-attr { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem; line-height: 1.5; }
+.persona-attr strong { color: var(--text); }
+
+/* FEATURE CARDS */
+.feature-card { background: var(--white); border: 1px solid var(--border); padding: 2rem; margin: 1.5rem 0; }
+.feature-card-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
+.feature-num { font-family: "Cormorant Garamond", serif; font-size: 2.5rem; font-weight: 300; color: var(--plum-light); line-height: 1; flex-shrink: 0; }
+.feature-title { font-family: "Cormorant Garamond", serif; font-size: 1.35rem; color: var(--text); }
+.feature-subtitle { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+/* COMPETITOR TABLE */
+.comp-table { width: 100%; border-collapse: collapse; margin: 2rem 0; font-size: 0.8rem; }
+.comp-table th { background: var(--plum-pale); color: var(--plum-deep); padding: 0.75rem 1rem; text-align: left; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; border-bottom: 2px solid var(--border); }
+.comp-table td { padding: 0.75rem 1rem; color: var(--text-muted); border-bottom: 1px solid var(--border); vertical-align: top; }
+.comp-table tr:hover td { background: var(--sunshine-pale); }
+
+/* EPIC CARDS */
+.epic-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 2rem 0; }
+.epic-card { background: var(--white); border: 1px solid var(--border); padding: 1.5rem; }
+.epic-num { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.5rem; }
+.epic-title { font-family: "Cormorant Garamond", serif; font-size: 1.2rem; color: var(--text); margin-bottom: 0.75rem; }
+.epic-stories { font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; }
+
+/* FOOTER */
+footer { border-top: 1px solid rgba(255,253,248,0.15); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--plum-deep); }
+footer p { font-size: 0.8rem; color: rgba(255,253,248,0.6); }
+footer a { color: var(--plum-light); text-decoration: none; }
+
+@media (max-width: 900px) {
+  nav { padding: 1.25rem 2rem; }
+  .cs-hero { padding: 7rem 2rem 4rem; }
+  .journey-nav { padding: 0 2rem; }
+  .cs-section { padding: 4rem 2rem; }
+  .two-col, .persona-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">My Product Lab</a>
+  <a href="/#case-studies" class="nav-back">&#8592; Case Studies</a>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-hero-inner">
+    <p class="cs-eyebrow">Case Study &middot; Fintech &middot; Product Design &amp; Strategy</p>
+    <h1 class="cs-title">Easy Udhaar: <span>Making Credit Accessible to Every Kirana Store</span></h1>
+    <p class="cs-subtitle">A full product design exercise for a micro-credit platform targeting 12.8 million unorganised grocery retailers in India - solving the liquidity crunch that no bank, app, or distributor had cracked.</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Product</span>
+        <span class="cs-meta-value">Easy Udhaar (0 to 1)</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Sector</span>
+        <span class="cs-meta-value">Fintech &middot; Micro Credit</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Target</span>
+        <span class="cs-meta-value">Kirana Store Owners, India</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Goal</span>
+        <span class="cs-meta-value">5% grocery retail market in 3 years</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Team</span>
+        <span class="cs-meta-value">Group 4 &middot; Komal Sikka + 4 others</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNEY NAV -->
+<nav class="journey-nav">
+  <div class="journey-nav-inner">
+    <a href="#problem" class="journey-step"><span class="journey-step-num">01</span> Problem</a>
+    <a href="#market" class="journey-step"><span class="journey-step-num">02</span> Market</a>
+    <a href="#users" class="journey-step"><span class="journey-step-num">03</span> Users</a>
+    <a href="#solution" class="journey-step"><span class="journey-step-num">04</span> Solution</a>
+    <a href="#competition" class="journey-step"><span class="journey-step-num">05</span> Competition</a>
+    <a href="#product" class="journey-step"><span class="journey-step-num">06</span> Product</a>
+    <a href="#business" class="journey-step"><span class="journey-step-num">07</span> Business Model</a>
+    <a href="#gtm" class="journey-step"><span class="journey-step-num">08</span> GTM</a>
+  </div>
+</nav>
+
+<!-- 01 PROBLEM -->
+<section class="cs-section" id="problem">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 01</p>
+    <h2 class="section-title">The Problem: <span>Ganesh needs capital, but every door is broken</span></h2>
+
+    <p>Meet Ganesh. 35 years old. Runs a small kirana store in Kandivali, Mumbai. Every month, he needs to restock - and every month, he faces the same wall.</p>
+
+    <div class="voice-box"><p>I could take a loan from digital lending institutions but interest rates are high and I will have to pay back so much more. I am not sure if I can afford it.</p></div>
+    <div class="voice-box"><p>My area distributor gives me interest-free credit, which sort of works for me - but it limits my options. I cannot go online or to other distributors who offer better pricing. How can I expand the inventory?</p></div>
+    <div class="voice-box"><p>I might need to shut my shop for a few hours multiple times to visit the bank for documentation. And I don't have a credit history, so I might just get declined anyway.</p></div>
+
+    <h4>The Core Problem Statement</h4>
+    <div class="callout">
+      <p>Kirana stores need instant, interest-free liquidity support - just like distributor credit - but obtained via a formal channel that is user-friendly and business-friendly. The informal system works but imprisons them. The formal system is free but unreachable.</p>
+    </div>
+
+    <h4>Why the current options all fail</h4>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">Distributor Credit (Informal)</div>
+        <ul>
+          <li>Interest-free - ideal</li>
+          <li>But locks them to one supplier</li>
+          <li>Cannot buy from other distributors or online B2B</li>
+          <li>Limits inventory variety and pricing options</li>
+          <li>Not available to smaller stores with low margins</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Banks &amp; Digital Lending (Formal)</div>
+        <ul>
+          <li>No credit history = automatic rejection</li>
+          <li>High interest rates: 12% - 30% p.a.</li>
+          <li>Multiple bank visits, heavy documentation</li>
+          <li>Long turnaround time</li>
+          <li>Collateral requirements impossible to meet</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-label">Root Insight</div>
+      <div class="insight-text">The ideal desired state is not a loan. It is interest-free credit through a formal system - freedom without the strings of the distributor relationship.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 MARKET -->
+<section class="cs-section" id="market">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 02</p>
+    <h2 class="section-title">Market: <span>A massive, underserved, unorganised sector</span></h2>
+
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-num">12.8M</div>
+        <div class="stat-desc">Total grocery stores in India</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">28,000</div>
+        <div class="stat-desc">Grocery stores in Bangalore alone</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">Rs 4L</div>
+        <div class="stat-desc">Monthly credit margin per grocer (80% of Rs 5L avg stock)</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">5%</div>
+        <div class="stat-desc">Market share target in 3 years</div>
+      </div>
+    </div>
+
+    <h4>Porter's Five Forces</h4>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">Threat of Substitutes</div>
+        <ul>
+          <li>Distributors and area wholesalers (deeply embedded)</li>
+          <li>Friends and family</li>
+          <li>Existing private commercial banks</li>
+          <li>Local money lenders and pawn brokers</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Bargaining Power of Customers</div>
+        <ul>
+          <li>Strong - interest-free distributor credit already exists</li>
+          <li>Multiple digital lending options entering market</li>
+          <li>High price sensitivity</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Threat of New Entrants</div>
+        <ul>
+          <li>New digital lending apps proliferating</li>
+          <li>Banks offering unsecured loans at lower cost</li>
+          <li>P2P lending platforms</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">What we must offer to win</div>
+        <ul>
+          <li>Interest-free or near-zero cost credit</li>
+          <li>Instant access - no waiting</li>
+          <li>Quick one-time documentation</li>
+          <li>Alternate credit scoring (no history needed)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 USERS -->
+<section class="cs-section" id="users">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 03</p>
+    <h2 class="section-title">Users: <span>Two personas, same pain, different contexts</span></h2>
+
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-name">Ganesh</div>
+        <div class="persona-role">Retailer Shopkeeper &middot; Age 30-35</div>
+        <div class="persona-attr"><strong>Income:</strong> Rs 10-20L/year</div>
+        <div class="persona-attr"><strong>Experience:</strong> 10 years in retail</div>
+        <div class="persona-attr"><strong>Focus:</strong> Expand business, grow inventory variety</div>
+        <div class="persona-attr"><strong>Fears:</strong> Lengthy loan process, high interest rates</div>
+        <div class="persona-attr"><strong>Pet peeves:</strong> Multiple bank visits, tedious documentation</div>
+        <div class="persona-attr"><strong>Motivated by:</strong> Multiple vendor payment solution</div>
+        <div class="persona-attr"><strong>Info sources:</strong> Newspapers, pamphlets, radio, in-app ads</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-name">Ramesh</div>
+        <div class="persona-role">Grocery Shop Owner &middot; Age 50-52</div>
+        <div class="persona-attr"><strong>Income:</strong> Rs 20-25L/year</div>
+        <div class="persona-attr"><strong>Experience:</strong> 20 years in retail</div>
+        <div class="persona-attr"><strong>Focus:</strong> Buy from different vendors, maintain stock quality</div>
+        <div class="persona-attr"><strong>Fears:</strong> Locked to one vendor who can offer credit</div>
+        <div class="persona-attr"><strong>Pet peeves:</strong> High interest rates, multiple bank visits</div>
+        <div class="persona-attr"><strong>Motivated by:</strong> Instant credit, multiple payment solutions</div>
+        <div class="persona-attr"><strong>Info sources:</strong> Offline - vendors, radio, newspaper</div>
+      </div>
+    </div>
+
+    <h4>Jobs To Be Done</h4>
+    <ul>
+      <li>Purchase stock from different distributors - not just the one who gives credit</li>
+      <li>Pay monthly business expenses (rent, salaries, electricity) on time</li>
+      <li>Maintain fund rotation cycle without disrupting daily operations</li>
+      <li>Introduce new stock variety and expand SKUs</li>
+      <li>Provide discounts to acquire new customers</li>
+      <li>Offer credit to their own regular customers</li>
+    </ul>
+
+    <h4>Empathy Map: What Ganesh thinks, hears, sees, and does</h4>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">Thinks &amp; Feels</div>
+        <ul>
+          <li>Can I get an easy, hassle-free loan without visiting the bank?</li>
+          <li>How will I pay rent, salaries, and electricity on time?</li>
+          <li>Can I get funds to purchase from a distributor who needs instant payment?</li>
+          <li>Is a loan worth the effort if I might get declined anyway?</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Says &amp; Does</div>
+        <ul>
+          <li>Takes short-term credit from area wholesaler</li>
+          <li>Borrows from friends and family</li>
+          <li>Forced to buy only from distributors who give credit</li>
+          <li>Cannot explore online B2B sellers or better-priced options</li>
+          <li>Cannot shut shop to spend multiple days at the bank</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 SOLUTION -->
+<section class="cs-section" id="solution">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 04</p>
+    <h2 class="section-title">Solution: <span>Easy Udhaar - interest-free micro credit, one tap away</span></h2>
+
+    <div class="callout">
+      <p>Vision: Make digital credit accessible to all. Mission: Become the #1 trusted digital partner for small business owners for fulfilling their financial needs.</p>
+    </div>
+
+    <h4>What Easy Udhaar offers</h4>
+    <ul>
+      <li>Interest-free micro credit line for short durations (7-30 day cycles)</li>
+      <li>Alternate credit scoring - no credit history required</li>
+      <li>One-click documentation and instant KYC verification</li>
+      <li>Multiple withdrawal options: UPI, direct bank transfer, utility bill payment</li>
+      <li>Multiple repayment options: full amount or partial payments</li>
+      <li>Annual subscription model - low entry fee, no per-loan interest</li>
+    </ul>
+
+    <h4>Product Principles</h4>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">For the user</div>
+        <ul>
+          <li>Privacy and security of data at all times</li>
+          <li>Paperless documentation - zero physical visits required</li>
+          <li>Quick turnaround: instant KYC and credit line allocation</li>
+          <li>Quick assistance when needed</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">For the business</div>
+        <ul>
+          <li>Alternate credit evaluation as a core differentiator</li>
+          <li>Subscription revenue independent of credit line size</li>
+          <li>Penetration pricing to break into the distributor credit habit</li>
+          <li>NBFC partnerships for lending capital</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>Value Proposition Canvas - Key Differentiators</h4>
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-num" style="font-size:1.1rem;">Interest-free</div>
+        <div class="stat-desc">Credit line for stipulated periods - matches distributor credit, beats all competitors</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num" style="font-size:1.1rem;">No history</div>
+        <div class="stat-desc">Alternate scoring mechanism evaluates creditworthiness without traditional credit history</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num" style="font-size:1.1rem;">Paperless</div>
+        <div class="stat-desc">Seamless credit line processing - one-time document upload, no bank visits</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num" style="font-size:1.1rem;">Any vendor</div>
+        <div class="stat-desc">Freedom to buy from any distributor, online B2B seller, or wholesaler</div>
+      </div>
+    </div>
+
+    <h4>What Ganesh says after Easy Udhaar</h4>
+    <div class="voice-box"><p>All application process was done online and credit line was allocated to me in almost no time - even though I did not have a previous credit history!</p></div>
+    <div class="voice-box"><p>I can now withdraw credit line to my bank account or make direct online payments without any restrictions!</p></div>
+    <div class="voice-box"><p>I don't have to repay huge interests. I just pay back what I took as soon as I earn revenues!</p></div>
+  </div>
+</section>
+
+<!-- 05 COMPETITION -->
+<section class="cs-section" id="competition">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 05</p>
+    <h2 class="section-title">Competition: <span>The crowded but broken lending landscape</span></h2>
+
+    <p>The digital lending market in India is active - but none of the existing players offer the combination of interest-free credit, instant approval, and alternate scoring that Easy Udhaar proposes.</p>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Lender</th>
+          <th>Loan Amount</th>
+          <th>Approval Time</th>
+          <th>Interest Rate</th>
+          <th>Key Gap</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Banks</td>
+          <td>Up to Rs 25L</td>
+          <td>~1 week</td>
+          <td>11.2 - 22% p.a.</td>
+          <td>Collateral, credit history, multiple visits</td>
+        </tr>
+        <tr>
+          <td>LendingKart</td>
+          <td>Rs 1L - 5L</td>
+          <td>2-3 days</td>
+          <td>1.25%/month</td>
+          <td>Interest-bearing, limited cities</td>
+        </tr>
+        <tr>
+          <td>FlexiLoans</td>
+          <td>Up to Rs 1Cr</td>
+          <td>48 hours</td>
+          <td>1%/month</td>
+          <td>Interest-bearing, large loan focus</td>
+        </tr>
+        <tr>
+          <td>Bajaj Markets</td>
+          <td>Up to Rs 25L</td>
+          <td>24 hours</td>
+          <td>3%/month</td>
+          <td>High interest, not kirana-specific</td>
+        </tr>
+        <tr>
+          <td>myKinara</td>
+          <td>Rs 1L - 30L</td>
+          <td>36 hours</td>
+          <td>21-30% p.a.</td>
+          <td>Very high interest rate</td>
+        </tr>
+        <tr>
+          <td style="color:var(--plum);font-weight:500;">Easy Udhaar</td>
+          <td style="color:var(--plum);">Short-term micro credit</td>
+          <td style="color:var(--plum);">Instant</td>
+          <td style="color:var(--plum);">Interest-free</td>
+          <td style="color:var(--plum);">Annual subscription only. No interest ever.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight-box">
+      <div class="insight-label">Competitive Moat</div>
+      <div class="insight-text">No competitor offers interest-free credit. The distributor does - but with strings attached. Easy Udhaar's moat is delivering the distributor's terms through a formal, digital, unrestricted channel.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 PRODUCT -->
+<section class="cs-section" id="product">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 06</p>
+    <h2 class="section-title">Product: <span>5 Epics that define the MVP</span></h2>
+
+    <p>The MVP was designed around five core epics covering the complete user journey from sign-up to repayment. User stories were validated against user research and MVP feedback.</p>
+
+    <div class="epic-grid">
+      <div class="epic-card">
+        <div class="epic-num">Epic 01</div>
+        <div class="epic-title">Login &amp; Sign Up</div>
+        <div class="epic-stories">Phone OTP login, MFA, registration with personal details, language selection, Aadhaar-linked verification, password reset.</div>
+      </div>
+      <div class="epic-card">
+        <div class="epic-num">Epic 02</div>
+        <div class="epic-title">Notifications</div>
+        <div class="epic-stories">OTP delivery, application status updates, transaction alerts, repayment reminders, new scheme announcements, repayment confirmations, failure alerts.</div>
+      </div>
+      <div class="epic-card">
+        <div class="epic-num">Epic 03</div>
+        <div class="epic-title">Registration &amp; KYC</div>
+        <div class="epic-stories">Document upload and verification, alternate creditworthiness evaluation, automated credit line allocation, AMC (annual subscription) payment, dashboard activation.</div>
+      </div>
+      <div class="epic-card">
+        <div class="epic-num">Epic 04</div>
+        <div class="epic-title">Payment &amp; Withdrawal</div>
+        <div class="epic-stories">UPI payments to wholesaler, direct bank transfers, utility bill payments, credit line validation per transaction, transaction status updates.</div>
+      </div>
+      <div class="epic-card">
+        <div class="epic-num">Epic 05</div>
+        <div class="epic-title">Collection &amp; Repayment</div>
+        <div class="epic-stories">Full or partial repayments, multiple payment modes, overdue tracking (interest charged after 90 days), credit line blocking and unblocking, credit re-evaluation post-reactivation.</div>
+      </div>
+    </div>
+
+    <h4>MVP Feedback and Enhancements Identified</h4>
+    <ul>
+      <li>Users want payment due date reminders and application status change notifications</li>
+      <li>Loyalty points or early repayment credits as incentive</li>
+      <li>Better interface to show multiple credit withdrawal history in one place</li>
+      <li>Alternate Aadhaar verification for users whose phone is not linked to Aadhaar</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 07 BUSINESS MODEL -->
+<section class="cs-section" id="business">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 07</p>
+    <h2 class="section-title">Business Model: <span>Subscription, not interest</span></h2>
+
+    <div class="callout">
+      <p>The core value proposition is interest-free credit. To make up for revenue, Easy Udhaar uses a subscription model - users pay a reasonable annual fee to access the platform throughout the year. The subscription amount is standard and independent of the credit line allocated.</p>
+    </div>
+
+    <h4>Why Penetration Pricing</h4>
+    <p>The product is designed to replace a deeply embedded informal lending framework - distributor credit. To break into this habit, the product must be introduced at a low enough entry point that users are willing to try it. Once they experience the freedom to purchase from any vendor without restriction, retention is expected to be high.</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">Key Partners</div>
+        <ul>
+          <li>NBFCs - lending capital</li>
+          <li>Background verification companies (PAN, Aadhaar)</li>
+          <li>Payment gateways</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Revenue Streams</div>
+        <ul>
+          <li>Annual subscription fee (AMC) - primary revenue</li>
+          <li>Future: monthly, quarterly, and 6-month billing plans</li>
+          <li>Future: tiered plans as product features expand</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Cost Structure</div>
+        <ul>
+          <li>IT infrastructure and platform maintenance</li>
+          <li>Partner fees (payment gateway, KYC verification)</li>
+          <li>Backend operations and customer support</li>
+          <li>Risk and liability management</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Key Activities</div>
+        <ul>
+          <li>Credit and risk assessment via alternate mechanisms</li>
+          <li>Origination, lending, and recovery operations</li>
+          <li>Platform maintenance and product metrics</li>
+          <li>NBFC network management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 08 GTM -->
+<section class="cs-section" id="gtm">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 08</p>
+    <h2 class="section-title">Go-to-Market: <span>Meeting Ganesh where he already is</span></h2>
+
+    <p>Ganesh is not on LinkedIn. He is on his two-wheeler at a petrol pump, at the local dhaba, listening to the radio during the 11 AM - 5 PM lull in his store. The GTM strategy goes where he is.</p>
+
+    <h4>Where Ganesh Spends Time and Money</h4>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">Time</div>
+        <ul>
+          <li>10 hours daily at the store</li>
+          <li>Facebook and WhatsApp / Telegram</li>
+          <li>YouTube and radio during the day</li>
+          <li>TV news in the evening</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Money</div>
+        <ul>
+          <li>Mobile recharge platforms (MyJio, Freecharge, GPay)</li>
+          <li>Petrol pump near the two-wheeler refilling area</li>
+          <li>Local dhabas and tea stalls</li>
+          <li>Local street markets for family shopping</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>Acquisition Channels</h4>
+    <ul>
+      <li>Ads on mobile recharge platforms: MyJio, Freecharge, GPay, PhonePe</li>
+      <li>Ads at petrol pumps near two-wheeler refilling areas</li>
+      <li>Pamphlets outside small dhabas and tea stalls in commercial areas</li>
+      <li>Pamphlets on autos and buses in commercial neighbourhoods</li>
+      <li>YouTube pre-roll ads and Facebook ads</li>
+      <li>Promo SMS campaigns</li>
+      <li>Radio and TV ads during 11 AM - 5 PM day slots</li>
+      <li>Local newspaper ads in vernacular print</li>
+    </ul>
+
+    <h4>GTM Launch Roadmap</h4>
+    <div class="feature-card">
+      <div class="feature-card-header">
+        <div class="feature-num">01</div>
+        <div>
+          <div class="feature-title">Developing Plan</div>
+          <div class="feature-subtitle">Create messaging, validate hypothesis, build community, find promoters</div>
+        </div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-header">
+        <div class="feature-num">02</div>
+        <div>
+          <div class="feature-title">Beta Test</div>
+          <div class="feature-subtitle">Pick digital channels, launch beta, gather feedback from early adopters, finalize content</div>
+        </div>
+      </div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-card-header">
+        <div class="feature-num">03</div>
+        <div>
+          <div class="feature-title">Launch</div>
+          <div class="feature-subtitle">Pamphlets, social media seeding, introductory offers, launch event, observe and iterate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&#169; 2026 Komal Sikka &middot; <a href="https://komalunpacks.com">komalunpacks.com</a></p>
+  <p>Made with &#10084;&#65039; in India</p>
+</footer>
+
+<script>
+const steps = document.querySelectorAll(".journey-step");
+const sections = document.querySelectorAll(".cs-section");
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var id = entry.target.getAttribute("id");
+      steps.forEach(function(s) { s.classList.remove("active"); });
+      var active = document.querySelector(".journey-step[href='#" + id + "']");
+      if (active) active.classList.add("active");
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(function(s) { observer.observe(s); });
+</script>
+
+</body>
+</html>

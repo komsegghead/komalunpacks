@@ -8,24 +8,16 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --white: #FFFDF8;
-  --sunshine-pale: #FEF6DC;
-  --plum: #6B3D7A;
-  --plum-light: #9B6DAA;
-  --plum-pale: #F0E8F5;
-  --plum-deep: #3D1F50;
-  --burgundy: #8B2252;
-  --burgundy-light: #B85080;
-  --text: #2A1A35;
-  --text-muted: #7A6080;
-  --border: rgba(107, 61, 122, 0.12);
+  --white: #FFFDF8; --sunshine-pale: #FEF6DC; --plum: #6B3D7A; --plum-light: #9B6DAA;
+  --plum-pale: #F0E8F5; --plum-deep: #3D1F50; --burgundy: #8B2252; --burgundy-light: #B85080;
+  --text: #2A1A35; --text-muted: #7A6080; --border: rgba(107,61,122,0.12);
 }
 html { scroll-behavior: smooth; }
 body { font-family: "DM Sans", sans-serif; background: var(--white); color: var(--text); min-height: 100vh; overflow-x: hidden; }
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(255,253,248,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
 .nav-logo { font-family: "Cormorant Garamond", serif; font-size: 1.25rem; font-weight: 400; color: var(--plum-deep); letter-spacing: 0.03em; text-decoration: none; }
 .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; }
 .nav-links a:hover { color: var(--plum); }
 .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
 .hero::before { content: ""; position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: var(--sunshine-pale); z-index: 0; }
@@ -36,7 +28,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem
 .hero-name span { color: var(--plum); font-style: italic; }
 .hero-subtitle { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; }
 .hero-subtitle span { color: var(--plum-light); margin: 0 0.35rem; }
-.hero-tagline { font-family: "DM Sans", sans-serif; font-size: 0.95rem; font-weight: 300; color: var(--text-muted); line-height: 1.75; max-width: 420px; margin-bottom: 2.5rem; }
+.hero-tagline { font-size: 0.95rem; font-weight: 300; color: var(--text-muted); line-height: 1.75; max-width: 420px; margin-bottom: 2.5rem; }
 .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 .btn { padding: 0.8rem 1.75rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; font-family: "DM Sans", sans-serif; transition: all 0.3s; cursor: pointer; border: none; display: inline-block; }
 .btn-primary { background: var(--plum); color: var(--white); }
@@ -98,18 +90,12 @@ footer a { color: var(--plum-light); text-decoration: none; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @media (max-width: 900px) {
-  nav { padding: 1.25rem 2rem; }
-  .nav-links { gap: 1.5rem; }
+  nav { padding: 1.25rem 2rem; } .nav-links { gap: 1.5rem; }
   .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
-  .hero::before { display: none; }
-  .hero-card { padding-right: 0; text-align: center; }
-  .hero-eyebrow { justify-content: center; }
-  .hero-cta { justify-content: center; }
+  .hero::before { display: none; } .hero-card { padding-right: 0; text-align: center; }
+  .hero-eyebrow { justify-content: center; } .hero-cta { justify-content: center; }
   .hero-image { display: none; }
-  .about { padding: 4rem 2rem; }
-  .teardowns { padding: 4rem 2rem; }
-  .case-studies { padding: 4rem 2rem; }
-  .contact { padding: 4rem 2rem; }
+  .about, .teardowns, .case-studies, .contact { padding: 4rem 2rem; }
   footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
 }
 </style>
@@ -175,6 +161,7 @@ footer a { color: var(--plum-light); text-decoration: none; }
     <p class="section-label">PM Practice</p>
     <h2 class="section-title">Case Studies</h2>
     <div class="cs-card-grid">
+
       <a href="case-studies/hinge.html" class="cs-card">
         <div class="cs-card-accent"></div>
         <div class="cs-card-top">
@@ -191,6 +178,24 @@ footer a { color: var(--plum-light); text-decoration: none; }
           <span class="cs-card-arrow">Read Case Study &rarr;</span>
         </div>
       </a>
+
+      <a href="case-studies/easy-udhaar.html" class="cs-card">
+        <div class="cs-card-accent"></div>
+        <div class="cs-card-top">
+          <div class="cs-card-meta">
+            <span class="cs-card-badge">Fintech &middot; Product Design</span>
+            <span class="cs-card-year">2021</span>
+          </div>
+          <div class="cs-card-product">Easy Udhaar</div>
+          <div class="cs-card-goal">How do you give 12.8 million kirana store owners interest-free credit - without a credit history, a bank visit, or a distributor's strings attached?</div>
+        </div>
+        <div class="cs-card-divider"></div>
+        <div class="cs-card-footer">
+          <span class="cs-card-institute">ISB</span>
+          <span class="cs-card-arrow">Read Case Study &rarr;</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
