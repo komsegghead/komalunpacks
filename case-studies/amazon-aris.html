@@ -89,7 +89,8 @@ ul li::before { content: "-"; position: absolute; left: 0; color: var(--plum-lig
 .persona-role { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 1rem; }
 .persona-attr { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.4rem; line-height: 1.5; }
 .persona-attr strong { color: var(--text); }
-.persona-quote { margin-top: 1rem; padding: 0.875rem 1rem; background: var(--plum-pale); font-style: italic; font-size: 0.8rem; color: var(--plum-deep); line-height: 1.6; }
+.persona-quote { margin-top: 1rem; padding: 0.875rem 1rem 0.875rem 2.25rem; background: var(--plum-pale); font-style: italic; font-size: 0.8rem; color: var(--plum-deep); line-height: 1.6; position: relative; overflow: hidden; }
+.persona-quote::before { content: '"'; font-family: Georgia, serif; font-size: 4.5rem; color: var(--plum-light); opacity: 0.2; position: absolute; top: -0.75rem; left: 0.5rem; line-height: 1; pointer-events: none; }
 
 /* FEATURE DEEP DIVE */
 .feature-block { background: var(--white); border: 1px solid var(--border); margin: 2rem 0; overflow: hidden; }
@@ -346,8 +347,8 @@ footer a { color: var(--plum-light); text-decoration: none; }
 
     <h4>Interview Finding B: The discovery workflow is a multi-tab ordeal</h4>
     <p>Most users described the same pattern: search, open 5-10 tabs of similar listings, scroll ratings, skim reviews, zoom user photos, then cross-check on YouTube.</p>
-    <div class="callout">
-      <p>"By the time I reach a decision, I am just mentally done. I click and hope for the best."</p>
+    <div class="voice-box">
+      <p>By the time I reach a decision, I am just mentally done. I click and hope for the best.</p>
     </div>
 
     <h4>Interview Finding C: Pain spikes in specific categories</h4>
@@ -434,7 +435,7 @@ footer a { color: var(--plum-light); text-decoration: none; }
         <div class="persona-attr"><strong>Usage:</strong> Prime member, 6-8 orders/month, mainly on mobile</div>
         <div class="persona-attr"><strong>Behaviour:</strong> Shops in small windows (late night, between meetings). Skims ratings and photos. Defaults to known brands when decision fatigue hits.</div>
         <div class="persona-attr"><strong>Pain:</strong> Everything looks the same. Reviews sound too polished. Doesn't want 20 mins on a Rs 600 purchase.</div>
-        <div class="persona-quote">"I trust Amazon to deliver. I just want one screen that tells me, in simple words, if this product is genuinely good enough for me to stop thinking and click Buy."</div>
+        <div class="persona-quote">I trust Amazon to deliver. I just want one screen that tells me, in simple words, if this product is genuinely good enough for me to stop thinking and click Buy.</div>
       </div>
       <div class="persona-card">
         <div class="persona-name">Arjun</div>
@@ -443,7 +444,7 @@ footer a { color: var(--plum-light); text-decoration: none; }
         <div class="persona-attr"><strong>Usage:</strong> 2-3 orders/month, mostly during sales, very price-sensitive</div>
         <div class="persona-attr"><strong>Behaviour:</strong> Sorts by lowest price/discount. Opens 8-10 tabs. Validates expensive purchases on YouTube. Will abandon cart if something feels off.</div>
         <div class="persona-attr"><strong>Pain:</strong> Can't tell real deals from drama. Sponsored products make him doubt the whole ranking. Cheap products with 5-star reviews feel suspicious.</div>
-        <div class="persona-quote">"I don't mind doing the research, but at least be honest with me about reviews and discounts. Don't make me feel like I'm being played."</div>
+        <div class="persona-quote">I don't mind doing the research, but at least be honest with me about reviews and discounts. Don't make me feel like I'm being played.</div>
       </div>
     </div>
   </div>
