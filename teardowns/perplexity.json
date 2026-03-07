@@ -1,0 +1,245 @@
+{
+  "day": "04",
+  "tool_name": "Perplexity AI",
+  "tool_tagline": "The answer engine that solved Google's link overload -- and created a new problem",
+  "tool_url": "https://www.perplexity.ai",
+  "category": "AI Search / Answer Engine",
+  "teardown_date": "March 2026",
+  "hero_color": "#1B3A5C",
+  "overview": "Perplexity sits at a unique position in the AI landscape -- not fully a chatbot, not a full-fledged search engine. It is more of an answer engine, which can synthesize and process real-time web content into cited, conversational responses. In a way, it tries to solve two problems at once: Google Search's link overload and ChatGPT's hallucination problem. Google Search generates lists of pages that can remotely hold the answers to your questions -- the burden of reading, synthesizing, and deciding is entirely on you. Perplexity takes that information and generates a conversational answer, not overwhelming users with a bunch of pages. And since it cites all its responses, it tries to solve for hallucination too. In theory, it is the best of both worlds. In practice, the execution has some sharp edges.",
+
+  "personas": {
+    "primary": [
+      {
+        "icon": "graduation-cap",
+        "name": "Students and Academics",
+        "description": "Citation-backed answers, academic source filters, and access to peer-reviewed research make Perplexity the go-to AI for r/PhD and r/GradSchool communities."
+      },
+      {
+        "icon": "microscope",
+        "name": "Researchers and Analysts",
+        "description": "Real-time synthesis of current data with verifiable sources. Deep Research and Spaces features create persistent knowledge environments for ongoing projects."
+      },
+      {
+        "icon": "newspaper",
+        "name": "Journalists and Fact-Checkers",
+        "description": "Real-time source verification supports rapid background research on developing stories, with traceable citations that support editorial accountability."
+      },
+      {
+        "icon": "briefcase",
+        "name": "Business Professionals",
+        "description": "Market research, competitive intelligence, and quick industry briefings with source attribution. Pro Spaces allow teams to build domain-specific AI expertise."
+      }
+    ],
+    "secondary": [
+      {
+        "icon": "pen-nib",
+        "name": "Content Writers",
+        "description": "Strong for research and ideation, but falls short for long-form generation and creative output where Claude and ChatGPT maintain a clear edge."
+      },
+      {
+        "icon": "code",
+        "name": "Developers and Engineers",
+        "description": "Useful for quick technical lookups and up-to-date library or API information, but not a coding companion. Claude and ChatGPT win for code generation."
+      }
+    ]
+  },
+
+  "jtbd": [
+    "When I need cited, verifiable answers fast -- without opening 10 browser tabs",
+    "When I need to research a topic across academic, social, and web sources in one place",
+    "When I am fact-checking a claim and need to trace it back to a primary source",
+    "When I need real-time synthesis of a developing story or current market trend",
+    "When I am writing an academic paper and need sourced references quickly"
+  ],
+
+  "problems": {
+    "by_stakeholder": [
+      {
+        "stakeholder": "Students and Academics",
+        "icon": "user-graduate",
+        "problems": [
+          "Hallucination with authoritative-looking citations -- fabricated facts appear with real publisher names attached, making them harder to catch than uncited hallucinations",
+          "Stateless sessions mean research context is lost between conversations, forcing users to rebuild context for multi-day projects",
+          "Free tier increasingly constrained as power users outgrow it but the jump to Pro is abrupt"
+        ]
+      },
+      {
+        "stakeholder": "Business Professionals",
+        "icon": "user-tie",
+        "problems": [
+          "Unannounced mid-subscription plan changes -- features like unlimited file uploads quietly capped without prior notice or compensation",
+          "No human support for billing disputes -- enterprise users paying $3,250/year report chatbot-only responses that go silent for days",
+          "Double-charging incidents on enterprise plans with credit balances going unapplied"
+        ]
+      },
+      {
+        "stakeholder": "Researchers and Journalists",
+        "icon": "search",
+        "problems": [
+          "Legal siege from 7+ publishers including NYT, Chicago Tribune, and Dow Jones raises questions about the long-term availability of licensed premium content",
+          "Complex, multi-step synthesis produces confident-sounding answers that can misinterpret source material -- especially for niche or specialized topics",
+          "No memory across sessions for extended research workflows -- every new session starts from scratch"
+        ]
+      },
+      {
+        "stakeholder": "All Users",
+        "icon": "users",
+        "problems": [
+          "The hallucination-with-attribution problem: citations give the appearance of accuracy, but the synthesized conclusion between sources can be fabricated",
+          "Weak for creative writing, long-form content generation, and complex reasoning tasks -- this is not the product's purpose, but users arrive expecting more",
+          "Promotional subscriptions cancelled post credit card collection, with refund requests going unanswered for weeks"
+        ]
+      }
+    ]
+  },
+
+  "what_works": [
+    {
+      "title": "Citation-first transparency",
+      "description": "Perplexity's foundational differentiator -- every response includes numbered, clickable citations linking directly to source pages. Users describe it as the only AI they actually trust for facts, because the source is always one click away. The Academic filter mode, restricting results to peer-reviewed papers, is a favourite among researchers and dominates r/PhD as the go-to research tool."
+    },
+    {
+      "title": "Source filtering (Social, Academic, Web)",
+      "description": "The ability to pre-filter which type of source Perplexity searches is a genuine workflow superpower. Switching to Social to surface Reddit opinions, or Academic to bypass marketing content and read only peer-reviewed papers, gives users a level of control that Google does not offer. Power users describe this as making Perplexity feel like an advanced search engine, not just another chatbot."
+    },
+    {
+      "title": "Ad-free, clean, minimal UI",
+      "description": "Across Product Hunt, Capterra, and Reddit, users explicitly celebrate what Perplexity does not have: ads. In a search landscape where Google results are increasingly dominated by sponsored content, Perplexity's clean interface is experienced as a principled product choice -- and a meaningful one for users doing serious research."
+    },
+    {
+      "title": "Deep Research and Spaces",
+      "description": "Pro users who engage with Spaces -- persistent, organized research environments -- describe a significant workflow upgrade. The ability to create an AI expert in a specific domain by uploading documents and setting context is praised by long-term Capterra subscribers. One user described cancelling their ChatGPT subscription after discovering this feature."
+    },
+    {
+      "title": "Multi-model flexibility",
+      "description": "Pro subscribers can choose between GPT-4o, Claude, Gemini, and Perplexity's own models for different tasks. Users appreciate matching the model to the job -- all within a single interface, without maintaining multiple subscriptions."
+    }
+  ],
+
+  "what_doesnt_work": [
+    {
+      "title": "Billing failures and zero human support",
+      "severity": "critical",
+      "description": "Trustpilot's Perplexity page is dominated by billing horror stories. Enterprise Max subscribers ($3,250/year) report being double-charged within 12 days, holding credit balances that go unapplied, and receiving chatbot-only responses that go silent for 4+ days. The plan's promise of dedicated infrastructure and the highest level of support is described as false advertising. At the Pro level, unannounced feature changes -- like unlimited file uploads being quietly capped -- generated accusations of daylight robbery. This is the #1 complaint by volume across every review source."
+    },
+    {
+      "title": "Hallucination with attribution -- the most dangerous kind",
+      "severity": "critical",
+      "description": "What was designed to solve the hallucination problem ended up creating a deeper one. Perplexity does cite sources, but the synthesis between sources is where hallucination happens -- and those fabricated conclusions appear with real publisher logos and citation numbers attached. This makes false information look authoritative. It is so serious that The New York Times and Chicago Tribune explicitly cite hallucinations attributed to their mastheads as trademark dilution in their active lawsuits."
+    },
+    {
+      "title": "Legal siege -- an existential product risk",
+      "severity": "significant",
+      "description": "By early 2026, Perplexity faces active lawsuits from The New York Times, Chicago Tribune, Dow Jones, News Corp, Reddit, Encyclopedia Britannica, and Merriam-Webster -- all alleging unauthorized scraping and reproduction of copyrighted content. Cloudflare confirmed Perplexity uses stealth crawlers with spoofed user-agent strings to bypass robots.txt. The core business model -- surfacing real-time content without licensing it -- is under judicial review. Users who rely on Perplexity for access to premium journalism are beginning to question what the product looks like in 12 months if courts rule against it."
+    }
+  ],
+
+  "recommendation": {
+    "title": "Build for trust -- at every layer",
+    "summary": "Perplexity's core value proposition is trust: cited answers, verifiable sources, no ads. But trust is being eroded at three separate layers simultaneously -- billing integrity, citation accuracy, and content legality. The product opportunity is not a new feature. It is fixing the existing ones.",
+    "opportunities": [
+      {
+        "number": "01",
+        "title": "Fix customer service -- rebuild it from the ground up",
+        "description": "Rebuild the billing and support process entirely. Align billing plans with policy and announce transparently. Whenever policy is updated mid-subscription, send informational emails to customers beforehand and give them a genuine opt-out with refund of balance. Build a team of human agents to handle disputes. For a company whose foundational promise is trust -- cited responses, verifiable sources -- having the worst billing support in the category is not a minor oversight. It is a brand contradiction. No fancy tech can replace honesty and dignity in service."
+      },
+      {
+        "number": "02",
+        "title": "Confidence scoring in attribution",
+        "description": "At the end of every response, indicate whether the answer is directly sourced from cited material or is Perplexity's interpretation across multiple sources. If it is interpreted, users know to double-check before trusting. This does not solve hallucination -- that is an industry-wide problem. But it makes uncertainty visible, which is something Perplexity's search-first architecture is uniquely positioned to do. Let users know when they are reading a conclusion, not a fact."
+      },
+      {
+        "number": "03",
+        "title": "I don't know as a feature",
+        "description": "Train the model to say sources don't clearly answer this rather than synthesizing a response when confidence is low. This is more feasible for Perplexity than for pure LLMs precisely because of its search-first architecture -- if the retrieved sources don't contain the answer, the model should say so rather than fabricate one. A confident admission of uncertainty is more valuable to a researcher than a convincing-sounding wrong answer."
+      },
+      {
+        "number": "04",
+        "title": "Build a proactive content licensing model",
+        "description": "The voluntary Publishers' Program with TIME, Fortune, and Gannett is a start, but it needs to scale significantly. Proactively licensing content from major outlets -- rather than waiting for court rulings -- protects the product's core value and signals seriousness to both users and regulators. The alternative is building a product whose content supply chain is dismantled by court order."
+      },
+      {
+        "number": "05",
+        "title": "Build persistent memory for research workflows",
+        "description": "Researchers using Perplexity for extended projects hit a wall: each session is largely stateless. A Research Memory feature -- where Perplexity retains context of prior searches within a Space or project -- would dramatically increase stickiness for the 16% of users who run 30+ minute sessions. This is the gap between a search tool and a research partner."
+      }
+    ]
+  },
+
+  "metrics": [
+    {
+      "category": "Billing and Support Health",
+      "icon": "chart-line",
+      "items": [
+        "Number of billing-related support tickets per 1,000 subscribers per month",
+        "Average time to resolution for billing disputes (target: under 48 hours)",
+        "Bot resolution rate vs. escalation rate -- % of bot-handled tickets escalated to human agents",
+        "Post-escalation resolution rate -- % of escalated tickets actually resolved by humans",
+        "Refund approval rate and average processing time",
+        "Subscription churn rate with reason codes (billing vs. product vs. competition)"
+      ]
+    },
+    {
+      "category": "Citation and Hallucination Trust",
+      "icon": "shield-check",
+      "items": [
+        "Click-through rate on cited sources, segmented by directly sourced vs. interpreted responses",
+        "% of responses flagged as interpreted synthesis vs. directly sourced -- tracks model honesty over time",
+        "User correction rate -- how often users flag a cited response as incorrect",
+        "I don't know response rate, paired with user satisfaction score on those responses",
+        "Source diversity score per response -- single-source responses carry higher hallucination risk"
+      ]
+    },
+    {
+      "category": "Overall Trust and Retention",
+      "icon": "users",
+      "items": [
+        "NPS segmented by tier: Free vs. Pro vs. Enterprise -- Enterprise NPS is likely critically low",
+        "Session depth on research tasks -- are users completing multi-step research flows or dropping off?",
+        "30-day return rate and session frequency for core research segments"
+      ]
+    }
+  ],
+
+  "rollout": {
+    "phases": [
+      {
+        "phase": "Phase 1 -- Immediate (Month 1)",
+        "items": [
+          "Launch a dedicated human billing support team for Pro and Enterprise tiers",
+          "Implement a 30-day refund policy and communicate it proactively to existing subscribers",
+          "Announce any plan changes via email a minimum of 30 days before they take effect",
+          "Add a usage dashboard so users can see their current limits in real time -- no more surprise lockouts"
+        ]
+      },
+      {
+        "phase": "Phase 2 -- Short Term (Months 2-3)",
+        "items": [
+          "Ship confidence scoring labels on all responses: Directly sourced vs. Interpreted synthesis",
+          "Begin training the model to return I don't know when source confidence is below threshold",
+          "Expand the Publishers' Program to include at least 10 major news organizations",
+          "Instrument escalation rate and post-escalation resolution rate in support dashboards"
+        ]
+      },
+      {
+        "phase": "Phase 3 -- Medium Term (Months 4-6)",
+        "items": [
+          "Ship Research Memory for Spaces -- persistent cross-session context for research workflows",
+          "Launch source diversity scoring as an internal quality metric to flag single-source synthesis",
+          "Begin proactive licensing conversations with major publishers ahead of court rulings",
+          "Segment NPS by tier and publish internal targets with accountability to product roadmap"
+        ]
+      }
+    ]
+  },
+
+  "komals_rating": {
+    "score": "7.5",
+    "out_of": "10",
+    "label": "Komal's Rating",
+    "reasoning": "Perplexity earns a strong score for what it set out to do -- real-time cited answers in a clean, ad-free interface. For researchers, students, and fact-checkers, it is genuinely the best tool in its category. The score is held back by three things: a billing and support operation that contradicts its trust-first brand, a hallucination problem that is arguably more dangerous than its competitors' because it looks authoritative, and an existential legal question about its content model. The bones are excellent. The operational execution is not."
+  },
+
+  "pm_take": "Perplexity is one of the most interesting PM case studies in AI right now -- not because of what it built, but because of the contradiction it built into itself. The entire product is a promise of trust. Cited answers. Verifiable sources. No ads. Skip the links, get the truth. And yet the #1 complaint from paying users is that they were double-charged and a chatbot ignored them for four days. You cannot sell trust as your product and have the worst billing support in the category. That is not a gap -- it is a brand contradiction at the foundation. The hallucination problem is equally revealing. Perplexity did not invent hallucination -- every LLM hallucinates. But by attaching citations to every response, Perplexity made hallucinations look authoritative. A fabricated fact with a New York Times logo next to it is more dangerous than a fabricated fact with no attribution at all. The solution to hallucination was not to add citations. It was to add confidence signals -- tell users when they are reading a synthesized conclusion, not a sourced fact. That distinction exists in the architecture. It just was not surfaced to the user. The PM lesson here is one worth writing down: every solution creates the next layer of the same problem. Citations did not eliminate hallucinations -- they just made them harder to spot. The next generation of AI products will need to solve for that. Perplexity, with its search-first architecture, is uniquely positioned to do it. Whether it will -- before the lawsuits and billing complaints erode the trust it was built on -- is the real product question."
+}
