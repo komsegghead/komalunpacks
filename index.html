@@ -34,9 +34,15 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem
 .hero-eyebrow::before { content: ''; width: 1.5rem; height: 1px; background: var(--burgundy-light); flex-shrink: 0; }
 .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 5.5vw, 5rem); font-weight: 300; color: var(--text); line-height: 1.05; margin-bottom: 0.75rem; }
 .hero-name span { color: var(--plum); font-style: italic; }
-.hero-subtitle { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2.5rem; }
+.hero-subtitle { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; }
 .hero-subtitle span { color: var(--plum-light); margin: 0 0.35rem; }
-.hero-tagline { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 300; color: var(--text-muted); line-height: 1.75; max-width: 420px; }
+.hero-tagline { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 300; color: var(--text-muted); line-height: 1.75; max-width: 420px; margin-bottom: 2.5rem; }
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn { padding: 0.8rem 1.75rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; font-family: 'DM Sans', sans-serif; transition: all 0.3s; cursor: pointer; border: none; display: inline-block; }
+.btn-primary { background: var(--plum); color: var(--white); }
+.btn-primary:hover { background: var(--plum-deep); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--plum); border: 1px solid var(--plum-light); }
+.btn-outline:hover { background: var(--plum-pale); border-color: var(--plum); transform: translateY(-2px); }
 .hero-image { z-index: 1; display: flex; justify-content: center; align-items: center; animation: fadeIn 1.1s ease forwards; }
 .hero-image-wrap { position: relative; width: 360px; height: 460px; }
 .hero-image-wrap::after { content: ''; position: absolute; bottom: -16px; right: -16px; width: 100%; height: 100%; border: 2px solid var(--plum-light); opacity: 0.25; z-index: 0; }
@@ -50,12 +56,6 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem
 .section-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--burgundy-light); }
 .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 3.5vw, 2.75rem); font-weight: 300; color: var(--text); margin-bottom: 2rem; line-height: 1.2; }
 .about-body p { font-size: 0.9rem; line-height: 1.95; color: var(--text-muted); margin-bottom: 1.25rem; }
-.about-cta { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2.5rem; }
-.btn { padding: 0.8rem 1.75rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; font-family: 'DM Sans', sans-serif; transition: all 0.3s; cursor: pointer; border: none; display: inline-block; }
-.btn-primary { background: var(--plum); color: var(--white); }
-.btn-primary:hover { background: var(--plum-deep); transform: translateY(-2px); }
-.btn-outline { background: transparent; color: var(--plum); border: 1px solid var(--plum-light); }
-.btn-outline:hover { background: var(--plum-pale); border-color: var(--plum); transform: translateY(-2px); }
 .teardowns { background: var(--sunshine-pale); padding: 6rem 4rem; }
 .teardowns-inner { max-width: 1200px; margin: 0 auto; }
 .teardown-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
@@ -113,12 +113,14 @@ footer a { color: var(--plum); text-decoration: none; }
 
 <div class="hero">
   <div class="hero-card">
-    <p class="hero-eyebrow">Product Manager. AI Thinker. Banking &amp; Digital</p>
+    <p class="hero-eyebrow">Product Manager &middot; AI Thinker &middot; Banking &amp; Digital</p>
     <h1 class="hero-name">Komal<br/><span>Sikka</span></h1>
     <p class="hero-subtitle">VP, Senior Product Manager <span>&middot;</span> Barclays</p>
-    <p class="hero-tagline">
-      I build AI-led customer experiences, design systems that scale, and unpack the world of product one insight at a time.
-    </p>
+    <p class="hero-tagline">I build AI-led customer experiences, design systems that scale, and unpack the world of product one insight at a time.</p>
+    <div class="hero-cta">
+      <a href="KomalSikka_Resume.pdf" download class="btn btn-primary">&#8595; Download Resume</a>
+      <a href="https://linkedin.com/in/komalsikka" target="_blank" class="btn btn-outline">&#8599; LinkedIn</a>
+    </div>
   </div>
   <div class="hero-image">
     <div class="hero-image-wrap">
@@ -134,16 +136,12 @@ footer a { color: var(--plum); text-decoration: none; }
 
 <section class="about" id="about">
   <div class="about-inner">
-    <p class="section-label">About Me</p>
-    <h2 class="section-title">My Story</h2>
+    <p class="section-label">The Work</p>
+    <h2 class="section-title">About This Portfolio</h2>
     <div class="about-body">
-      <p>16 years in IT. Seven companies. One constant: I find the tangle and straighten it out.</p>
-      <p>I started as a developer - but people and people problems were always my calling. Today I lead AI and digital transformation at Barclays, at the intersection of technology, strategy, and human experience.</p>
-      <p>This portfolio is a dedication to my craft.</p>
-    </div>
-    <div class="about-cta">
-      <a href="KomalSikka_Resume.pdf" download class="btn btn-primary">&#8595; Download Resume</a>
-      <a href="https://linkedin.com/in/komalsikka" target="_blank" class="btn btn-outline">&#8599; LinkedIn</a>
+      <p>This is where I think out loud.</p>
+      <p>PM teardowns of AI tools. Case studies from the field. A decade of pattern recognition across banking, digital, and enterprise technology.</p>
+      <p>No fluff. Just the work.</p>
     </div>
   </div>
 </section>
@@ -152,7 +150,6 @@ footer a { color: var(--plum); text-decoration: none; }
   <div class="teardowns-inner">
     <p class="section-label">Daily Deconstructions</p>
     <h2 class="section-title">Product Teardowns</h2>
-    <p class="teardowns-intro">Not reviews. Not tutorials. PM teardowns - examining purpose, problems, metrics, and what each tool means for the future of how we work.</p>
     <div class="teardown-grid" id="teardown-grid">
       <p style="color: var(--text-muted); font-style: italic;">Loading teardowns...</p>
     </div>
