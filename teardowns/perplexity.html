@@ -2,694 +2,343 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Day 04 - Perplexity AI | Komal Unpacks</title>
-  <meta name="description" content="A PM teardown of Perplexity AI -- the answer engine that solved Google's link overload and created a new problem. By Komal Sikka."/>
-  <meta property="og:title" content="Day 04 - Perplexity AI | Komal Unpacks"/>
-  <meta property="og:description" content="A PM teardown of Perplexity AI -- the answer engine that solved Google's link overload and created a new problem."/>
-  <meta property="og:url" content="https://komalunpacks.com/teardowns/perplexity.html"/>
-  <meta property="og:type" content="article"/>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <!-- Open Graph / LinkedIn preview -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://komalunpacks.com/teardowns/perplexity.html" />
+  <meta property="og:title" content="Day 04 - Perplexity AI | Komal Unpacks" />
+  <meta property="og:description" content="A full PM teardown of Perplexity AI. Hallucination with attribution, billing failures, confidence scoring, and what Perplexity should do next." />
+  <meta property="og:site_name" content="Komal Unpacks" />
+  <meta name="description" content="A full PM teardown of Perplexity AI. Hallucination with attribution, billing failures, confidence scoring, and what Perplexity should do next." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
+    /* ── TOKENS ── */
     :root {
-      --plum:        #6B3F6E;
-      --plum-light:  #f3ecf4;
-      --burgundy:    #8B2A3A;
-      --sunshine:    #FFF8DC;
-      --warm-white:  #FAF8F5;
-      --light-gray:  #F0EDE8;
-      --mid-gray:    #CCCCCC;
-      --dark-text:   #1A1A1A;
-      --body-text:   #333333;
-      --muted-text:  #777777;
-      --green:       #2E7D4F;
-      --green-light: #E8F5EE;
-      --red:         #8B2A2A;
-      --red-light:   #FAEAEA;
-      --orange:      #B05C00;
-      --orange-light:#FFF3E0;
+      --white: #FDFAF6;
+      --plum: #6B2D5E;
+      --plum-light: #8B3D7E;
+      --plum-pale: #F5EDF3;
+      --burgundy: #7D2235;
+      --sunshine: #FDF6D8;
+      --sunshine-border: #F5E9A0;
+      --ink: #1C1C1E;
+      --ink-soft: #3D3535;
+      --muted: #8A7F7F;
+      --border: #E8DFD8;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--warm-white);
-      color: var(--body-text);
-      line-height: 1.7;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--white); color: var(--ink); line-height: 1.7; font-size: 16px; }
 
-    /* NAV */
-    nav {
-      background: var(--warm-white);
-      border-bottom: 1px solid var(--light-gray);
-      padding: 16px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--plum);
-      text-decoration: none;
-    }
-    .nav-back {
-      font-size: 0.85rem;
-      color: var(--muted-text);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
-    }
+    /* ── NAV ── */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(253,250,246,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 40px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--plum); text-decoration: none; letter-spacing: 0.02em; }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
     .nav-back:hover { color: var(--plum); }
+    .nav-back svg { width: 14px; height: 14px; }
 
-    /* HERO */
-    .hero {
-      background: #1B3A5C;
-      color: white;
-      padding: 64px 32px 56px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -60px; right: -60px;
-      width: 280px; height: 280px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.04);
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -40px; left: 10%;
-      width: 180px; height: 180px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.03);
-    }
-    .hero-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-    .hero-eyebrow {
-      display: inline-block;
-      background: rgba(107,63,110,0.5);
-      color: #D4B8D6;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 5px 14px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-    }
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.4rem, 5vw, 3.6rem);
-      font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-    .hero-tagline {
-      font-size: 1.05rem;
-      color: rgba(255,255,255,0.75);
-      font-style: italic;
-      max-width: 620px;
-      margin-bottom: 28px;
-    }
-    .hero-meta {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.55);
-    }
+    /* ── HERO ── */
+    .hero { background: var(--plum); color: white; padding: 72px 40px 56px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 360px; height: 360px; background: rgba(255,255,255,0.04); border-radius: 50%; }
+    .hero::after { content: ''; position: absolute; bottom: -80px; left: 20%; width: 240px; height: 240px; background: rgba(255,255,255,0.03); border-radius: 50%; }
+    .hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .hero-eyebrow span { display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(40px, 6vw, 64px); font-weight: 300; line-height: 1.1; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .hero h1 em { font-style: italic; font-weight: 400; }
+    .hero-subtitle { font-family: var(--font-display); font-size: clamp(18px, 2.5vw, 24px); font-weight: 300; font-style: italic; color: rgba(255,255,255,0.75); margin-bottom: 32px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 20px; font-size: 12px; color: rgba(255,255,255,0.55); letter-spacing: 0.5px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); }
     .hero-meta span { display: flex; align-items: center; gap: 6px; }
 
-    /* LAYOUT */
-    .page-body {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 48px 32px 80px;
-    }
+    /* ── LAYOUT ── */
+    .page-body { max-width: 760px; margin: 0 auto; padding: 0 40px 80px; }
 
-    /* SECTIONS */
-    .section { margin-bottom: 56px; }
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-    .section-number {
-      background: var(--plum);
-      color: white;
-      font-size: 1rem;
-      font-weight: 700;
-      width: 34px; height: 34px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.65rem;
-      font-weight: 700;
-      color: var(--dark-text);
-    }
-    .section-divider {
-      border: none;
-      border-top: 1px solid var(--light-gray);
-      margin-bottom: 24px;
-    }
+    /* ── SECTION LABELS ── */
+    .section-label { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--burgundy); margin-bottom: 20px; margin-top: 56px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
 
-    /* OVERVIEW */
-    .overview-text {
-      font-size: 1rem;
-      line-height: 1.85;
-      color: var(--body-text);
-      background: white;
-      border-left: 3px solid var(--plum);
-      padding: 20px 24px;
-      border-radius: 0 6px 6px 0;
-    }
+    /* ── INTRO / PURPOSE ── */
+    .intro-text { font-family: var(--font-display); font-size: clamp(18px, 2.2vw, 22px); font-weight: 400; line-height: 1.7; color: var(--ink-soft); margin-bottom: 16px; }
+    .intro-note { font-size: 14px; color: var(--muted); font-style: italic; padding: 16px 20px; background: var(--sunshine); border-left: 3px solid var(--sunshine-border); border-radius: 0 6px 6px 0; }
 
-    /* PERSONAS */
-    .persona-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--burgundy);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      margin-top: 24px;
-    }
-    .persona-label:first-child { margin-top: 0; }
-    .persona-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-    .persona-card {
-      background: white;
-      border: 1px solid var(--light-gray);
-      border-radius: 8px;
-      padding: 16px;
-      text-align: center;
-    }
-    .persona-card .icon {
-      font-size: 1.5rem;
-      color: var(--plum);
-      margin-bottom: 8px;
-    }
-    .persona-card h4 {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--dark-text);
-      margin-bottom: 6px;
-    }
-    .persona-card p {
-      font-size: 0.78rem;
-      color: var(--muted-text);
-      line-height: 1.5;
-    }
+    /* ── PERSONAS ── */
+    .personas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+    .persona-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 20px 20px 18px; transition: box-shadow 0.2s, transform 0.2s; }
+    .persona-card:hover { box-shadow: 0 4px 20px rgba(107,45,94,0.1); transform: translateY(-2px); }
+    .persona-icon { font-size: 28px; margin-bottom: 10px; }
+    .persona-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--plum); margin-bottom: 8px; }
+    .persona-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.65; }
+    .persona-badge { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); background: var(--sunshine); border: 1px solid var(--sunshine-border); border-radius: 10px; padding: 2px 8px; margin-top: 10px; }
 
-    /* JTBD */
-    .jtbd-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .jtbd-list li {
-      background: var(--sunshine);
-      border-left: 3px solid var(--plum);
-      padding: 12px 16px;
-      border-radius: 0 6px 6px 0;
-      font-size: 0.93rem;
-      color: var(--body-text);
-    }
+    /* ── JTBD ── */
+    .jtbd-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .jtbd-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--ink-soft); }
+    .jtbd-list li::before { content: '→'; color: var(--plum); font-weight: 600; flex-shrink: 0; margin-top: 1px; }
 
-    /* FEATURE CARDS */
-    .feature-card {
-      background: white;
-      border: 1px solid var(--light-gray);
-      border-radius: 8px;
-      padding: 20px 22px;
-      margin-bottom: 12px;
-    }
-    .feature-card.works     { border-top: 3px solid var(--green); }
-    .feature-card.critical  { border-top: 3px solid var(--red); }
-    .feature-card.significant { border-top: 3px solid var(--orange); }
-    .feature-label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-    .works-label     { color: var(--green); }
-    .critical-label  { color: var(--red); }
-    .significant-label { color: var(--orange); }
-    .feature-card h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--dark-text);
-      margin-bottom: 8px;
-    }
-    .feature-card p {
-      font-size: 0.9rem;
-      color: var(--body-text);
-      line-height: 1.7;
-    }
+    /* ── WHAT WORKS ── */
+    .works-item { border-left: 3px solid var(--plum); padding: 0 0 0 20px; margin-bottom: 32px; }
+    .works-item:last-child { margin-bottom: 0; }
+    .works-title { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
+    .works-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .works-points li { font-size: 14px; color: var(--ink-soft); line-height: 1.7; padding-left: 16px; position: relative; }
+    .works-points li::before { content: '·'; position: absolute; left: 4px; color: var(--plum); font-size: 18px; line-height: 1.4; }
+    .works-points li.italic-point { font-style: italic; color: var(--plum); font-family: var(--font-display); font-size: 15px; }
 
-    /* RECOMMENDATION */
-    .rec-summary {
-      background: var(--plum-light);
-      border-left: 3px solid var(--plum);
-      padding: 16px 20px;
-      border-radius: 0 6px 6px 0;
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: var(--dark-text);
-      margin-bottom: 24px;
-    }
-    .opportunity-card {
-      background: var(--sunshine);
-      border-radius: 8px;
-      padding: 18px 20px;
-      margin-bottom: 12px;
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-    .opp-number {
-      background: var(--plum);
-      color: white;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 4px 9px;
-      border-radius: 4px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .opp-content h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--dark-text);
-      margin-bottom: 6px;
-    }
-    .opp-content p {
-      font-size: 0.88rem;
-      color: var(--body-text);
-      line-height: 1.7;
-    }
+    /* ── PAIN POINTS ── */
+    .pain-item { background: white; border: 1px solid var(--border); border-top: 3px solid var(--burgundy); border-radius: 0 0 10px 10px; padding: 20px 22px; margin-bottom: 16px; }
+    .pain-title { font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--burgundy); margin-bottom: 10px; }
+    .pain-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
 
-    /* METRICS */
-    .metrics-group { margin-bottom: 24px; }
-    .metrics-group-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--burgundy);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 10px;
-    }
-    .metric-items {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .metric-items li {
-      background: white;
-      border: 1px solid var(--light-gray);
-      border-radius: 6px;
-      padding: 10px 14px;
-      font-size: 0.88rem;
-      color: var(--body-text);
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    .metric-items li::before {
-      content: '📊';
-      font-size: 0.85rem;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
+    /* ── OPPORTUNITIES ── */
+    .opp-item { display: flex; gap: 20px; align-items: flex-start; background: var(--sunshine); border: 1px solid var(--sunshine-border); border-radius: 10px; padding: 20px 22px; margin-bottom: 14px; }
+    .opp-num { font-family: var(--font-display); font-size: 28px; font-weight: 300; font-style: italic; color: var(--plum); opacity: 0.5; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+    .opp-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .opp-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
 
-    /* RATING */
-    .rating-block {
-      background: white;
-      border: 1px solid var(--light-gray);
-      border-radius: 10px;
-      padding: 28px;
-      display: flex;
-      gap: 28px;
-      align-items: flex-start;
-    }
-    .rating-score-wrap { text-align: center; flex-shrink: 0; }
-    .rating-score {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3.8rem;
-      font-weight: 700;
-      color: var(--plum);
-      line-height: 1;
-    }
-    .rating-out-of {
-      font-size: 0.75rem;
-      color: var(--muted-text);
-      margin-top: 2px;
-    }
-    .rating-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--burgundy);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-top: 6px;
-    }
-    .rating-reasoning {
-      font-size: 0.9rem;
-      color: var(--body-text);
-      line-height: 1.75;
-    }
-
-    /* PM TAKE */
-    .pm-take-block {
-      background: var(--dark-text);
-      color: white;
-      border-radius: 10px;
-      padding: 32px 28px;
-    }
-    .pm-take-label {
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--plum);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 14px;
-    }
-    .pm-take-text {
-      font-size: 0.95rem;
-      line-height: 1.85;
-      color: rgba(255,255,255,0.88);
-    }
-
-    /* FOOTER */
-    footer {
-      background: var(--dark-text);
-      color: rgba(255,255,255,0.4);
-      text-align: center;
-      padding: 24px 32px;
-      font-size: 0.78rem;
-    }
-    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
-    footer a:hover { color: white; }
-
+    /* ── METRICS ── */
+    .metrics-category { margin-bottom: 32px; }
+    .metrics-category:last-child { margin-bottom: 0; }
+    .metrics-category-title { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); opacity: 0.7; margin-bottom: 14px; }
+    .metric-row { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 10px; background: white; transition: box-shadow 0.2s; }
+    .metric-row:hover { box-shadow: 0 3px 16px rgba(107,45,94,0.09); }
+    .metric-name { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--plum); background: var(--plum-pale); padding: 16px 20px; min-width: 220px; max-width: 220px; display: flex; align-items: center; border-right: 1px solid var(--border); line-height: 1.4; }
+    .metric-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.75; padding: 16px 20px; display: flex; align-items: center; }
     @media (max-width: 600px) {
-      .page-body { padding: 32px 20px 60px; }
-      .hero { padding: 44px 20px 40px; }
-      .rating-block { flex-direction: column; gap: 16px; }
-      nav { padding: 14px 20px; }
+      .metric-row { flex-direction: column; }
+      .metric-name { min-width: unset; max-width: unset; border-right: none; border-bottom: 1px solid var(--border); }
+    }
+
+    /* ── PM TAKE ── */
+    .pm-take { background: var(--plum); color: white; border-radius: 12px; padding: 32px 36px; margin-top: 56px; }
+    .pm-take-label { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+    .pm-take-text { font-family: var(--font-display); font-size: clamp(17px, 2vw, 20px); font-weight: 400; line-height: 1.75; color: rgba(255,255,255,0.92); }
+
+    /* ── NAV BETWEEN TEARDOWNS ── */
+    .teardown-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .teardown-nav a { font-size: 14px; color: var(--plum); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 6px; transition: opacity 0.2s; }
+    .teardown-nav a:hover { opacity: 0.7; }
+
+    /* ── LOADING ── */
+    .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 16px; color: var(--muted); }
+    .loading-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--plum); opacity: 0.4; display: inline-block; margin: 0 3px; animation: pulse 1.2s ease-in-out infinite; }
+    .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulse { 0%,80%,100%{opacity:0.2;transform:scale(0.8)} 40%{opacity:1;transform:scale(1)} }
+
+    /* ── FOOTER ── */
+    footer { text-align: center; padding: 32px 40px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+    footer a { color: var(--plum); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 48px 20px 40px; }
+      .page-body { padding: 0 20px 60px; }
+      .personas-grid { grid-template-columns: 1fr; }
+      .pm-take { padding: 24px 22px; }
     }
   </style>
 </head>
 <body>
 
 <nav>
-  <a href="../index.html" class="nav-logo">Komal Unpacks</a>
-  <a href="../index.html" class="nav-back"><i class="fa fa-arrow-left"></i> All Teardowns</a>
+  <a href="/index.html" class="nav-logo">Komal Unpacks</a>
+  <a href="/index.html" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    All Teardowns
+  </a>
 </nav>
 
-<div class="hero" id="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow" id="hero-eyebrow">Loading...</div>
-    <h1 id="hero-title">Loading...</h1>
-    <p class="hero-tagline" id="hero-tagline"></p>
-    <div class="hero-meta">
-      <span><i class="fa fa-calendar-alt"></i> <span id="hero-date"></span></span>
-      <span><i class="fa fa-tag"></i> <span id="hero-category"></span></span>
-      <span><i class="fa fa-external-link-alt"></i> <a id="hero-link" href="#" target="_blank" style="color:rgba(255,255,255,0.55)"></a></span>
+<div id="hero-container"></div>
+
+<main class="page-body" id="main-content">
+  <div class="loading">
+    <div>
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
+      <span class="loading-dot"></span>
     </div>
+    <p style="font-size:14px;">Loading teardown...</p>
   </div>
-</div>
-
-<div class="page-body">
-
-  <!-- 1. OVERVIEW -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-number">1</div>
-      <h2 class="section-title">Overview</h2>
-    </div>
-    <hr class="section-divider"/>
-    <div class="overview-text" id="overview-text"></div>
-  </div>
-
-  <!-- 2. USER PERSONAS -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-number">2</div>
-      <h2 class="section-title">User Personas</h2>
-    </div>
-    <hr class="section-divider"/>
-    <div class="persona-label">Primary Segments</div>
-    <div class="persona-grid" id="primary-personas"></div>
-    <div class="persona-label">Secondary Segments</div>
-    <div class="persona-grid" id="secondary-personas"></div>
-  </div>
-
-  <!-- 3. JTBD -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-number">3</div>
-      <h2 class="section-title">Jobs to Be Done</h2>
-    </div>
-    <hr class="section-divider"/>
-    <ul class="jtbd-list" id="jtbd-list"></ul>
-  </div>
-
-  <!-- 4. WHAT WORKS -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-number">4</div>
-      <h2 class="section-title">What Works Well</h2>
-    </div>
-    <hr class="section-divider"/>
-    <div id="what-works-container"></div>
-  </div>
-
-  <!-- 5. WHAT DOESN'T WORK -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-number">5</div>
-      <h2 class="section-title">What Doesn't Work</h2>
-    </div>
-    <hr class="section-divider"/>
-    <div id="what-doesnt-container"></div>
-  </div>
-
-  <!-- 6. WHAT I'D DO DIFFERENTLY -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-number">6</div>
-      <h2 class="section-title">What I'd Do Differently</h2>
-    </div>
-    <hr class="section-divider"/>
-    <div class="rec-summary" id="rec-summary"></div>
-    <div id="opportunities-container"></div>
-  </div>
-
-  <!-- 7. METRICS -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-number">7</div>
-      <h2 class="section-title">Metrics</h2>
-    </div>
-    <hr class="section-divider"/>
-    <div id="metrics-container"></div>
-  </div>
-
-  <!-- 8. RATING -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-number">8</div>
-      <h2 class="section-title">Komal's Rating</h2>
-    </div>
-    <hr class="section-divider"/>
-    <div class="rating-block">
-      <div class="rating-score-wrap">
-        <div class="rating-score" id="rating-score"></div>
-        <div class="rating-out-of" id="rating-out-of"></div>
-        <div class="rating-label">Komal's Rating</div>
-      </div>
-      <div class="rating-reasoning" id="rating-reasoning"></div>
-    </div>
-  </div>
-
-  <!-- 9. PM TAKE -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-number">9</div>
-      <h2 class="section-title">PM's Takeaway</h2>
-    </div>
-    <hr class="section-divider"/>
-    <div class="pm-take-block">
-      <div class="pm-take-label">Komal's PM Take</div>
-      <div class="pm-take-text" id="pm-take-text"></div>
-    </div>
-  </div>
-
-</div>
+</main>
 
 <footer>
-  <p>Komal Unpacks &nbsp;|&nbsp; <a href="../index.html">komalunpacks.com</a> &nbsp;|&nbsp; Crafted with ❤️ in India</p>
+  <p>Part of the <strong>How I AI</strong> series · <a href="/index.html">View all teardowns</a></p>
+  <p style="margin-top:6px;">Crafted with ❤️ in India</p>
 </footer>
 
 <script>
-  const ICON_MAP = {
-    'graduation-cap': 'fa-graduation-cap',
-    'microscope':     'fa-microscope',
-    'newspaper':      'fa-newspaper',
-    'briefcase':      'fa-briefcase',
-    'pen-nib':        'fa-pen-nib',
-    'code':           'fa-code',
-    'chart-line':     'fa-chart-line',
-    'shield-check':   'fa-shield-alt',
-    'users':          'fa-users'
-  };
+async function loadTeardown() {
+  try {
+    const page = location.pathname.split('/').pop().replace('.html', '');
+    const res = await fetch(`${page}.json`);
+    if (!res.ok) throw new Error('Not found');
+    const d = await res.json();
+    renderHero(d);
+    renderMain(d);
+  } catch (e) {
+    document.getElementById('main-content').innerHTML =
+      `<p style="color:var(--burgundy);padding:40px 0;">Could not load teardown data.</p>`;
+  }
+}
 
-  function icon(name) {
-    return `<i class="fa ${ICON_MAP[name] || 'fa-circle'}"></i>`;
+function formatDate(str) {
+  if (!str) return '';
+  if (isNaN(Date.parse(str))) return str;
+  return new Date(str).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+function renderHero(d) {
+  const day      = d.day || d.meta?.day;
+  const title    = d.tool || d.meta?.title;
+  const subtitle = d.subtitle || d.meta?.subtitle;
+  const tagline  = d.meta?.tagline || '';
+  const category = d.category || d.meta?.category;
+  const date     = d.date || d.meta?.published_date;
+  const readTime = d.read_time || d.meta?.read_time || '';
+  const heroColor = d.meta?.hero_color || '#6B2D5E';
+
+  document.title = `Day ${String(day).padStart(2,'0')} - ${title} | Komal Unpacks`;
+
+  document.getElementById('hero-container').innerHTML = `
+    <div class="hero" style="background:${heroColor}">
+      <div class="hero-inner">
+        <div class="hero-eyebrow">
+          <span>Day ${String(day).padStart(2,'0')}</span>
+          ${category}
+        </div>
+        <h1>${title}<br><em>${subtitle}</em></h1>
+        ${tagline ? `<p class="hero-subtitle">${tagline}</p>` : ''}
+        <div class="hero-meta">
+          <span>📅 ${formatDate(date)}</span>
+          ${readTime ? `<span>⏱ ${readTime}</span>` : ''}
+          <span>🔍 PM Lens Teardown</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+function renderMain(d) {
+  let html = '';
+
+  // ── 01 Overview ──
+  html += `<p class="section-label">01 - The Product</p>
+    <p class="intro-text">${d.intro.summary}</p>`;
+  if (d.intro.note) {
+    html += `<p class="intro-note">${d.intro.note}</p>`;
   }
 
-  async function loadTeardown() {
-    const res  = await fetch('perplexity.json');
-    const data = await res.json();
+  // ── 02 Personas ──
+  const primary   = d.personas.filter(p => p.segment === 'primary');
+  const secondary = d.personas.filter(p => p.segment === 'secondary');
 
-    // Hero
-    document.title = `Day ${data.day} - ${data.tool_name} | Komal Unpacks`;
-    document.querySelector('meta[property="og:title"]').content = `Day ${data.day} - ${data.tool_name} | Komal Unpacks`;
-    document.querySelector('meta[property="og:description"]').content = data.tool_tagline;
-    document.getElementById('hero-eyebrow').textContent  = `Day ${data.day} of 43 - How I AI Series`;
-    document.getElementById('hero-title').textContent    = data.tool_name;
-    document.getElementById('hero-tagline').textContent  = data.tool_tagline;
-    document.getElementById('hero-date').textContent     = data.teardown_date;
-    document.getElementById('hero-category').textContent = data.category;
-    const heroLink = document.getElementById('hero-link');
-    heroLink.href        = data.tool_url;
-    heroLink.textContent = data.tool_url.replace('https://', '');
-
-    // Overview
-    document.getElementById('overview-text').textContent = data.overview;
-
-    // Personas
-    function renderPersonas(list, containerId) {
-      const container = document.getElementById(containerId);
-      list.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'persona-card';
-        card.innerHTML = `
-          <div class="icon">${icon(p.icon)}</div>
-          <h4>${p.name}</h4>
-          <p>${p.description}</p>`;
-        container.appendChild(card);
-      });
-    }
-    renderPersonas(data.personas.primary,   'primary-personas');
-    renderPersonas(data.personas.secondary, 'secondary-personas');
-
-    // JTBD
-    const jtbdList = document.getElementById('jtbd-list');
-    data.jtbd.forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      jtbdList.appendChild(li);
+  html += `<p class="section-label">02 - User Personas - Who It's For</p>`;
+  if (primary.length) {
+    html += `<p style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Primary Segments</p>
+      <div class="personas-grid">`;
+    primary.forEach(p => {
+      html += `<div class="persona-card">
+        <div class="persona-icon">${p.icon}</div>
+        <div class="persona-title">${p.title}</div>
+        <div class="persona-desc">${p.description}</div>
+      </div>`;
     });
-
-    // What Works
-    const worksContainer = document.getElementById('what-works-container');
-    data.what_works.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'feature-card works';
-      card.innerHTML = `
-        <div class="feature-label works-label">What Works</div>
-        <h4>${item.title}</h4>
-        <p>${item.description}</p>`;
-      worksContainer.appendChild(card);
+    html += `</div>`;
+  }
+  if (secondary.length) {
+    html += `<p style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:24px;margin-bottom:12px;">Secondary Segments</p>
+      <div class="personas-grid">`;
+    secondary.forEach(p => {
+      html += `<div class="persona-card">
+        <div class="persona-icon">${p.icon}</div>
+        <div class="persona-title">${p.title}</div>
+        <div class="persona-desc">${p.description}</div>
+      </div>`;
     });
+    html += `</div>`;
+  }
 
-    // What Doesn't Work
-    const doesntContainer = document.getElementById('what-doesnt-container');
-    data.what_doesnt_work.forEach(item => {
-      const isCritical = item.severity === 'critical';
-      const card = document.createElement('div');
-      card.className = `feature-card ${item.severity}`;
-      card.innerHTML = `
-        <div class="feature-label ${item.severity}-label">${isCritical ? 'Critical Pain' : 'Significant Pain'}</div>
-        <h4>${item.title}</h4>
-        <p>${item.description}</p>`;
-      doesntContainer.appendChild(card);
+  // ── 03 JTBD ──
+  html += `<p class="section-label">03 - Jobs to Be Done</p>
+    <ul class="jtbd-list">`;
+  d.jtbd.forEach(j => { html += `<li>${j}</li>`; });
+  html += `</ul>`;
+
+  // ── 04 What Works ──
+  html += `<p class="section-label">04 - What Works Well</p>`;
+  d.what_works.forEach(w => {
+    html += `<div class="works-item">
+      <div class="works-title">${w.title}</div>
+      <ul class="works-points">`;
+    w.points.forEach((pt, i) => {
+      const isLast = i === w.points.length - 1;
+      html += `<li class="${isLast && w.points.length > 1 ? 'italic-point' : ''}">${pt}</li>`;
     });
+    html += `</ul></div>`;
+  });
 
-    // Recommendation summary
-    document.getElementById('rec-summary').textContent = data.recommendation.summary;
+  // ── 05 What Doesn't Work ──
+  html += `<p class="section-label">05 - What Doesn't Work Well</p>`;
+  d.what_doesnt_work.forEach(w => {
+    html += `<div class="pain-item">
+      <div class="pain-title">${w.title}</div>
+      <div class="pain-desc">${w.description}</div>
+    </div>`;
+  });
 
-    // Opportunities
-    const oppContainer = document.getElementById('opportunities-container');
-    data.recommendation.opportunities.forEach(opp => {
-      const card = document.createElement('div');
-      card.className = 'opportunity-card';
-      card.innerHTML = `
-        <div class="opp-number">${opp.number}</div>
-        <div class="opp-content">
-          <h4>${opp.title}</h4>
-          <p>${opp.description}</p>
+  // ── 06 Opportunities ──
+  html += `<p class="section-label">06 - What I'd Do Differently</p>`;
+  d.opportunities.forEach(o => {
+    html += `<div class="opp-item">
+      <div class="opp-num">${o.number}</div>
+      <div>
+        <div class="opp-title">${o.title}</div>
+        <div class="opp-desc">${o.description}</div>
+      </div>
+    </div>`;
+  });
+
+  // ── 07 Metrics ──
+  if (d.metrics && d.metrics.length) {
+    html += `<p class="section-label">07 - Product Metrics</p>`;
+    d.metrics.forEach(cat => {
+      html += `<div class="metrics-category">
+        <div class="metrics-category-title">${cat.category}</div>`;
+      cat.items.forEach(item => {
+        html += `<div class="metric-row">
+          <div class="metric-name">${item.name}</div>
+          <div class="metric-desc">${item.description}</div>
         </div>`;
-      oppContainer.appendChild(card);
+      });
+      html += `</div>`;
     });
-
-    // Metrics
-    const metricsContainer = document.getElementById('metrics-container');
-    data.metrics.forEach(group => {
-      const div = document.createElement('div');
-      div.className = 'metrics-group';
-      div.innerHTML = `
-        <div class="metrics-group-title">${icon(group.icon)} ${group.category}</div>
-        <ul class="metric-items">
-          ${group.items.map(m => `<li>${m}</li>`).join('')}
-        </ul>`;
-      metricsContainer.appendChild(div);
-    });
-
-    // Rating
-    document.getElementById('rating-score').textContent    = data.komals_rating.score;
-    document.getElementById('rating-out-of').textContent   = `/ ${data.komals_rating.out_of}`;
-    document.getElementById('rating-reasoning').textContent = data.komals_rating.reasoning;
-
-    // PM Take
-    document.getElementById('pm-take-text').textContent = data.pm_take;
   }
 
-  loadTeardown().catch(err => console.error('Failed to load teardown data:', err));
-</script>
+  // ── PM Take ──
+  html += `<div class="pm-take">
+    <div class="pm-take-label">PM's Takeaway</div>
+    <div class="pm-take-text">${d.pm_take}</div>
+  </div>`;
 
+  // ── Teardown Nav ──
+  const prev = d.prev || d.meta?.prev;
+  const next = d.next || d.meta?.next;
+  if (prev || next) {
+    html += `<div class="teardown-nav">`;
+    html += prev ? `<a href="${prev.link}">← ${prev.label}</a>` : `<span></span>`;
+    html += next ? `<a href="${next.link}">${next.label} →</a>` : `<span></span>`;
+    html += `</div>`;
+  }
+
+  document.getElementById('main-content').innerHTML = html;
+}
+
+loadTeardown();
+</script>
 </body>
 </html>

@@ -1,167 +1,208 @@
 {
-  "day": "04",
-  "tool_name": "Perplexity AI",
-  "tool_tagline": "The answer engine that solved Google's link overload -- and created a new problem",
-  "tool_url": "https://www.perplexity.ai",
-  "category": "AI Search / Answer Engine",
-  "teardown_date": "March 2026",
-  "hero_color": "#1B3A5C",
-
-  "overview": "Perplexity sits at a unique position in the AI landscape - not fully a chatbot, not a full-fledged search engine. It is more of an answer engine, which can synthesize and process real-time web content into cited conversational responses. In a way, it solves for the problems of Google Search's link overload and ChatGPT's hallucination in a go. Google Search generates links of all pages which can even remotely hold the answers to your questions. Perplexity takes that information and generates conversational responses out of it, not overwhelming users with bunch of pages. Since it cites all its responses, it tries to solve for the hallucination problem also.",
-
-  "personas": {
-    "primary": [
-      {
-        "icon": "graduation-cap",
-        "name": "Students & Academics",
-        "description": "Citation based answers, academic filters, access to peer-reviewed sources."
-      },
-      {
-        "icon": "microscope",
-        "name": "Researchers & Analysts",
-        "description": "Real-time synthesis of current data with verifiable sources. Deep Research and Spaces features create persistent knowledge environments."
-      },
-      {
-        "icon": "newspaper",
-        "name": "Journalists & Fact Checkers",
-        "description": "Real-time source verification helps with rapid background research of developing stories."
-      },
-      {
-        "icon": "briefcase",
-        "name": "Business Professionals",
-        "description": "Market research, competitive intelligence."
-      }
-    ],
-    "secondary": [
-      {
-        "icon": "pen-nib",
-        "name": "Content Writers",
-        "description": "Strong for research & ideation, falls short for long form generation and creative output."
-      },
-      {
-        "icon": "code",
-        "name": "Developers & Engineers",
-        "description": "Useful for quick technical lookups, but not a coding companion."
-      }
-    ]
+  "meta": {
+    "day": 4,
+    "slug": "perplexity",
+    "title": "Perplexity AI",
+    "subtitle": "The Answer Engine",
+    "tagline": "It solved Google's link overload. Then created a new problem.",
+    "category": "AI Search / Answer Engine",
+    "published_date": "2026-03-07",
+    "read_time": "6 min read",
+    "status": "published",
+    "hero_color": "#1B3A5C"
   },
-
-  "jtbd": [
-    "When I need to do deep research with cited, verifiable sources",
-    "When I need to fact-check a claim quickly and trace it to a primary source",
-    "When I am writing an academic paper and need sourced references",
-    "When I need market and competitor research with up-to-date information"
-  ],
-
-  "what_works": [
+  "intro": {
+    "summary": "Perplexity sits at a unique position in the AI landscape - not fully a chatbot, not a full-fledged search engine. It is more of an answer engine, which can synthesize and process real-time web content into cited conversational responses. In a way, it solves for the problems of Google Search's link overload and ChatGPT's hallucination in a go. Google Search generates links of all pages which can even remotely hold the answers to your questions. Perplexity takes that information and generates conversational responses out of it, not overwhelming users with bunch of pages. Since it cites all its responses, it tries to solve for the hallucination problem also.",
+    "note": null
+  },
+  "personas": [
     {
-      "title": "Citation first transparency",
-      "description": "Perplexity's foundational differentiator by design. Helps build trust, critical for any kind of research, academic, or fact checking."
+      "icon": "🎓",
+      "title": "Students & Academics",
+      "description": "Citation based answers, academic filters, access to peer-reviewed sources.",
+      "segment": "primary"
     },
     {
-      "title": "Source filtering",
-      "description": "Users have the ability to filter which source they want the results from - social, academic, or web."
+      "icon": "🔬",
+      "title": "Researchers & Analysts",
+      "description": "Real-time synthesis of current data with verifiable sources. Deep Research and Spaces features create persistent knowledge environments.",
+      "segment": "primary"
+    },
+    {
+      "icon": "📰",
+      "title": "Journalists & Fact Checkers",
+      "description": "Real-time source verification helps with rapid background research of developing stories.",
+      "segment": "primary"
+    },
+    {
+      "icon": "💼",
+      "title": "Business Professionals",
+      "description": "Market research, competitive intelligence.",
+      "segment": "primary"
+    },
+    {
+      "icon": "✍️",
+      "title": "Content Writers",
+      "description": "Strong for research & ideation, falls short for long form generation and creative output.",
+      "segment": "secondary"
+    },
+    {
+      "icon": "👨‍💻",
+      "title": "Developers & Engineers",
+      "description": "Useful for quick technical lookups, but not a coding companion.",
+      "segment": "secondary"
+    }
+  ],
+  "jtbd": [
+    "Deep research",
+    "Fact checking",
+    "Academic paper writing",
+    "Market and competitor research"
+  ],
+  "what_works": [
+    {
+      "title": "Citation First Transparency",
+      "points": [
+        "Perplexity's foundational differentiator by design.",
+        "Helps build trust, critical for any kind of research, academic, or fact checking."
+      ]
+    },
+    {
+      "title": "Source Filtering",
+      "points": [
+        "Users have the ability to filter which source they want the results from - social, academic, or web."
+      ]
     },
     {
       "title": "Deep Research & Spaces",
-      "description": "Provides pro users with organized research environments. Users can create an AI \"expert\" in a specific domain by uploading documents and setting context."
+      "points": [
+        "Provides pro users with organized research environments.",
+        "Users can create an AI \"expert\" in a specific domain by uploading documents and setting context."
+      ]
     },
     {
-      "title": "Multi-model flexibility",
-      "description": "Perplexity enables users to choose between different models for different tasks - all within a single interface."
+      "title": "Multi-Model Flexibility",
+      "points": [
+        "Perplexity enables users to choose between different models for different tasks - all within a single interface."
+      ]
     }
   ],
-
   "what_doesnt_work": [
     {
       "title": "Billing and Plan Failures with Zero Human Support",
-      "severity": "critical",
       "description": "I am surprised to find out something this basic is a #1 problem for an otherwise complex product. Users have complained about limits downgrading mid-subscription, double-charging, or subscriptions being cancelled without any refunds or reasonings. Raising complaints results in auto-generated responses with no clear justification or path forward."
     },
     {
-      "title": "Hallucination with attribution problem",
-      "severity": "critical",
+      "title": "Hallucination with Attribution Problem",
       "description": "What was designed as a way to manage hallucination problem ended up creating a deeper problem. Perplexity does cite sources of the responses, but the citations have been known to be identified as incorrect. This is an even bigger problem because it makes the users believe that the responses are sourced and cited, but it is hallucinating with authority."
     },
     {
-      "title": "Reproduction of licensed content",
-      "severity": "significant",
-      "description": "By early 2026, Perplexity is facing lawsuits from various news corps on the ground that it is performing unauthorized scraping and reproduction of copyrighted content without licensing it. Its entire business model is under review at the moment. This is not just a legal trouble for Perplexity, but for the users also who rely on such content for academic and legal research."
+      "title": "Reproduction of Licensed Content",
+      "description": "By early 2026, Perplexity is facing lawsuits from various news corps on the ground that it is performing unauthorized scraping and reproduction of copyrighted content without licensing it. Its entire business model is under business review at the moment. This is not just a legal trouble for Perplexity, but for the users also who rely on such content for academic and legal research."
     },
     {
-      "title": "Stateless sessions",
-      "severity": "significant",
+      "title": "Stateless Sessions",
       "description": "It treats every query as stateless and often forgets the context of previous queries. Research workflows require building on prior context across sessions, this is a genuine limitation."
     }
   ],
-
-  "recommendation": {
-    "title": "Build for trust -- at every layer",
-    "summary": "Perplexity's core value proposition is trust: cited answers, verifiable sources, no ads. But trust is being eroded at multiple layers simultaneously. The product opportunity is not a new feature -- it is fixing the existing ones.",
-    "opportunities": [
-      {
-        "number": "01",
-        "title": "FIX CUSTOMER SERVICE!",
-        "description": "Rebuild the process ground up. Align the billing plans with the policy and announce transparently; whenever policy is updated mid-subscription, send informational emails to the customers beforehand and give them an option to opt-out with refund of the balance payment; build a team of human agents to handle disputes, issues, and concerns. For a company whose foundational promise is trust (cited responses), this is too basic a miss! No fancy tech can replace honesty and dignity in service!"
-      },
-      {
-        "number": "02",
-        "title": "Confidence scoring in Attribution",
-        "description": "While hallucination is an industry wide problem, we can still build for trust. At the end of every response, add whether the answer is directly sourced or is interpreted from multiple sources. If it is interpreted, users will know to double-check the source to verify the correctness. Users should not be in the blind; let them know when they are reading a conclusion, not a fact."
-      },
-      {
-        "number": "03",
-        "title": "I don't know as a feature",
-        "description": "Train the model to say sources don't clearly answer this rather than synthesizing a response when confidence is low. This is actually much more feasible for Perplexity to do than for pure LLMs, given its search-first architecture."
-      },
-      {
-        "number": "04",
-        "title": "Persistent memory for research workflows",
-        "description": "A research memory feature where Perplexity can retain context of the previous conversations within a space would dramatically increase the stickiness of the users who run long sessions. This will evolve Perplexity from an advanced search tool to a true research partner!"
-      }
-    ]
-  },
-
+  "opportunities": [
+    {
+      "number": "01",
+      "title": "FIX CUSTOMER SERVICE!",
+      "description": "Rebuild the process ground up. Align the billing plans with the policy and announce transparently; whenever policy is updated mid-subscription, send an informational emails to the customers beforehand and give them an option to opt-out with refund of the balance payment; build a team of human agents to handle disputes, issues, and concerns. For a company whose foundational promise is trust (cited responses), this is too basic a miss! No fancy tech can replace honesty and dignity in service!"
+    },
+    {
+      "number": "02",
+      "title": "Confidence Scoring in Attribution",
+      "description": "While hallucination is an industry wide problem, we can still build for trust. At the end of every response, add whether the answer is directly sourced or is interpreted from multiple sources. If it is interpreted, users will know to double-check the source to verify the correctness. Users should not be in the blind; let them know when they are reading a conclusion, not a fact."
+    },
+    {
+      "number": "03",
+      "title": "I Don't Know as a Feature",
+      "description": "Train the model to say \"sources don't clearly answer this\" rather than synthesizing a response when confidence is low. This is actually much more feasible for Perplexity to do than for pure LLMs, given its search-first architecture."
+    },
+    {
+      "number": "04",
+      "title": "Persistent Memory for Research Workflows",
+      "description": "A research memory feature where Perplexity can retain context of the previous conversations within a space would dramatically increase the stickiness of the users who run long sessions. This will evolve Perplexity from an advanced search tool to a true research partner!"
+    }
+  ],
   "metrics": [
     {
       "category": "Billing & Support",
-      "icon": "chart-line",
       "items": [
-        "Number of billing-related support tickets per 1,000 subscribers per month",
-        "Average time to resolution for billing disputes (target: under 48 hours)",
-        "% of disputes resolved by human agent vs. auto-response",
-        "Escalation rate -- % of bot-handled tickets escalated to human agents",
-        "Refund approval rate and average processing time",
-        "Subscription churn rate, specifically tracking churn reason codes (billing vs. product vs. competition)"
+        {
+          "name": "Billing Tickets per 1K Subscribers",
+          "description": "Number of billing-related support tickets per 1,000 subscribers per month."
+        },
+        {
+          "name": "Time to Resolution",
+          "description": "Average time to resolution for billing disputes. Target: under 48 hours."
+        },
+        {
+          "name": "Human vs. Auto Resolution Rate",
+          "description": "% of disputes resolved by human agent vs. auto-response."
+        },
+        {
+          "name": "Escalation Rate",
+          "description": "% of bot-handled tickets escalated to human agents. Distinguishes genuine bot resolution from deflection."
+        },
+        {
+          "name": "Refund Approval Rate",
+          "description": "Refund approval rate and average processing time."
+        },
+        {
+          "name": "Billing Churn Rate",
+          "description": "Subscription churn rate, specifically tracking churn reason codes - billing vs. product vs. competition."
+        }
       ]
     },
     {
       "category": "Hallucination with Attribution",
-      "icon": "shield-check",
       "items": [
-        "Click-through rate on cited sources, segmented by directly sourced vs. interpreted labels",
-        "% of responses flagged as interpreted synthesis vs. directly sourced -- tracks model honesty over time",
-        "User correction rate -- how often users flag a cited response as incorrect",
-        "I don't know response rate, paired with a satisfaction score on those responses"
+        {
+          "name": "Source Click-Through Rate",
+          "description": "Click-through rate on cited sources, segmented by \"directly sourced\" vs. \"interpreted\" labels. Tells you if users are trusting interpreted answers blindly."
+        },
+        {
+          "name": "Interpreted vs. Sourced Response Rate",
+          "description": "% of responses flagged as \"interpreted synthesis\" vs. \"directly sourced\". Tracks model honesty over time."
+        },
+        {
+          "name": "User Correction Rate",
+          "description": "How often users flag a cited response as incorrect."
+        },
+        {
+          "name": "I Don't Know Response Rate",
+          "description": "Paired with a satisfaction score on those responses - because users need to feel helped, not abandoned."
+        }
       ]
     },
     {
       "category": "Overall Trust & Retention",
-      "icon": "users",
       "items": [
-        "NPS segmented by tier: free vs. Pro vs. Enterprise",
-        "Billing complaints volume, tracked weekly",
-        "Session depth on research tasks -- are users completing multi-step research flows or dropping off?"
+        {
+          "name": "NPS by Segment",
+          "description": "Net Promoter Score segmented by free vs. Pro vs. Enterprise. The enterprise NPS is probably catastrophically low right now."
+        },
+        {
+          "name": "Billing Complaints Volume",
+          "description": "Tracked weekly."
+        },
+        {
+          "name": "Session Depth on Research Tasks",
+          "description": "Are users completing multi-step research flows or dropping off? Measures if the product is actually delivering on its core JTBD."
+        }
       ]
     }
   ],
-
-  "komals_rating": {
-    "score": "7.5",
-    "out_of": "10",
-    "label": "Komal's Rating",
-    "reasoning": "Perplexity earns a strong score for what it set out to do -- real-time cited answers in a clean, ad-free interface. For researchers, students, and fact-checkers, it is genuinely the best tool in its category. The score is held back by a billing and support operation that contradicts its trust-first brand, a hallucination problem that is arguably more dangerous than its competitors' because it looks authoritative, and an existential legal question about its content model. The bones are excellent. The operational execution is not."
+  "prev": {
+    "label": "Day 03: Google Gemini",
+    "link": "/teardowns/gemini.html"
   },
-
-  "pm_take": "Perplexity is one of the most interesting PM case studies in AI right now -- not because of what it built, but because of the contradiction it built into itself. The entire product is a promise of trust. Cited answers. Verifiable sources. No ads. Skip the links, get the truth. And yet the #1 complaint from paying users is that they were double-charged and a chatbot ignored them for four days. You cannot sell trust as your product and have the worst billing support in the category. That is not a gap -- it is a brand contradiction at the foundation. The hallucination problem is equally revealing. Perplexity did not invent hallucination -- every LLM hallucinates. But by attaching citations to every response, Perplexity made hallucinations look authoritative. A fabricated fact with a publisher's logo next to it is more dangerous than a fabricated fact with no attribution at all. The solution was not just to add citations -- it was to add confidence signals. Tell users when they are reading a synthesized conclusion, not a sourced fact. That distinction exists in the architecture. It just was not surfaced to the user. No fancy tech can replace honesty and dignity in service."
+  "next": {
+    "label": "Day 05: Pi by Inflection",
+    "link": "/teardowns/pi.html"
+  },
+  "pm_take": "Perplexity built something genuinely useful - an answer engine that collapses Google's link overload into cited, conversational responses. But it has created a more dangerous problem than the one it solved. ChatGPT hallucinates with no sources. Perplexity hallucinates with authority - fake answers wearing the logos of real publishers. That is a trust collapse waiting to happen at scale. The billing failures compound this: for a product whose entire value proposition is trust, charging users incorrectly and refusing to fix it with a human is a product contradiction. No fancy tech can replace honesty and dignity in service. The path forward is clear - confidence scoring, an honest 'I don't know', persistent research memory, and a customer service team that treats users like the researchers they are."
 }
