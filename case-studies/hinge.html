@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Komal Sikka - My Product Lab</title>
+<title>Hinge: Growing to 2M MAU in India - Komal Sikka</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,98 +18,123 @@
   --burgundy-light: #B85080;
   --text: #2A1A35;
   --text-muted: #7A6080;
-  --border: rgba(107, 61, 122, 0.12);
+  --border: rgba(107,61,122,0.12);
 }
 html { scroll-behavior: smooth; }
-body { font-family: "DM Sans", sans-serif; background: var(--white); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+
+/* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(255,253,248,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-.nav-logo { font-family: "Cormorant Garamond", serif; font-size: 1.25rem; font-weight: 400; color: var(--plum-deep); letter-spacing: 0.03em; text-decoration: none; }
-.nav-links { display: flex; gap: 2.5rem; list-style: none; }
-.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; }
-.nav-links a:hover { color: var(--plum); }
-.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
-.hero::before { content: ""; position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: var(--sunshine-pale); z-index: 0; }
-.hero-card { z-index: 1; padding-right: 4rem; animation: fadeUp 0.9s ease forwards; }
-.hero-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
-.hero-eyebrow::before { content: ""; width: 1.5rem; height: 1px; background: var(--burgundy-light); flex-shrink: 0; }
-.hero-name { font-family: "Cormorant Garamond", serif; font-size: clamp(3.5rem, 5.5vw, 5rem); font-weight: 300; color: var(--text); line-height: 1.05; margin-bottom: 0.75rem; }
-.hero-name span { color: var(--plum); font-style: italic; }
-.hero-subtitle { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; }
-.hero-subtitle span { color: var(--plum-light); margin: 0 0.35rem; }
-.hero-tagline { font-family: "DM Sans", sans-serif; font-size: 0.95rem; font-weight: 300; color: var(--text-muted); line-height: 1.75; max-width: 420px; margin-bottom: 2.5rem; }
-.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
-.btn { padding: 0.8rem 1.75rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; font-family: "DM Sans", sans-serif; transition: all 0.3s; cursor: pointer; border: none; display: inline-block; }
-.btn-primary { background: var(--plum); color: var(--white); }
-.btn-primary:hover { background: var(--plum-deep); transform: translateY(-2px); }
-.btn-outline { background: transparent; color: var(--plum); border: 1px solid var(--plum-light); }
-.btn-outline:hover { background: var(--plum-pale); border-color: var(--plum); transform: translateY(-2px); }
-.hero-image { z-index: 1; display: flex; justify-content: center; align-items: center; animation: fadeIn 1.1s ease forwards; }
-.hero-image-wrap { position: relative; width: 360px; height: 460px; }
-.hero-image-wrap::after { content: ""; position: absolute; bottom: -16px; right: -16px; width: 100%; height: 100%; border: 2px solid var(--plum-light); opacity: 0.25; z-index: 0; }
-.hero-image-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: top; position: relative; z-index: 1; }
-.hero-quote-badge { position: absolute; bottom: -24px; left: -32px; background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--plum); padding: 1rem 1.25rem; max-width: 240px; z-index: 2; box-shadow: 0 4px 20px rgba(107,61,122,0.1); }
-.hero-quote-badge p { font-family: "Cormorant Garamond", serif; font-style: italic; font-size: 1.05rem; color: var(--plum-deep); line-height: 1.5; }
-.hero-divider { height: 1px; background: rgba(107,61,122,0.2); }
-.about { background: var(--white); padding: 6rem 4rem; }
-.about-inner { max-width: 760px; margin: 0 auto; }
-.section-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
-.section-label::before { content: ""; width: 1.5rem; height: 1px; background: var(--burgundy-light); }
-.section-title { font-family: "Cormorant Garamond", serif; font-size: clamp(2rem, 3.5vw, 2.75rem); font-weight: 300; color: var(--text); margin-bottom: 2rem; line-height: 1.2; }
-.about-body p { font-size: 0.9rem; line-height: 1.95; color: var(--text-muted); margin-bottom: 1.25rem; }
-.teardowns { background: var(--sunshine-pale); padding: 6rem 4rem; }
-.teardowns-inner { max-width: 1200px; margin: 0 auto; }
-.teardown-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
-.teardown-card { background: var(--white); border: 1px solid var(--border); padding: 2rem; transition: all 0.3s; text-decoration: none; display: block; }
-.teardown-card:hover { border-color: var(--plum-light); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(107,61,122,0.1); }
-.card-day { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.6rem; }
-.card-tool { font-family: "Cormorant Garamond", serif; font-size: 1.55rem; font-weight: 400; color: var(--text); margin-bottom: 0.4rem; }
-.card-category { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem; }
-.card-takeaway { font-size: 0.875rem; line-height: 1.7; color: var(--text-muted); font-style: italic; border-left: 2px solid var(--plum-light); padding-left: 0.875rem; }
-.card-arrow { margin-top: 1.25rem; font-size: 0.75rem; color: var(--plum); letter-spacing: 0.08em; text-transform: uppercase; }
-.case-studies { background: var(--white); padding: 6rem 4rem; }
-.case-studies-inner { max-width: 1200px; margin: 0 auto; }
-.cs-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
-.cs-card { background: var(--white); border: 1px solid var(--border); text-decoration: none; display: block; transition: all 0.3s; position: relative; overflow: hidden; }
-.cs-card:hover { border-color: var(--plum-light); transform: translateY(-3px); box-shadow: 0 10px 35px rgba(107,61,122,0.12); }
-.cs-card-accent { position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--plum); }
-.cs-card-top { padding: 1.75rem 1.75rem 0 2rem; }
-.cs-card-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
-.cs-card-badge { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--burgundy); background: #F9EEF3; padding: 0.3rem 0.7rem; }
-.cs-card-year { font-family: "Cormorant Garamond", serif; font-size: 0.95rem; font-style: italic; color: var(--text-muted); }
-.cs-card-product { font-family: "Cormorant Garamond", serif; font-size: 1.9rem; font-weight: 300; color: var(--text); line-height: 1.1; margin-bottom: 0.5rem; }
-.cs-card-goal { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; max-width: 380px; }
-.cs-card-divider { height: 1px; background: var(--border); margin: 0 1.75rem 0 2rem; }
-.cs-card-footer { padding: 1rem 1.75rem 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-.cs-card-institute { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--plum); font-weight: 500; }
-.cs-card-arrow { font-size: 0.72rem; color: var(--plum-light); letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s; }
-.cs-card:hover .cs-card-arrow { color: var(--plum); }
-.contact { padding: 6rem 4rem; background: var(--sunshine-pale); }
-.contact-inner { max-width: 620px; margin: 0 auto; text-align: center; }
-.section-label-center { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
-.section-label-center::before, .section-label-center::after { content: ""; width: 1.5rem; height: 1px; background: var(--burgundy-light); }
-.contact-intro { font-family: "Cormorant Garamond", serif; font-size: 1.25rem; font-style: italic; color: var(--plum-deep); line-height: 1.8; margin-bottom: 3rem; }
-.contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-.contact-link { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; color: var(--plum); font-size: 0.875rem; letter-spacing: 0.05em; transition: all 0.3s; padding: 0.875rem 1.5rem; border: 1px solid var(--border); background: var(--white); }
-.contact-link:hover { border-color: var(--plum-light); background: var(--plum-pale); }
-.contact-note { margin-top: 2.5rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 400; color: var(--plum-deep); text-decoration: none; }
+.nav-back { font-size: 0.78rem; color: var(--plum); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; display: flex; align-items: center; gap: 0.4rem; transition: color 0.3s; }
+.nav-back:hover { color: var(--plum-deep); }
+
+/* HERO */
+.cs-hero { padding: 9rem 4rem 5rem; background: var(--white); border-bottom: 1px solid var(--border); }
+.cs-hero-inner { max-width: 900px; margin: 0 auto; }
+.cs-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.cs-eyebrow::before { content: ''; width: 1.5rem; height: 1px; background: var(--burgundy-light); }
+.cs-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--text); line-height: 1.15; margin-bottom: 1.5rem; }
+.cs-title span { color: var(--plum); font-style: italic; }
+.cs-subtitle { font-size: 1rem; color: var(--text-muted); line-height: 1.75; max-width: 680px; margin-bottom: 2.5rem; }
+.cs-meta { display: flex; flex-wrap: wrap; gap: 2rem; }
+.cs-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+.cs-meta-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--burgundy); }
+.cs-meta-value { font-size: 0.875rem; color: var(--text); font-weight: 500; }
+
+/* JOURNEY NAV */
+.journey-nav { background: var(--sunshine-pale); border-bottom: 1px solid var(--border); position: sticky; top: 60px; z-index: 90; padding: 0 4rem; overflow-x: auto; }
+.journey-nav-inner { display: flex; gap: 0; max-width: 1200px; margin: 0 auto; white-space: nowrap; }
+.journey-step { padding: 1rem 1.5rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; border-bottom: 2px solid transparent; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+.journey-step:hover { color: var(--plum); border-bottom-color: var(--plum-light); }
+.journey-step.active { color: var(--plum); border-bottom-color: var(--plum); font-weight: 500; }
+.journey-step-num { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-style: italic; color: var(--plum-light); }
+
+/* SECTIONS */
+.cs-section { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+.cs-section:nth-child(odd) { background: var(--white); }
+.cs-section:nth-child(even) { background: var(--sunshine-pale); }
+.cs-section-inner { max-width: 900px; margin: 0 auto; }
+.section-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::before { content: ''; width: 1.5rem; height: 1px; background: var(--burgundy-light); }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 300; color: var(--text); margin-bottom: 2rem; line-height: 1.2; }
+.section-title span { color: var(--plum); font-style: italic; }
+
+/* TEXT CONTENT */
+p { font-size: 0.9rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1.25rem; }
+h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--text); margin: 2rem 0 0.75rem; }
+ul { list-style: none; margin-bottom: 1.5rem; }
+ul li { font-size: 0.875rem; line-height: 1.8; color: var(--text-muted); padding-left: 1.25rem; position: relative; margin-bottom: 0.4rem; }
+ul li::before { content: ' - '; position: absolute; left: 0; color: var(--plum-light); font-size: 0.75rem; }
+
+/* CALLOUT */
+.callout { background: var(--plum-pale); border-left: 3px solid var(--plum); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.callout p { margin: 0; color: var(--plum-deep); font-size: 0.875rem; font-style: italic; }
+
+/* INSIGHT BOX */
+.insight-box { background: var(--white); border: 1px solid var(--border); padding: 1.5rem; margin: 2rem 0; }
+.insight-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.5rem; }
+.insight-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--text); line-height: 1.6; }
+
+/* STAT GRID */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border); margin: 2rem 0; border: 1px solid var(--border); }
+.stat-cell { background: var(--white); padding: 1.25rem 1.5rem; }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--plum); line-height: 1; margin-bottom: 0.4rem; }
+.stat-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+
+/* ICP CARDS */
+.icp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
+.icp-card { background: var(--white); border: 1px solid var(--border); padding: 1.25rem; border-top: 3px solid var(--plum-light); }
+.icp-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--text); margin-bottom: 0.25rem; }
+.icp-pct { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.75rem; }
+.icp-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+
+/* FEATURE CARDS */
+.feature-card { background: var(--white); border: 1px solid var(--border); padding: 2rem; margin: 1.5rem 0; }
+.feature-card-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
+.feature-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--plum-light); line-height: 1; flex-shrink: 0; }
+.feature-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; color: var(--text); }
+.feature-subtitle { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+/* EXPERIMENT TABLE */
+.exp-list { margin: 1.5rem 0; }
+.exp-item { border: 1px solid var(--border); padding: 1.25rem 1.5rem; margin-bottom: 0.75rem; display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; }
+.exp-hypothesis { font-size: 0.875rem; color: var(--text); line-height: 1.6; }
+.exp-theme { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--burgundy); background: var(--plum-pale); padding: 0.25rem 0.6rem; white-space: nowrap; align-self: start; }
+
+/* FUNNEL */
+.funnel { margin: 2rem 0; }
+.funnel-step { display: flex; align-items: center; gap: 1rem; padding: 0.875rem 1.25rem; background: var(--white); border: 1px solid var(--border); margin-bottom: 2px; }
+.funnel-arrow { color: var(--plum-light); font-size: 0.85rem; }
+.funnel-label { font-size: 0.875rem; color: var(--text); flex: 1; }
+.funnel-day { font-size: 0.75rem; color: var(--text-muted); font-style: italic; }
+
+/* PRICING */
+.pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin: 2rem 0; }
+.price-card { border: 1px solid var(--border); padding: 1.5rem; text-align: center; }
+.price-plan { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.5rem; }
+.price-amount { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--plum); line-height: 1; }
+.price-period { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem; }
+.price-note { font-size: 0.75rem; color: var(--plum-light); margin-top: 0.5rem; font-style: italic; }
+
+/* CHANNEL TABLE */
+.channel-list { margin: 1.5rem 0; }
+.channel-item { display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: 0.875rem 1.25rem; border-bottom: 1px solid var(--border); align-items: center; }
+.channel-item:first-child { background: var(--plum-pale); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--plum); }
+.channel-name { font-size: 0.875rem; color: var(--text); }
+.channel-budget { font-size: 0.875rem; color: var(--plum); font-weight: 500; }
+
+/* FOOTER */
 footer { border-top: 1px solid rgba(255,253,248,0.15); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--plum-deep); }
 footer p { font-size: 0.8rem; color: rgba(255,253,248,0.6); }
 footer a { color: var(--plum-light); text-decoration: none; }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* RESPONSIVE */
 @media (max-width: 900px) {
   nav { padding: 1.25rem 2rem; }
-  .nav-links { gap: 1.5rem; }
-  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
-  .hero::before { display: none; }
-  .hero-card { padding-right: 0; text-align: center; }
-  .hero-eyebrow { justify-content: center; }
-  .hero-cta { justify-content: center; }
-  .hero-image { display: none; }
-  .about { padding: 4rem 2rem; }
-  .teardowns { padding: 4rem 2rem; }
-  .case-studies { padding: 4rem 2rem; }
-  .contact { padding: 4rem 2rem; }
+  .cs-hero { padding: 7rem 2rem 4rem; }
+  .journey-nav { padding: 0 2rem; }
+  .cs-section { padding: 4rem 2rem; }
   footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
 }
 </style>
@@ -117,96 +142,432 @@ footer a { color: var(--plum-light); text-decoration: none; }
 <body>
 
 <nav>
-  <a href="#" class="nav-logo">My Product Lab</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#teardowns">Product Teardowns</a></li>
-    <li><a href="#case-studies">Case Studies</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <a href="/" class="nav-logo">My Product Lab</a>
+  <a href="/#case-studies" class="nav-back">&#8592; Case Studies</a>
 </nav>
 
-<div class="hero">
-  <div class="hero-card">
-    <p class="hero-eyebrow">Product Manager &middot; AI Thinker &middot; Banking &amp; Digital</p>
-    <h1 class="hero-name">Komal<br/><span>Sikka</span></h1>
-    <p class="hero-subtitle">VP, Senior Product Manager <span>&middot;</span> Barclays</p>
-    <p class="hero-tagline">I build AI-led customer experiences, design systems that scale, and unpack the world of product one insight at a time.</p>
-    <div class="hero-cta">
-      <a href="KomalSikka_Resume.pdf" download class="btn btn-primary">&#8595; Download Resume</a>
-      <a href="https://linkedin.com/in/komalsikka" target="_blank" class="btn btn-outline">&#8599; LinkedIn</a>
-    </div>
-  </div>
-  <div class="hero-image">
-    <div class="hero-image-wrap">
-      <img src="photo.jpg" alt="Komal Sikka" onerror="this.style.display='none'"/>
-      <div class="hero-quote-badge">
-        <p>"Broken processes are just invitations!"</p>
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-hero-inner">
+    <p class="cs-eyebrow">Case Study &middot; Dating App &middot; Growth Strategy</p>
+    <h1 class="cs-title">Hinge India: <span>Growing to 2 Million MAU</span></h1>
+    <p class="cs-subtitle">A full-stack growth strategy for Hinge's India expansion  -  from market sizing and ICP definition through acquisition, onboarding, engagement, retention, monetisation, and experimentation.</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Product</span>
+        <span class="cs-meta-value">Hinge (Dating App)</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Market</span>
+        <span class="cs-meta-value">India (Tier 1 &amp; Metro)</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Goal</span>
+        <span class="cs-meta-value">2M Monthly Active Users</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Framework</span>
+        <span class="cs-meta-value">Understand &rarr; Acquire &rarr; Retain &rarr; Monetise</span>
       </div>
     </div>
   </div>
 </div>
 
-<div class="hero-divider"></div>
+<!-- JOURNEY NAV -->
+<nav class="journey-nav">
+  <div class="journey-nav-inner">
+    <a href="#understand" class="journey-step"><span class="journey-step-num">01</span> Understand</a>
+    <a href="#define" class="journey-step"><span class="journey-step-num">02</span> Define</a>
+    <a href="#acquire" class="journey-step"><span class="journey-step-num">03</span> Acquire</a>
+    <a href="#onboard" class="journey-step"><span class="journey-step-num">04</span> Onboard</a>
+    <a href="#engage" class="journey-step"><span class="journey-step-num">05</span> Engage &amp; Retain</a>
+    <a href="#monetise" class="journey-step"><span class="journey-step-num">06</span> Monetise</a>
+    <a href="#experiment" class="journey-step"><span class="journey-step-num">07</span> Experiment</a>
+  </div>
+</nav>
 
-<section class="about" id="about">
-  <div class="about-inner">
-    <p class="section-label">The Work</p>
-    <h2 class="section-title">About This Portfolio</h2>
-    <div class="about-body">
-      <p>This is where I think out loud.</p>
-      <p>Product Deconstructions and Teardowns. Case Studies. Refining my craft.</p>
+<!-- 01 UNDERSTAND -->
+<section class="cs-section" id="understand">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 01</p>
+    <h2 class="section-title">Understand: <span>The Problem &amp; the Market</span></h2>
+
+    <div class="callout">
+      <p>Imagine dating on a friendless Facebook  -  where you can't discover people through mutuals. Dating apps are so ubiquitous that the quality of search and match is lost. Hinge solves this with a JTBD: quality matches through a long-form onboarding that filters for people willing to put in the work.</p>
+    </div>
+
+    <h4>Total Addressable Market</h4>
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-num">180M</div>
+        <div class="stat-desc">Indian users on Instagram</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">~70%</div>
+        <div class="stat-desc">Aged 18–35</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">~60%</div>
+        <div class="stat-desc">Single in Tier 1 cities</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">75M</div>
+        <div class="stat-desc">TAM</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">52M</div>
+        <div class="stat-desc">SAM (Metro + Tier 1)</div>
+      </div>
+    </div>
+
+    <h4>Ideal Customer Profiles</h4>
+    <div class="icp-grid">
+      <div class="icp-card">
+        <div class="icp-name">Amateurs</div>
+        <div class="icp-pct">25% of users</div>
+        <div class="icp-desc">Want to learn how to date. Easy-to-find quality profiles. 5+ times a week.</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-name">Serial Daters</div>
+        <div class="icp-pct">35% of users</div>
+        <div class="icp-desc">Quantity over quality. Dopamine-driven. High DAU/MAU, low LTV. 5+ times a week.</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-name">Yours Truly Seriously</div>
+        <div class="icp-pct">25% of users</div>
+        <div class="icp-desc">Looking for the one. Quality over quantity. High value on time. 2–3 times a week.</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-name">Dating with an Agenda</div>
+        <div class="icp-pct">15% of users</div>
+        <div class="icp-desc">Networking, companionship. Quality matters. Fits their availability. 2–3 times a week.</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-label">Key Insight</div>
+      <div class="insight-text">Gender split is 83:17 (Male:Female). Primary acquisition must focus on female users. Target younger audiences (18–25 yrs) as the entry cohort.</div>
     </div>
   </div>
 </section>
 
-<div class="teardowns" id="teardowns">
-  <div class="teardowns-inner">
-    <p class="section-label">Daily Deconstructions</p>
-    <h2 class="section-title">Product Teardowns</h2>
-    <div class="teardown-grid" id="teardown-grid">
-      <p style="color: var(--text-muted); font-style: italic;">Loading teardowns...</p>
-    </div>
-  </div>
-</div>
+<!-- 02 DEFINE -->
+<section class="cs-section" id="define">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 02</p>
+    <h2 class="section-title">Define: <span>The Growth Model</span></h2>
 
-<section class="case-studies" id="case-studies">
-  <div class="case-studies-inner">
-    <p class="section-label">PM Practice</p>
-    <h2 class="section-title">Case Studies</h2>
-    <div class="cs-card-grid">
-      <a href="case-studies/hinge.html" class="cs-card">
-        <div class="cs-card-accent"></div>
-        <div class="cs-card-top">
-          <div class="cs-card-meta">
-            <span class="cs-card-badge">Dating App &middot; Growth Strategy</span>
-            <span class="cs-card-year">2021</span>
-          </div>
-          <div class="cs-card-product">Hinge</div>
-          <div class="cs-card-goal">How do you grow a dating app to 2 million MAU in India - a market where dating is still taboo?</div>
-        </div>
-        <div class="cs-card-divider"></div>
-        <div class="cs-card-footer">
-          <span class="cs-card-institute">GrowthX</span>
-          <span class="cs-card-arrow">Read Case Study &rarr;</span>
-        </div>
-      </a>
+    <p>The end metric that drives core growth is <strong>matches received</strong>. The growth flywheel maps directly to the user journey:</p>
+
+    <div class="funnel">
+      <div class="funnel-step"><span class="funnel-label">Download app</span><span class="funnel-day">Day 1</span></div>
+      <div class="funnel-step"><span class="funnel-label">Complete onboarding</span><span class="funnel-day">Day 3</span></div>
+      <div class="funnel-step"><span class="funnel-label">See relevant profiles (mini AHA moment) &amp; send likes</span><span class="funnel-day">Day 3–10</span></div>
+      <div class="funnel-step"><span class="funnel-label">Get first match (AHA moment)</span><span class="funnel-day">Day 11</span></div>
+      <div class="funnel-step"><span class="funnel-label">Initiate conversation on Hinge</span><span class="funnel-day">Day 13</span></div>
+      <div class="funnel-step"><span class="funnel-label">Move conversation out of Hinge / meet IRL</span><span class="funnel-day">Day 20</span></div>
+    </div>
+
+    <p>LTV is 20 days from download  -  extended when matches don't respond, conversations don't convert to IRL meetings, or when IRL meetings don't click and users return. The app's own tagline  -  <em>designed to be deleted</em>  -  means good churn is the north star.</p>
+
+    <h4>User Segments by Activity</h4>
+    <div class="icp-grid">
+      <div class="icp-card">
+        <div class="icp-name">Power Users</div>
+        <div class="icp-pct">5+ times/week</div>
+        <div class="icp-desc">Multiple likes per session, chat, attend masterclass. Core monetisation target.</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-name">Core Users</div>
+        <div class="icp-pct">2–3 times/week</div>
+        <div class="icp-desc">Selective likes, chat. Upgrade candidates with the right nudges.</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-name">Casual Users</div>
+        <div class="icp-pct">Once/week</div>
+        <div class="icp-desc">Check likes received. Don't send likes. Engagement targets.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="contact" id="contact">
-  <div class="contact-inner">
-    <p class="section-label-center">Let's Talk</p>
-    <h2 class="section-title" style="text-align:center;">Contact</h2>
-    <p class="contact-intro">I love meeting curious minds - product thinkers, AI enthusiasts, and anyone who believes great strategy starts with great questions.</p>
-    <div class="contact-links">
-      <a href="https://linkedin.com/in/komalsikka" target="_blank" class="contact-link">&#8599; LinkedIn</a>
-      <a href="mailto:hello@komalunpacks.com" class="contact-link">&#9993; Email</a>
+<!-- 03 ACQUIRE -->
+<section class="cs-section" id="acquire">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 03</p>
+    <h2 class="section-title">Acquire: <span>Channel Strategy &amp; Campaigns</span></h2>
+
+    <h4>Paid Channel Mix</h4>
+    <div class="channel-list">
+      <div class="channel-item">
+        <span class="channel-name">Channel</span>
+        <span class="channel-budget">Budget %</span>
+      </div>
+      <div class="channel-item">
+        <span class="channel-name">Brand Ambassador (Ranveer Singh)</span>
+        <span class="channel-budget">35%</span>
+      </div>
+      <div class="channel-item">
+        <span class="channel-name">Brand Activation Offline (Hangout by Hinge)</span>
+        <span class="channel-budget">20%</span>
+      </div>
+      <div class="channel-item">
+        <span class="channel-name">ATL Ads (TV, Radio)</span>
+        <span class="channel-budget">20%</span>
+      </div>
+      <div class="channel-item">
+        <span class="channel-name">Instagram (Paid &amp; Influencer)</span>
+        <span class="channel-budget">15%</span>
+      </div>
+      <div class="channel-item">
+        <span class="channel-name">YouTube (unDatable series)</span>
+        <span class="channel-budget">10%</span>
+      </div>
     </div>
-    <p class="contact-note">I read every message. I may not respond instantly - but I respond with intention. &#10024;</p>
+
+    <h4>Campaign 1: Brand Ambassador  -  Ranveer Singh</h4>
+    <p>Ranveer Singh's profile on Hinge, visible to women of all ages. Women who match with him answer one question  -  "Why Hinge?"  -  reinforcing the marketing proposition <em>Designed to be deleted</em>. Top responses unlock a video call; 5 women win an in-person date.</p>
+    <p>Campaign hashtag: <strong>#JustHingingOut</strong>  -  simulating "just hanging out," extended through blogger outreach and user-generated content contests.</p>
+
+    <h4>Campaign 2: Hangout by Hinge (Intellectual Property)</h4>
+    <p>An experience station in Mumbai's BKC  -  drawing from the little flea concept. Users download Hinge to enter. Activities include profile-building competitions, gamified ice-breakers, a storyboard of Hinge success stories, and a café with ice-breaker cue cards.</p>
+
+    <h4>Campaign 3: unDatable with Rohit Saraf (YouTube Masterclass)</h4>
+    <p>100-episode YouTube masterclass series busting myths around modern dating. Serves dual purpose: acquisition channel and engagement feature. Available free for 7 days on new download, then as an in-app purchase.</p>
+
+    <h4>Referral Strategy</h4>
+    <div class="callout">
+      <p>Dating is still taboo in India. Social risk outweighs any financial referral incentive. Instead, referral is built as a product feature  -  not a standalone programme.</p>
+    </div>
+    <ul>
+      <li><strong>Ask for an opinion:</strong> User who matched with someone shares their profile via a secure webview (expires 24 hrs, screenshot disabled) to get a friend's take. Referral link embedded in webview.</li>
+      <li><strong>Recommend a profile:</strong> User who discovers a great profile can share it with a friend. Webview and referral code unlock after activation.</li>
+      <li>Both behaviours drive organic referrals without requiring users to explicitly "invite" friends to a dating app.</li>
+    </ul>
   </div>
-</div>
+</section>
+
+<!-- 04 ONBOARD -->
+<section class="cs-section" id="onboard">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 04</p>
+    <h2 class="section-title">Onboard: <span>Three Epics to Activation</span></h2>
+
+    <p>Hinge's onboarding is long by design  -  it's the filter that creates quality matches. The challenge: get users through it without frustration-driven dropout.</p>
+
+    <div class="feature-card">
+      <div class="feature-card-header">
+        <div class="feature-num">01</div>
+        <div>
+          <div class="feature-title">Onboarding Prework  -  ICP &amp; JTBD Mapping</div>
+          <div class="feature-subtitle">Define who we're building for before touching the product</div>
+        </div>
+      </div>
+      <p>Validated four ICP profiles (Amateurs, Serial Daters, Yours Truly Seriously, Dating with an Agenda) against user research. Key validated JTBD: meeting more compatible people, getting better at dating, feeling the feel-good factor, avoiding disappointment, and quality over quantity.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-card-header">
+        <div class="feature-num">02</div>
+        <div>
+          <div class="feature-title">Getting Ready  -  Onboarding Flow Improvements</div>
+          <div class="feature-subtitle">Reduce friction without reducing the depth that makes Hinge work</div>
+        </div>
+      </div>
+      <ul>
+        <li>Friendly copy acknowledging the pain of form-filling, with a progress tracker to set expectations</li>
+        <li>Helpful links at every field explaining why the info improves match quality</li>
+        <li>Optional fields made explicitly skippable</li>
+        <li>Mid-onboarding sneak peek: show profile previews based on info provided so far (Goal Gradient effect)</li>
+        <li>Profile preview showing how the profile looks with/without photos and prompts</li>
+        <li>Prompt filters  -  grouping 40+ prompts by category to reduce cognitive load</li>
+        <li>Notification scheduling at sign-up  -  let users set their own engagement window</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-card-header">
+        <div class="feature-num">03</div>
+        <div>
+          <div class="feature-title">Deploy  -  30 Free Likes on Activation</div>
+          <div class="feature-subtitle">Accelerate the journey to the first AHA moment</div>
+        </div>
+      </div>
+      <p>Every new user receives 30 bonus likes above the daily limit. This brings the first match forward, accelerating activation. On expiry, users are nudged to upgrade to Preferred membership.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 05 ENGAGE & RETAIN -->
+<section class="cs-section" id="engage">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 05</p>
+    <h2 class="section-title">Engage &amp; Retain: <span>Features &amp; Resurrection Campaigns</span></h2>
+
+    <p>Active User defined as: a user who performs at least one of three interactions (sending likes/roses, conversations, masterclass sessions) a minimum of 5 times per month.</p>
+
+    <h4>Engagement Features</h4>
+
+    <div class="feature-card">
+      <div class="feature-card-header">
+        <div class="feature-num">01</div>
+        <div>
+          <div class="feature-title">Hinge Bolts &#9889;  -  Personality Badges</div>
+          <div class="feature-subtitle">Gamify time on platform through earned identity markers</div>
+        </div>
+      </div>
+      <p>Badges earned through behaviour  -  "Pet Friendly" for dog photos, "Social Butterfly" for high interaction counts. Bolts can be displayed on profiles optionally, acting as social proof and conversation starters. Progress from "Shy Bunny" (≤10 interactions/month) to "Social Butterfly" (≥30 interactions/month).</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-card-header">
+        <div class="feature-num">02</div>
+        <div>
+          <div class="feature-title">Hinge PlayDate  -  Gamified Engagement Levels</div>
+          <div class="feature-subtitle">A levelled engagement loop with rewards tied to activity milestones</div>
+        </div>
+      </div>
+      <ul>
+        <li>Activate users → create gamified engagement loops → push for consistent behaviour</li>
+        <li>Engaged users graduate from active to monetising state through earned rewards</li>
+        <li>Social proofing and instant rewards sustain continued activity</li>
+        <li>Three levels: Level 1 (Core), Level 2 (Power), Level 3 (Power Elite)</li>
+      </ul>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-card-header">
+        <div class="feature-num">03</div>
+        <div>
+          <div class="feature-title">Hinge Video Nites  -  Monthly Speed Dating Events</div>
+          <div class="feature-subtitle">Available to Level 2 &amp; Level 3 PlayDate users</div>
+        </div>
+      </div>
+      <p>Monthly online event connecting users via anonymous 3-minute video calls. AI-determined connections use the same algorithm as profile suggestions. Users "Like" or "Meh" at the end of each call. Mutual likes create a Hinge match. Solves for expectation mismatch, fewer male matches, and unconverted virtual dates.</p>
+    </div>
+
+    <h4>Retention: Resurrection Campaigns</h4>
+    <div class="icp-grid">
+      <div class="icp-card">
+        <div class="icp-name">Core User</div>
+        <div class="icp-pct">After 1 month inactive</div>
+        <div class="icp-desc">"Tere bina zindagi bhi lekin zindagi toh nahin!"  -  Unlimited free likes for a week after two weeks of re-engagement.</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-name">Power L2</div>
+        <div class="icp-pct">2 weeks inactive</div>
+        <div class="icp-desc">"Jaata hai tu kahan?"  -  Invitation to upcoming Hinge Video Nite. Declared "Party Starter" for a month if they attend.</div>
+      </div>
+      <div class="icp-card">
+        <div class="icp-name">Power L3</div>
+        <div class="icp-pct">2 weeks inactive</div>
+        <div class="icp-desc">"O saathi re!"  -  Retain L3 rewards for one more month. Re-activate through PlayDate campaigns.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p>Key retention insight: Top churn reasons are voluntary (found a relationship, boredom, expectation mismatch) and involuntary (like limits, no matches). Campaigns are targeted at involuntary churn only  -  voluntary churn (found a relationship) is the product working as intended.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 MONETISE -->
+<section class="cs-section" id="monetise">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 06</p>
+    <h2 class="section-title">Monetise: <span>Revised Pricing &amp; Conversion Strategy</span></h2>
+
+    <p>Hinge's US pricing was not adapted for India. The current pricing (Rs 2,600/month) creates a high barrier to first conversion. Proposed revision:</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-plan">1 Week</div>
+        <div class="price-amount">&#8377;399</div>
+        <div class="price-period">Trial entry point</div>
+        <div class="price-note">New addition</div>
+      </div>
+      <div class="price-card" style="border-color: var(--plum); background: var(--plum-pale);">
+        <div class="price-plan">1 Month</div>
+        <div class="price-amount">&#8377;1,299</div>
+        <div class="price-period">Save 20%</div>
+        <div class="price-note">Recommended</div>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">3 Months</div>
+        <div class="price-amount">&#8377;3,399</div>
+        <div class="price-period">Save 30%</div>
+        <div class="price-note">Comparable to LinkedIn premium</div>
+      </div>
+    </div>
+
+    <h4>Conversion Segments</h4>
+    <ul>
+      <li><strong>New customers:</strong> Nudge after 5 likes sent. Offer unlimited likes + advanced preferences + see who liked you.</li>
+      <li><strong>Champions (serial daters, agenda daters):</strong> Nudge when daily like limit is hit. Unlimited likes is the primary draw.</li>
+      <li><strong>Resurrected users:</strong> 30% discount on first month on return. Convert on the emotional high of re-engagement.</li>
+    </ul>
+
+    <div class="insight-box">
+      <div class="insight-label">Pricing Rationale</div>
+      <div class="insight-text">Monthly pricing at Rs 1,299 is comparable to Leapclub (Rs 900/pm), LinkedIn (Rs 1,400/pm), and Shaadi.com (~Rs 1,700/pm). The 1-week plan at Rs 399 provides a low-risk entry point that the current pricing ladder completely lacks.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 EXPERIMENT -->
+<section class="cs-section" id="experiment">
+  <div class="cs-section-inner">
+    <p class="section-label">Step 07</p>
+    <h2 class="section-title">Experiment: <span>20 Hypotheses to Test</span></h2>
+
+    <p>A structured experiment log across acquisition, onboarding, engagement, and retention  -  each with hypothesis, metric, projected impact, and confidence level.</p>
+
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-hypothesis"><strong>Onboarding progress tracker + friendly copy</strong>  -  Setting expectations upfront reduces frustration-driven dropout. Target: +15% completion rate.</div>
+        <span class="exp-theme">Onboarding · High</span>
+      </div>
+      <div class="exp-item">
+        <div class="exp-hypothesis"><strong>Mid-onboarding profile preview</strong>  -  Showing users what their profile looks like with/without photos re-energises them for the remaining steps. Goal Gradient effect.</div>
+        <span class="exp-theme">Onboarding · High</span>
+      </div>
+      <div class="exp-item">
+        <div class="exp-hypothesis"><strong>Explicit optional field skips</strong>  -  Making optional fields clearly skippable reduces perceived burden. Target: -15% average TAT, +5% completion.</div>
+        <span class="exp-theme">Onboarding · High</span>
+      </div>
+      <div class="exp-item">
+        <div class="exp-hypothesis"><strong>Prompt filters (40+ prompts grouped by category)</strong>  -  Reduces cognitive load. Potential for micro AHA moment in profile creation.</div>
+        <span class="exp-theme">Onboarding · High</span>
+      </div>
+      <div class="exp-item">
+        <div class="exp-hypothesis"><strong>Notification scheduling at sign-up</strong>  -  Users set their own engagement window. Prevents notification fatigue and voluntary churn. Long-term retention improvement.</div>
+        <span class="exp-theme">Retention · High</span>
+      </div>
+      <div class="exp-item">
+        <div class="exp-hypothesis"><strong>Myers-Briggs personality type as badge</strong>  -  Adds personality depth before matching. Expected improvement in likes and matches.</div>
+        <span class="exp-theme">Engagement · High</span>
+      </div>
+      <div class="exp-item">
+        <div class="exp-hypothesis"><strong>Social media handle unlock feature</strong>  -  Common off-app behaviour brought in-app. Gives users another reason to return. Impact: Good Churn.</div>
+        <span class="exp-theme">Engagement · High</span>
+      </div>
+      <div class="exp-item">
+        <div class="exp-hypothesis"><strong>Location + caption fields made prominent in photo upload</strong>  -  Currently 80%+ of users miss these. Adds expression and richness to profiles.</div>
+        <span class="exp-theme">Engagement · High</span>
+      </div>
+      <div class="exp-item">
+        <div class="exp-hypothesis"><strong>Starbucks tie-up for Hinge Lounge (monthly offline hangouts)</strong>  -  Promote Core users to Power users through real-world community touchpoints.</div>
+        <span class="exp-theme">Retention · Medium</span>
+      </div>
+      <div class="exp-item">
+        <div class="exp-hypothesis"><strong>Pepsi partnership  -  Hinge Preferred Membership inside Pepsi cans</strong>  -  Unconventional acquisition play. Medium confidence given limited targeting precision.</div>
+        <span class="exp-theme">Acquisition · Medium</span>
+      </div>
+    </div>
+
+    <p style="margin-top:1rem;">Plus 10 additional onboarding experiments covering progressive disclosure, form layout, helpful field-level links, reward previews, and profile preview templates.</p>
+  </div>
+</section>
 
 <footer>
   <p>&#169; 2026 Komal Sikka &middot; <a href="https://komalunpacks.com">komalunpacks.com</a></p>
@@ -214,30 +575,20 @@ footer a { color: var(--plum-light); text-decoration: none; }
 </footer>
 
 <script>
-fetch("teardowns.json")
-  .then(function(res) { return res.json(); })
-  .then(function(data) {
-    var grid = document.getElementById("teardown-grid");
-    grid.innerHTML = "";
-    data.forEach(function(item) {
-      var isLive = item.status === "live";
-      var card = document.createElement(isLive ? "a" : "div");
-      if (isLive && item.link) card.href = item.link;
-      card.className = "teardown-card";
-      if (!isLive) card.style.cssText = "opacity: 0.45; cursor: default;";
-      card.innerHTML =
-        "<p class=\"card-day\">Day " + item.day + (item.date ? " · " + item.date : "") + "</p>" +
-        "<h3 class=\"card-tool\">" + item.tool + "</h3>" +
-        "<p class=\"card-category\">" + item.category + "</p>" +
-        "<p class=\"card-takeaway\">" + item.takeaway + "</p>" +
-        (isLive ? "<p class=\"card-arrow\">Read Teardown &#8594;</p>" : "");
-      grid.appendChild(card);
-    });
-  })
-  .catch(function() {
-    document.getElementById("teardown-grid").innerHTML =
-      "<p style=\"color: var(--text-muted); font-style: italic;\">Teardowns coming soon...</p>";
+// Active step highlighting in journey nav
+const steps = document.querySelectorAll('.journey-step');
+const sections = document.querySelectorAll('.cs-section');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      steps.forEach(s => s.classList.remove('active'));
+      const active = document.querySelector('.journey-step[href="#' + id + '"]');
+      if (active) active.classList.add('active');
+    }
   });
+}, { threshold: 0.3 });
+sections.forEach(s => observer.observe(s));
 </script>
 
 </body>
