@@ -12,14 +12,14 @@
     "hero_color": "#5C3A6E"
   },
   "intro": {
-    "summary": "Pi (Personal Intelligence) steps into a very in-demand territory of emotional intelligence in AI tools. Betting on the core idea that users want to talk to an AI, not just query it, it was designed to feel like a friend, not a tool. Its defining characteristics are warmth, patience, and empathetic listening. The primary problem Pi solves is the human need for a non-judgmental, always-available entity to bounce off ideas, practice conversations, or talk things through. Founded in 2022 by Inflection AI, it was later acqui-hired by Microsoft for Copilot integration — to build the \"Emotional AI at enterprise scale\" category.",
+    "summary": "Pi (Personal Intelligence) steps into a very in-demand territory of emotional intelligence in AI tools. Betting on the core idea that users want to talk to an AI, not just query it, it was designed to feel like a friend, not a tool. Its defining characteristics are warmth, patience, and empathetic listening. The primary problem Pi solves is the human need for a non-judgmental, always-available entity to bounce off ideas, practice conversations, or talk things through. Founded in 2022 by Inflection AI, it was later acqui-hired by Microsoft for Copilot integration - to build the \"Emotional AI at enterprise scale\" category.",
     "note": null
   },
   "personas": [
     {
       "icon": "🧑",
       "title": "Individual Consumers",
-      "description": "Seek emotional support, reflection, and a learning companion — someone to think out loud with, without judgment.",
+      "description": "Seek emotional support, reflection, and a learning companion - someone to think out loud with, without judgment.",
       "segment": "primary"
     },
     {
@@ -37,7 +37,7 @@
     {
       "icon": "🎓",
       "title": "Parents and Educators",
-      "description": "Cautious audience with genuine friction — the 18+ age gate and lack of citations create barriers for educational use.",
+      "description": "Cautious audience with genuine friction - the 18+ age gate and lack of citations create barriers for educational use.",
       "segment": "secondary"
     }
   ],
@@ -45,30 +45,30 @@
     "Process and vent a difficult emotion without burdening someone",
     "Rehearse for a hard conversation before it happens",
     "Think through a decision with a patient, structured sounding board",
-    "Learn new concepts conversationally — like explaining it to a friend",
+    "Learn new concepts conversationally - like explaining it to a friend",
     "Find intellectually stimulating company when none is available",
     "Seek validation and encouragement during tough times",
     "Experience genuine companionship, especially in isolation"
   ],
   "what_works": [
     {
-      "title": "Emotional Warmth and Empathy — Top-Rated",
+      "title": "Emotional Warmth and Empathy - Top-Rated",
       "points": [
         "Consistently the highest-rated AI tool for emotional intelligence across App Store, Play Store, and independent reviews.",
-        "Built with psychologists, therapists, novelists, and even comedians — Pi's personality was engineered, not assumed."
+        "Built with psychologists, therapists, novelists, and even comedians - Pi's personality was engineered, not assumed."
       ]
     },
     {
       "title": "Daily Check-Ins Initiated by Pi",
       "points": [
         "Pi proactively re-engages users without waiting for them to resume a conversation.",
-        "Critical feature for an emotional support tool — real friends reach out first."
+        "Critical feature for an emotional support tool - real friends reach out first."
       ]
     },
     {
-      "title": "Two-Way Voice Mode — Truly Best in Class",
+      "title": "Two-Way Voice Mode - Truly Best in Class",
       "points": [
-        "Bi-directional voice available across iOS, Android, and web — rare consistency in the market.",
+        "Bi-directional voice available across iOS, Android, and web - rare consistency in the market.",
         "Users can choose their preferred voice style for Pi's responses, making interactions feel like a real conversation with a friend.",
         "For a product built around emotional connection, voice is not a feature. It is the product."
       ]
@@ -76,21 +76,21 @@
     {
       "title": "Clean, Low-Friction Onboarding",
       "points": [
-        "Minimal setup required to start a meaningful conversation — no configuration, no prompting tutorial needed."
+        "Minimal setup required to start a meaningful conversation - no configuration, no prompting tutorial needed."
       ]
     },
     {
       "title": "Privacy Positioning That Resonates",
       "points": [
-        "Pi does not train on user conversations without explicit consent — a meaningful differentiator in an emotionally sensitive use case.",
+        "Pi does not train on user conversations without explicit consent - a meaningful differentiator in an emotionally sensitive use case.",
         "Users share deeply personal thoughts with Pi. The privacy promise is not a checkbox; it is the foundation of trust."
       ]
     }
   ],
   "what_doesnt_work": [
     {
-      "title": "No Persistent Memory — Pi Forgets You",
-      "description": "Pi does not retain memory across sessions, making it forget previous conversations entirely. Memory loss breaks user trust at the product's most important moment — during emotional conversations. When a user has confided in Pi about a difficult situation and returns the next day, Pi has no idea they were ever there. That is not just a technical gap; it is a trust collapse."
+      "title": "No Persistent Memory - Pi Forgets You",
+      "description": "Pi does not retain memory across sessions, making it forget previous conversations entirely. Memory loss breaks user trust at the product's most important moment - during emotional conversations. When a user has confided in Pi about a difficult situation and returns the next day, Pi has no idea they were ever there. That is not just a technical gap; it is a trust collapse."
     },
     {
       "title": "No Citations or Source Transparency",
@@ -98,28 +98,28 @@
     },
     {
       "title": "Zero Monetization Strategy",
-      "description": "Pi is entirely free, even as loyal users explicitly signal willingness to pay for features like persistent memory. There is no paid tier, no upgrade path, and no clear revenue model for the consumer product. That is not a sustainable position — and users who are attached to Pi are anxious about what it means for the product's future."
+      "description": "Pi is entirely free, even as loyal users explicitly signal willingness to pay for features like persistent memory. There is no paid tier, no upgrade path, and no clear revenue model for the consumer product. That is not a sustainable position - and users who are attached to Pi are anxious about what it means for the product's future."
     },
     {
       "title": "No File or Image Integration",
-      "description": "Pi's strict focus on conversation means no document uploads, no image support, and no integrations. This limits utility the moment a user wants to share context — a job description, a difficult email, a project brief — and get Pi's perspective on it."
+      "description": "Pi's strict focus on conversation means no document uploads, no image support, and no integrations. This limits utility the moment a user wants to share context - a job description, a difficult email, a project brief - and get Pi's perspective on it."
     }
   ],
   "opportunities": [
     {
       "number": "01",
       "title": "Persistent Memory as the First Paid Tier",
-      "description": "Memory is Pi's single biggest product failure — and its clearest monetization unlock. Introduce a paid tier built around a persistent memory layer. Let users build a shared history with Pi over time: past conversations, recurring struggles, growth over months. Loyal users will pay for continuity. This is not a feature request — users are already asking for it, and the willingness to pay is validated. The product already has the emotional hook. It just needs the memory to match."
+      "description": "Memory is Pi's single biggest product failure - and its clearest monetization unlock. Introduce a paid tier built around a persistent memory layer. Let users build a shared history with Pi over time: past conversations, recurring struggles, growth over months. Loyal users will pay for continuity. This is not a feature request - users are already asking for it, and the willingness to pay is validated. The product already has the emotional hook. It just needs the memory to match."
     },
     {
       "number": "02",
       "title": "Citation Indicators on Every Response",
-      "description": "Add a subtle icon alongside every response indicating whether it is directly sourced or interpretively generated. Users do not need a full citation interface — they need a signal. A small indicator they can tap to expand if needed. This is especially critical for mental health and wellness conversations, where users may treat Pi's responses as guidance. Give them the agency to verify when it matters."
+      "description": "Add a subtle icon alongside every response indicating whether it is directly sourced or interpretively generated. Users do not need a full citation interface - they need a signal. A small indicator they can tap to expand if needed. This is especially critical for mental health and wellness conversations, where users may treat Pi's responses as guidance. Give them the agency to verify when it matters."
     },
     {
       "number": "03",
       "title": "Make Voice the Headline, Not a Hidden Feature",
-      "description": "Pi's two-way voice mode is one of the most underrated features in the AI companion space. For a product built around emotional support and empathetic conversation, voice is the natural modality — and Pi does it better than most. Yet it is buried. Make it the hero of the product: lead with it in marketing, surface it in onboarding, and build the use case narrative around it. No other free AI tool delivers this quality of voice across web and mobile simultaneously."
+      "description": "Pi's two-way voice mode is one of the most underrated features in the AI companion space. For a product built around emotional support and empathetic conversation, voice is the natural modality - and Pi does it better than most. Yet it is buried. Make it the hero of the product: lead with it in marketing, surface it in onboarding, and build the use case narrative around it. No other free AI tool delivers this quality of voice across web and mobile simultaneously."
     }
   ],
   "metrics": [
@@ -132,11 +132,11 @@
         },
         {
           "name": "Session Depth",
-          "description": "Average number of exchanges per conversation. Pi's value lives in sustained dialogue — if sessions average 2-3 turns, users are not buying the companion promise. If they are 15+, they are. Track this segmented by use case: emotional support sessions should run significantly deeper than casual queries."
+          "description": "Average number of exchanges per conversation. Pi's value lives in sustained dialogue - if sessions average 2-3 turns, users are not buying the companion promise. If they are 15+, they are. Track this segmented by use case: emotional support sessions should run significantly deeper than casual queries."
         },
         {
           "name": "Check-In Response Rate",
-          "description": "Percentage of Pi-initiated daily check-ins that result in a resumed conversation. This measures whether proactive re-engagement is working — and how much of retention is driven by Pi itself vs. user initiative."
+          "description": "Percentage of Pi-initiated daily check-ins that result in a resumed conversation. This measures whether proactive re-engagement is working - and how much of retention is driven by Pi itself vs. user initiative."
         }
       ]
     },
@@ -144,8 +144,8 @@
       "category": "Trust and Retention",
       "items": [
         {
-          "name": "NPS — Segmented by User Type",
-          "description": "Net Promoter Score tracked monthly, broken down by emotional support users vs. casual users. These two groups will score very differently — and that split tells you exactly where the product is working and where it is not."
+          "name": "NPS - Segmented by User Type",
+          "description": "Net Promoter Score tracked monthly, broken down by emotional support users vs. casual users. These two groups will score very differently - and that split tells you exactly where the product is working and where it is not."
         },
         {
           "name": "Memory-Related Churn Signal",
@@ -158,15 +158,15 @@
       "items": [
         {
           "name": "Conversion Rate to Paid Memory Tier",
-          "description": "Once the paid tier is live, track conversion rate from free users — specifically among users with 30+ day tenure. These are the users who have experienced the memory gap and are most likely to pay to solve it."
+          "description": "Once the paid tier is live, track conversion rate from free users - specifically among users with 30+ day tenure. These are the users who have experienced the memory gap and are most likely to pay to solve it."
         },
         {
           "name": "Willingness-to-Pay Signal",
-          "description": "Before the tier launches: run a paywall experiment or in-app survey targeting high-engagement users. Measure stated and revealed willingness to pay for persistent memory. This validates the core hypothesis — right product, wrong business model."
+          "description": "Before the tier launches: run a paywall experiment or in-app survey targeting high-engagement users. Measure stated and revealed willingness to pay for persistent memory. This validates the core hypothesis - right product, wrong business model."
         },
         {
           "name": "Revenue Mix (Consumer vs. Enterprise)",
-          "description": "As Inflection pivots to enterprise via Microsoft Azure, track the split between consumer and enterprise revenue. This tells you whether the enterprise pivot is complementing the consumer base — or quietly replacing it."
+          "description": "As Inflection pivots to enterprise via Microsoft Azure, track the split between consumer and enterprise revenue. This tells you whether the enterprise pivot is complementing the consumer base - or quietly replacing it."
         }
       ]
     }
@@ -179,5 +179,5 @@
     "label": "Day 06: Pinecone",
     "link": "/teardowns/pinecone.html"
   },
-  "pm_take": "Pi built something genuinely rare: an AI that people form real emotional attachment to. Users name their Pi. They return daily. They trust it with things they would not tell a friend. That is not a small product achievement — that is product-market fit at its most human. But Pi made a fundamental error: it optimized for emotional depth and then forgot the conversation the next day. For a product whose entire value is continuity and trust, session-level memory is not a technical limitation — it is a product contradiction. The fix is obvious and the monetization path is clear: a paid persistent memory tier that loyal users will lap up. The voice mode is a headline feature that nobody is talking about. And the enterprise pivot tells you where the real market is. Pi validated the JTBD. Now it needs a business model to match the belief its users have already placed in it."
+  "pm_take": "Pi built something genuinely rare: an AI that people form real emotional attachment to. Users name their Pi. They return daily. They trust it with things they would not tell a friend. That is not a small product achievement - that is product-market fit at its most human. But Pi made a fundamental error: it optimized for emotional depth and then forgot the conversation the next day. For a product whose entire value is continuity and trust, session-level memory is not a technical limitation - it is a product contradiction. The fix is obvious and the monetization path is clear: a paid persistent memory tier that loyal users will lap up. The voice mode is a headline feature that nobody is talking about. And the enterprise pivot tells you where the real market is. Pi validated the JTBD. Now it needs a business model to match the belief its users have already placed in it."
 }
