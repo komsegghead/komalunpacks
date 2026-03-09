@@ -1,319 +1,682 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Day 03 - Google Gemini | Komal Unpacks</title>
-    <!-- Open Graph / LinkedIn preview -->
-    <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://komalunpacks.com/teardowns/gemini.html" />
-    <meta property="og:title" content="Day 03 - Google Gemini | Komal Unpacks" />
-    <meta property="og:description" content="A full PM teardown of Google Gemini. Distribution is the moat. But distribution alone doesn't keep users." />
-    <meta property="og:site_name" content="Komal Unpacks" />
-    <meta name="description" content="A full PM teardown of Google Gemini. Distribution is the moat. But distribution alone doesn't keep users." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <style>
-      /* ── TOKENS ── */
-      :root {
-        --white: #FDFAF6;
-        --plum: #6B2D5E;
-        --plum-light: #8B3D7E;
-        --plum-pale: #F5EDF3;
-        --burgundy: #7D2235;
-        --sunshine: #FDF6D8;
-        --sunshine-border: #F5E9A0;
-        --ink: #1C1C1E;
-        --ink-soft: #3D3535;
-        --muted: #8A7F7F;
-        --border: #E8DFD8;
-        --font-display: 'Cormorant Garamond', Georgia, serif;
-        --font-body: 'DM Sans', system-ui, sans-serif;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 03 — Google Gemini | Komal Unpacks</title>
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://komalunpacks.com/teardowns/gemini.html" />
+  <meta property="og:title" content="Day 03 - Google Gemini | Komal Unpacks" />
+  <meta property="og:description" content="A full PM teardown of Google Gemini. Distribution is the moat. But distribution alone doesn't keep users." />
+  <meta property="og:site_name" content="Komal Unpacks" />
+  <meta name="description" content="A full PM teardown of Google Gemini. Distribution is the moat. But distribution alone doesn't keep users." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --white: #FDFAF6;
+      --plum: #6B2D5E;
+      --plum-light: #8B3D7E;
+      --plum-pale: #F5EDF3;
+      --burgundy: #7D2235;
+      --sunshine: #FDF6D8;
+      --sunshine-border: #F5E9A0;
+      --ink: #1C1C1E;
+      --ink-soft: #3D3535;
+      --muted: #8A7F7F;
+      --border: #E8DFD8;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--white); color: var(--ink); line-height: 1.7; font-size: 16px; }
+
+    /* ── NAV ── */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(253,250,246,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 40px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--plum); text-decoration: none; letter-spacing: 0.02em; }
+    .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--plum); }
+    .nav-back svg { width: 14px; height: 14px; }
+
+    /* ── HERO ── */
+    .hero { background: var(--plum); color: white; padding: 72px 40px 56px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 360px; height: 360px; background: rgba(255,255,255,0.04); border-radius: 50%; }
+    .hero::after { content: ''; position: absolute; bottom: -80px; left: 20%; width: 240px; height: 240px; background: rgba(255,255,255,0.03); border-radius: 50%; }
+    .hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .hero-eyebrow span { display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(40px, 6vw, 64px); font-weight: 300; line-height: 1.1; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .hero h1 em { font-style: italic; font-weight: 400; }
+    .hero-subtitle { font-family: var(--font-display); font-size: clamp(18px, 2.5vw, 24px); font-weight: 300; font-style: italic; color: rgba(255,255,255,0.75); margin-bottom: 32px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 20px; font-size: 12px; color: rgba(255,255,255,0.55); letter-spacing: 0.5px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); }
+    .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── LAYOUT ── */
+    .page-body { max-width: 760px; margin: 0 auto; padding: 0 40px 80px; }
+
+    /* ── SECTION LABELS ── */
+    .section-label { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--burgundy); margin-bottom: 20px; margin-top: 56px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+
+    /* ── INTRO / PURPOSE ── */
+    .intro-text { font-family: var(--font-display); font-size: clamp(18px, 2.2vw, 22px); font-weight: 400; line-height: 1.7; color: var(--ink-soft); margin-bottom: 16px; }
+    .intro-note { font-size: 14px; color: var(--muted); font-style: italic; padding: 16px 20px; background: var(--sunshine); border-left: 3px solid var(--sunshine-border); border-radius: 0 6px 6px 0; }
+
+    /* ── PERSONAS ── */
+    .personas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+    .persona-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 20px 20px 18px; transition: box-shadow 0.2s, transform 0.2s; }
+    .persona-card:hover { box-shadow: 0 4px 20px rgba(107,45,94,0.1); transform: translateY(-2px); }
+    .persona-icon { font-size: 28px; margin-bottom: 10px; }
+    .persona-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--plum); margin-bottom: 8px; }
+    .persona-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.65; }
+
+    /* ── JTBD ── */
+    .jtbd-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .jtbd-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--ink-soft); }
+    .jtbd-list li::before { content: '→'; color: var(--plum); font-weight: 600; flex-shrink: 0; margin-top: 1px; }
+
+    /* ── WHAT WORKS ── */
+    .works-item { border-left: 3px solid var(--plum); padding: 0 0 0 20px; margin-bottom: 32px; }
+    .works-item:last-child { margin-bottom: 0; }
+    .works-title { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
+    .works-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .works-points li { font-size: 14px; color: var(--ink-soft); line-height: 1.7; padding-left: 16px; position: relative; }
+    .works-points li::before { content: '·'; position: absolute; left: 4px; color: var(--plum); font-size: 18px; line-height: 1.4; }
+    .works-points li.italic-point { font-style: italic; color: var(--plum); font-family: var(--font-display); font-size: 15px; }
+
+    /* ── PAIN POINTS ── */
+    .pain-item { background: white; border: 1px solid var(--border); border-top: 3px solid var(--burgundy); border-radius: 0 0 10px 10px; padding: 20px 22px; margin-bottom: 16px; }
+    .pain-title { font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--burgundy); margin-bottom: 10px; }
+    .pain-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
+
+    /* ── STAKEHOLDER GRID ── */
+    .stakeholder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
+    .stakeholder-card { background: white; border: 1px solid var(--border); border-top: 3px solid var(--burgundy); border-radius: 0 0 10px 10px; padding: 20px; }
+    .stakeholder-icon { font-size: 28px; margin-bottom: 8px; }
+    .stakeholder-card h3 { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--burgundy); margin-bottom: 12px; }
+    .stakeholder-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .stakeholder-card ul li { font-size: 13px; color: var(--ink-soft); line-height: 1.65; padding-left: 14px; position: relative; }
+    .stakeholder-card ul li::before { content: '·'; position: absolute; left: 2px; color: var(--burgundy); font-size: 18px; line-height: 1.3; }
+
+    /* ── QUESTIONS LIST ── */
+    .questions-list { list-style: none; display: flex; flex-direction: column; gap: 12px; counter-reset: q-counter; }
+    .questions-list li { counter-increment: q-counter; display: flex; gap: 14px; font-size: 14px; color: var(--ink-soft); line-height: 1.7; }
+    .questions-list li::before { content: counter(q-counter, decimal-leading-zero); font-family: var(--font-display); font-size: 16px; color: var(--plum); opacity: 0.5; flex-shrink: 0; min-width: 24px; margin-top: 1px; }
+
+    /* ── OPPORTUNITIES ── */
+    .opp-item { display: flex; gap: 20px; align-items: flex-start; background: var(--sunshine); border: 1px solid var(--sunshine-border); border-radius: 10px; padding: 20px 22px; margin-bottom: 14px; }
+    .opp-num { font-family: var(--font-display); font-size: 28px; font-weight: 300; font-style: italic; color: var(--plum); opacity: 0.5; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+    .opp-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .opp-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
+
+    /* ── METRICS GRID (ChatGPT schema) ── */
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
+    .metric-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+    .metric-card h3 { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--plum); margin-bottom: 12px; }
+    .metric-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .metric-card ul li { font-size: 13px; color: var(--ink-soft); line-height: 1.65; padding-left: 14px; position: relative; }
+    .metric-card ul li::before { content: '·'; position: absolute; left: 2px; color: var(--plum); font-size: 18px; line-height: 1.3; }
+
+    /* ── ROLLOUT ── */
+    .rollout-list { display: flex; flex-direction: column; gap: 14px; }
+    .rollout-item { display: flex; gap: 20px; align-items: flex-start; background: var(--sunshine); border: 1px solid var(--sunshine-border); border-radius: 10px; padding: 20px 22px; }
+    .rollout-phase { font-family: var(--font-display); font-size: 28px; font-weight: 300; font-style: italic; color: var(--plum); opacity: 0.5; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+    .rollout-content h3 { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
+    .rollout-content p { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
+
+    /* ── SCORECARD ── */
+    .rating-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+    .rating-table tr { border-bottom: 1px solid var(--border); }
+    .rating-table tr:last-child { border-bottom: none; }
+    .rating-table td { padding: 12px 4px; font-size: 14px; color: var(--ink-soft); }
+    .rating-table td:first-child { font-weight: 500; }
+    .rating-table td:last-child { text-align: right; letter-spacing: 2px; }
+
+    /* ── METRICS (Claude / Pi schema: category rows) ── */
+    .metrics-category { margin-bottom: 32px; }
+    .metrics-category:last-child { margin-bottom: 0; }
+    .metrics-category-title { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); opacity: 0.7; margin-bottom: 14px; }
+    .metric-row { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 10px; background: white; transition: box-shadow 0.2s; }
+    .metric-row:hover { box-shadow: 0 3px 16px rgba(107,45,94,0.09); }
+    .metric-name { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--plum); background: var(--plum-pale); padding: 16px 20px; min-width: 220px; max-width: 220px; display: flex; align-items: center; border-right: 1px solid var(--border); line-height: 1.4; }
+    .metric-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.75; padding: 16px 20px; display: flex; align-items: center; }
+
+    /* ── PM TAKE ── */
+    .pm-take { background: var(--plum); color: white; border-radius: 12px; padding: 32px 36px; margin-top: 56px; }
+    .pm-take-label { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
+    .pm-take-text { font-family: var(--font-display); font-size: clamp(17px, 2vw, 20px); font-weight: 400; line-height: 1.75; color: rgba(255,255,255,0.92); }
+
+    /* ── TEARDOWN NAV ── */
+    .teardown-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border); }
+    .teardown-nav a { font-size: 14px; color: var(--plum); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 6px; transition: opacity 0.2s; }
+    .teardown-nav a:hover { opacity: 0.7; }
+
+    /* ── LOADING ── */
+    .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 16px; color: var(--muted); }
+    .loading-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--plum); opacity: 0.4; display: inline-block; margin: 0 3px; animation: pulse 1.2s ease-in-out infinite; }
+    .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes pulse { 0%,80%,100%{opacity:0.2;transform:scale(0.8)} 40%{opacity:1;transform:scale(1)} }
+
+    /* ── FOOTER ── */
+    footer { text-align: center; padding: 32px 40px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
+    footer a { color: var(--plum); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── TABLET (768px) ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 52px 20px 40px; }
+      .page-body { padding: 0 20px 60px; }
+      .personas-grid,
+      .stakeholder-grid,
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .metric-row { flex-direction: column; }
+      .metric-name { min-width: unset; max-width: unset; border-right: none; border-bottom: 1px solid var(--border); }
+      .pm-take { padding: 24px 22px; }
+    }
+
+    /* ── MOBILE (600px) ── */
+    @media (max-width: 600px) {
+      nav {
+        padding: 0 16px;
+        height: 50px;
       }
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; }
-      body { font-family: var(--font-body); background: var(--white); color: var(--ink); line-height: 1.7; font-size: 16px; }
-
-      /* ── NAV ── */
-      nav { position: sticky; top: 0; z-index: 100; background: rgba(253,250,246,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 40px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
-      .nav-logo { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--plum); text-decoration: none; letter-spacing: 0.02em; }
-      .nav-back { font-size: 13px; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
-      .nav-back:hover { color: var(--plum); }
-      .nav-back svg { width: 14px; height: 14px; }
-
-      /* ── HERO ── */
-      .hero { background: var(--plum); color: white; padding: 72px 40px 56px; position: relative; overflow: hidden; }
-      .hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 360px; height: 360px; background: rgba(255,255,255,0.04); border-radius: 50%; }
-      .hero::after { content: ''; position: absolute; bottom: -80px; left: 20%; width: 240px; height: 240px; background: rgba(255,255,255,0.03); border-radius: 50%; }
-      .hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
-      .hero-eyebrow { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
-      .hero-eyebrow span { display: inline-block; background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; }
-      .hero h1 { font-family: var(--font-display); font-size: clamp(40px,6vw,64px); font-weight: 300; line-height: 1.1; margin-bottom: 8px; letter-spacing: -0.01em; }
-      .hero h1 em { font-style: italic; font-weight: 400; }
-      .hero-subtitle { font-family: var(--font-display); font-size: clamp(18px,2.5vw,24px); font-weight: 300; font-style: italic; color: rgba(255,255,255,0.75); margin-bottom: 32px; }
-      .hero-meta { display: flex; flex-wrap: wrap; gap: 20px; font-size: 12px; color: rgba(255,255,255,0.55); letter-spacing: 0.5px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15); }
-      .hero-meta span { display: flex; align-items: center; gap: 6px; }
-
-      /* ── LAYOUT ── */
-      .page-body { max-width: 760px; margin: 0 auto; padding: 0 40px 80px; }
-
-      /* ── SECTION LABELS ── */
-      .section-label { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--burgundy); margin-bottom: 20px; margin-top: 56px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
-
-      /* ── INTRO ── */
-      .intro-text { font-family: var(--font-display); font-size: clamp(18px,2.2vw,22px); font-weight: 400; line-height: 1.7; color: var(--ink-soft); margin-bottom: 16px; }
-      .intro-note { font-size: 14px; color: var(--muted); font-style: italic; padding: 16px 20px; background: var(--sunshine); border-left: 3px solid var(--sunshine-border); border-radius: 0 6px 6px 0; }
-
-      /* ── PERSONAS ── */
-      .personas-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-      .persona-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 20px 20px 18px; transition: box-shadow 0.2s, transform 0.2s; }
-      .persona-card:hover { box-shadow: 0 4px 20px rgba(107,45,94,0.1); transform: translateY(-2px); }
-      .persona-icon { font-size: 28px; margin-bottom: 10px; }
-      .persona-title { font-family: var(--font-display); font-size: 17px; font-weight: 600; color: var(--plum); margin-bottom: 8px; }
-      .persona-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.65; }
-
-      /* ── JTBD ── */
-      .jtbd-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-      .jtbd-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--ink-soft); }
-      .jtbd-list li::before { content: '→'; color: var(--plum); font-weight: 600; flex-shrink: 0; margin-top: 1px; }
-
-      /* ── WHAT WORKS ── */
-      .works-item { border-left: 3px solid var(--plum); padding: 0 0 0 20px; margin-bottom: 32px; }
-      .works-item:last-child { margin-bottom: 0; }
-      .works-title { font-family: var(--font-display); font-size: 20px; font-weight: 600; color: var(--ink); margin-bottom: 12px; }
-      .works-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-      .works-points li { font-size: 14px; color: var(--ink-soft); line-height: 1.7; padding-left: 16px; position: relative; }
-      .works-points li::before { content: '·'; position: absolute; left: 4px; color: var(--plum); font-size: 18px; line-height: 1.4; }
-      .works-points li.italic-point { font-style: italic; color: var(--plum); font-family: var(--font-display); font-size: 15px; }
-
-      /* ── PAIN POINTS ── */
-      .pain-item { background: white; border: 1px solid var(--border); border-top: 3px solid var(--burgundy); border-radius: 0 0 10px 10px; padding: 20px 22px; margin-bottom: 16px; }
-      .pain-title { font-family: var(--font-display); font-size: 19px; font-weight: 600; color: var(--burgundy); margin-bottom: 10px; }
-      .pain-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
-
-      /* ── OPPORTUNITIES ── */
-      .opp-item { display: flex; gap: 20px; align-items: flex-start; background: var(--sunshine); border: 1px solid var(--sunshine-border); border-radius: 10px; padding: 20px 22px; margin-bottom: 14px; }
-      .opp-num { font-family: var(--font-display); font-size: 28px; font-weight: 300; font-style: italic; color: var(--plum); opacity: 0.5; flex-shrink: 0; line-height: 1; margin-top: 2px; }
-      .opp-title { font-family: var(--font-display); font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 8px; }
-      .opp-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.75; }
-
-      /* ── METRICS ── */
-      .metrics-category { margin-bottom: 32px; }
-      .metrics-category:last-child { margin-bottom: 0; }
-      .metrics-category-title { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--plum); opacity: 0.7; margin-bottom: 14px; }
-      .metric-row { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 10px; background: white; transition: box-shadow 0.2s; }
-      .metric-row:hover { box-shadow: 0 3px 16px rgba(107,45,94,0.09); }
-      .metric-name { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--plum); background: var(--plum-pale); padding: 16px 20px; min-width: 220px; max-width: 220px; display: flex; align-items: center; border-right: 1px solid var(--border); line-height: 1.4; }
-      .metric-desc { font-size: 13.5px; color: var(--ink-soft); line-height: 1.75; padding: 16px 20px; display: flex; align-items: center; }
-
-      /* ── PM TAKE ── */
-      .pm-take { background: var(--plum); color: white; border-radius: 12px; padding: 32px 36px; margin-top: 56px; }
-      .pm-take-label { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 16px; }
-      .pm-take-text { font-family: var(--font-display); font-size: clamp(17px,2vw,20px); font-weight: 400; line-height: 1.75; color: rgba(255,255,255,0.92); }
-
-      /* ── TEARDOWN NAV ── */
-      .teardown-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--border); }
-      .teardown-nav a { font-size: 14px; color: var(--plum); text-decoration: none; font-weight: 500; display: flex; align-items: center; gap: 6px; transition: opacity 0.2s; }
-      .teardown-nav a:hover { opacity: 0.7; }
-
-      /* ── LOADING ── */
-      .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 16px; color: var(--muted); }
-      .loading-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--plum); opacity: 0.4; display: inline-block; margin: 0 3px; animation: pulse 1.2s ease-in-out infinite; }
-      .loading-dot:nth-child(2) { animation-delay: 0.2s; }
-      .loading-dot:nth-child(3) { animation-delay: 0.4s; }
-      @keyframes pulse { 0%,80%,100%{opacity:0.2;transform:scale(0.8)} 40%{opacity:1;transform:scale(1)} }
-
-      /* ── FOOTER ── */
-      footer { text-align: center; padding: 32px 40px; border-top: 1px solid var(--border); font-size: 13px; color: var(--muted); }
-      footer a { color: var(--plum); text-decoration: none; }
-      footer a:hover { text-decoration: underline; }
-
-      /* ── RESPONSIVE ── */
-      @media (max-width: 600px) {
-        nav { padding: 0 20px; }
-        .hero { padding: 48px 20px 40px; }
-        .page-body { padding: 0 20px 60px; }
-        .personas-grid { grid-template-columns: 1fr; }
-        .pm-take { padding: 24px 22px; }
-        .metric-row { flex-direction: column; }
-        .metric-name { min-width: unset; max-width: unset; border-right: none; border-bottom: 1px solid var(--border); }
+      .nav-logo {
+        font-size: 17px;
       }
-    </style>
-  </head>
-  <body>
-    <nav>
-      <a href="/index.html" class="nav-logo">Komal Unpacks</a>
-      <a href="/index.html" class="nav-back">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-        All Teardowns
-      </a>
-    </nav>
+      .nav-back {
+        font-size: 12px;
+      }
+      .hero {
+        padding: 44px 16px 32px;
+      }
+      .hero h1 {
+        font-size: 30px;
+        line-height: 1.15;
+      }
+      .hero-subtitle {
+        font-size: 15px;
+        margin-bottom: 20px;
+      }
+      .hero-eyebrow {
+        font-size: 10px;
+        letter-spacing: 2px;
+        margin-bottom: 14px;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .hero-meta {
+        gap: 10px;
+        font-size: 11px;
+        padding-top: 16px;
+        flex-wrap: wrap;
+      }
+      .page-body {
+        padding: 0 16px 48px;
+      }
+      .section-label {
+        margin-top: 40px;
+        font-size: 9px;
+        letter-spacing: 2px;
+      }
+      .intro-text {
+        font-size: 17px;
+      }
+      .intro-note {
+        font-size: 13px;
+        padding: 14px 16px;
+      }
+      .personas-grid,
+      .stakeholder-grid,
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+      .persona-card,
+      .stakeholder-card,
+      .metric-card {
+        padding: 16px;
+      }
+      .works-item {
+        padding-left: 14px;
+        margin-bottom: 24px;
+      }
+      .works-title {
+        font-size: 17px;
+      }
+      .works-points li {
+        font-size: 13px;
+      }
+      .pain-item {
+        padding: 16px;
+      }
+      .pain-title {
+        font-size: 16px;
+      }
+      .pain-desc {
+        font-size: 13px;
+      }
+      .opp-item {
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px;
+      }
+      .opp-num {
+        font-size: 22px;
+      }
+      .opp-title {
+        font-size: 16px;
+      }
+      .opp-desc {
+        font-size: 13px;
+      }
+      .rollout-item {
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px;
+      }
+      .rollout-phase {
+        font-size: 22px;
+      }
+      .metric-row {
+        flex-direction: column;
+      }
+      .metric-name {
+        min-width: unset;
+        max-width: unset;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        font-size: 14px;
+        padding: 12px 16px;
+      }
+      .metric-desc {
+        font-size: 13px;
+        padding: 12px 16px;
+      }
+      .pm-take {
+        padding: 20px 18px;
+        border-radius: 8px;
+        margin-top: 40px;
+      }
+      .pm-take-text {
+        font-size: 16px;
+      }
+      .teardown-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        margin-top: 36px;
+        padding-top: 20px;
+      }
+      .jtbd-list li {
+        font-size: 14px;
+      }
+      .questions-list li {
+        font-size: 13px;
+      }
+      footer {
+        padding: 24px 16px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
 
-    <div id="hero-container"></div>
+  <nav>
+    <a href="/index.html" class="nav-logo">Komal Unpacks</a>
+    <a href="/index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      All Teardowns
+    </a>
+  </nav>
 
-    <main class="page-body" id="main-content">
-      <div class="loading">
-        <div>
-          <span class="loading-dot"></span>
-          <span class="loading-dot"></span>
-          <span class="loading-dot"></span>
-        </div>
-        <p style="font-size:14px;">Loading teardown...</p>
+  <div id="hero-container"></div>
+
+  <main class="page-body" id="main-content">
+    <div class="loading">
+      <div>
+        <span class="loading-dot"></span>
+        <span class="loading-dot"></span>
+        <span class="loading-dot"></span>
       </div>
-    </main>
+      <p style="font-size:14px;">Loading teardown...</p>
+    </div>
+  </main>
 
-    <footer>
-      <p>Part of the <strong>How I AI</strong> series · <a href="/index.html">View all teardowns</a></p>
-      <p style="margin-top:6px;">Crafted with ❤️ in India</p>
-    </footer>
+  <footer>
+    <p>Part of the <strong>How I AI</strong> series &middot; <a href="/index.html">View all teardowns</a></p>
+    <p style="margin-top:6px;">Crafted with &#10084;&#65039; in India</p>
+  </footer>
 
-    <script>
-      async function loadTeardown() {
-        try {
-          const res = await fetch('gemini.json');
-          if (!res.ok) throw new Error('Not found');
-          const d = await res.json();
-          renderHero(d);
-          renderMain(d);
-        } catch (e) {
-          document.getElementById('main-content').innerHTML =
-            `<p style="color:var(--burgundy);padding:40px 0;">Could not load teardown data.</p>`;
-        }
+  <script>
+    async function loadTeardown() {
+      try {
+        const page = location.pathname.split('/').pop().replace('.html', '');
+        const res = await fetch(`${page}.json`);
+        if (!res.ok) throw new Error('Not found');
+        const d = await res.json();
+        renderHero(d);
+        renderMain(d);
+      } catch (e) {
+        document.getElementById('main-content').innerHTML = `<p style="color:var(--burgundy);padding:40px 0;">Could not load teardown data.</p>`;
       }
+    }
 
-      function formatDate(str) {
-        if (!str) return '';
-        if (isNaN(Date.parse(str))) return str;
-        return new Date(str).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-      }
+    function formatDate(str) {
+      if (!str) return '';
+      if (isNaN(Date.parse(str))) return str;
+      return new Date(str).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
 
-      function renderHero(d) {
-        const day     = d.meta?.day;
-        const title   = d.meta?.title;
-        const subtitle = d.meta?.subtitle;
-        const tagline  = d.meta?.tagline || '';
-        const category = d.meta?.category;
-        const date     = d.meta?.published_date;
-        const readTime = d.meta?.read_time || '';
+    function renderHero(d) {
+      const day   = d.day   || d.meta?.day;
+      const title = d.tool  || d.meta?.title;
+      const subtitle  = d.subtitle  || d.meta?.subtitle  || '';
+      const tagline   = d.meta?.tagline || '';
+      const category  = d.category  || d.meta?.category  || '';
+      const date      = d.date      || d.meta?.published_date || '';
+      const readTime  = d.read_time || d.meta?.read_time  || '';
+      const heroColor = d.meta?.hero_color || '#6B2D5E';
 
-        document.title = `Day ${String(day).padStart(2,'0')} - ${title} | Komal Unpacks`;
-        document.getElementById('hero-container').innerHTML = `
-          <div class="hero">
-            <div class="hero-inner">
-              <div class="hero-eyebrow">
-                <span>Day ${String(day).padStart(2,'0')}</span>
-                ${category}
-              </div>
-              <h1>${title}<br><em>${subtitle}</em></h1>
-              ${tagline ? `<p class="hero-subtitle">${tagline}</p>` : ''}
-              <div class="hero-meta">
-                <span>📅 ${formatDate(date)}</span>
-                ${readTime ? `<span>⏱ ${readTime}</span>` : ''}
-                <span>🔍 PM Lens Teardown</span>
-              </div>
+      document.title = `Day ${String(day).padStart(2,'0')} — ${title} | Komal Unpacks`;
+
+      document.getElementById('hero-container').innerHTML = `
+        <div class="hero" style="background:${heroColor}">
+          <div class="hero-inner">
+            <div class="hero-eyebrow">
+              <span>Day ${String(day).padStart(2,'0')}</span>
+              ${category}
             </div>
-          </div>`;
+            <h1>${title}${subtitle ? '<br><em>' + subtitle + '</em>' : ''}</h1>
+            ${tagline ? '<p class="hero-subtitle">' + tagline + '</p>' : ''}
+            <div class="hero-meta">
+              ${date      ? '<span>&#128197; ' + formatDate(date) + '</span>' : ''}
+              ${readTime  ? '<span>&#8987; ' + readTime + '</span>'  : ''}
+              <span>&#128269; PM Lens Teardown</span>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderMain(d) {
+      /* Detect which JSON schema we have */
+      const hasPersonas = Array.isArray(d.personas);
+      const hasSections = !!d.sections;
+
+      let html = '';
+      if (hasPersonas) {
+        html = renderClaudeSchema(d);
+      } else if (hasSections) {
+        html = renderChatGPTSchema(d);
       }
 
-      function renderMain(d) {
-        let html = '';
-        let n = 1;
-        const sn = () => String(n++).padStart(2,'0');
+      /* Teardown nav */
+      const prev = d.prev || d.meta?.prev;
+      const next = d.next || d.meta?.next;
+      if (prev || next) {
+        html += '<div class="teardown-nav">';
+        html += prev ? `<a href="${prev.link}">← ${prev.label}</a>` : '<span></span>';
+        html += next ? `<a href="${next.link}">${next.label} →</a>` : '<span></span>';
+        html += '</div>';
+      }
 
-        // 01 - Intro
-        html += `<p class="section-label">${sn()} - The Product</p>
-          <p class="intro-text">${d.intro.summary}</p>
-          <p class="intro-note">${d.intro.note}</p>`;
+      document.getElementById('main-content').innerHTML = html;
+    }
 
-        // 02 - Personas
-        html += `<p class="section-label">${sn()} - User Personas - Who It's For</p>
-          <div class="personas-grid">`;
-        d.personas.forEach(p => {
+    /* ================================================================
+       CLAUDE / PI / PERPLEXITY / GEMINI SCHEMA
+       (has top-level: personas, jtbd, what_works, what_doesnt_work,
+        opportunities, metrics[], pm_take)
+    ================================================================ */
+    function renderClaudeSchema(d) {
+      let html = '';
+      let n = 1;
+      const sn = () => String(n++).padStart(2,'0');
+
+      /* 01 Intro */
+      html += `<p class="section-label">${sn()} — The Product</p>
+               <p class="intro-text">${d.intro.summary}</p>`;
+      if (d.intro.note) html += `<p class="intro-note">${d.intro.note}</p>`;
+
+      /* 02 Personas */
+      const primary   = (d.personas || []).filter(p => p.segment === 'primary');
+      const secondary = (d.personas || []).filter(p => p.segment === 'secondary');
+      html += `<p class="section-label">${sn()} — User Personas — Who It's For</p>`;
+      if (primary.length) {
+        html += `<p style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Primary Segments</p>
+                 <div class="personas-grid">`;
+        primary.forEach(p => {
           html += `<div class="persona-card">
-            <div class="persona-icon">${p.icon}</div>
-            <div class="persona-title">${p.title}</div>
-            <div class="persona-desc">${p.description}</div>
-          </div>`;
+                     <div class="persona-icon">${p.icon}</div>
+                     <div class="persona-title">${p.title}</div>
+                     <div class="persona-desc">${p.description}</div>
+                   </div>`;
         });
-        html += `</div>`;
+        html += '</div>';
+      }
+      if (secondary.length) {
+        html += `<p style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:24px;margin-bottom:12px;">Secondary Segments</p>
+                 <div class="personas-grid">`;
+        secondary.forEach(p => {
+          html += `<div class="persona-card">
+                     <div class="persona-icon">${p.icon}</div>
+                     <div class="persona-title">${p.title}</div>
+                     <div class="persona-desc">${p.description}</div>
+                   </div>`;
+        });
+        html += '</div>';
+      }
+      if (!primary.length && !secondary.length) {
+        html += '<div class="personas-grid">';
+        (d.personas || []).forEach(p => {
+          html += `<div class="persona-card">
+                     <div class="persona-icon">${p.icon}</div>
+                     <div class="persona-title">${p.title}</div>
+                     <div class="persona-desc">${p.description}</div>
+                   </div>`;
+        });
+        html += '</div>';
+      }
 
-        // 03 - JTBD
-        html += `<p class="section-label">${sn()} - Jobs to Be Done</p>
-          <ul class="jtbd-list">`;
+      /* 03 JTBD */
+      if (d.jtbd && d.jtbd.length) {
+        html += `<p class="section-label">${sn()} — Jobs to Be Done</p><ul class="jtbd-list">`;
         d.jtbd.forEach(j => { html += `<li>${j}</li>`; });
-        html += `</ul>`;
+        html += '</ul>';
+      }
 
-        // 04 - What Works
-        html += `<p class="section-label">${sn()} - What Works Well</p>`;
+      /* 04 What Works */
+      if (d.what_works && d.what_works.length) {
+        html += `<p class="section-label">${sn()} — What Works Well</p>`;
         d.what_works.forEach(w => {
           html += `<div class="works-item">
-            <div class="works-title">${w.title}</div>
-            <ul class="works-points">`;
-          w.points.forEach((p, pi) => {
-            const isLast = pi === w.points.length - 1;
-            html += `<li class="${isLast && w.points.length > 1 ? 'italic-point' : ''}">${p}</li>`;
+                     <div class="works-title">${w.title}</div>
+                     <ul class="works-points">`;
+          (w.points || []).forEach((pt, i) => {
+            const isLast = i === w.points.length - 1;
+            html += `<li class="${isLast && w.points.length > 1 ? 'italic-point' : ''}">${pt}</li>`;
           });
-          html += `</ul></div>`;
+          html += '</ul></div>';
         });
-
-        // 05 - What Doesn't Work
-        html += `<p class="section-label">${sn()} - What Doesn't Work Well</p>`;
-        d.what_doesnt_work.forEach(w => {
-          html += `<div class="pain-item">
-            <div class="pain-title">${w.title}</div>
-            <div class="pain-desc">${w.description}</div>
-          </div>`;
-        });
-
-        // 06 - Opportunities
-        html += `<p class="section-label">${sn()} - What I'd Do Differently</p>`;
-        d.opportunities.forEach(o => {
-          html += `<div class="opp-item">
-            <div class="opp-num">${o.number}</div>
-            <div>
-              <div class="opp-title">${o.title}</div>
-              <div class="opp-desc">${o.description}</div>
-            </div>
-          </div>`;
-        });
-
-        // 07 - Metrics
-        if (d.metrics && d.metrics.length) {
-          html += `<p class="section-label">${sn()} - Product Metrics</p>`;
-          d.metrics.forEach(cat => {
-            html += `<div class="metrics-category">
-              <div class="metrics-category-title">${cat.category}</div>`;
-            cat.items.forEach(item => {
-              html += `<div class="metric-row">
-                <div class="metric-name">${item.name}</div>
-                <div class="metric-desc">${item.description}</div>
-              </div>`;
-            });
-            html += `</div>`;
-          });
-        }
-
-        // PM Take
-        html += `<div class="pm-take">
-          <div class="pm-take-label">PM's Takeaway</div>
-          <div class="pm-take-text">${d.pm_take}</div>
-        </div>`;
-
-        // Nav
-        const prev = d.prev;
-        const next = d.next;
-        if (prev || next) {
-          html += `<div class="teardown-nav">`;
-          html += prev ? `<a href="${prev.link}">← ${prev.label}</a>` : `<span></span>`;
-          html += next ? `<a href="${next.link}">${next.label} →</a>` : `<span></span>`;
-          html += `</div>`;
-        }
-
-        document.getElementById('main-content').innerHTML = html;
       }
 
-      loadTeardown();
-    </script>
-  </body>
+      /* 05 What Doesn't Work */
+      if (d.what_doesnt_work && d.what_doesnt_work.length) {
+        html += `<p class="section-label">${sn()} — What Doesn't Work Well</p>`;
+        d.what_doesnt_work.forEach(w => {
+          html += `<div class="pain-item">
+                     <div class="pain-title">${w.title}</div>
+                     <div class="pain-desc">${w.description}</div>
+                   </div>`;
+        });
+      }
+
+      /* 06 Opportunities */
+      if (d.opportunities && d.opportunities.length) {
+        html += `<p class="section-label">${sn()} — What I'd Do Differently</p>`;
+        d.opportunities.forEach(o => {
+          html += `<div class="opp-item">
+                     <div class="opp-num">${o.number}</div>
+                     <div>
+                       <div class="opp-title">${o.title}</div>
+                       <div class="opp-desc">${o.description}</div>
+                     </div>
+                   </div>`;
+        });
+      }
+
+      /* 07 Metrics */
+      if (d.metrics && d.metrics.length) {
+        html += `<p class="section-label">${sn()} — Product Metrics</p>`;
+        d.metrics.forEach(cat => {
+          html += `<div class="metrics-category">
+                     <div class="metrics-category-title">${cat.category}</div>`;
+          (cat.items || []).forEach(item => {
+            html += `<div class="metric-row">
+                       <div class="metric-name">${item.name}</div>
+                       <div class="metric-desc">${item.description}</div>
+                     </div>`;
+          });
+          html += '</div>';
+        });
+      }
+
+      /* PM Take */
+      if (d.pm_take) {
+        html += `<div class="pm-take">
+                   <div class="pm-take-label">PM's Takeaway</div>
+                   <div class="pm-take-text">${d.pm_take}</div>
+                 </div>`;
+      }
+
+      return html;
+    }
+
+    /* ================================================================
+       CHATGPT SCHEMA
+       (has: sections.purpose, sections.personas, sections.jtbd,
+        sections.what_works, sections.problems, sections.questions,
+        sections.recommendation, sections.metrics, sections.rating,
+        sections.takeaway)
+    ================================================================ */
+    function renderChatGPTSchema(d) {
+      const s = d.sections;
+      let html = '';
+      let n = 1;
+      const sn = () => String(n++).padStart(2,'0');
+
+      /* 01 Purpose */
+      html += `<p class="section-label">${sn()} — The Product</p>`;
+      (s.purpose?.paragraphs || []).forEach(p => {
+        html += `<p class="intro-text" style="font-size:clamp(16px,2vw,19px);margin-bottom:12px;">${p}</p>`;
+      });
+
+      /* 02 Personas */
+      if (s.personas) {
+        html += `<p class="section-label">${sn()} — User Personas</p><div class="personas-grid">`;
+        s.personas.forEach(p => {
+          html += `<div class="persona-card">
+                     <div class="persona-icon">${p.icon}</div>
+                     <div class="persona-title">${p.title}</div>
+                     <div class="persona-desc">${p.description}</div>
+                   </div>`;
+        });
+        html += '</div>';
+      }
+
+      /* 03 JTBD */
+      if (s.jtbd) {
+        html += `<p class="section-label">${sn()} — Jobs to Be Done</p><ul class="jtbd-list">`;
+        s.jtbd.forEach(j => { html += `<li>${j}</li>`; });
+        html += '</ul>';
+      }
+
+      /* 04 What Works */
+      if (s.what_works) {
+        html += `<p class="section-label">${sn()} — What Works Well</p>`;
+        s.what_works.forEach(w => {
+          html += `<div class="works-item">
+                     <div class="works-title">${w.title}</div>
+                     <ul class="works-points">`;
+          (w.points || []).forEach((pt, i) => {
+            const isLast = i === w.points.length - 1;
+            html += `<li class="${isLast && w.points.length > 1 ? 'italic-point' : ''}">${pt}</li>`;
+          });
+          html += '</ul></div>';
+        });
+      }
+
+      /* 05 Problems */
+      html += `<p class="section-label">${sn()} — Problems</p>`;
+      if (s.problems?.intro) html += `<p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px;">${s.problems.intro}</p>`;
+      html += '<div class="stakeholder-grid">';
+      (s.problems?.stakeholders || []).forEach(st => {
+        html += `<div class="stakeholder-card">
+                   <div class="stakeholder-icon">${st.icon || ''}</div>
+                   <h3>${st.name}</h3>
+                   <ul>${(st.points || []).map(p => `<li>${p}</li>`).join('')}</ul>
+                 </div>`;
+      });
+      html += '</div>';
+
+      /* 06 Questions */
+      html += `<p class="section-label">${sn()} — Questions to Ask</p>`;
+      if (s.questions?.intro) html += `<p style="font-size:15px;color:var(--ink-soft);margin-bottom:20px;">${s.questions.intro}</p>`;
+      html += '<ol class="questions-list">';
+      (s.questions?.items || []).forEach(q => { html += `<li>${q}</li>`; });
+      html += '</ol>';
+
+      /* 07 Recommendation */
+      html += `<p class="section-label">${sn()} — What I'd Do Differently</p>`;
+      (s.recommendation?.opportunities || []).forEach(o => {
+        html += `<div class="opp-item">
+                   <div class="opp-num">${o.number}</div>
+                   <div>
+                     <div class="opp-title">${o.title}</div>
+                     <div class="opp-desc">${o.description}</div>
+                   </div>
+                 </div>`;
+      });
+
+      /* 08 Metrics */
+      html += `<p class="section-label">${sn()} — Product Metrics</p>`;
+      if (s.metrics?.intro) html += `<p style="font-size:15px;color:var(--ink-soft);margin-bottom:16px;">${s.metrics.intro}</p>`;
+      (s.metrics?.categories || []).forEach(cat => {
+        html += `<div class="metrics-category">
+                   <div class="metrics-category-title">${cat.name}</div>`;
+        (cat.items || []).forEach(item => {
+          html += `<div class="metric-row">
+                     <div class="metric-name">${item.name}</div>
+                     <div class="metric-desc">${item.description}</div>
+                   </div>`;
+        });
+        html += '</div>';
+      });
+
+      /* 09 Scorecard */
+      if (s.rating?.scores) {
+        html += `<p class="section-label">${sn()} — Scorecard</p><table class="rating-table">`;
+        s.rating.scores.forEach(r => {
+          html += `<tr><td>${r.label}</td><td>${r.score}</td></tr>`;
+        });
+        html += '</table>';
+      }
+
+      /* PM Takeaway */
+      if (s.takeaway?.text) {
+        html += `<div class="pm-take">
+                   <div class="pm-take-label">PM's Takeaway</div>
+                   <div class="pm-take-text">${s.takeaway.text}</div>
+                 </div>`;
+      }
+
+      return html;
+    }
+
+    loadTeardown();
+  </script>
+</body>
 </html>
