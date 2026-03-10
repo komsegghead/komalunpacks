@@ -57,7 +57,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem
 .about-body p { font-size: 0.9rem; line-height: 1.95; color: var(--text-muted); margin-bottom: 1.25rem; }
 
 /* ── TEARDOWNS ── */
-.teardowns { background: var(--sunshine-pale); padding: 6rem 4rem; }
+.teardowns { background: var(--white); padding: 6rem 4rem; }
 .teardowns-inner { max-width: 1200px; margin: 0 auto; }
 .teardown-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
 .teardown-card { background: var(--white); border: 1px solid var(--border); padding: 2rem; transition: all 0.3s; text-decoration: none; display: block; }
@@ -69,7 +69,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem
 .card-arrow { margin-top: 1.25rem; font-size: 0.75rem; color: var(--plum); letter-spacing: 0.08em; text-transform: uppercase; }
 
 /* ── CASE STUDIES ── */
-.case-studies { background: var(--white); padding: 6rem 4rem; }
+.case-studies { background: var(--sunshine-pale); padding: 6rem 4rem; }
 .case-studies-inner { max-width: 1200px; margin: 0 auto; }
 .cs-card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
 .cs-card { background: var(--white); border: 1px solid var(--border); text-decoration: none; display: block; transition: all 0.3s; position: relative; overflow: hidden; }
@@ -170,8 +170,8 @@ footer a { color: var(--plum-light); text-decoration: none; }
   <a href="#" class="nav-logo">My Product Lab</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
-    <li><a href="#teardowns">Product Teardowns</a></li>
     <li><a href="#case-studies">Case Studies</a></li>
+    <li><a href="#teardowns">Product Teardowns</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -209,16 +209,6 @@ footer a { color: var(--plum-light); text-decoration: none; }
     </div>
   </div>
 </section>
-
-<div class="teardowns" id="teardowns">
-  <div class="teardowns-inner">
-    <p class="section-label">Daily Deconstructions</p>
-    <h2 class="section-title">Product Teardowns</h2>
-    <div class="teardown-grid" id="teardown-grid">
-      <p style="color: var(--text-muted); font-style: italic;">Loading teardowns...</p>
-    </div>
-  </div>
-</div>
 
 <section class="case-studies" id="case-studies">
   <div class="case-studies-inner">
@@ -276,6 +266,16 @@ footer a { color: var(--plum-light); text-decoration: none; }
     </div>
   </div>
 </section>
+
+<div class="teardowns" id="teardowns">
+  <div class="teardowns-inner">
+    <p class="section-label">Daily Deconstructions</p>
+    <h2 class="section-title">Product Teardowns</h2>
+    <div class="teardown-grid" id="teardown-grid">
+      <p style="color: var(--text-muted); font-style: italic;">Loading teardowns...</p>
+    </div>
+  </div>
+</div>
 
 <div class="contact" id="contact">
   <div class="contact-inner">
