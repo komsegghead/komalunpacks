@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day 06 - Pinecone | Komal Unpacks</title>
+  <meta name="description" content="A PM teardown of Pinecone - the vector database that gives AI a memory it can actually search. By Komal Sikka." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://komalunpacks.com/teardowns/pinecone.html" />
+  <meta property="og:title" content="Day 06 - Pinecone | Komal Unpacks" />
+  <meta property="og:description" content="A PM teardown of Pinecone - the vector database that gives AI a memory it can actually search." />
+  <link rel="canonical" href="https://komalunpacks.com/teardowns/pinecone.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --plum:      #5C3A6E;
+      --burgundy:  #7B2D42;
+      --sunshine:  #FFF8E7;
+      --pale-sun:  #FFF3CC;
+      --white:     #ffffff;
+      --dark:      #1A1A2E;
+      --mid-gray:  #555555;
+      --light-gray:#E8E0F0;
+      --lavender:  #F0EAF8;
+      --teal:      #1B4F72;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--light-gray);
+      background: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--plum);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      font-size: 0.85rem;
+      color: var(--mid-gray);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+    }
+    .nav-links a:hover { color: var(--plum); }
+
+    /* HERO */
+    .hero {
+      background: var(--teal);
+      color: var(--white);
+      padding: 4rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      border: 60px solid rgba(255,255,255,0.05);
+      top: -80px; right: -80px;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 40px solid rgba(255,255,255,0.04);
+      bottom: -60px; left: 10%;
+    }
+    .hero-inner { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.9);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1rem;
+    }
+    .hero-tagline {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 560px;
+      line-height: 1.6;
+    }
+    .hero-meta {
+      margin-top: 1.8rem;
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 0.4rem; }
+
+    /* MAIN */
+    main { max-width: 780px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+
+    /* SECTION LABELS */
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+      margin: 2.8rem 0 0.8rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--light-gray);
+    }
+
+    /* INTRO */
+    .intro-summary {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    .intro-note {
+      background: var(--lavender);
+      border-left: 3px solid var(--plum);
+      padding: 0.9rem 1.1rem;
+      font-size: 0.88rem;
+      color: var(--plum);
+      line-height: 1.6;
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* PERSONAS */
+    .personas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .persona-card {
+      background: var(--sunshine);
+      border: 1px solid var(--pale-sun);
+      border-radius: 10px;
+      padding: 1.1rem;
+    }
+    .persona-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .persona-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--plum);
+      margin-bottom: 0.4rem;
+    }
+    .persona-desc { font-size: 0.82rem; color: var(--mid-gray); line-height: 1.55; }
+
+    /* JTBD */
+    .jtbd-list { list-style: none; margin-top: 0.5rem; }
+    .jtbd-list li {
+      padding: 0.65rem 0.9rem;
+      border-left: 3px solid var(--teal);
+      background: var(--lavender);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.92rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    /* WHAT WORKS */
+    .works-block { margin-bottom: 1.2rem; }
+    .works-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--plum);
+      margin-bottom: 0.5rem;
+      padding-left: 0.8rem;
+      border-left: 3px solid var(--plum);
+    }
+    .works-points { list-style: none; }
+    .works-points li {
+      font-size: 0.88rem;
+      color: var(--mid-gray);
+      padding: 0.3rem 0 0.3rem 1rem;
+      border-left: 1px solid var(--light-gray);
+      margin-left: 1px;
+      line-height: 1.6;
+    }
+
+    /* WHAT DOESNT WORK */
+    .pain-item {
+      background: var(--sunshine);
+      border-left: 3px solid var(--burgundy);
+      border-radius: 0 8px 8px 0;
+      padding: 0.9rem 1.1rem;
+      margin-bottom: 0.9rem;
+    }
+    .pain-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--burgundy);
+      margin-bottom: 0.3rem;
+    }
+    .pain-desc { font-size: 0.87rem; color: var(--mid-gray); line-height: 1.6; }
+
+    /* OPPORTUNITIES */
+    .opp-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.1rem;
+      background: var(--lavender);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+    }
+    .opp-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--plum);
+      opacity: 0.4;
+      min-width: 2.5rem;
+      line-height: 1.1;
+    }
+    .opp-title {
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--plum);
+      margin-bottom: 0.3rem;
+    }
+    .opp-desc { font-size: 0.86rem; color: var(--mid-gray); line-height: 1.6; }
+
+    /* METRICS */
+    .metrics-category { margin-bottom: 1.2rem; }
+    .metrics-category-title {
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--plum);
+      margin-bottom: 0.6rem;
+    }
+    .metric-row {
+      display: flex;
+      gap: 1rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--light-gray);
+      font-size: 0.87rem;
+    }
+    .metric-name { font-weight: 600; min-width: 220px; color: var(--dark); }
+    .metric-desc { color: var(--mid-gray); line-height: 1.5; }
+
+    /* PM TAKE */
+    .pm-take {
+      background: var(--pale-sun);
+      border: 1px solid #E8D8A0;
+      border-radius: 10px;
+      padding: 1.5rem 1.6rem;
+      margin-top: 2.5rem;
+    }
+    .pm-take-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+      margin-bottom: 0.7rem;
+    }
+    .pm-take-text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--dark);
+    }
+
+    /* TEARDOWN NAV */
+    .teardown-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--light-gray);
+    }
+    .teardown-nav a {
+      font-size: 0.85rem;
+      color: var(--plum);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .teardown-nav a:hover { text-decoration: underline; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.8rem;
+      color: #aaa;
+      border-top: 1px solid var(--light-gray);
+    }
+    footer a { color: var(--plum); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .personas-grid { grid-template-columns: 1fr; }
+      .metric-row { flex-direction: column; gap: 0.2rem; }
+      .metric-name { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="/">Komal Unpacks</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/#teardowns">Teardowns</a>
+      <a href="/#about">About</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">Day 06 of 43 &nbsp;&bull;&nbsp; AI Infrastructure - Vector Database</div>
+      <h1 id="hero-title">Pinecone</h1>
+      <div class="hero-subtitle" id="hero-subtitle">The Memory Layer</div>
+      <div class="hero-tagline" id="hero-tagline">The infrastructure that gives AI a memory it can actually search.</div>
+      <div class="hero-meta">
+        <span>&#128197; <span id="hero-date"></span></span>
+        <span>&#128336; <span id="hero-read-time"></span></span>
+        <span>&#128241; <a href="https://komalunpacks.com" style="color:rgba(255,255,255,0.6)">komalunpacks.com</a></span>
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <p style="color:#aaa;font-size:0.9rem;text-align:center;margin-top:3rem;">Loading teardown...</p>
+  </main>
+
+  <footer>
+    <p>Part of the <strong>How I AI</strong> series by <a href="/">Komal Sikka</a> &mdash; 43 days, 43 AI tools, one PM lens.</p>
+  </footer>
+
+  <script>
+    async function loadTeardown() {
+      const slug = location.pathname.split('/').pop().replace('.html', '');
+      const res  = await fetch(`/teardowns/${slug}.json`);
+      const d    = await res.json();
+
+      // Hero
+      document.title = `Day ${String(d.meta.day).padStart(2,'0')} - ${d.meta.title} | Komal Unpacks`;
+      document.getElementById('hero-title').textContent    = d.meta.title;
+      document.getElementById('hero-subtitle').textContent = d.meta.subtitle;
+      document.getElementById('hero-tagline').textContent  = d.meta.tagline;
+      document.getElementById('hero-date').textContent     = d.meta.published_date;
+      document.getElementById('hero-read-time').textContent = d.meta.read_time;
+
+      let html = '';
+
+      // 01 Intro
+      html += `<p class="section-label">01 - What It Is</p>`;
+      html += `<p class="intro-summary">${d.intro.summary}</p>`;
+      if (d.intro.note) {
+        html += `<div class="intro-note">${d.intro.note}</div>`;
+      }
+
+      // 02 Personas
+      html += `<p class="section-label">02 - Who Uses It</p>`;
+      html += `<div class="personas-grid">`;
+      d.personas.forEach(p => {
+        html += `<div class="persona-card">
+          <div class="persona-icon">${p.icon}</div>
+          <div class="persona-title">${p.title}</div>
+          <div class="persona-desc">${p.description}</div>
+        </div>`;
+      });
+      html += `</div>`;
+
+      // 03 JTBD
+      html += `<p class="section-label">03 - Jobs to Be Done</p>`;
+      html += `<ul class="jtbd-list">`;
+      d.jtbd.forEach(j => { html += `<li>${j}</li>`; });
+      html += `</ul>`;
+
+      // 04 What Works
+      html += `<p class="section-label">04 - What Works</p>`;
+      d.what_works.forEach(w => {
+        html += `<div class="works-block">
+          <div class="works-title">${w.title}</div>
+          <ul class="works-points">`;
+        w.points.forEach(pt => { html += `<li>${pt}</li>`; });
+        html += `</ul></div>`;
+      });
+
+      // 05 What Doesn't Work
+      html += `<p class="section-label">05 - What Doesn't Work</p>`;
+      d.what_doesnt_work.forEach(w => {
+        html += `<div class="pain-item">
+          <div class="pain-title">${w.title}</div>
+          <div class="pain-desc">${w.description}</div>
+        </div>`;
+      });
+
+      // 06 Opportunities
+      html += `<p class="section-label">06 - What I'd Do Differently</p>`;
+      d.opportunities.forEach(o => {
+        html += `<div class="opp-item">
+          <div class="opp-num">${o.number}</div>
+          <div>
+            <div class="opp-title">${o.title}</div>
+            <div class="opp-desc">${o.description}</div>
+          </div>
+        </div>`;
+      });
+
+      // 07 Metrics
+      if (d.metrics && d.metrics.length) {
+        html += `<p class="section-label">07 - Product Metrics</p>`;
+        d.metrics.forEach(cat => {
+          html += `<div class="metrics-category">
+            <div class="metrics-category-title">${cat.category}</div>`;
+          cat.items.forEach(item => {
+            html += `<div class="metric-row">
+              <div class="metric-name">${item.name}</div>
+              <div class="metric-desc">${item.description}</div>
+            </div>`;
+          });
+          html += `</div>`;
+        });
+      }
+
+      // PM Take
+      html += `<div class="pm-take">
+        <div class="pm-take-label">Komal's PM Take</div>
+        <div class="pm-take-text">${d.pm_take}</div>
+      </div>`;
+
+      // Nav
+      html += `<div class="teardown-nav">`;
+      html += d.prev ? `<a href="${d.prev.link}">← ${d.prev.label}</a>` : `<span></span>`;
+      html += d.next ? `<a href="${d.next.link}">${d.next.label} →</a>` : `<span></span>`;
+      html += `</div>`;
+
+      document.getElementById('main-content').innerHTML = html;
+    }
+
+    loadTeardown().catch(err => {
+      document.getElementById('main-content').innerHTML =
+        '<p style="color:red;text-align:center;margin-top:3rem;">Failed to load teardown data.</p>';
+      console.error(err);
+    });
+  </script>
+</body>
+</html>

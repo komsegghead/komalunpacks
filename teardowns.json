@@ -43,9 +43,9 @@
     "day": "06",
     "tool": "Pinecone",
     "category": "AI Infrastructure - Vector Database",
-    "takeaway": "Coming soon...",
-    "link": "",
-    "status": "coming-soon"
+    "takeaway": "The infrastructure that gives AI a memory it can actually search - and the PM problem is not the index, it is the intelligence layer above it.",
+    "link": "/teardowns/pinecone.html",
+    "status": "live"
   },
   {
     "day": "07",
