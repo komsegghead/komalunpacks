@@ -48,12 +48,12 @@
     "status": "live"
   },
   {
-    "day": "07",
-    "tool": "LangChain",
-    "category": "AI Infrastructure - Orchestration",
-    "takeaway": "Coming soon...",
-    "link": "",
-    "status": "coming-soon"
+        "day": "07",
+        "tool": "LangChain",
+        "category": "AI Infrastructure - Orchestration",
+        "takeaway": "The most downloaded AI framework in the world - and one of the most criticized. The abstraction war is unwinnable. The compliance story is wide open.",
+        "link": "/teardowns/langchain.html",
+        "status": "live"
   },
   {
     "day": "08",
