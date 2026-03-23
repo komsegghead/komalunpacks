@@ -48,25 +48,25 @@
     "status": "live"
   },
   {
-        "day": "07",
-        "tool": "LangChain",
-        "category": "AI Infrastructure - Orchestration",
-        "takeaway": "The most downloaded AI framework in the world - and one of the most criticized. The abstraction war is unwinnable. The compliance story is wide open.",
-        "link": "/teardowns/langchain.html",
-        "status": "live"
+    "day": "07",
+    "tool": "LangChain",
+    "category": "AI Infrastructure - Orchestration",
+    "takeaway": "The most downloaded AI framework in the world - and one of the most criticized. The abstraction war is unwinnable. The compliance story is wide open.",
+    "link": "/teardowns/langchain.html",
+    "status": "live"
   },
-  {
+   {
     "day": "08",
-    "tool": "Anthropic API",
-    "category": "AI Infrastructure - Model API",
-    "takeaway": "Coming soon...",
-    "link": "",
-    "status": "coming-soon"
-  },
-  {
-    "day": "09",
     "tool": "Meta Llama",
     "category": "AI Infrastructure - Open Models",
+    "takeaway": "Meta gave away a frontier AI model for free. It was the smartest business move of 2024 - and a warning shot to every closed model provider.",
+    "link": "/teardowns/llama.html",
+    "status": "live"
+  }, 
+  {
+    "day": "09",
+    "tool": "Anthropic API",
+    "category": "AI Infrastructure - Model API",
     "takeaway": "Coming soon...",
     "link": "",
     "status": "coming-soon"
