@@ -12,7 +12,7 @@
     "hero_color": "#3D1F50"
   },
   "intro": {
-    "summary": "The Anthropic API is a RESTful developer platform that gives businesses and builders programmatic access to Claude - the AI model built on Constitutional AI. It is not the only AI API. It is not the cheapest. It is not the one with the biggest ecosystem. But in 2026, enterprises in regulated industries are increasingly choosing it over alternatives - and the reason is not the model. It is the philosophy baked into every layer of the product, from training to API design to pricing.",
+    "summary": "The Anthropic API is a RESTful developer platform that gives businesses and builders programmatic access to Claude, the AI model built on Constitutional AI. It is not the only AI API. It is not the cheapest. It is not the one with the biggest ecosystem. But in 2026, enterprises in regulated industries are increasingly choosing it over alternatives. And the reason is not the model. It is the philosophy baked into every layer of the product, from training to API design to pricing.",
     "note": "This teardown follows Day 08's Meta Llama analysis. The question Llama left open: is free and open enough for regulated industries like banking? This teardown answers it."
   },
   "personas": [
@@ -50,7 +50,7 @@
   "jtbd": [
     "Embed intelligent reasoning into products without building or maintaining an AI model",
     "Meet compliance requirements for AI deployment in regulated industries with a safety-first vendor",
-    "Process large documents - contracts, regulatory filings, customer records - with a model that holds context",
+    "Process large documents, like contracts, regulatory filings, customer records, etc. with a model that holds context",
     "Build customer-facing AI products that behave predictably and refuse harmful requests by design",
     "Access frontier AI reasoning without the infrastructure burden of self-hosting open models"
   ],
@@ -58,7 +58,7 @@
     {
       "title": "Constitutional AI - Philosophy as Product Differentiation",
       "points": [
-        "Every other AI company treats safety as a guardrail bolted on after training. Anthropic built safety into the training process itself through Constitutional AI - a set of explicit ethical principles the model evaluates its own outputs against.",
+        "Every other AI company treats safety as a guardrail bolted on after training. Anthropic built safety into the training process itself through Constitutional AI, i.e. a set of explicit ethical principles the model evaluates its own outputs against.",
         "The result is a model that is more predictable, more consistent, and less likely to produce outputs that create legal, reputational, or regulatory risk.",
         "In 2026, enterprises choosing between AI providers are no longer asking 'which model is smartest?' They are asking 'which vendor can I trust in front of a regulator?' Anthropic's answer is structural, not just promotional.",
         "This is the single most important differentiator in regulated industries, and no competitor can credibly replicate it without rebuilding their model from the ground up."
@@ -67,7 +67,7 @@
     {
       "title": "The System Prompt as Architecture - Not an Afterthought",
       "points": [
-        "This is what makes the Anthropic API genuinely unique in API design. The system prompt is a dedicated, structurally separate parameter - not another message in the array.",
+        "This is what makes the Anthropic API genuinely unique in API design. The system prompt is a dedicated, structurally separate parameter, not yet another message in the array.",
         "Every other major API treats the system prompt as just another text field. Anthropic made it a first-class architectural citizen.",
         "The message this sends to developers is profound: how you configure Claude's behaviour is as important as what you ask it. Prompt engineering is not a workaround - it is the intended interface.",
         "For banking and regulated industries, this means compliance constraints, tone guardrails, and domain-specific behaviour can be defined at the architectural level - not patched in at the application layer.",
@@ -78,7 +78,7 @@
       "title": "Reasoning Quality - The Developer's Honest Verdict",
       "points": [
         "Developers consistently rate Claude above GPT-4o for complex reasoning, instruction following, and code generation quality.",
-        "Tool use (function calling) is particularly strong - Claude follows tool schemas reliably and handles multi-tool workflows with less hallucination than competing models.",
+        "Tool use (function calling) is particularly strong. Claude follows tool schemas reliably and handles multi-tool workflows with less hallucination than competing models.",
         "The 200K token context window handles entire codebases, long legal documents, and extended conversations without losing coherence.",
         "Anthropic leads prediction markets for best AI coding model in 2026 at 41% confidence, ahead of OpenAI at 33%."
       ]
@@ -86,7 +86,7 @@
     {
       "title": "Token Counting API - Transparency Before Commitment",
       "points": [
-        "A dedicated endpoint lets developers count tokens in a request before sending it - and before being charged.",
+        "A dedicated endpoint lets developers count tokens in a request before sending it and before being charged.",
         "No other major AI API provider offers this as a first-class feature.",
         "For budget-constrained teams and regulated organisations with strict cost controls, this removes the single biggest source of API pricing anxiety.",
         "It is a small feature with an outsized trust signal: Anthropic is saying 'we know our pricing model is complex - here is a tool to make it predictable.'"
@@ -114,7 +114,7 @@
   "what_doesnt_work": [
     {
       "title": "Rate Limits - The Invisible Ceiling",
-      "description": "New developers start at Tier 1 with heavily restricted rate limits and discover the ceiling only when they hit it - not before. The tier system is real and logical, but its opacity creates a honeymoon-to-disillusionment DX curve. A developer who falls in love with the API in the first 10 minutes can feel ambushed when their first real workload gets throttled. This is the #1 reported friction point across developer forums and is entirely a communication and transparency problem, not a technical one."
+      "description": "New developers start at Tier 1 with heavily restricted rate limits and discover the ceiling only when they hit it, not before. The tier system is real and logical, but its opacity creates a honeymoon-to-disillusionment DX curve. A developer who falls in love with the API in the first 10 minutes can feel ambushed when their first real workload gets throttled. This is the #1 reported friction point across developer forums and is entirely a communication and transparency problem, not a technical one."
     },
     {
       "title": "Pricing Predictability - Complex at Scale",
