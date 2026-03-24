@@ -12,7 +12,7 @@
     "hero_color": "#3D1F50"
   },
   "intro": {
-    "summary": "The Anthropic API gives businesses and builders programmatic access to Claude. It is not the cheapest AI API. It is not the one with the biggest ecosystem. But in 2026, enterprises in regulated industries are increasingly choosing it — and the reason is not just the model. It is the philosophy behind it.",
+    "summary": "The Anthropic API gives businesses and builders programmatic access to Claude. It is not the cheapest AI API. It is not the one with the biggest ecosystem. But in 2026, enterprises in regulated industries are increasingly choosing it. The reason is not just the model. It is the philosophy behind it.",
     "note": "This teardown follows Day 08's Meta Llama analysis. Llama left a question open: is free and open enough for regulated industries like banking? This teardown answers it."
   },
   "personas": [
@@ -26,7 +26,7 @@
       "segment": "primary",
       "icon": "🏗️",
       "title": "Product Builders in BFSI",
-      "description": "PMs and engineering teams building AI products on Claude — payment assistants, document analysis pipelines, customer service automation."
+      "description": "PMs and engineering teams building AI products on Claude: payment assistants, document analysis pipelines, customer service automation."
     },
     {
       "segment": "primary",
@@ -50,16 +50,16 @@
   ],
   "what_works": [
     {
-      "title": "Reasoning Quality — Powered by Claude",
+      "title": "Reasoning Quality: Powered by Claude",
       "points": [
-        "The API is powered by Claude underneath — built on safety as a principle, not bolted on as an afterthought. Developers consistently rate Claude above GPT-4o for complex reasoning, instruction following, and code generation.",
-        "The 200K token context window handles entire codebases and long documents without losing coherence — a genuine differentiator for document-heavy banking workflows."
+        "The API is powered by Claude underneath, built on safety as a principle, not bolted on as an afterthought. Developers consistently rate Claude above GPT-4o for complex reasoning, instruction following, and code generation.",
+        "The 200K token context window handles entire codebases and long documents without losing coherence. A genuine differentiator for document-heavy banking workflows."
       ]
     },
     {
-      "title": "Token Counting API — Transparency Before Commitment",
+      "title": "Token Counting API: Transparency Before Commitment",
       "points": [
-        "A dedicated endpoint lets developers count tokens in a request before sending it — and before being charged. No other major AI API offers this.",
+        "A dedicated endpoint lets developers count tokens in a request before sending it, before being charged. No other major AI API offers this.",
         "Small feature. Big trust signal. For teams with strict cost controls, this removes the biggest source of API pricing anxiety."
       ]
     },
@@ -67,14 +67,14 @@
       "title": "Consistency of Philosophy",
       "points": [
         "OpenAI's north star shifted: non-profit to for-profit, ads despite its founder's objections, DoD contracts. Anthropic's hasn't moved.",
-        "For enterprises embedding AI into core workflows for years, philosophy stability is a vendor risk metric — not a soft consideration."
+        "For enterprises embedding AI into core workflows for years, philosophy stability is a vendor risk metric, not a soft consideration."
       ]
     }
   ],
   "what_doesnt_work": [
     {
       "title": "Invisible Rate Limits",
-      "description": "Developers discover the tier system by hitting it — not before. The ceiling exists for good reason, but the opacity breaks trust. A transparency problem, not a technical one."
+      "description": "Developers discover the tier system by hitting it, not before. The ceiling exists for good reason, but the opacity breaks trust. A transparency problem, not a technical one."
     },
     {
       "title": "Procurement Friction",
@@ -94,7 +94,7 @@
     {
       "number": "02",
       "title": "Make Compliance Easy to Buy",
-      "description": "When a bank evaluates any AI vendor, legal and security assessments can take months. I would ship a ready-made compliance pack — security certifications, data handling docs, pre-answered bank security questionnaires — for faster procurement. Llama cannot offer this because when you self-host, there is no vendor to certify. Anthropic can."
+      "description": "When a bank evaluates any AI vendor, legal and security assessments can take months. I would ship a ready-made compliance pack: security certifications, data handling docs, pre-answered bank security questionnaires, for faster procurement. Llama cannot offer this because when you self-host, there is no vendor to certify. Anthropic can."
     }
   ],
   "metrics": [
@@ -125,7 +125,7 @@
       ]
     }
   ],
-  "pm_take": "Free isn't always the answer. Llama gives you freedom — but in regulated industries, freedom comes with a hidden cost. You own the model, the infrastructure, and every decision it makes. Anthropic's bet is that trust, safety, and accountability are worth paying for. The rate limits problem is fixable. The procurement friction is fixable. The core strategic positioning — a vendor whose philosophy hasn't drifted and whose model was built on principles, not patched with guardrails — is genuinely hard to replicate. Sometimes the most valuable thing a vendor offers is not the model. It's the guarantee that it will behave.",
+  "pm_take": "Free isn't always the answer. Llama gives you freedom. But in regulated industries, freedom comes with a hidden cost. You own the model, the infrastructure, and every decision it makes. Anthropic's bet is that trust, safety, and accountability are worth paying for. The rate limits problem is fixable. The procurement friction is fixable. The core strategic positioning: a vendor whose philosophy hasn't drifted and whose model was built on principles, not patched with guardrails. It is genuinely hard to replicate. Sometimes the most valuable thing a vendor offers is not the model. It's the guarantee that it will behave.",
   "prev": {
     "label": "Day 08: Meta Llama",
     "link": "/teardowns/llama.html"
