@@ -67,9 +67,9 @@
     "day": "09",
     "tool": "Anthropic API",
     "category": "AI Infrastructure - Model API",
-    "takeaway": "Coming soon...",
-    "link": "",
-    "status": "coming-soon"
+    "takeaway": "Free is not enough when trust is the product. Why regulated industries are choosing Anthropic API — and what the system prompt as architecture really means.",
+    "link": "/teardowns/anthropic-api.html",
+    "status": "live"
   },
   {
     "day": "10",
