@@ -74,10 +74,10 @@
   {
     "day": "10",
     "tool": "Weights & Biases",
-    "category": "AI Infrastructure - Model Evaluation",
-    "takeaway": "Coming soon...",
-    "link": "",
-    "status": "coming-soon"
+    "category": "AI Infrastructure - MLOps & Experiment Tracking",
+    "takeaway": "W&B tries to answer three questions every AI team asks. It only answers one of them well. The most natural next step is translating experiments into business decisions.",
+    "link": "/teardowns/weights-biases.html",
+    "status": "live"
   },
   {
     "day": "11",
