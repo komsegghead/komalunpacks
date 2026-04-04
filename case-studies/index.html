@@ -18,9 +18,9 @@
       --text: #2A1A35;
       --text-muted: #7A6080;
       --border: rgba(107,61,122,0.12);
-      --cs-bg: #FFFDF8;
+      --cs-bg: #F9F3F0;
       --cs-title: #2A1A35;
-      --cs-body: #7A6080;
+      --cs-body: #7A6560;
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body: 'DM Sans', system-ui, sans-serif;
     }
@@ -63,16 +63,16 @@
 
     /* ── HEADER ── */
     .page-header { padding: 3rem 3rem 0; }
-    .back-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; margin-bottom: 2rem; }
-    .back-link:hover { color: var(--plum); }
-    .breadcrumb { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; }
-    .breadcrumb a { color: var(--text-muted); text-decoration: none; }
-    .breadcrumb a:hover { color: var(--plum); }
+    .back-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; color: #9B8A7A; text-decoration: none; transition: color 0.2s; margin-bottom: 2rem; }
+    .back-link:hover { color: #A0705E; }
+    .breadcrumb { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #9B8A7A; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; }
+    .breadcrumb a { color: #9B8A7A; text-decoration: none; }
+    .breadcrumb a:hover { color: #A0705E; }
     .bc-sep { opacity: 0.5; }
-    .bc-current { color: var(--cs-title); }
+    .bc-current { color: #A0705E; }
     .page-title { font-family: var(--font-display); font-size: 2.25rem; font-weight: 300; color: var(--cs-title); margin-bottom: 0.75rem; }
     .page-desc { font-size: 0.875rem; color: var(--cs-body); line-height: 1.8; max-width: 520px; margin-bottom: 2.5rem; }
-    .page-header-divider { height: 1px; background: rgba(107,61,122,0.12); }
+    .page-header-divider { height: 1px; background: rgba(160,120,110,0.18); }
 
     /* ── CARD GRID ── */
     .grid-wrap { padding: 2.5rem 3rem 4rem; }
@@ -81,27 +81,27 @@
       display: block;
       text-decoration: none;
       background: var(--cs-bg);
-      border: 1px solid rgba(107,61,122,0.15);
-      border-left: 3px solid #6B3D7A;
+      border: 1px solid rgba(160,120,110,0.18);
+      border-left: 3px solid #A0705E;
       border-radius: 2px;
       overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
-    .cs-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(107,61,122,0.12); border-color: #9B6DAA; border-left-color: #9B6DAA; }
+    .cs-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(160,120,110,0.1); border-color: rgba(160,120,110,0.35); border-left-color: rgba(160,120,110,0.35); }
     .cs-card-body { padding: 1.75rem 1.75rem 1.25rem; }
     .cs-card-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-    .cs-badge { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #8B2252; background: rgba(139,34,82,0.06); padding: 0.2rem 0.55rem; border-radius: 20px; }
+    .cs-badge { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #8B2252; background: #F9EEF3; padding: 0.2rem 0.55rem; border-radius: 20px; }
     .cs-year { font-family: var(--font-display); font-size: 0.9rem; font-style: italic; color: #9B8A7A; }
     .cs-product { font-family: var(--font-display); font-size: 1.7rem; font-weight: 300; color: var(--cs-title); line-height: 1.1; margin-bottom: 0.5rem; }
     .cs-goal { font-size: 0.8rem; color: var(--cs-body); line-height: 1.7; }
-    .cs-card-footer { border-top: 1px solid rgba(107,61,122,0.12); padding: 0.9rem 1.75rem; display: flex; justify-content: space-between; align-items: center; }
-    .cs-institute { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--plum); font-weight: 500; }
-    .cs-cta { font-size: 0.7rem; color: var(--plum); }
+    .cs-card-footer { border-top: 1px solid rgba(160,120,110,0.12); padding: 0.9rem 1.75rem; display: flex; justify-content: space-between; align-items: center; }
+    .cs-institute { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #A0705E; font-weight: 500; }
+    .cs-cta { font-size: 0.7rem; color: #A0705E; }
 
     /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--border); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; }
-    footer p { font-size: 0.78rem; color: var(--text-muted); }
-    footer a { color: var(--plum); text-decoration: none; }
+    footer { border-top: 1px solid rgba(160,120,110,0.18); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-size: 0.78rem; color: #9B8A7A; }
+    footer a { color: #A0705E; text-decoration: none; }
 
     @media (max-width: 900px) { .page-header { padding: 2.5rem 2rem 0; } .grid-wrap { padding: 2rem 2rem 3rem; } footer { padding: 1.25rem 2rem; } }
     @media (max-width: 600px) {
