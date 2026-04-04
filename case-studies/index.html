@@ -19,8 +19,8 @@
       --text-muted: #7A6080;
       --border: rgba(107,61,122,0.12);
       --cs-bg: #FFFDF8;
-      --cs-title: #3C3489;
-      --cs-body: #534AB7;
+      --cs-title: #2A1A35;
+      --cs-body: #7A6080;
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body: 'DM Sans', system-ui, sans-serif;
     }
@@ -72,7 +72,7 @@
     .bc-current { color: var(--cs-title); }
     .page-title { font-family: var(--font-display); font-size: 2.25rem; font-weight: 300; color: var(--cs-title); margin-bottom: 0.75rem; }
     .page-desc { font-size: 0.875rem; color: var(--cs-body); line-height: 1.8; max-width: 520px; margin-bottom: 2.5rem; }
-    .page-header-divider { height: 1px; background: rgba(60,52,137,0.1); }
+    .page-header-divider { height: 1px; background: rgba(107,61,122,0.12); }
 
     /* ── CARD GRID ── */
     .grid-wrap { padding: 2.5rem 3rem 4rem; }
@@ -87,16 +87,16 @@
       overflow: hidden;
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .cs-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(60,52,137,0.1); }
+    .cs-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(107,61,122,0.12); border-color: #9B6DAA; border-left-color: #9B6DAA; }
     .cs-card-body { padding: 1.75rem 1.75rem 1.25rem; }
     .cs-card-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-    .cs-badge { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cs-body); background: rgba(255,255,255,0.5); padding: 0.2rem 0.55rem; border-radius: 20px; }
-    .cs-year { font-family: var(--font-display); font-size: 0.9rem; font-style: italic; color: var(--cs-body); opacity: 0.7; }
+    .cs-badge { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #8B2252; background: rgba(139,34,82,0.06); padding: 0.2rem 0.55rem; border-radius: 20px; }
+    .cs-year { font-family: var(--font-display); font-size: 0.9rem; font-style: italic; color: #9B8A7A; }
     .cs-product { font-family: var(--font-display); font-size: 1.7rem; font-weight: 300; color: var(--cs-title); line-height: 1.1; margin-bottom: 0.5rem; }
     .cs-goal { font-size: 0.8rem; color: var(--cs-body); line-height: 1.7; }
-    .cs-card-footer { border-top: 1px solid rgba(60,52,137,0.1); padding: 0.9rem 1.75rem; display: flex; justify-content: space-between; align-items: center; }
-    .cs-institute { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cs-title); font-weight: 500; }
-    .cs-cta { font-size: 0.7rem; color: var(--cs-body); }
+    .cs-card-footer { border-top: 1px solid rgba(107,61,122,0.12); padding: 0.9rem 1.75rem; display: flex; justify-content: space-between; align-items: center; }
+    .cs-institute { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--plum); font-weight: 500; }
+    .cs-cta { font-size: 0.7rem; color: var(--plum); }
 
     /* ── FOOTER ── */
     footer { border-top: 1px solid var(--border); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; }
