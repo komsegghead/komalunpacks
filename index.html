@@ -101,8 +101,11 @@
     .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--plum); margin-bottom: 1.75rem; }
     .hero-photo { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; object-position: top; display: block; margin: 0 auto 1.25rem; border: 2px solid rgba(107,61,122,0.15); }
     .hero-photo-placeholder { width: 112px; height: 112px; border-radius: 50%; background: var(--plum-pale); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
-    .hero-name { font-family: var(--font-display); font-size: 1.75rem; font-weight: 500; color: var(--text); margin-bottom: 1rem; }
-    .hero-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.85; max-width: 480px; margin: 0 auto 3rem; }
+    .hero-name { font-family: var(--font-display); font-size: 1.75rem; font-weight: 500; color: var(--text); margin-bottom: 0.35rem; }
+    .hero-subtitle { font-size: 0.78rem; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 1rem; }
+    .hero-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.85; max-width: 480px; margin: 0 auto 1.5rem; }
+    .hero-linkedin { display: inline-flex; align-items: center; gap: 0.4rem; text-decoration: none; color: var(--plum); font-size: 0.82rem; letter-spacing: 0.05em; padding: 0.6rem 1.1rem; border: 1px solid var(--border); background: var(--white); margin-bottom: 3rem; transition: all 0.2s; }
+    .hero-linkedin:hover { border-color: var(--plum-light); background: var(--plum-pale); }
 
     /* ── SECTION CARDS ── */
     .cards-wrap { padding: 0 2rem 4rem; max-width: 860px; margin: 0 auto; }
@@ -225,7 +228,9 @@
       <p class="hero-eyebrow">Product Portfolio</p>
       <img src="/photo.jpg" alt="Komal Sikka" class="hero-photo" onerror="this.outerHTML='<div class=\'hero-photo-placeholder\'><svg width=\'32\' height=\'32\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#9B6DAA\' stroke-width=\'1.5\'><path d=\'M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\'/><circle cx=\'12\' cy=\'7\' r=\'4\'/></svg></div>'" />
       <h1 class="hero-name">Komal Sikka</h1>
-      <p class="hero-desc">VP Product Manager with 16 years in tech and BFSI. This is where I think about products out loud: teardowns, case studies, and everything I'm learning along the way.</p>
+      <p class="hero-subtitle">VP, Product. Barclays</p>
+      <p class="hero-desc">16 years in Tech and BFSI. This is where I think about products out loud and refine my craft: Product teardowns, case studies, and everything I'm learning along the way.</p>
+      <a href="https://linkedin.com/in/komalsikka" target="_blank" rel="noopener" class="hero-linkedin">LinkedIn &#8599;</a>
     </section>
 
     <div class="cards-wrap">
@@ -278,6 +283,7 @@
         <p class="about-body">I love meeting curious minds. Product thinkers, AI enthusiasts, anyone who believes great strategy starts with great questions.</p>
         <div class="contact-links">
           <a href="https://linkedin.com/in/komalsikka" target="_blank" rel="noopener" class="contact-link">LinkedIn &#8599;</a>
+          <a href="mailto:komalsikka@hotmail.com" class="contact-link">Email &#9993;</a>
           <a href="/KomalSikka_ProductOwner_15%20years.pdf" download class="contact-link">Download Resume &#8595;</a>
         </div>
       </div>
