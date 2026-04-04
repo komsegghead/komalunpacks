@@ -55,19 +55,19 @@
     "link": "/teardowns/langchain.html",
     "status": "live"
   },
-   {
+  {
     "day": "08",
     "tool": "Meta Llama",
     "category": "AI Infrastructure - Open Models",
     "takeaway": "Meta gave away a frontier AI model for free. It was the smartest business move of 2024 - and a warning shot to every closed model provider.",
     "link": "/teardowns/llama.html",
     "status": "live"
-  }, 
+  },
   {
     "day": "09",
     "tool": "Anthropic API",
     "category": "AI Infrastructure - Model API",
-    "takeaway": "Free is not enough when trust is the product. Why regulated industries are choosing Anthropic API — and what the system prompt as architecture really means.",
+    "takeaway": "Free is not enough when trust is the product. Why regulated industries are choosing Anthropic API - and what the system prompt as architecture really means.",
     "link": "/teardowns/anthropic-api.html",
     "status": "live"
   },

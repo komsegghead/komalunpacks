@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Studies | Komal Sikka</title>
+  <meta name="description" content="Product case studies from Komal Sikka. Hinge India growth, Easy Udhaar fintech, Amazon ARIS review integrity." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --white: #FFFDF8;
+      --plum: #6B3D7A;
+      --plum-light: #9B6DAA;
+      --plum-pale: #F0E8F5;
+      --text: #2A1A35;
+      --text-muted: #7A6080;
+      --border: rgba(107,61,122,0.12);
+      --cs-bg: #EEEDFE;
+      --cs-title: #3C3489;
+      --cs-body: #534AB7;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--white); color: var(--text); display: flex; min-height: 100vh; overflow-x: hidden; }
+
+    /* ── SIDEBAR ── */
+    #sidebar { width: 220px; flex-shrink: 0; border-right: 1px solid var(--border); background: var(--white); position: sticky; top: 0; height: 100vh; overflow-y: auto; overflow-x: hidden; transition: width 0.25s ease; z-index: 100; }
+    #sidebar.collapsed { width: 44px; }
+    .sb-inner { width: 220px; min-height: 100%; display: flex; flex-direction: column; }
+    .sb-head { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 0.75rem 1rem; border-bottom: 1px solid rgba(107,61,122,0.08); }
+    .sb-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); transition: opacity 0.15s; white-space: nowrap; }
+    #sidebar.collapsed .sb-label { opacity: 0; }
+    .sb-toggle { background: none; border: none; cursor: pointer; color: var(--text-muted); padding: 4px; display: flex; border-radius: 4px; transition: all 0.2s; }
+    .sb-toggle:hover { color: var(--plum); background: var(--plum-pale); }
+    #sidebar.collapsed .sb-toggle svg { transform: rotate(180deg); }
+    .sb-nav { padding: 0.5rem 0; flex: 1; }
+    .sb-link, .sb-sub { display: block; padding: 0.45rem 0.75rem; font-family: var(--font-body); font-size: 0.82rem; color: var(--text-muted); text-decoration: none; white-space: nowrap; overflow: hidden; transition: color 0.2s, background 0.2s; }
+    .sb-link:hover, .sb-sub:hover { color: var(--plum); background: var(--plum-pale); }
+    .sb-link.active, .sb-sub.active { color: var(--plum); font-weight: 500; }
+    .sb-group { margin: 0.25rem 0; }
+    .sb-group-lbl { display: block; padding: 0.6rem 0.75rem 0.2rem; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #993556; white-space: nowrap; overflow: hidden; }
+    .sb-sub { padding-left: 1.25rem; border-left: 2px solid #FBEAF0; margin-left: 0.75rem; }
+    .sb-sub:hover { border-left-color: #993556; }
+    .sb-sub.active { border-left-color: #993556; color: #993556; }
+    .sb-divider { height: 1px; background: rgba(107,61,122,0.08); margin: 0.5rem 0.75rem; }
+    .sb-ext::after { content: " \2197"; font-size: 0.75em; }
+    @media (max-width: 768px) {
+      body { display: block; }
+      #sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 220px !important; transform: translateX(-100%); transition: transform 0.25s ease; box-shadow: 4px 0 24px rgba(0,0,0,0.08); z-index: 200; }
+      #sidebar.mob-open { transform: translateX(0); }
+      .sb-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.25); z-index: 199; }
+      .sb-overlay.visible { display: block; }
+      .mob-menu-btn { position: fixed; top: 14px; left: 14px; z-index: 150; background: var(--white); border: 1px solid var(--border); border-radius: 6px; padding: 7px 9px; cursor: pointer; color: var(--plum); display: flex; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+    }
+    @media (min-width: 769px) { .mob-menu-btn { display: none; } .sb-overlay { display: none !important; } }
+
+    /* ── MAIN ── */
+    .site-main { flex: 1; min-width: 0; }
+
+    /* ── HEADER ── */
+    .page-header { padding: 3rem 3rem 0; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.78rem; color: var(--text-muted); text-decoration: none; transition: color 0.2s; margin-bottom: 2rem; }
+    .back-link:hover { color: var(--plum); }
+    .breadcrumb { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--plum); }
+    .bc-sep { opacity: 0.5; }
+    .bc-current { color: var(--cs-title); }
+    .page-title { font-family: var(--font-display); font-size: 2.25rem; font-weight: 300; color: var(--cs-title); margin-bottom: 0.75rem; }
+    .page-desc { font-size: 0.875rem; color: var(--cs-body); line-height: 1.8; max-width: 520px; margin-bottom: 2.5rem; }
+    .page-header-divider { height: 1px; background: rgba(60,52,137,0.1); }
+
+    /* ── CARD GRID ── */
+    .grid-wrap { padding: 2.5rem 3rem 4rem; }
+    .cs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .cs-card {
+      display: block;
+      text-decoration: none;
+      background: var(--cs-bg);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cs-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(60,52,137,0.1); }
+    .cs-card-body { padding: 1.75rem 1.75rem 1.25rem; }
+    .cs-card-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+    .cs-badge { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cs-body); background: rgba(255,255,255,0.5); padding: 0.2rem 0.55rem; border-radius: 20px; }
+    .cs-year { font-family: var(--font-display); font-size: 0.9rem; font-style: italic; color: var(--cs-body); opacity: 0.7; }
+    .cs-product { font-family: var(--font-display); font-size: 1.7rem; font-weight: 300; color: var(--cs-title); line-height: 1.1; margin-bottom: 0.5rem; }
+    .cs-goal { font-size: 0.8rem; color: var(--cs-body); line-height: 1.7; }
+    .cs-card-footer { border-top: 1px solid rgba(60,52,137,0.1); padding: 0.9rem 1.75rem; display: flex; justify-content: space-between; align-items: center; }
+    .cs-institute { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cs-title); font-weight: 500; }
+    .cs-cta { font-size: 0.7rem; color: var(--cs-body); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--border); padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-size: 0.78rem; color: var(--text-muted); }
+    footer a { color: var(--plum); text-decoration: none; }
+
+    @media (max-width: 900px) { .page-header { padding: 2.5rem 2rem 0; } .grid-wrap { padding: 2rem 2rem 3rem; } footer { padding: 1.25rem 2rem; } }
+    @media (max-width: 600px) {
+      .page-header { padding: 2rem 1.25rem 0; }
+      .page-title { font-size: 1.75rem; }
+      .grid-wrap { padding: 1.5rem 1.25rem 2.5rem; }
+      .cs-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <button class="mob-menu-btn" id="mobMenuBtn" aria-label="Open menu">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  </button>
+  <div id="sbOverlay" class="sb-overlay"></div>
+  <div id="sidebar"></div>
+
+  <div class="site-main">
+    <div class="page-header">
+      <a href="/" class="back-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+        Back to portfolio
+      </a>
+      <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span class="bc-sep">/</span>
+        <span class="bc-current">Case studies</span>
+      </div>
+      <h1 class="page-title">Case studies</h1>
+      <p class="page-desc">Product case studies from coursework and self-directed learning. Each one is an exercise in thinking like a PM: defining the problem, understanding users, and working toward a decision.</p>
+      <div class="page-header-divider"></div>
+    </div>
+
+    <div class="grid-wrap">
+      <div class="cs-grid">
+        <a href="/case-studies/hinge.html" class="cs-card">
+          <div class="cs-card-body">
+            <div class="cs-card-meta">
+              <span class="cs-badge">Dating App &middot; Growth</span>
+              <span class="cs-year">2021</span>
+            </div>
+            <div class="cs-product">Hinge</div>
+            <p class="cs-goal">How do you grow a dating app to 2 million MAU in India, a market where dating is still taboo?</p>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-institute">GrowthX</span>
+            <span class="cs-cta">Read case study &rarr;</span>
+          </div>
+        </a>
+
+        <a href="/case-studies/easy-udhaar.html" class="cs-card">
+          <div class="cs-card-body">
+            <div class="cs-card-meta">
+              <span class="cs-badge">Fintech &middot; Product Design</span>
+              <span class="cs-year">2022</span>
+            </div>
+            <div class="cs-product">Easy Udhaar</div>
+            <p class="cs-goal">How do you give 12.8 million kirana store owners interest-free credit, without a credit history or a bank visit?</p>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-institute">Great Lakes</span>
+            <span class="cs-cta">Read case study &rarr;</span>
+          </div>
+        </a>
+
+        <a href="/case-studies/amazon-aris.html" class="cs-card">
+          <div class="cs-card-body">
+            <div class="cs-card-meta">
+              <span class="cs-badge">E-Commerce &middot; Trust</span>
+              <span class="cs-year">2026</span>
+            </div>
+            <div class="cs-product">Amazon ARIS</div>
+            <p class="cs-goal">Reviews are noisy, fake, and hard to trust. How do you fix the thing 400 million shoppers rely on to make decisions?</p>
+          </div>
+          <div class="cs-card-footer">
+            <span class="cs-institute">Hello PM</span>
+            <span class="cs-cta">Read case study &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <footer>
+      <p><a href="/">Komal Sikka</a></p>
+      <p>Made with care in India</p>
+    </footer>
+  </div>
+
+  <script src="/sidebar.js"></script>
+</body>
+</html>
