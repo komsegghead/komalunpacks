@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "day": 8,
+    "slug": "llama",
+    "title": "Meta Llama",
+    "subtitle": "The Open-Source Weapon",
+    "tagline": "Meta gave away a frontier AI model for free. It was the smartest business move of 2024.",
+    "category": "Open-Source LLM, Developer Platform",
+    "published_date": "2026-03-23",
+    "read_time": "7 min read",
+    "status": "published",
+    "hero_color": "#1A4B8C"
+  },
+  "intro": {
+    "summary": "Meta Llama is an open-source large language model family that Meta releases freely for anyone to download, modify, and deploy. Unlike every other frontier AI model, Llama has no mandatory API, no subscription, and no vendor lock-in. You own the model. You run it. You decide what happens to your data. By March 2025, Llama had crossed 1 billion downloads — making it the most widely adopted open-source AI model in history. But Llama is not a product in the traditional sense. It is a strategic weapon.",
+    "note": "This teardown covers Llama as a product and platform decision — not a benchmark comparison. The question is not whether Llama is the smartest model. The question is why Meta built it, who it is for, and what it means for the AI ecosystem."
+  },
+  "personas": [
+    {
+      "icon": "🏗️",
+      "title": "Enterprise Engineering Teams",
+      "description": "Teams who need full data sovereignty and cannot send sensitive data to a third-party server. Banks, hospitals, government agencies. Llama runs inside their own firewall."
+    },
+    {
+      "icon": "💰",
+      "title": "Cost-Sensitive Builders",
+      "description": "Startups and scaleups running high-volume AI workloads where token-based pricing from closed models would be prohibitively expensive. Self-hosting Llama can be 10-50x cheaper at scale."
+    },
+    {
+      "icon": "🔬",
+      "title": "AI Researchers",
+      "description": "Academics and applied researchers who need to inspect model weights, run experiments, fine-tune for specific domains, and publish reproducible work. Closed models make this impossible."
+    },
+    {
+      "icon": "🛠️",
+      "title": "Developers Building AI Products",
+      "description": "Developers who want to build AI-powered applications without depending on a vendor's API availability, pricing changes, or policy decisions. Llama removes every external dependency."
+    },
+    {
+      "icon": "🌍",
+      "title": "Global Developer Ecosystem",
+      "description": "The millions of developers worldwide, especially in markets where paying for OpenAI or Anthropic subscriptions in USD is economically difficult. Llama democratises access entirely."
+    }
+  ],
+  "jtbd": [
+    "Run AI inference inside our own infrastructure with no data leaving our systems",
+    "Build AI-powered products without being exposed to vendor pricing changes",
+    "Fine-tune a base model for a specific domain without paying per-token inference costs",
+    "Access frontier AI capabilities without needing a credit card or API subscription",
+    "Evaluate and test AI models without usage caps or rate limits"
+  ],
+  "what_works": [
+    {
+      "title": "Complete Data Sovereignty",
+      "points": [
+        "When you self-host Llama, your data never leaves your infrastructure. No API call, no telemetry, no third-party server.",
+        "For regulated industries — banking, healthcare, government — this is not a nice-to-have. It is a compliance requirement that closed models structurally cannot meet.",
+        "This single capability is why Goldman Sachs, AT&T, and Nomura Holdings have all adopted Llama for internal workloads."
+      ]
+    },
+    {
+      "title": "Cost Structure Disruption at Scale",
+      "points": [
+        "Closed models charge per token. At high volumes, costs compound fast — $15 per million output tokens for frontier closed models adds up to millions annually for serious workloads.",
+        "Self-hosting Llama converts a variable per-token cost into a fixed infrastructure cost. Once your servers are running, the marginal cost per inference approaches zero.",
+        "For high-volume, lower-risk workloads — search, summarisation, document Q&A, internal chat — Llama can be 10-50x cheaper than closed alternatives.",
+        "This is not a marginal improvement. It is a category-level cost disruption."
+      ]
+    },
+    {
+      "title": "No Vendor Lock-In, Ever",
+      "points": [
+        "When Anthropic changes its rate limits without warning, or OpenAI reprices its API overnight, companies running Llama are unaffected.",
+        "You own the model weights. You control the update cycle. You decide when, if ever, to upgrade.",
+        "Mark Zuckerberg's explicit promise: 'No locking, ever.' Meta's enterprise licensing terms guarantee portability and forbid training on customer prompts.",
+        "For engineering teams who have been burned by sudden policy changes or silent deprecations from closed providers, this guarantee is genuinely valuable."
+      ]
+    },
+    {
+      "title": "Llama 4: Genuinely Competitive Performance",
+      "points": [
+        "Llama 4 Scout offers a 10 million token context window — the largest of any model, open or closed — enabling processing of entire legal documents, research papers, or codebases in a single session.",
+        "Llama 4 Maverick supports 200 languages and native multimodal capabilities, making it viable for global enterprise deployments.",
+        "On multimodal reasoning, chart understanding, and long-context workloads, Llama 4 is now genuinely competitive with GPT-4o and Gemini 2.0.",
+        "The gap between open-source and closed model performance has closed dramatically. The cost and control arguments now dominate the quality argument for most workloads."
+      ]
+    },
+    {
+      "title": "Community as Infrastructure",
+      "points": [
+        "Over 1 billion downloads means thousands of fine-tuned variants, deployment guides, open-source tooling, and community support across every major use case.",
+        "The community effectively funds a global QA and feature development pipeline at zero cost to Meta.",
+        "For developers, this means documentation, tutorials, and debugging support that rivals any official vendor programme."
+      ]
+    }
+  ],
+  "what_doesnt_work": [
+    {
+      "title": "Infrastructure Complexity is the Real Cost",
+      "description": "Llama is free to download. It is not free to run. Self-hosting a frontier model requires multiple high-end GPUs, infrastructure expertise, DevOps overhead, and ongoing maintenance. For teams without ML infrastructure experience, the hidden costs can exceed what a managed API would have cost. 'Free' is only free if you have the capability to run it."
+    },
+    {
+      "title": "No Official Support",
+      "description": "When something breaks at 2am and your production system is down, there is no Anthropic or OpenAI support ticket to raise. You are relying on community forums, GitHub issues, and your own engineering team. For enterprises with SLA commitments, this is a genuine risk that needs to be mitigated through internal capability or third-party managed hosting."
+    },
+    {
+      "title": "Safety and Alignment is Now Your Problem",
+      "description": "Closed model providers manage safety filters, content policies, and alignment. When you self-host Llama, you inherit full responsibility for model behaviour. If Llama produces harmful output in your product, that is your liability — not Meta's. This is especially significant for consumer-facing applications in regulated industries."
+    },
+    {
+      "title": "Fragmentation Across Versions and Variants",
+      "description": "The open-source ecosystem has spawned hundreds of Llama variants, fine-tunes, and quantised versions of varying quality. Choosing the right base model, keeping up with updates, and managing version compatibility is a real ongoing engineering burden that closed API users never face."
+    }
+  ],
+  "opportunities": [
+    {
+      "number": "01",
+      "title": "Managed Llama for Regulated Industries",
+      "description": "The biggest untapped opportunity: a compliance-ready, SOC2-certified, managed deployment of Llama where data stays in the customer's cloud region. This removes the infrastructure burden while preserving data sovereignty. Meta could charge meaningfully for this and win the regulated enterprise market that neither OpenAI nor Anthropic can fully address."
+    },
+    {
+      "number": "02",
+      "title": "First-Party Safety Layer as a Product",
+      "description": "Open-sourcing the model while leaving safety entirely to the deployer is leaving enterprise money on the table. A first-party, configurable safety and guardrail layer for Llama deployments would address the single biggest enterprise objection and create a new revenue stream for Meta."
+    },
+    {
+      "number": "03",
+      "title": "Clearer Tiered Pricing for the Llama API",
+      "description": "The Llama API launched in preview in April 2025 with no disclosed pricing. This uncertainty is a blocker for teams who want managed access without self-hosting complexity. A clear, predictable pricing model — ideally with a generous free tier — would accelerate adoption among the developer segment that finds self-hosting too complex."
+    },
+    {
+      "number": "04",
+      "title": "Domain-Specific Fine-Tuned Variants as Products",
+      "description": "The community already produces fine-tuned Llama variants for legal, medical, and financial domains. Meta could productise the best of these as officially supported, compliance-vetted variants. A 'Llama for Banking' with financial regulatory training would be a compelling enterprise product that no closed model provider can match on price or control."
+    }
+  ],
+  "metrics": [
+    {
+      "category": "Adoption & Ecosystem Health",
+      "items": [
+        {
+          "name": "Download Velocity",
+          "description": "Monthly download rate across Hugging Face, Meta's own hub, and cloud marketplaces. The trend matters more than the absolute number — acceleration signals ecosystem momentum, deceleration signals a competitor is pulling developers away."
+        },
+        {
+          "name": "Enterprise Adoption Rate",
+          "description": "Number of enterprises deploying Llama in production, tracked through licensing agreements and cloud marketplace usage. This is Meta's clearest signal that the open-source strategy is converting to sustainable business value."
+        },
+        {
+          "name": "Community Contribution Rate",
+          "description": "Number of fine-tuned variants, tools, and libraries published monthly that build on Llama. This is the flywheel metric — a healthy contribution rate means the community is extending Llama's value faster than Meta's own team can."
+        }
+      ]
+    },
+    {
+      "category": "Competitive Position",
+      "items": [
+        {
+          "name": "Benchmark Parity Score",
+          "description": "Performance gap between Llama's best model and the leading closed model on key benchmarks (SWE-bench, MMLU, multimodal). As this gap closes, the cost and control arguments become increasingly dominant for enterprise buyers."
+        },
+        {
+          "name": "Developer Share of Mind",
+          "description": "Proportion of new AI projects that use Llama as their base model, tracked via GitHub repository analysis and developer surveys. This is Meta's most important long-term metric — developer default choice determines ecosystem dominance."
+        }
+      ]
+    }
+  ],
+  "pm_take": "Llama is the most strategically interesting product in the AI market right now — not because it is the best model, but because of what it is trying to do. Meta is not trying to win the AI race. They are trying to make it impossible for anyone else to build an unassailable moat. Every enterprise that deploys Llama is an enterprise that is not locked into OpenAI or Anthropic. Every developer who learns AI on Llama is a developer in Meta's ecosystem. The open-source strategy is loss-leader economics at civilisational scale. But Llama has a limit that its architecture cannot solve: in regulated industries, 'free and open' is not enough. You also need safety guarantees, compliance documentation, and someone to be accountable when things go wrong. That is the question I will explore tomorrow — why a bank might still choose to pay for Anthropic API, even when Llama is free.",
+  "prev": {
+    "label": "Day 07: Pi by Inflection",
+    "link": "/teardowns/pi.html"
+  },
+  "next": {
+    "label": "Day 09: Anthropic API",
+    "link": "/teardowns/anthropic-api.html"
+  }
+}

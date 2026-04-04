@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "day": 9,
+    "slug": "anthropic-api",
+    "title": "Anthropic API",
+    "subtitle": "Safety as Architecture",
+    "tagline": "Yesterday, Llama made the case for free and open. Today, Anthropic makes the case for why trust is worth paying for.",
+    "category": "AI Infrastructure - Model API",
+    "published_date": "2026-03-24",
+    "read_time": "6 min read",
+    "status": "published",
+    "hero_color": "#3D1F50"
+  },
+  "intro": {
+    "summary": "The Anthropic API gives businesses and builders programmatic access to Claude. It is not the cheapest AI API. It is not the one with the biggest ecosystem. But in 2026, enterprises in regulated industries are increasingly choosing it. The reason is not just the model. It is the philosophy behind it.",
+    "note": "This teardown follows Day 08's Meta Llama analysis. Llama left a question open: is free and open enough for regulated industries like banking? This teardown answers it."
+  },
+  "personas": [
+    {
+      "segment": "primary",
+      "icon": "🏦",
+      "title": "Regulated Enterprise Teams",
+      "description": "Banks, insurers, and healthcare organisations that need predictable model behaviour and a vendor accountable when things go wrong."
+    },
+    {
+      "segment": "primary",
+      "icon": "🏗️",
+      "title": "Product Builders in BFSI",
+      "description": "PMs and engineering teams building AI products on Claude: payment assistants, document analysis pipelines, customer service automation."
+    },
+    {
+      "segment": "primary",
+      "icon": "🧑‍💻",
+      "title": "Developer Builders",
+      "description": "Individual developers who discover the API through self-serve, build a working product, and become the internal champions for enterprise adoption."
+    },
+    {
+      "segment": "secondary",
+      "icon": "☁️",
+      "title": "Cloud-Native Enterprise Teams",
+      "description": "Teams in AWS or Google Cloud ecosystems who access Claude through Amazon Bedrock or Google Vertex AI within their existing compliance infrastructure."
+    }
+  ],
+  "jtbd": [
+    "Embed intelligent reasoning into products without building or maintaining an AI model",
+    "Meet compliance requirements for AI in regulated industries with a safety-first vendor",
+    "Process large documents with a model that holds context across the full length",
+    "Build customer-facing AI products that behave predictably and refuse harmful requests by design",
+    "Access frontier AI reasoning without the infrastructure burden of self-hosting"
+  ],
+  "what_works": [
+    {
+      "title": "Reasoning Quality: Powered by Claude",
+      "points": [
+        "The API is powered by Claude underneath, built on safety as a principle, not bolted on as an afterthought. Developers consistently rate Claude above GPT-4o for complex reasoning, instruction following, and code generation.",
+        "The 200K token context window handles entire codebases and long documents without losing coherence. A genuine differentiator for document-heavy banking workflows."
+      ]
+    },
+    {
+      "title": "Token Counting API: Transparency Before Commitment",
+      "points": [
+        "A dedicated endpoint lets developers count tokens in a request before sending it, before being charged. No other major AI API offers this.",
+        "Small feature. Big trust signal. For teams with strict cost controls, this removes the biggest source of API pricing anxiety."
+      ]
+    },
+    {
+      "title": "Consistency of Philosophy",
+      "points": [
+        "OpenAI's north star shifted: non-profit to for-profit, ads despite its founder's objections, DoD contracts. Anthropic's hasn't moved.",
+        "For enterprises embedding AI into core workflows for years, philosophy stability is a vendor risk metric, not a soft consideration."
+      ]
+    }
+  ],
+  "what_doesnt_work": [
+    {
+      "title": "Invisible Rate Limits",
+      "description": "Developers discover the tier system by hitting it, not before. The ceiling exists for good reason, but the opacity breaks trust. A transparency problem, not a technical one."
+    },
+    {
+      "title": "Procurement Friction",
+      "description": "Banks run lengthy legal and security assessments before signing any AI vendor. Without ready-made compliance documentation, Anthropic risks losing enterprise deals before they even start."
+    },
+    {
+      "title": "No Image Generation",
+      "description": "For multimodal workflows, this forces a second vendor relationship. OpenAI and Google can serve end-to-end creative workflows that Anthropic currently cannot."
+    }
+  ],
+  "opportunities": [
+    {
+      "number": "01",
+      "title": "Usage Transparency Dashboard",
+      "description": "Show developers how much of their window they have used in real time. 'You have used 60% of your 5-hour window' eliminates the #1 developer complaint overnight. They don't need infinite usage. They need to never be surprised."
+    },
+    {
+      "number": "02",
+      "title": "Make Compliance Easy to Buy",
+      "description": "When a bank evaluates any AI vendor, legal and security assessments can take months. I would ship a ready-made compliance pack: security certifications, data handling docs, pre-answered bank security questionnaires, for faster procurement. Llama cannot offer this because when you self-host, there is no vendor to certify. Anthropic can."
+    }
+  ],
+  "metrics": [
+    {
+      "category": "Developer Adoption",
+      "items": [
+        {
+          "name": "Enterprise Conversion Rate",
+          "description": "% of individual developer accounts resulting in an enterprise contract within 12 months. The health metric for Anthropic's bottom-up growth strategy."
+        },
+        {
+          "name": "Rate Limit Surprise Rate",
+          "description": "% of active sessions where a developer hits a rate limit without prior warning. Should trend toward zero as transparency improves."
+        }
+      ]
+    },
+    {
+      "category": "Regulated Industry Penetration",
+      "items": [
+        {
+          "name": "BFSI Enterprise Contract Share",
+          "description": "% of enterprise deals in banking, financial services, and insurance. If safety and trust positioning is working, this should be Anthropic's fastest-growing vertical."
+        },
+        {
+          "name": "Procurement Cycle Length",
+          "description": "Average time from first enterprise contact to signed contract in BFSI. If compliance documentation is doing its job, this should fall below 90 days."
+        }
+      ]
+    }
+  ],
+  "pm_take": "Free isn't always the answer. Llama gives you freedom. But in regulated industries, freedom comes with a hidden cost. You own the model, the infrastructure, and every decision it makes. Anthropic's bet is that trust, safety, and accountability are worth paying for. The rate limits problem is fixable. The procurement friction is fixable. The core strategic positioning: a vendor whose philosophy hasn't drifted and whose model was built on principles, not patched with guardrails. It is genuinely hard to replicate. Sometimes the most valuable thing a vendor offers is not the model. It's the guarantee that it will behave.",
+  "prev": {
+    "label": "Day 08: Meta Llama",
+    "link": "/teardowns/llama.html"
+  },
+  "next": {
+    "label": "Day 10: Weights & Biases",
+    "link": "/teardowns/weights-biases.html"
+  }
+}

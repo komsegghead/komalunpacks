@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "day": 10,
+    "slug": "weights-biases",
+    "title": "Weights & Biases",
+    "subtitle": "The AI Accountability Tool",
+    "tagline": "Every team building AI eventually asks three questions. W&B tries to answer them, but it managed to answer only one of them well.",
+    "category": "AI Infrastructure - MLOps & Experiment Tracking",
+    "published_date": "2026-03-25",
+    "read_time": "6 min read",
+    "status": "published",
+    "hero_color": "#1D3557"
+  },
+  "intro": {
+    "summary": "Weights & Biases (W&B) is an MLOps platform that helps teams track, compare, and evaluate AI model experiments. Add 3 lines of code to your training script and it logs everything automatically: accuracy, loss, model outputs, GPU usage, in real time. No custom scripts, no spreadsheets, no lost experiments. Used internally by OpenAI, NVIDIA, Microsoft, and Stability AI.",
+    "note": "W&B is not a product you ship to end users. It is the tool your ML team uses to answer the hardest questions about the AI you are building. This teardown is framed around the three questions every team building AI eventually asks."
+  },
+  "personas": [
+    {
+      "segment": "primary",
+      "icon": "🧑‍💻",
+      "title": "ML Engineers",
+      "description": "The core user. They run experiments, tune models, and need a fast way to track what is working and what is not without writing custom logging code."
+    },
+    {
+      "segment": "primary",
+      "icon": "🔬",
+      "title": "AI Researchers",
+      "description": "Academic and applied researchers running hundreds of experiments. W&B gives them a shared record of every run, reproducible and shareable with the team."
+    },
+    {
+      "segment": "secondary",
+      "icon": "🏢",
+      "title": "Enterprise ML Teams",
+      "description": "Teams at regulated organisations building AI at scale. They need compliance features, audit trails, and data that stays within their own infrastructure."
+    },
+    {
+      "segment": "secondary",
+      "icon": "📊",
+      "title": "ML-Adjacent PMs and Leads",
+      "description": "Product managers and engineering leads who need to understand model performance without reading raw metrics. Currently underserved by W&B's dashboards."
+    }
+  ],
+  "jtbd": [
+    "Track every model experiment automatically without writing custom logging code",
+    "Compare multiple model versions side by side to find the best configuration",
+    "Share experiment results with teammates across machines and geographies",
+    "Build a reproducible record of every training run for audit and compliance",
+    "Understand whether model changes are improving performance over time"
+  ],
+  "what_works": [
+    {
+      "title": "Question 1: Is it doing what we want? Answered well.",
+      "points": [
+        "Every training run is logged, compared, and visualised on a live dashboard. Run 5 versions of your model and W&B plots them side by side.",
+        "You see instantly which configuration won and why. No need to dig through log files or maintain manual Excel trackers.",
+        "The setup barrier is near zero: 3 lines of code and everything starts logging automatically. Time to first value is under 5 minutes."
+      ]
+    },
+    {
+      "title": "Question 2: Is it worth the investment? Partially answered.",
+      "points": [
+        "W&B tracks cost per experiment and model performance over time, giving teams the data to make an ROI case.",
+        "But it gives you model metrics, not business outcomes. Accuracy improved from 87% to 95%. What does that mean for fraud losses or revenue? That translation is still entirely manual.",
+        "The tool tells you the model got better. It does not tell you whether that improvement was worth the compute cost or what it means for the business."
+      ]
+    },
+    {
+      "title": "Question 3: Is it reliable? Barely answered.",
+      "points": [
+        "Dashboards are built for ML engineers, not business stakeholders. A false positive rate chart means nothing to a credit risk committee without context.",
+        "The Reports feature tries to bridge this gap, but it still requires ML literacy to interpret. A non-technical reader cannot make a decision from a W&B report without help.",
+        "W&B tells you everything about how a model was trained. It does not help you explain whether the model can be trusted to a regulator or a risk committee."
+      ]
+    }
+  ],
+  "what_doesnt_work": [
+    {
+      "title": "Pricing Cliff",
+      "description": "Free for personal use. $315-400 per user per month for enterprise. The features a regulated organisation needs, SSO, audit logs, SOC2 certification, are locked behind enterprise pricing. For a bank, the minimum viable option is the most expensive one. The jump is steep enough that mid-market firms are simply priced out."
+    },
+    {
+      "title": "CoreWeave Acquisition",
+      "description": "W&B was acquired by CoreWeave, a GPU cloud company, in 2025. If your organisation is already on AWS or Azure, your experiment tracking tool is now owned by a compute competitor. Procurement and vendor risk teams at large banks will flag this. The incentive structure has changed: W&B will increasingly be optimised to make CoreWeave the best compute choice."
+    },
+    {
+      "title": "No Business Translation Layer",
+      "description": "The gap between model metrics and business outcomes remains entirely manual. W&B makes experiments visible, but it does not make them legible to the people who fund AI investments and make deployment decisions. Nobody has fully solved this yet."
+    }
+  ],
+  "opportunities": [
+    {
+      "number": "01",
+      "title": "Business Outcomes Dashboard",
+      "description": "A layer on top of model metrics that maps to KPIs non-technical stakeholders can read. Accuracy means nothing. Fraud prevented does. Revenue recovered does. Risk reduced does. The PM and the risk committee should be able to open a W&B report and make a decision without needing an ML engineer in the room."
+    },
+    {
+      "number": "02",
+      "title": "Mid-Tier Compliance Plan",
+      "description": "SSO, audit logs, and SOC2 are locked behind $315-400 per user per month. Mid-market firms want to deploy W&B compliantly but cannot justify the cost. A mid-tier at $100-150 per user per month with core compliance features, while keeping premium offerings locked in the enterprise tier, would open an entirely new segment currently priced out."
+    }
+  ],
+  "metrics": [
+    {
+      "category": "Value Realisation",
+      "items": [
+        {
+          "name": "Time to First Insight",
+          "description": "How long from first experiment to a business decision made using W&B data? If this is weeks, the tool is not translating to value fast enough. The shorter this is, the more embedded W&B becomes in actual decision-making."
+        },
+        {
+          "name": "Stakeholder Adoption Rate",
+          "description": "Percentage of non-ML team members actively reading W&B reports. If only engineers use it, Question 3 is never answered. Low adoption here signals that the business translation layer is missing."
+        },
+        {
+          "name": "Experiment to Production Rate",
+          "description": "Percentage of tracked experiments that result in a deployed model. A low rate signals that the tracking is disconnected from actual decisions. High volume of experiments with low production output is a signal that something is broken in the process, not just the tool."
+        }
+      ]
+    }
+  ],
+  "pm_take": "W&B makes AI experiments visible. That is genuinely hard and genuinely valuable. The 3-lines-of-code onboarding is one of the best developer experience decisions in the MLOps space. But visibility is not accountability. Accountability ends with the business outcome, and W&B stops short of that. The pricing cliff pricing out mid-market enterprises, the CoreWeave acquisition raising vendor risk flags, and the missing business translation layer are all solvable problems. The most natural next step of product evolution for W&B is to translate experiments into business decision-making. Whoever solves that, whether W&B or a competitor, owns the enterprise AI accountability market.",
+  "prev": {
+    "label": "Day 09: Anthropic API",
+    "link": "/teardowns/anthropic-api.html"
+  },
+  "next": {
+    "label": "Day 11: LangFuse",
+    "link": "/teardowns/langfuse.html"
+  }
+}
