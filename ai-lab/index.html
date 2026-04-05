@@ -114,19 +114,21 @@
     .grid-wrap { padding: 2.5rem 3rem 4rem; }
     .al-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .al-card {
-      background: var(--al-bg);
+      background: #2A2218;
+      border: 1px solid rgba(212,168,78,0.18);
+      border-left: 3px solid #D4A84E;
       border-radius: 2px;
       overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
-    .al-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+    .al-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,168,78,0.08); border-color: rgba(212,168,78,0.3); border-left-color: #D4A84E; }
     .al-card-body { padding: 1.75rem; }
-    .al-tag { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--al-body); background: rgba(200,180,170,0.08); padding: 0.2rem 0.55rem; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
-    .al-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: var(--al-title); margin-bottom: 0.6rem; }
-    .al-concept { font-size: 0.8rem; color: var(--al-body); line-height: 1.7; margin-bottom: 1rem; }
-    .al-built { font-size: 0.75rem; color: var(--al-title); border-left: 2px solid rgba(200,180,170,0.12); padding-left: 0.75rem; line-height: 1.65; }
-    .al-card-footer { border-top: 1px solid rgba(200,180,170,0.08); padding: 0.9rem 1.75rem; display: flex; gap: 1rem; align-items: center; }
-    .al-link { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--al-title); text-decoration: none; transition: opacity 0.2s; }
+    .al-tag { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #E8C878; background: rgba(212,168,78,0.12); padding: 0.2rem 0.55rem; border-radius: 20px; display: inline-block; margin-bottom: 1rem; }
+    .al-title { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; color: #F5F0EB; margin-bottom: 0.6rem; }
+    .al-concept { font-size: 0.8rem; color: #B8A888; line-height: 1.7; margin-bottom: 1rem; }
+    .al-built { font-size: 0.75rem; color: #9B8A7A; border-left: 2px solid rgba(212,168,78,0.1); padding-left: 0.75rem; line-height: 1.65; }
+    .al-card-footer { border-top: 1px solid rgba(212,168,78,0.1); padding: 0.9rem 1.75rem; display: flex; gap: 1rem; align-items: center; }
+    .al-link { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: #D4A84E; text-decoration: none; transition: opacity 0.2s; }
     .al-link:hover { opacity: 0.7; }
     .al-link-ext::after { content: " \2197"; }
     .al-link-gh::before { content: "\2665  "; font-size: 0.8em; }
