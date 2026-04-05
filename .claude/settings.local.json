@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:raw.githubusercontent.com)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(ls *.html)",
+      "Bash(python3 -c ':*)",
+      "Bash(py --version)",
+      "Bash(python)",
+      "Bash(python case_study_update.py)",
+      "Bash(python -c ':*)",
+      "Bash(del:*)"
     ]
   }
 }
