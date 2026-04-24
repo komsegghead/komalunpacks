@@ -9,7 +9,10 @@
       "Bash(python)",
       "Bash(python case_study_update.py)",
       "Bash(python -c ':*)",
-      "Bash(del:*)"
+      "Bash(del:*)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

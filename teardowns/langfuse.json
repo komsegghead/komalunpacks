@@ -13,7 +13,6 @@
   },
   "intro": {
     "summary": "LangFuse is an open-source LLM observability platform that traces every model interaction in production - chat turns, reasoning steps, token counts, latency, costs - and surfaces it in a dashboard your engineering team can interrogate. Used by 19 of the Fortune 50. Self-hostable, MIT licensed, and free at its core. It is not a product you ship to users. It is the tool that tells you whether the AI you shipped is working.",
-    "note": "This teardown is informed by firsthand experience using LangFuse internally at Barclays, where our team connected it to DynamoDB so all sensitive customer interaction data stays within our own infrastructure while LangFuse handles the observability layer."
   },
   "personas": [
     {
