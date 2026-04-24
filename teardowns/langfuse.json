@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "day": 11,
+    "slug": "langfuse",
+    "title": "LangFuse",
+    "subtitle": "LLM Observability for Production AI",
+    "tagline": "Every AI product team eventually asks: is our model doing what we want, in production, right now? LangFuse was built to answer that.",
+    "category": "AI Infrastructure - LLM Observability",
+    "published_date": "2026-04-24",
+    "read_time": "6 min read",
+    "status": "published",
+    "hero_color": "#1A3A2A"
+  },
+  "intro": {
+    "summary": "LangFuse is an open-source LLM observability platform that traces every model interaction in production - chat turns, reasoning steps, token counts, latency, costs - and surfaces it in a dashboard your engineering team can interrogate. Used by 19 of the Fortune 50. Self-hostable, MIT licensed, and free at its core. It is not a product you ship to users. It is the tool that tells you whether the AI you shipped is working.",
+    "note": "This teardown is informed by firsthand experience using LangFuse internally at Barclays, where our team connected it to DynamoDB so all sensitive customer interaction data stays within our own infrastructure while LangFuse handles the observability layer."
+  },
+  "personas": [
+    {
+      "segment": "primary",
+      "icon": "🧑‍💻",
+      "title": "ML and AI Engineers",
+      "description": "The core user. They instrument the application, inspect traces, debug failures, and iterate on model quality. LangFuse is built for them first."
+    },
+    {
+      "segment": "primary",
+      "icon": "🏦",
+      "title": "Regulated Enterprise Teams",
+      "description": "Banks, insurers, and healthcare organisations that cannot send sensitive data to a third-party server. Self-hosting LangFuse keeps all trace data within their own infrastructure."
+    },
+    {
+      "segment": "secondary",
+      "icon": "📊",
+      "title": "PMs and Ops Leads",
+      "description": "Product managers and operations leads who need to understand model performance without reading raw dashboards. Currently underserved - they need the insights but cannot access them without engineering help."
+    },
+    {
+      "segment": "secondary",
+      "icon": "🔍",
+      "title": "AI Quality and Compliance Teams",
+      "description": "Teams responsible for ensuring AI outputs meet quality standards and regulatory requirements. LangFuse gives them the audit trail - but not yet the plain English summary they need to act on it."
+    }
+  ],
+  "jtbd": [
+    "Trace every LLM interaction in production to understand what the model is actually doing",
+    "Debug model failures and unexpected outputs without digging through raw logs",
+    "Track token costs and latency per interaction to manage AI infrastructure spend",
+    "Keep sensitive customer interaction data within our own infrastructure",
+    "Evaluate model quality continuously so we know when performance degrades"
+  ],
+  "what_works": [
+    {
+      "title": "Open Source and Self-Hostable",
+      "points": [
+        "Data never has to leave your infrastructure. For regulated industries, this is not a feature. It is a compliance requirement.",
+        "The MIT license means no vendor lock-in, no licensing anxiety, and the freedom to modify the codebase for your own needs.",
+        "At Barclays, our team wired LangFuse to DynamoDB - all sensitive customer interaction data stays within our own environment while LangFuse handles the observability layer. No closed-source competitor can offer this."
+      ]
+    },
+    {
+      "title": "Tracing Quality is Best in Class",
+      "points": [
+        "Every LLM call is captured end to end - prompts, responses, reasoning traces, latency, token counts, costs - in a single coherent trace.",
+        "Engineers can see exactly what happened in a failing conversation, down to the individual model call and token. Debugging time drops from hours to minutes.",
+        "Framework agnostic: works across LangChain, LlamaIndex, OpenAI SDK, LiteLLM, and custom stacks. Unlike LangSmith, you are not locked into one ecosystem."
+      ]
+    },
+    {
+      "title": "Flexible Data Architecture",
+      "points": [
+        "Teams can connect LangFuse to their own infrastructure rather than being forced to use LangFuse Cloud.",
+        "Supports AWS S3, MinIO, and compatible blob storage for raw event data. Bring your own ClickHouse if needed.",
+        "This flexibility is what makes LangFuse viable for large regulated enterprises who would never allow production AI data to sit on an external platform."
+      ]
+    }
+  ],
+  "what_doesnt_work": [
+    {
+      "title": "Non-Technical Users Are Locked Out",
+      "description": "LangFuse was built for engineers and it shows. Ops leads, compliance officers, and business stakeholders cannot make sense of the dashboard without someone translating it for them. A false positive rate chart, a latency histogram, a token cost graph - none of these communicate anything to a person who does not already understand the underlying concepts. For a tool sitting at the heart of AI quality management in an organisation, this is a significant gap."
+    },
+    {
+      "title": "No Native Alerting",
+      "description": "LangFuse shows you what happened. It does not tell you when something goes wrong. There are no built-in threshold alerts, no cost spike warnings, no quality drop notifications. Teams that need proactive monitoring have to export data to Datadog or Grafana and build alerting there. That is an extra integration burden a production observability tool should not require."
+    },
+    {
+      "title": "Documentation Fails at Implementation",
+      "description": "The official documentation is well written and easy to follow conceptually. But when developers try to implement specific integrations, they hit bugs, outdated guidance, and AI-generated recommendations that are simply wrong. The built-in AI assistant in the docs gave incorrect integration advice to multiple users. For a developer tool, documentation that misleads during implementation is a trust problem at the worst possible moment."
+    },
+    {
+      "title": "Inaccurate Cost Tracking",
+      "description": "Users running self-hosted LangFuse found it overestimating costs by nearly 3x compared to actual provider invoices because it does not account for cached token pricing. A tool designed to give you cost visibility cannot afford to get costs wrong. For a bank tracking AI infrastructure spend at scale, a 3x discrepancy is not a minor bug - it is a financial governance problem."
+    },
+    {
+      "title": "Performance Instability at Scale",
+      "description": "Large trace payloads crash the UI. High data ingestion volumes on Kubernetes cause liveness probe failures and container restarts. The v3 architecture was rebuilt for scale but has not yet delivered consistent stability for all self-hosted teams running at high volume. If the product does not hold up at scale, every other feature becomes irrelevant."
+    }
+  ],
+  "opportunities": [
+    {
+      "number": "01",
+      "title": "Layered Accessibility for Non-Technical Users",
+      "description": "Three things need to exist natively: auto-generated plain English summaries delivered on a schedule so stakeholders get insights without logging in, a built-in supervisor agent that answers plain language queries over trace data, and proactive alerts when quality, cost, or latency crosses a threshold. Engineering teams should not have to build this themselves. LangFuse's open-source flexibility enabled Barclays to build a supervisor agent internally - but most teams won't. This should be a first-class product feature."
+    },
+    {
+      "number": "02",
+      "title": "Fix Documentation - The Lowest Hanging Fruit",
+      "description": "Kill or fundamentally fix the AI assistant in docs before it misleads another developer. Restructure documentation around user goals rather than product features - not 'here is how traces work' but 'here is how to debug a failing conversation.' Add version tags to every page so users know whether the guidance applies to their deployment. This is the first thing any PM should fix. Every misleading doc page is a support ticket, a lost user, and a trust problem."
+    },
+    {
+      "number": "03",
+      "title": "Fix Cost Tracking Accuracy",
+      "description": "Pull pricing live from provider APIs rather than hardcoding rates. Show users the exact calculation behind every cost figure - input tokens, cached input tokens, output tokens, each at their correct rate. Add a monthly reconciliation report that compares LangFuse estimates against actual provider invoices. Allow teams to input their contracted rates if they differ from public pricing. Cost tracking is only useful if you trust it."
+    },
+    {
+      "number": "04",
+      "title": "Fix Performance at Scale",
+      "description": "Introduce adaptive ingestion throttling so the system slows gracefully under high load instead of crashing. Implement lazy loading for large trace payloads so the UI does not collapse on long multi-turn conversations. Ship validated production-ready deployment configurations for small, medium, and large scale - not a generic Docker Compose file, but opinionated and tested reference architectures. Make load testing mandatory before every release. Performance is not a feature you add later. It is a quality bar you defend at every release."
+    }
+  ],
+  "metrics": [
+    {
+      "category": "Accessibility and Adoption",
+      "items": [
+        {
+          "name": "Non-Technical User Adoption Rate",
+          "description": "Percentage of non-engineering team members actively using LangFuse outputs - dashboards, summaries, or alerts - on a weekly basis. If only engineers use it, the product is solving half the problem."
+        },
+        {
+          "name": "Mean Time to Detection",
+          "description": "How long from a model quality issue occurring to a team member being alerted. Currently this depends entirely on someone manually checking the dashboard. With native alerting, this should drop to minutes."
+        }
+      ]
+    },
+    {
+      "category": "Data Accuracy and Reliability",
+      "items": [
+        {
+          "name": "Cost Accuracy Score",
+          "description": "Percentage variance between LangFuse cost estimates and actual provider invoices. Target: under 5%. Currently users report discrepancies of up to 3x. This metric makes the cost tracking problem quantifiable and trackable."
+        },
+        {
+          "name": "P99 Trace Load Time",
+          "description": "The 99th percentile time to fully load a trace in the UI. Large traces should not crash the browser. A hard performance SLA here, tracked per release, would prevent regression and hold engineering accountable to stability."
+        }
+      ]
+    }
+  ],
+  "pm_take": "LangFuse is the most interesting open-source product in the LLM observability space. The tracing quality is genuine, the self-hosting flexibility is real, and for regulated industries it is often the only viable option. But it was built by engineers for engineers, and it shows. The non-technical accessibility gap, the missing alerting layer, the documentation that misleads, the cost tracking that overcounts, the performance that cracks under load - these are all fixable problems. None of them require a fundamental rethink of the product. They require a PM who treats stability and accessibility as first-class priorities, not afterthoughts. LangFuse gives engineering teams visibility into their AI in production. The next frontier is making that visibility accessible to everyone who has a stake in whether the AI is working.",
+  "prev": {
+    "label": "Day 10: Weights & Biases",
+    "link": "/teardowns/weights-biases.html"
+  },
+  "next": {
+    "label": "Day 12: Observe.AI",
+    "link": "/teardowns/observe-ai.html"
+  }
+}

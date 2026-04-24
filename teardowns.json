@@ -81,11 +81,11 @@
   },
   {
     "day": "11",
-    "tool": "Observe.AI",
-    "category": "Enterprise AI - Contact Center Intelligence",
-    "takeaway": "Coming soon...",
-    "link": "",
-    "status": "coming-soon"
+    "tool": "LangFuse",
+    "category": "AI Infrastructure - LLM Observability",
+    "takeaway": "LangFuse gives engineering teams visibility into their AI in production. The next frontier is making that visibility accessible to everyone who has a stake in whether the AI is working.",
+    "link": "/teardowns/langfuse.html",
+    "status": "live"
   },
   {
     "day": "12",
