@@ -54,7 +54,7 @@
       "points": [
         "Data never has to leave your infrastructure. For regulated industries, this is not a feature. It is a compliance requirement.",
         "The MIT license means no vendor lock-in, no licensing anxiety, and the freedom to modify the codebase for your own needs.",
-        "At Barclays, our team wired LangFuse to DynamoDB - all sensitive customer interaction data stays within our own environment while LangFuse handles the observability layer. No closed-source competitor can offer this."
+        "The open-source community around LangFuse is active and growing. Users contribute integrations, share best practices, and help each other solve problems. This ecosystem is a powerful asset for the product."
       ]
     },
     {
