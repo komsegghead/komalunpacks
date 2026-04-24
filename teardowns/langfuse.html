@@ -346,7 +346,7 @@
     async function loadTeardown() {
       try {
         const page = location.pathname.split('/').pop().replace('.html', '');
-        const res = await fetch(`${page}.json`);
+        const res = await fetch(`${page}.json?v=${Date.now()}`);
         if (!res.ok) throw new Error('Not found');
         const d = await res.json();
         renderHero(d);
