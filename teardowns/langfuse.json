@@ -88,7 +88,7 @@
     },
     {
       "title": "Inaccurate Cost Tracking",
-      "description": "Users running self-hosted LangFuse found it overestimating costs by nearly 3x compared to actual provider invoices because it does not account for cached token pricing. A tool designed to give you cost visibility cannot afford to get costs wrong. For a bank tracking AI infrastructure spend at scale, a 3x discrepancy is not a minor bug - it is a financial governance problem."
+      "description": "Users running self-hosted LangFuse found it overestimating costs by nearly 3x compared to actual provider invoices because it does not account for cached token pricing. A tool designed to give you cost visibility cannot afford to get costs wrong. For any team tracking AI infrastructure spend at scale, a 3x discrepancy is not a minor bug - it is a financial governance problem."
     },
     {
       "title": "Performance Instability at Scale",
@@ -99,7 +99,7 @@
     {
       "number": "01",
       "title": "Layered Accessibility for Non-Technical Users",
-      "description": "Three things need to exist natively: auto-generated plain English summaries delivered on a schedule so stakeholders get insights without logging in, a built-in supervisor agent that answers plain language queries over trace data, and proactive alerts when quality, cost, or latency crosses a threshold. Engineering teams should not have to build this themselves. LangFuse's open-source flexibility enabled Barclays to build a supervisor agent internally - but most teams won't. This should be a first-class product feature."
+      "description": "Three things need to exist natively: auto-generated plain English summaries delivered on a schedule so stakeholders get insights without logging in, a built-in natural language query interface that answers plain language queries over trace data, and proactive alerts when quality, cost, or latency crosses a threshold. Engineering teams should not have to build this themselves. This should be a first-class product feature."
     },
     {
       "number": "02",
