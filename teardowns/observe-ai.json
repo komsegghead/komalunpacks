@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "day": 12,
+    "slug": "observe-ai",
+    "title": "Observe.AI",
+    "subtitle": "Conversation Intelligence for Contact Centers",
+    "tagline": "Most contact centers evaluate less than 10% of customer conversations. The rest go unheard. Observe.AI was built to change that.",
+    "category": "Enterprise AI - Contact Center Intelligence",
+    "published_date": "2026-04-27",
+    "read_time": "6 min read",
+    "status": "published",
+    "hero_color": "#1A2744"
+  },
+  "intro": {
+    "summary": "Observe.AI is a conversation intelligence platform that listens to 100% of contact center interactions — every call, every chat — and turns them into QA scores, coaching recommendations, compliance flags, and business insights. Used by 300+ global enterprises across financial services, insurance, and healthcare. It replaces the broken model of sampling 2-3% of calls and hoping you caught the right ones.",
+    "note": "This teardown looks at Observe.AI through a banking and payments lens — where transcripts are legal records, compliance is non-negotiable, and QA is not just an operational process but a regulatory requirement."
+  },
+  "personas": [
+    {
+      "segment": "primary",
+      "icon": "🎯",
+      "title": "QA Analysts",
+      "description": "Teams previously spending hours manually listening to and scoring calls. Observe.AI automates their evaluation workflow and gives them time back to focus on coaching and improvement."
+    },
+    {
+      "segment": "primary",
+      "icon": "👩‍💼",
+      "title": "Contact Center Supervisors",
+      "description": "Leaders who need visibility into team performance without listening to every call. They use Observe.AI for targeted coaching, compliance monitoring, and trend analysis."
+    },
+    {
+      "segment": "primary",
+      "icon": "🏦",
+      "title": "Compliance and Risk Teams",
+      "description": "Banking and regulated industry teams responsible for ensuring agents follow regulatory scripts, disclosure requirements, and complaint handling procedures on every interaction."
+    },
+    {
+      "segment": "secondary",
+      "icon": "📊",
+      "title": "Operations and CX Leaders",
+      "description": "Senior leaders who need business-level insights from customer conversations — what customers are asking about, where friction exists, what is driving complaints."
+    }
+  ],
+  "jtbd": [
+    "Evaluate 100% of customer interactions for quality and compliance without manual effort",
+    "Identify coaching opportunities for agents based on real conversation evidence, not gut feel",
+    "Catch compliance risks in real time before they become regulatory incidents",
+    "Understand what customers are actually saying across thousands of conversations",
+    "Reduce average handle time while maintaining service quality and compliance standards"
+  ],
+  "what_works": [
+    {
+      "title": "100% Call Coverage Changes Everything",
+      "points": [
+        "Traditional QA samples less than 10% of calls. The other 90% — the complaints, the compliance risks, the coaching moments — are invisible.",
+        "Observe.AI evaluates every single interaction automatically. Compliance risks that previously slipped through are now caught consistently, not by chance.",
+        "For a bank handling thousands of payment dispute calls daily, this is the difference between managing risk and hoping nothing goes wrong."
+      ]
+    },
+    {
+      "title": "Auto QA Transforms the QA Process",
+      "points": [
+        "Hours of manual call listening are replaced by automated, consistent, data-driven evaluation. QA teams shift from doing evaluations to acting on them.",
+        "Scoring is evidence-backed — tied to specific moments in the conversation, not a supervisor's overall impression of an agent.",
+        "Consistency is a feature. Every agent is evaluated against the same criteria every time. Human bias disappears from the QA process."
+      ]
+    },
+    {
+      "title": "Real-Time Agent Assist at Scale",
+      "points": [
+        "During a live call, the AI surfaces compliance prompts, suggested responses, and sentiment signals to the agent in real time.",
+        "This is the equivalent of having a supervisor whispering guidance in every agent's ear simultaneously — at any scale, across any number of concurrent calls.",
+        "For payment dispute calls where agents must follow precise regulatory scripts, real-time guidance reduces compliance failures before they happen."
+      ]
+    },
+    {
+      "title": "Targeted Coaching Replaces Generic Feedback",
+      "points": [
+        "AI analyses individual agent performance and generates coaching recommendations tied to specific call moments — not generic advice.",
+        "Supervisors arrive at coaching sessions with evidence, not impressions. The conversation becomes specific, actionable, and fair.",
+        "Performance tracking over time shows whether coaching is working — closing the loop between feedback and improvement."
+      ]
+    }
+  ],
+  "what_doesnt_work": [
+    {
+      "title": "Transcript Accuracy Is Unreliable",
+      "description": "Speaker attribution errors are a documented problem — agent words get assigned to the customer and vice versa. For most industries this is a UX frustration. In banking, transcripts are legal records. A customer can reference a transcript in a dispute or regulatory complaint. Inaccuracy is not a product gap — it is a liability. The entire value of the platform rests on the accuracy of what it heard. If that foundation is shaky, every score, every coaching recommendation, and every compliance flag built on top of it is also unreliable."
+    },
+    {
+      "title": "Long Calls Lose Context Between Segments",
+      "description": "Observe.AI segments lengthy calls for analysis. Each segment is evaluated in isolation. The AI scoring segment three has no awareness of what happened in segment one. For complex payment dispute calls that span 20-30 minutes, this means compliance steps completed early in the call may not be credited when the later segments are scored. Coaching recommendations miss the full arc of the conversation. The score reflects fragments, not the full interaction."
+    },
+    {
+      "title": "Support Experience Undermines Trust",
+      "description": "Users report dismissive ticket closures — issues marked as user error without thorough investigation. For a product selling itself on reliability and compliance-grade accuracy, a support experience that feels adversarial is a brand contradiction. This is not a product problem to solve in the teardown, but it is worth flagging: trust in the support relationship directly affects trust in the platform's outputs."
+    }
+  ],
+  "opportunities": [
+    {
+      "number": "01",
+      "title": "Intent-Aware Scoring",
+      "description": "One universal scorecard applied to every call type produces scores that are not comparable and not meaningful. A payment dispute call and a balance enquiry call are fundamentally different interactions with different success criteria, different regulatory requirements, and different acceptable handle times. The product should classify call intent first — payment dispute, fraud report, general enquiry, loan application — and then apply the appropriate scorecard for that call type. An agent who spends 25 minutes carefully resolving a complex payment dispute should not score badly because the AHT benchmark was set for balance enquiries. Scores are only meaningful when they are contextual."
+    },
+    {
+      "number": "02",
+      "title": "Context-Preserving Segmentation",
+      "description": "When a long call is split into segments, generate a structured summary of each completed segment — sentiment trajectory, compliance steps completed, key topics discussed, resolution offered — and inject it as context into the analysis of the next segment. This is the same principle behind how large language models handle long conversations: summarise what came before so nothing is lost. Every segment would then be scored with full awareness of the entire call. No lost context, no missing compliance credits, no fragmented coaching recommendations."
+    },
+    {
+      "number": "03",
+      "title": "Compliance Workflow Closing",
+      "description": "Observe.AI surfaces compliance flags. It does not close the loop on what happens next. In banking, detecting a risk is only half the job. Regulators need evidence that risks were reviewed, assigned to a named owner, actioned within a defined timeframe, and resolved with a documented outcome. The product should own the full compliance workflow — flag raised, assigned, actioned, resolved, audit trail exported. Without this, compliance management is detection theatre. The flag appears on a dashboard. Nobody can prove it was acted on. That is not good enough for a regulated institution."
+    }
+  ],
+  "metrics": [
+    {
+      "category": "Quality and Accuracy",
+      "items": [
+        {
+          "name": "Transcript Accuracy Rate",
+          "description": "Percentage of transcripts with zero speaker attribution errors, measured via periodic human audit of a random sample. This is the foundation everything else is built on. If this number is low, every score and recommendation generated from those transcripts is also unreliable."
+        },
+        {
+          "name": "Scorecard Relevance Score",
+          "description": "Supervisor-rated accuracy of AI coaching recommendations per call type, collected via in-product feedback. Low scores on a specific call type signal that the scorecard is not calibrated correctly for that interaction type and needs review."
+        }
+      ]
+    },
+    {
+      "category": "Compliance and Risk",
+      "items": [
+        {
+          "name": "Compliance Flag Resolution Rate",
+          "description": "Percentage of flagged interactions that have a documented resolution within the defined SLA. If this is not tracked, compliance management is theatre. Detection without resolution provides no regulatory protection and no audit trail."
+        },
+        {
+          "name": "Compliance Coverage Rate",
+          "description": "Percentage of all interactions evaluated against the relevant compliance scorecard for their call type. Should trend toward 100%. Any gap represents interactions where compliance was not verified — a regulatory blind spot."
+        }
+      ]
+    }
+  ],
+  "pm_take": "Observe.AI solves a real and significant problem. Evaluating less than 10% of customer conversations and calling it quality management is not quality management — it is luck. The shift to 100% automated coverage, evidence-backed coaching, and real-time compliance guidance is genuinely valuable. But the platform has a trust problem at its foundation. Transcript accuracy errors undermine every output the product generates. Segmented analysis loses the context that makes scores meaningful. And compliance flags without a closed-loop workflow give regulated enterprises the appearance of compliance management without the substance. The sharpest opportunity is not a feature — it is a philosophy shift. Observe.AI positions itself as a visibility platform. The next frontier is positioning itself as an accountability platform. One that does not just show you what happened, but proves you acted on it.",
+  "prev": {
+    "label": "Day 11: LangFuse",
+    "link": "/teardowns/langfuse.html"
+  },
+  "next": {
+    "label": "Day 13: Cresta",
+    "link": "/teardowns/cresta.html"
+  }
+}
