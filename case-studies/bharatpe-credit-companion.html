@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BharatPe Credit Companion: Fixing the Trust Gap in Merchant Lending - Komal Sikka</title>
+<meta name="description" content="A product case study on BharatPe Credit Companion — an AI layer that explains credit locks, automates re-scoring, and gives merchants a live view of their credit standing." />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #1A1416;
+  --bg-sidebar: #161213;
+  --bg-card: #241E20;
+  --bg-footer: #161213;
+  --white: #1A1416;
+  --border: rgba(200,180,170,0.08);
+  --border-visible: rgba(200,180,170,0.12);
+  --text: #F5F0EB;
+  --text-body: #F0EBE6;
+  --text-muted: #9B8E88;
+  --text-tertiary: #7A6E68;
+  --plum: #B5707E;
+  --plum-light: #C8808E;
+  --plum-pale: rgba(181,112,126,0.1);
+  --plum-deep: #8B3D4A;
+  --burgundy: #D4537E;
+  --burgundy-light: #E88AAE;
+  --sunshine-pale: #241E20;
+}
+html { scroll-behavior: smooth; }
+body { font-family: "DM Sans", sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* HERO */
+.cs-hero { padding: 9rem 4rem 5rem; background: var(--bg); border-bottom: 1px solid var(--border); }
+.cs-hero-inner { max-width: 900px; margin: 0 auto; }
+.cs-eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.cs-eyebrow::before { content: ""; width: 1.5rem; height: 1px; background: var(--burgundy-light); }
+.cs-title { font-family: "Cormorant Garamond", serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300; color: var(--text); line-height: 1.15; margin-bottom: 1.5rem; }
+.cs-title span { color: var(--plum); font-style: italic; }
+.cs-subtitle { font-size: 1rem; color: var(--text-muted); line-height: 1.75; max-width: 680px; margin-bottom: 2.5rem; }
+.cs-meta { display: flex; flex-wrap: wrap; gap: 2rem; }
+.cs-meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+.cs-meta-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--burgundy); }
+.cs-meta-value { font-size: 0.875rem; color: var(--text); font-weight: 500; }
+
+/* JOURNEY NAV */
+.journey-nav { background: var(--bg-card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 90; padding: 0 4rem; overflow-x: auto; }
+.journey-nav-inner { display: flex; max-width: 1200px; margin: 0 auto; white-space: nowrap; }
+.journey-step { padding: 1rem 1.25rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; border-bottom: 2px solid transparent; transition: all 0.3s; display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+.journey-step:hover { color: var(--plum); border-bottom-color: var(--plum-light); }
+.journey-step.active { color: var(--plum); border-bottom-color: var(--plum); font-weight: 500; }
+.journey-step-num { font-family: "Cormorant Garamond", serif; font-size: 0.95rem; font-style: italic; color: var(--plum-light); }
+
+/* SECTIONS */
+.cs-section { padding: 5rem 4rem; border-bottom: 1px solid var(--border); }
+.cs-section:nth-child(odd) { background: var(--bg); }
+.cs-section:nth-child(even) { background: var(--bg-card); }
+.cs-section-inner { max-width: 900px; margin: 0 auto; }
+.section-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; }
+.section-label::before { content: ""; width: 1.5rem; height: 1px; background: var(--burgundy-light); }
+.section-title { font-family: "Cormorant Garamond", serif; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 300; color: var(--text); margin-bottom: 2rem; line-height: 1.2; }
+.section-title span { color: var(--plum); font-style: italic; }
+
+p { font-size: 0.9rem; line-height: 1.9; color: var(--text-muted); margin-bottom: 1.25rem; }
+h4 { font-family: "Cormorant Garamond", serif; font-size: 1.2rem; font-weight: 400; color: var(--text); margin: 2rem 0 0.75rem; }
+ul { list-style: none; margin-bottom: 1.5rem; }
+ul li { font-size: 0.875rem; line-height: 1.8; color: var(--text-muted); padding-left: 1.25rem; position: relative; margin-bottom: 0.4rem; }
+ul li::before { content: "-"; position: absolute; left: 0; color: var(--plum-light); font-size: 0.75rem; }
+
+/* CALLOUT */
+.callout { background: var(--plum-pale); border-left: 3px solid var(--plum); padding: 1.25rem 1.5rem; margin: 2rem 0; }
+.callout p { margin: 0; color: var(--text-body); font-size: 0.875rem; font-style: italic; }
+
+/* VOICE BOX */
+.voice-box { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem 1.75rem 1.5rem 2.5rem; margin: 1rem 0; position: relative; overflow: hidden; }
+.voice-box::before { content: '"'; font-family: Georgia, serif; font-size: 5rem; color: var(--plum-light); opacity: 0.25; position: absolute; top: -0.75rem; left: 0.75rem; line-height: 1; pointer-events: none; }
+.voice-box p { margin: 0; font-style: italic; color: var(--text-muted); font-size: 0.875rem; line-height: 1.75; }
+.voice-source { font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem; display: block; }
+
+/* INSIGHT BOX */
+.insight-box { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; margin: 2rem 0; }
+.insight-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--burgundy); margin-bottom: 0.5rem; }
+.insight-text { font-family: "Cormorant Garamond", serif; font-size: 1.1rem; color: var(--text); line-height: 1.6; }
+
+/* STAT GRID */
+.stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin: 2rem 0; border: 1px solid var(--border); }
+.stat-cell { background: var(--bg-card); padding: 1.25rem 1.5rem; }
+.stat-num { font-family: "Cormorant Garamond", serif; font-size: 2rem; font-weight: 300; color: var(--plum); line-height: 1; margin-bottom: 0.4rem; }
+.stat-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+
+/* TWO COL */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0; }
+.col-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; }
+.col-card-title { font-family: "Cormorant Garamond", serif; font-size: 1.1rem; color: var(--text); margin-bottom: 0.75rem; }
+
+/* FEATURE DEEP DIVE */
+.feature-block { background: var(--bg-card); border: 1px solid var(--border); margin: 2rem 0; overflow: hidden; }
+.feature-block-header { background: rgba(200,180,170,0.06); padding: 1.5rem 2rem; display: flex; align-items: flex-start; gap: 1.25rem; }
+.feature-block-num { font-family: "Cormorant Garamond", serif; font-size: 3rem; font-weight: 300; color: var(--plum-light); line-height: 1; flex-shrink: 0; }
+.feature-block-title { font-family: "Cormorant Garamond", serif; font-size: 1.4rem; color: var(--text); margin-bottom: 0.25rem; }
+.feature-block-subtitle { font-size: 0.8rem; color: var(--text-muted); }
+.feature-block-body { padding: 1.75rem 2rem; }
+.layer-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--burgundy); margin: 1.5rem 0 0.5rem; }
+
+/* DELIVERABLES */
+.deliverables-row { display: flex; gap: 1rem; flex-wrap: wrap; margin: 2rem 0; }
+.deliverable-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-family: "DM Sans", sans-serif; font-size: 0.8rem; font-weight: 500;
+  text-decoration: none; letter-spacing: 0.04em;
+  border: 1px solid var(--border-visible);
+  color: var(--text-muted);
+  background: var(--bg-card);
+  transition: all 0.2s;
+}
+.deliverable-btn:hover { border-color: var(--plum-light); color: var(--plum-light); background: var(--plum-pale); }
+.deliverable-btn svg { flex-shrink: 0; }
+
+footer { border-top: 1px solid rgba(200,180,170,0.08); padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--bg-footer); }
+footer p { font-size: 0.8rem; color: #5A504C; }
+footer a { color: var(--plum); text-decoration: none; }
+
+@media (max-width: 900px) {
+  .cs-hero { padding: 7rem 2rem 4rem; }
+  .journey-nav { padding: 0 2rem; }
+  .cs-section { padding: 4rem 2rem; }
+  .two-col { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+}
+
+/* sidebar */
+body { display: flex !important; min-height: 100vh; }
+#sidebar { width: 220px; flex-shrink: 0; border-right: 1px solid rgba(200,180,170,0.08); background: var(--bg-sidebar); position: sticky; top: 0; height: 100vh; overflow-y: auto; overflow-x: hidden; transition: width 0.25s ease; z-index: 100; }
+#sidebar.collapsed { width: 44px; }
+.sb-inner { width: 220px; min-height: 100%; display: flex; flex-direction: column; }
+.sb-head { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 0.75rem 1rem; border-bottom: 1px solid rgba(200,180,170,0.08); }
+.sb-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted, #9B8E88); transition: opacity 0.15s; white-space: nowrap; }
+#sidebar.collapsed .sb-label { opacity: 0; }
+.sb-toggle { background: none; border: none; cursor: pointer; color: var(--text-muted, #9B8E88); padding: 4px; display: flex; border-radius: 4px; transition: all 0.2s; }
+.sb-toggle:hover { color: var(--plum); background: rgba(200,180,170,0.06); }
+#sidebar.collapsed .sb-toggle svg { transform: rotate(180deg); }
+.sb-nav { padding: 0.5rem 0; flex: 1; }
+.sb-link, .sb-sub { display: block; padding: 0.45rem 0.75rem; font-family: "DM Sans", sans-serif; font-size: 0.82rem; color: var(--text-muted, #9B8E88); text-decoration: none; white-space: nowrap; overflow: hidden; transition: color 0.2s, background 0.2s; }
+.sb-link:hover, .sb-sub:hover { color: var(--plum); background: rgba(200,180,170,0.06); }
+.sb-link.active, .sb-sub.active { color: var(--plum); font-weight: 500; }
+.sb-group { margin: 0.25rem 0; }
+.sb-group-lbl { display: block; padding: 0.6rem 0.75rem 0.2rem; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: #D4537E; white-space: nowrap; overflow: hidden; }
+.sb-sub { padding-left: 1.25rem; border-left: 2px solid rgba(200,180,170,0.12); margin-left: 0.75rem; }
+.sb-sub:hover { border-left-color: #D4537E; }
+.sb-sub.active { border-left-color: #D4537E; color: #D4537E; }
+.sb-divider { height: 1px; background: rgba(200,180,170,0.06); margin: 0.5rem 0.75rem; }
+.site-main { flex: 1; min-width: 0; overflow: hidden; }
+.page-breadcrumb { padding: 0.65rem 4rem; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted, #9B8E88); border-bottom: 1px solid rgba(200,180,170,0.08); display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.page-breadcrumb a { color: var(--text-muted, #9B8E88); text-decoration: none; transition: color 0.2s; }
+.page-breadcrumb a:hover { color: var(--plum); }
+.page-breadcrumb .bc-sep { opacity: 0.4; }
+.page-breadcrumb .bc-current { color: var(--plum, #B5707E); }
+.mob-menu-btn { position: fixed; top: 14px; left: 14px; z-index: 150; background: var(--bg); border: 1px solid rgba(200,180,170,0.08); border-radius: 6px; padding: 7px 9px; cursor: pointer; color: var(--plum); display: none; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+.sb-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.25); z-index: 199; }
+@media (max-width: 768px) {
+  body { display: block !important; }
+  #sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 220px !important; transform: translateX(-100%); transition: transform 0.25s ease; box-shadow: 4px 0 24px rgba(0,0,0,0.08); z-index: 200; }
+  #sidebar.mob-open { transform: translateX(0); }
+  .sb-overlay.visible { display: block; }
+  .mob-menu-btn { display: flex; }
+  .page-breadcrumb { padding: 0.6rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+  <button class="mob-menu-btn" id="mobMenuBtn" aria-label="Open menu">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+  </button>
+  <div id="sbOverlay" class="sb-overlay"></div>
+  <div id="sidebar"></div>
+
+  <div class="site-main">
+  <div class="page-breadcrumb">
+    <a href="/">Home</a>
+    <span class="bc-sep">/</span>
+    <a href="/case-studies">Case studies</a>
+    <span class="bc-sep">/</span>
+    <span class="bc-current">BharatPe Credit Companion</span>
+  </div>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-hero-inner">
+    <p class="cs-eyebrow">Case Study &middot; Fintech &middot; Merchant Lending</p>
+    <h1 class="cs-title">BharatPe Credit Companion: <span>Fixing the Trust Gap in Merchant Lending</span></h1>
+    <p class="cs-subtitle">BharatPe merchants repay loans on time and find their credit line locked with no explanation. How do you fix a trust problem that is costing Rs&nbsp;35.9&nbsp;crore in lost revenue annually?</p>
+    <div class="cs-meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Product</span>
+        <span class="cs-meta-value">BharatPe (Feature Addition)</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Domain</span>
+        <span class="cs-meta-value">Fintech &middot; Merchant Lending</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Target Segment</span>
+        <span class="cs-meta-value">Active BharatPe Borrowers</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Revenue at Stake</span>
+        <span class="cs-meta-value">Rs 35.9 crore annually</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Deliverables</span>
+        <span class="cs-meta-value">PRD &middot; Prototype &middot; Slide Deck</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Course</span>
+        <span class="cs-meta-value">Hello PM &middot; 2026</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JOURNEY NAV -->
+<nav class="journey-nav">
+  <div class="journey-nav-inner">
+    <a href="#overview"  class="journey-step"><span class="journey-step-num">01</span> Overview</a>
+    <a href="#problem"   class="journey-step"><span class="journey-step-num">02</span> Problem</a>
+    <a href="#solution"  class="journey-step"><span class="journey-step-num">03</span> Solution</a>
+    <a href="#ai-role"   class="journey-step"><span class="journey-step-num">04</span> AI Role</a>
+    <a href="#impact"    class="journey-step"><span class="journey-step-num">05</span> Impact</a>
+    <a href="#deliverables" class="journey-step"><span class="journey-step-num">06</span> Deliverables</a>
+  </div>
+</nav>
+
+<!-- 01 OVERVIEW -->
+<section class="cs-section" id="overview">
+  <div class="cs-section-inner">
+    <p class="section-label">01 &middot; Context</p>
+    <h2 class="section-title">Overview: <span>The product works. The credit model works. What doesn't work is what happens when it says no.</span></h2>
+
+    <p>BharatPe is India's largest merchant payment and lending platform, serving 1.7 crore merchants. Lending contributes 60% of revenue. The transaction infrastructure is trusted, the EDI repayment model is proven, and the credit model does what it is supposed to do.</p>
+
+    <p>What does not work is what happens when the credit model says no.</p>
+
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-num">1.7Cr</div>
+        <div class="stat-desc">Merchants on the BharatPe platform</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">60%</div>
+        <div class="stat-desc">Revenue contribution from merchant lending</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">Rs 35.9Cr</div>
+        <div class="stat-desc">Estimated annual revenue at stake from credit lock churn</div>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-label">The Core Tension</div>
+      <div class="insight-text">A merchant who repaid every single EDI on time — faithfully, without a single delay — finishes their loan and finds their credit line locked. The app shows one word: ineligible. No reason. No timeline. No next step.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 PROBLEM -->
+<section class="cs-section" id="problem">
+  <div class="cs-section-inner">
+    <p class="section-label">02 &middot; Problem Definition</p>
+    <h2 class="section-title">The Problem: <span>Ineligible</span></h2>
+
+    <p>When a merchant's credit line gets locked after full loan repayment, the BharatPe app shows one word: ineligible. No reason, no timeline, no next step. The merchant who repaid every EDI on time, who transacted faithfully every day, is staring at a wall.</p>
+
+    <p>Customer care cannot explain it. The agent looking at the screen has the same information the merchant has: nothing actionable. The average reactivation time is 30 to 90 days. The industry benchmark is under 24 hours.</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">What the merchant experiences</div>
+        <ul>
+          <li>Loan fully repaid — all EDIs cleared on time</li>
+          <li>Opens app expecting credit line to be available</li>
+          <li>Sees one word: <em>ineligible</em></li>
+          <li>No reason given, no date, no action to take</li>
+          <li>Calls customer care — agent cannot explain either</li>
+          <li>Waits 30–90 days with no visibility on status</li>
+        </ul>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">What the numbers show</div>
+        <ul>
+          <li>10–12% of active borrowers experience a credit lock</li>
+          <li>20% churn post-lock — switching to a competitor or abandoning lending entirely</li>
+          <li>Industry benchmark for credit re-scoring after loan closure: under 24 hours</li>
+          <li>BharatPe actual: 30–90 days manual reactivation</li>
+          <li>Each lost borrower represents Rs 1,200–2,400 in annual interest income</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p>The credit model works correctly. The lock is often legitimate — triggered by a UPI volume drop below the threshold for the next credit tier. The problem is not the decision. The problem is that nobody explains it. A rule engine can produce a generic error message. It cannot tell Ramesh why his credit line is locked, what he can do about it, or when it will be reviewed.</p>
+    </div>
+
+    <h4>Why this is a trust problem, not just a UX problem</h4>
+    <p>Trust in financial products is asymmetric. It takes months of consistent repayment behaviour to build, and a single unexplained rejection to break. Avaya's survey of Indian banking customers found that 37% switch after a bad experience. The switching cost for BharatPe is lower than most banks — a merchant's transaction history does not transfer to a competitor, but their frustration does.</p>
+
+    <div class="voice-box">
+      <p>I paid everything on time. Every single day, money was deducted. And then when it's over, they tell me I'm not eligible? For what? Nobody can tell me anything.</p>
+      <span class="voice-source">— Merchant sentiment, distilled from customer support patterns</span>
+    </div>
+  </div>
+</section>
+
+<!-- 03 SOLUTION -->
+<section class="cs-section" id="solution">
+  <div class="cs-section-inner">
+    <p class="section-label">03 &middot; Product Solution</p>
+    <h2 class="section-title">Credit Companion: <span>An AI layer with three components</span></h2>
+
+    <p>Credit Companion is not a redesign of BharatPe's credit model. It is an AI layer built on top of it — one that translates credit model outputs into merchant-facing explanations, automates re-scoring at the moment of loan closure, and gives the merchant a live window into their own credit standing.</p>
+
+    <!-- FEATURE 1 -->
+    <div class="feature-block">
+      <div class="feature-block-header">
+        <div class="feature-block-num">01</div>
+        <div>
+          <div class="feature-block-title">Automated Credit Standing Refresh</div>
+          <div class="feature-block-subtitle">Triggers re-scoring the moment a loan closes — eliminating the 30–90 day manual reactivation gap</div>
+        </div>
+      </div>
+      <div class="feature-block-body">
+        <div class="layer-label">How it works</div>
+        <ul>
+          <li>At the moment the final EDI clears, an automated re-scoring pipeline is triggered</li>
+          <li>The merchant's UPI transaction data, repayment history, and transaction diversity are re-evaluated in real time</li>
+          <li>If eligibility is confirmed, the credit line is reactivated within 48 hours</li>
+          <li>If a review period is required (e.g., volume dropped below threshold), the merchant receives a clear timeline — not a blank ineligible state</li>
+        </ul>
+        <div class="insight-box">
+          <div class="insight-label">Impact</div>
+          <div class="insight-text">Closes the gap between the industry benchmark (under 24 hours) and BharatPe's current performance (30–90 days). For merchants who clear re-scoring immediately, the credit line is available before they even notice it was gone.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURE 2 -->
+    <div class="feature-block">
+      <div class="feature-block-header">
+        <div class="feature-block-num">02</div>
+        <div>
+          <div class="feature-block-title">Credit Lock Explanation</div>
+          <div class="feature-block-subtitle">Plain-language reason for the lock, specific review date, and three ranked actions the merchant can take</div>
+        </div>
+      </div>
+      <div class="feature-block-body">
+        <div class="layer-label">What the merchant sees instead of "ineligible"</div>
+        <ul>
+          <li><strong>Plain-language reason:</strong> "Your UPI transaction volume in May and June was Rs 46,000 — lower than your usual Rs 68,000. Our system automatically reviews credit limits when volume drops below your tier threshold."</li>
+          <li><strong>Specific review date:</strong> "Your credit line will be reviewed on 3 July 2025. I will notify you by SMS and app notification that day."</li>
+          <li><strong>Three ranked actions:</strong> What the merchant can do between now and the review date, ordered by credit impact — e.g. keep transacting daily, accept card payments, continue using BharatPe QR</li>
+          <li><strong>What is not affected:</strong> Explicit confirmation that payment acceptance continues normally — only new loan disbursements are on hold</li>
+        </ul>
+        <div class="layer-label">For the agent (customer care)</div>
+        <ul>
+          <li>Agent sees the same data the merchant sees, plus internal signals: lock trigger type, fraud flag status, whether an override is possible</li>
+          <li>AI-generated guidance script — not a generic template but specific to this merchant's situation</li>
+          <li>Explicit list of what the agent should NOT say (e.g., "I will escalate this" when there is nothing to escalate)</li>
+        </ul>
+        <div class="insight-box">
+          <div class="insight-label">Impact</div>
+          <div class="insight-text">Transforms a frustrating dead-end into a transparent, actionable waiting period. The merchant understands what happened, knows exactly when it will be reviewed, and has specific things to do in the interim. The agent can confidently explain the lock without escalating unnecessarily.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURE 3 -->
+    <div class="feature-block">
+      <div class="feature-block-header">
+        <div class="feature-block-num">03</div>
+        <div>
+          <div class="feature-block-title">Live Credit Score</div>
+          <div class="feature-block-subtitle">Built on the merchant's own UPI transaction data — with factor breakdown and indicative limit trajectory</div>
+        </div>
+      </div>
+      <div class="feature-block-body">
+        <div class="layer-label">What the merchant sees</div>
+        <ul>
+          <li><strong>BharatPe Business Score:</strong> A single number (e.g. 724) built entirely on BharatPe transaction and repayment data — not CIBIL, not a bureau score</li>
+          <li><strong>Factor breakdown:</strong> Each contributing factor shown with its status — UPI volume consistency, repayment history, transaction frequency, transaction diversity — and what improving each factor would do to the credit limit</li>
+          <li><strong>Limit trajectory:</strong> "3 months ago: Rs 80,000. Today: Rs 1,20,000. In 3 months at current pace: up to Rs 1,50,000." Shown as an indicative estimate, not a guaranteed offer</li>
+          <li><strong>Specific improvement tips:</strong> Not generic advice but personalised actions — "Adding card payments could add Rs 8,000 to your limit"</li>
+        </ul>
+        <div class="insight-box">
+          <div class="insight-label">Impact</div>
+          <div class="insight-text">Turns BharatPe's transaction data — which the merchant generates every day — into a visible asset the merchant can understand and act on. Increases merchant engagement, drives behaviour that improves creditworthiness, and strengthens the feedback loop between merchant behaviour and credit limit growth.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 AI ROLE -->
+<section class="cs-section" id="ai-role">
+  <div class="cs-section-inner">
+    <p class="section-label">04 &middot; AI Architecture</p>
+    <h2 class="section-title">The AI Role: <span>Why a rule engine cannot do this</span></h2>
+
+    <p>A rule engine can produce a generic error message. It can tell every locked merchant the same thing. AI does something different: it personalises the explanation to the merchant's specific situation at scale.</p>
+
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">NLP — Credit explanation layer</div>
+        <p style="font-size:0.8rem; margin:0; color:var(--text-muted);">Translates credit model outputs into personalised merchant-facing explanations. Takes the structured output of the credit model — volume threshold breach, review date, tier classification — and renders it as natural language specific to this merchant's numbers and history.</p>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">ML — Transaction signal classification</div>
+        <p style="font-size:0.8rem; margin:0; color:var(--text-muted);">Classifies UPI transaction patterns into credit-relevant signals across thousands of data points per merchant. Identifies volume trends, frequency patterns, transaction diversity, and seasonal behaviour. Feeds both the credit model and the merchant-facing factor breakdown.</p>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-card-title">Cohort matching — Limit trajectory</div>
+        <p style="font-size:0.8rem; margin:0; color:var(--text-muted);">Projects indicative limit trajectory by matching the merchant against 3.5 lakh similar merchant profiles — same category, similar transaction volume, similar repayment history — and showing what limits merchants in that cohort reached over 3, 6, and 12 months.</p>
+      </div>
+      <div class="col-card">
+        <div class="col-card-title">Agent guidance generation</div>
+        <p style="font-size:0.8rem; margin:0; color:var(--text-muted);">Generates a specific, ordered guidance script for the customer care agent based on the merchant's exact situation — not a template but a script tailored to this lock type, this merchant's history, and this call's context. Includes what to say, what not to say, and how to log the outcome.</p>
+      </div>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-label">Why AI, not rules</div>
+      <div class="insight-text">BharatPe has 1.7 crore merchants. No two credit lock situations are identical — the reason, the severity, the merchant's history, and the right set of actions differ across every case. A rule engine produces the same message for all of them. AI produces the right message for each of them.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 IMPACT -->
+<section class="cs-section" id="impact">
+  <div class="cs-section-inner">
+    <p class="section-label">05 &middot; Business Impact</p>
+    <h2 class="section-title">Impact: <span>Rs 35.9 crore in recoverable revenue</span></h2>
+
+    <p>The business case starts with a simple calculation. 10 to 12% of active borrowers experience a credit lock. Of those, 20% churn — they stop borrowing from BharatPe, either switching to a competitor or abandoning merchant lending entirely. At an average loan size of Rs 80,000 to Rs 1,00,000 and an effective interest rate of 18–24%, each lost borrower represents Rs 1,200–2,400 in annual interest income.</p>
+
+    <div class="stat-grid">
+      <div class="stat-cell">
+        <div class="stat-num">10–12%</div>
+        <div class="stat-desc">Active borrowers who experience a credit lock in any given cycle</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">20%</div>
+        <div class="stat-desc">Churn rate post-lock — anchored in Avaya's 37% banking switching rate, moderated for BharatPe's switching cost</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">Rs 35.9Cr</div>
+        <div class="stat-desc">Estimated annual interest income at risk across the active borrower base</div>
+      </div>
+    </div>
+
+    <h4>What Credit Companion recovers</h4>
+    <ul>
+      <li>Automated re-scoring eliminates the 30–90 day gap — merchants who clear re-scoring immediately stay in the lending cycle rather than churning during the wait</li>
+      <li>Credit lock explanation reduces irrational churn — merchants who understand the reason and have a clear timeline are significantly less likely to defect than merchants facing a blank ineligible state</li>
+      <li>Live Credit Score drives engagement and behaviour change — merchants who can see their credit trajectory and understand the levers have a direct incentive to transact more, improving their own creditworthiness and BharatPe's loan book quality simultaneously</li>
+    </ul>
+
+    <div class="callout">
+      <p>The revenue at stake is not theoretical. It is currently being lost — one frustrated merchant at a time, through a combination of a 30–90 day reactivation gap and a single unexplained word on a screen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 DELIVERABLES -->
+<section class="cs-section" id="deliverables">
+  <div class="cs-section-inner">
+    <p class="section-label">06 &middot; Deliverables</p>
+    <h2 class="section-title">Deliverables: <span>PRD, slide deck, and interactive prototype</span></h2>
+
+    <p>This case study produced three artefacts: a full product requirements document, a presentation-ready slide deck, and an interactive HTML prototype demonstrating both the merchant flow and the agent guidance flow.</p>
+
+    <div class="deliverables-row">
+      <a href="/assets/bharatpe-prd.pdf" class="deliverable-btn" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        PRD (PDF)
+      </a>
+      <a href="/assets/bharatpe-deck.pdf" class="deliverable-btn" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Slide Deck (PDF)
+      </a>
+      <a href="/demos/bharatpe-demo.html" class="deliverable-btn" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Live Demo
+      </a>
+    </div>
+
+    <div class="insight-box">
+      <div class="insight-label">AI Product Management Course | Hello PM | 2026</div>
+      <div class="insight-text">This case study was produced as part of the Hello PM AI Product Management programme. It covers problem discovery, solution design, AI architecture, business case modelling, and a fully interactive prototype demonstrating merchant and agent flows.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&#169; 2026 Komal Sikka &middot; <a href="https://komalunpacks.com">komalunpacks.com</a></p>
+  <p>Made with &#10084;&#65039; in India</p>
+</footer>
+
+<script>
+var steps = document.querySelectorAll(".journey-step");
+var sections = document.querySelectorAll(".cs-section");
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var id = entry.target.getAttribute("id");
+      steps.forEach(function(s) { s.classList.remove("active"); });
+      var active = document.querySelector(".journey-step[href='#" + id + "']");
+      if (active) active.classList.add("active");
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(function(s) { observer.observe(s); });
+</script>
+
+  </div><!-- /.site-main -->
+
+  <script src="/sidebar.js"></script>
+</body>
+</html>
